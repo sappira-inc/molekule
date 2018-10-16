@@ -1,9 +1,9 @@
 {
-  "name": "refractal",
+  "name": "molekule",
   "description": "React component library built on top of styled-components and styled-system",
   "version": "1.0.6",
-  "main": "lib/refractal.js",
-  "module": "lib/refractal.es.js",
+  "main": "lib/molekule.js",
+  "module": "lib/molekule.es.js",
   "files": [
     "lib"
   ],

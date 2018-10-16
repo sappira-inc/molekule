@@ -1,6 +1,6 @@
 export default {
-  base: process.env.NODE_ENV === 'production' ? '/refractal' : '',
-  title: 'Refractal',
+  base: process.env.NODE_ENV === 'production' ? '/molekule' : '',
+  title: 'Molekule',
   dest: './dist',
   description: 'React UI Framework based on styled-components and styled-system',
   port: 1234,
