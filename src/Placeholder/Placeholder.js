@@ -82,11 +82,11 @@ export default class Loadable extends React.Component {
         <Container textAlign="center">
           <strong>Oh no!</strong>
 
-          <Box mt={1} mb={2}>
+          <Box mt={1} mb={3}>
             {error}
           </Box>
 
-          <Button size="xs" variant="primary" outline onClick={onReload}>
+          <Button variant="primary" outline onClick={onReload}>
             Try Again
           </Button>
         </Container>
