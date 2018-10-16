@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { keyframes, css } from 'styled-components';
-import { fadeIn, fadeOut, fadeInUp, fadeOutUp } from 'react-animations';
+import * as animations from 'react-animations';
+import { Portal } from 'react-portal';
 import { createComponent } from '../utils';
 
-const fadeInAnimation = keyframes`${fadeIn}`;
-const fadeOutAnimation = keyframes`${fadeOut}`;
-const fadeInUpAnimation = keyframes`${fadeInUp}`;
-const fadeOutUpAnimation = keyframes`${fadeOutUp}`;
+const getAnimation = name => keyframes`${animations[name]}`;
 
 const Backdrop = createComponent({
   name: 'ModalBackdrop',
@@ -28,19 +26,19 @@ const Backdrop = createComponent({
 
     ${opening &&
       css`
-        animation: 0.35s ${fadeInAnimation};
+        animation: 0.35s ${getAnimation('fadeIn')};
       `};
 
     ${closing &&
       css`
-        animation: 0.35s ${fadeOutAnimation};
+        animation: 0.35s ${getAnimation('fadeOut')};
       `};
   `,
 });
 
 const ModalContent = createComponent({
   name: 'ModalContent',
-  style: ({ minWidth, maxWidth, opening, closing }) => css`
+  style: ({ minWidth, maxWidth, opening, closing, animationIn, animationOut }) => css`
     position: relative;
     margin: auto;
     min-width: ${minWidth || 250}px;
@@ -48,9 +46,17 @@ const ModalContent = createComponent({
     background: #ffffff;
     background-clip: padding-box;
     box-shadow: 0 8px 30px rgba(0, 29, 54, 0.1);
-    border-radius: 2px;
-    ${opening && `animation: 0.75s ${fadeInUpAnimation};`};
-    ${closing && `animation: 0.75s ${fadeOutUpAnimation};`};
+    border-radius: 4px;
+
+    ${opening &&
+      css`
+        animation: 0.75s ${getAnimation(animationIn)};
+      `};
+
+    ${closing &&
+      css`
+        animation: 0.75s ${getAnimation(animationOut)};
+      `};
   `,
 });
 
@@ -59,6 +65,10 @@ class Modal extends React.Component {
     open: PropTypes.bool,
     closeOnBackdropClick: PropTypes.bool,
     closeOnEscape: PropTypes.bool,
+    minWidth: PropTypes.number,
+    maxWidth: PropTypes.number,
+    animationIn: PropTypes.string,
+    animationOut: PropTypes.string,
     onClose: PropTypes.func,
   };
 
@@ -66,18 +76,16 @@ class Modal extends React.Component {
     open: false,
     closeOnBackdropClick: true,
     closeOnEscape: true,
+    animationIn: 'zoomIn',
+    animationOut: 'zoomOut',
     onClose: () => {},
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      open: props.open || false,
-      opening: false,
-      closing: false,
-    };
-  }
+  state = {
+    open: this.props.open || false,
+    opening: false,
+    closing: false,
+  };
 
   componentDidUpdate(oldProps) {
     if (!oldProps.open && this.props.open) {
@@ -172,45 +180,58 @@ class Modal extends React.Component {
     }
 
     const { opening, closing } = this.state;
-    const { children, minWidth, maxWidth } = this.props;
+    const { children, title, ...props } = this.props;
 
     return (
-      <Backdrop opening={opening} closing={closing} onClick={this.handleBackdropClick}>
-        <ModalContent
-          opening={opening}
-          closing={closing}
-          onClick={this.handleContentClick}
-          minWidth={minWidth}
-          maxWidth={maxWidth}>
-          {children}
-        </ModalContent>
-      </Backdrop>
+      <Portal>
+        <Backdrop opening={opening} closing={closing} onClick={this.handleBackdropClick}>
+          <ModalContent opening={opening} closing={closing} onClick={this.handleContentClick} {...props}>
+            {title && <Modal.Header title={title} />}
+            {children}
+          </ModalContent>
+        </Backdrop>
+      </Portal>
     );
   }
 }
+
+const ModalHeader = createComponent({
+  name: 'ModalHeader',
+  style: ({ theme }) => css`
+    font-size: 1.5rem;
+    border-bottom: 1px solid ${theme.colors.grayLight}
+    padding: 12px 16px;
+  `,
+});
+
+Modal.Header = ({ title, children }) => (
+  <ModalHeader>
+    {title && <Modal.Title>{title}</Modal.Title>}
+    {children}
+  </ModalHeader>
+);
 
 Modal.Title = createComponent({
   name: 'ModalTitle',
   tag: 'h2',
   style: css`
-    font-size: 20px;
-    font-weight: 600;
-    padding: 0 24px;
-    margin: 24px 0 0;
+    font-size: 1.25rem;
+    margin: 0;
   `,
 });
 
 Modal.Body = createComponent({
   name: 'ModalBody',
   style: css`
-    padding: 24px;
+    padding: 16px;
   `,
 });
 
 Modal.Footer = createComponent({
   name: 'ModalFooter',
-  style: css`
-    padding: 0 24px 24px;
+  style: ({ theme }) => css`
+    padding: 12px 16px;
+    background: ${theme.colors.grayLightest};
   `,
 });
 
