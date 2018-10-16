@@ -11,8 +11,7 @@ import { createComponent } from '../utils';
 const SelectContain = createComponent({
   name: 'Select',
   as: Flex,
-}).extend`
-  ${({ size, theme, borderRadius = theme.radius }) => css`
+  style: ({ size, theme, value, borderRadius = theme.radius }) => css`
     background: white;
     border: 1px solid ${theme.colors.grayLight};
     height: ${theme.heights[size]}px;
@@ -27,8 +26,7 @@ const SelectContain = createComponent({
     font-size: ${theme.fontSizes[size]}px;
     vertical-align: middle;
 
-    ${props =>
-      !props.value &&
+    ${value &&
       css`
         color: ${p => p.theme.colors.grayMid};
         select {
@@ -46,8 +44,8 @@ const SelectContain = createComponent({
       border: none;
       -webkit-appearance: none;
     }
-  `}
-`;
+  `,
+});
 
 const IconContain = styled(Flex)`
   position: absolute;

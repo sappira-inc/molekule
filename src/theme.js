@@ -1,10 +1,9 @@
 import { merge } from 'lodash';
-import { lighten } from 'polished';
 
 export default (overrides = {}) => {
   const colors = merge(
     {
-      primary: '#5759D6',
+      primary: '#0747A5',
       grayLightest: '#f1f5f9',
       grayLight: '#cfd7df',
       grayMid: '#8297a4',
@@ -25,32 +24,28 @@ export default (overrides = {}) => {
 
   const variants = {
     primary: {
-      backgroundColor: lighten(0.325, colors.primary),
-      fontColor: colors.primary,
-    },
-    success: {
-      backgroundColor: lighten(0.45, colors.green),
-      fontColor: colors.green,
-    },
-    danger: {
-      backgroundColor: lighten(0.45, colors.red),
-      fontColor: colors.red,
-    },
-    warning: {
-      backgroundColor: lighten(0.45, colors.orange),
-      fontColor: colors.orange,
-    },
-    info: {
-      backgroundColor: lighten(0.45, colors.blue),
-      fontColor: colors.blue,
-    },
-    inverted: {
       backgroundColor: colors.primary,
       fontColor: 'white',
     },
+    success: {
+      backgroundColor: colors.green,
+      fontColor: 'white',
+    },
+    danger: {
+      backgroundColor: colors.red,
+      fontColor: 'white',
+    },
+    warning: {
+      backgroundColor: colors.orange,
+      fontColor: 'white',
+    },
+    info: {
+      backgroundColor: colors.blue,
+      fontColor: 'white',
+    },
     gray: {
-      backgroundColor: lighten(0.35, colors.grayMid),
-      fontColor: colors.grayMid,
+      backgroundColor: colors.grayLight,
+      fontColor: colors.grayDark,
     },
   };
 
@@ -87,7 +82,7 @@ export default (overrides = {}) => {
   return {
     classPrefix: 're',
     colors,
-    radius: 2,
+    radius: 4,
     radii,
     typography,
     variants,

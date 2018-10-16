@@ -11,46 +11,48 @@ const fadeOutUpAnimation = keyframes`${fadeOutUp}`;
 
 const Backdrop = createComponent({
   name: 'ModalBackdrop',
-}).extend`
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1000;
-  padding: 12px;
-  display: flex;
-  align-items: center;
-  position: fixed;
-  overflow-y: auto;
-  overflow-x: hidden;
-  background: rgba(0, 0, 0, 0.2);
-  justify-content: center;
-  ${({ opening }) =>
-    opening &&
-    css`
-      animation: 0.35s ${fadeInAnimation};
-    `};
-  ${({ closing }) =>
-    closing &&
-    css`
-      animation: 0.35s ${fadeOutAnimation};
-    `};
-`;
+  style: ({ opening, closing }) => css`
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: rgba(0, 0, 0, 0.2);
+    justify-content: center;
+
+    ${opening &&
+      css`
+        animation: 0.35s ${fadeInAnimation};
+      `};
+
+    ${closing &&
+      css`
+        animation: 0.35s ${fadeOutAnimation};
+      `};
+  `,
+});
 
 const ModalContent = createComponent({
   name: 'ModalContent',
-}).extend`
-  position: relative;
-  margin: auto;
-  min-width: ${p => p.minWidth || 250}px;
-  max-width: ${p => p.maxWidth || 768}px;
-  background: #ffffff;
-  background-clip: padding-box;
-  box-shadow: 0 8px 30px rgba(0, 29, 54, 0.1);
-  border-radius: 2px;
-  ${({ opening }) => opening && `animation: 0.75s ${fadeInUpAnimation};`} ${({ closing }) =>
-  closing && `animation: 0.75s ${fadeOutUpAnimation};`};
-`;
+  style: ({ minWidth, maxWidth, opening, closing }) => css`
+    position: relative;
+    margin: auto;
+    min-width: ${minWidth || 250}px;
+    max-width: ${maxWidth || 768}px;
+    background: #ffffff;
+    background-clip: padding-box;
+    box-shadow: 0 8px 30px rgba(0, 29, 54, 0.1);
+    border-radius: 2px;
+    ${opening && `animation: 0.75s ${fadeInUpAnimation};`};
+    ${closing && `animation: 0.75s ${fadeOutUpAnimation};`};
+  `,
+});
 
 class Modal extends React.Component {
   static propTypes = {
@@ -190,23 +192,26 @@ class Modal extends React.Component {
 Modal.Title = createComponent({
   name: 'ModalTitle',
   tag: 'h2',
-}).extend`
-  font-size: 20px;
-  font-weight: 600;
-  padding: 0 24px;
-  margin: 24px 0 0;
-`;
+  style: css`
+    font-size: 20px;
+    font-weight: 600;
+    padding: 0 24px;
+    margin: 24px 0 0;
+  `,
+});
 
 Modal.Body = createComponent({
   name: 'ModalBody',
-}).extend`
-  padding: 24px;
-`;
+  style: css`
+    padding: 24px;
+  `,
+});
 
 Modal.Footer = createComponent({
   name: 'ModalFooter',
-}).extend`
-  padding: 0 24px 24px;
-`;
+  style: css`
+    padding: 0 24px 24px;
+  `,
+});
 
 export default Modal;

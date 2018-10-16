@@ -1,18 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { css } from 'styled-components';
 import { space, borderRadius, themeGet } from 'styled-system';
 import { createComponent } from '../utils';
 
 const StyledCard = createComponent({
   name: 'Card',
-}).extend`
-  background: white;
-  box-shadow: ${p =>
-    p.shadow ? themeGet('shadow', '0 4px 10px rgba(0, 29, 54, 0.04), 0 -2px 6px rgba(0, 29, 54, 0.025);') : 'none'};
+  style: ({ shadow }) => css`
+    background: white;
+    box-shadow: ${shadow
+      ? themeGet('shadow', '0 4px 10px rgba(0, 29, 54, 0.04), 0 -2px 6px rgba(0, 29, 54, 0.025);')
+      : 'none'};
 
-  ${borderRadius};
-  ${space};
-`;
+    ${borderRadius};
+    ${space};
+  `,
+});
 
 const Card = props => <StyledCard {...props} />;
 
@@ -26,28 +29,31 @@ Card.defaultProps = {
 
 Card.Header = createComponent({
   name: 'CardHeader',
-}).extend`
-  padding: 1rem;
-  border-bottom: 1px solid ${themeGet('colors.grayLight')};
+  style: () => css`
+    padding: 1rem;
+    border-bottom: 1px solid ${themeGet('colors.grayLight')};
 
-  ${space};
-`;
+    ${space};
+  `,
+});
 
 Card.Body = createComponent({
   name: 'CardBody',
-}).extend`
-  padding: 1rem;
+  style: () => css`
+    padding: 1rem;
 
-  ${space};
-`;
+    ${space};
+  `,
+});
 
 Card.Footer = createComponent({
   name: 'CardFooter',
-}).extend`
-  padding: 1rem;
-  border-top: 1px solid ${themeGet('colors.grayLight')};
+  style: () => css`
+    padding: 1rem;
+    border-top: 1px solid ${themeGet('colors.grayLight')};
 
-  ${space};
-`;
+    ${space};
+  `,
+});
 
 export default Card;

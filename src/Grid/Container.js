@@ -1,21 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { css } from 'styled-components';
 import Box from '../Box';
 import { createComponent } from '../utils';
 
-const getPadding = p => (p.gutter ? p.gutter / 2 : p.theme.grid.gutter / 2);
+const getPadding = p => (typeof p.gutter === 'number' ? p.gutter / 2 : p.theme.grid.gutter / 2);
 
 const StyledContainer = createComponent({
   name: 'Container',
   as: Box,
-}).extend`
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  max-width: ${p => (p.fluid ? '100%' : `${p.maxWidth || p.theme.grid.containerMaxWidth}px`)};
-  padding-left: ${getPadding}px;
-  padding-right: ${getPadding}px;
-`;
+  style: ({ maxWidth, fluid, theme }) => css`
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: ${fluid ? '100%' : `${maxWidth || theme.grid.containerMaxWidth}px`};
+    padding-left: ${getPadding}px;
+    padding-right: ${getPadding}px;
+  `,
+});
 
 StyledContainer.displayName = 'Container';
 

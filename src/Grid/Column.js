@@ -20,9 +20,9 @@ const getColumnWidth = (width, columns) =>
         flex: auto;
       `;
 
-const getPadding = p => {
-  if (p.collapse) return 0;
-  return p.gutter ? p.gutter / 2 : p.theme.grid.gutter / 2;
+const getPadding = ({ collapse, gutter, theme }) => {
+  if (collapse) return 0;
+  return typeof gutter === 'number' ? gutter / 2 : theme.grid.gutter / 2;
 };
 
 const getOffset = (offset, columns) => css`
@@ -32,14 +32,7 @@ const getOffset = (offset, columns) => css`
 const StyledColumn = createComponent({
   name: 'Column',
   as: Flex,
-}).extend`
-  box-sizing: border-box;
-  flex: 1 0 auto;
-  flex-direction: column;
-  padding-left: ${getPadding}px;
-  padding-right: ${getPadding}px;
-
-  ${p => {
+  style: p => {
     const sizes = Object.keys(p.theme.grid.sizes);
     const mediaQueries = sizes.filter(size => !!p[size]).map(
       size =>
@@ -59,11 +52,17 @@ const StyledColumn = createComponent({
     );
 
     return css`
+      box-sizing: border-box;
+      flex: 1 0 auto;
+      flex-direction: column;
+      padding-left: ${getPadding}px;
+      padding-right: ${getPadding}px;
+
       order: ${p.order ? p.order : 'initial'};
       ${mediaQueries};
     `;
-  }}
-`;
+  },
+});
 
 const Column = props => <StyledColumn {...props} />;
 
@@ -80,7 +79,6 @@ Column.propTypes = {
 };
 
 Column.defaultProps = {
-  gutter: false,
   collapse: false,
 };
 

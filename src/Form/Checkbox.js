@@ -1,6 +1,6 @@
 import React from 'react';
-import { capitalize } from 'lodash';
 import PropTypes from 'prop-types';
+import { css } from 'styled-components';
 import Icon from '../Icon';
 import FormError from '../Form/FormError';
 import Flex from '../Flex';
@@ -9,24 +9,26 @@ import { createComponent } from '../utils';
 const CheckboxContainer = createComponent({
   name: 'Checkbox',
   tag: 'label',
-}).extend`
-  position: relative;
-  margin-bottom: 0;
-  cursor: pointer;
+  style: () => css`
+    position: relative;
+    margin-bottom: 0;
+    cursor: pointer;
 
-  & + & {
-    margin-left: ${p => (p.horizontal ? '12px' : 0)};
-    margin-top: ${p => (p.horizontal ? 0 : '4px')};
-  }
-`;
+    & + & {
+      margin-left: ${p => (p.horizontal ? '12px' : 0)};
+      margin-top: ${p => (p.horizontal ? 0 : '4px')};
+    }
+  `,
+});
 
 const StyledInput = createComponent({
   name: 'CheckboxInput',
   tag: 'input',
-}).extend`
-  display: none;
-  pointer-events: ${p => (p.disabled ? 'none' : 'auto')};
-`;
+  style: css`
+    display: none;
+    pointer-events: ${p => (p.disabled ? 'none' : 'auto')};
+  `,
+});
 
 const StyledIcon = createComponent({
   name: 'CheckboxIcon',
@@ -36,10 +38,11 @@ const StyledIcon = createComponent({
 const StyledLabel = createComponent({
   name: 'CheckboxLabel',
   as: Flex,
-}).extend`
-  margin-left: 8px;
-  font-size: ${p => p.fontSize}px;
-`;
+  style: ({ fontSize }) => css`
+    margin-left: 8px;
+    font-size: ${fontSize}px;
+  `,
+});
 
 export default class Checkbox extends React.Component {
   static propTypes = {
@@ -65,6 +68,8 @@ export default class Checkbox extends React.Component {
     iconOff: 'checkbox-blank-outline',
     valueTrue: true,
     valueFalse: false,
+    colorOn: 'primary',
+    colorOff: 'grayMid',
     iconSize: 18,
     horizontal: false,
     onChange() {},
@@ -103,7 +108,20 @@ export default class Checkbox extends React.Component {
   };
 
   render() {
-    const { label, id, error, name, fontSize, iconOn, iconOff, iconSize, color, horizontal, disabled } = this.props;
+    const {
+      label,
+      id,
+      error,
+      name,
+      fontSize,
+      iconOn,
+      iconOff,
+      iconSize,
+      colorOn,
+      colorOff,
+      horizontal,
+      disabled,
+    } = this.props;
     const { checked } = this;
 
     return (
@@ -118,11 +136,12 @@ export default class Checkbox extends React.Component {
         />
 
         <Flex alignItems="center">
-          <StyledIcon size={iconSize} color={color} checked={checked} name={checked ? iconOn : iconOff} />
+          <StyledIcon size={iconSize} color={checked ? colorOn : colorOff} name={checked ? iconOn : iconOff} />
 
           {label && <StyledLabel fontSize={fontSize}>{label}</StyledLabel>}
         </Flex>
-        {!this.state.focused && error ? <FormError>{capitalize(error)}</FormError> : null}
+
+        {!this.state.focused && error ? <FormError>{error}</FormError> : null}
       </CheckboxContainer>
     );
   }

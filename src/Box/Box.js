@@ -1,3 +1,4 @@
+import { css } from 'styled-components';
 import {
   display,
   space,
@@ -16,7 +17,7 @@ import { createComponent } from '../utils';
 
 const Box = createComponent({
   name: 'Box',
-}).extend`
+  style: css`
   ${display}
   ${space}
   ${color}
@@ -29,7 +30,8 @@ const Box = createComponent({
   ${flex}
   ${alignSelf}
   ${justifySelf}
-`;
+  `,
+});
 
 Box.propTypes = {
   ...display.propTypes,

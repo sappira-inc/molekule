@@ -6,49 +6,33 @@ import { createComponent } from '../utils';
 const StyledIcon = createComponent({
   name: 'Icon',
   tag: 'i',
-}).extend`
-  ${p => {
-    const colorFromTheme = p.theme.colors[p.color];
-    const color = p.checked ? colorFromTheme || p.color : p.theme.colors.grayMid;
+  style: ({ theme, size, color, disabled }) => {
+    const colorFromTheme = theme.colors[color];
+    const resolvedColor = colorFromTheme || color;
 
     return css`
-      color: ${color};
-      ${p.disabled &&
+      color: ${resolvedColor || 'inherit'};
+      font-size: ${`${size}px` || 'inherit'};
+
+      ${disabled &&
         css`
           pointer-events: none;
           opacity: 0.65;
         `};
     `;
-  }}
-`;
+  },
+});
 
 class Icon extends React.Component {
-  static injected = false;
-  static iconUrl = 'https://cdn.heydoctor.co/assets/css/material-design-icons.css';
   static iconPrefix = 'mdi';
-
-  componentDidMount() {
-    if (!this.constructor.injected) {
-      this.constructor.injected = true;
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = this.constructor.iconUrl;
-      document.head.appendChild(link);
-    }
+  static getIconClassName(name) {
+    return `${this.iconPrefix} ${this.iconPrefix}-${name}`;
   }
 
   render() {
-    const { name, size, color, style = {}, className = '' } = this.props;
-    const { iconPrefix } = this.constructor;
+    const { name, className = '', ...props } = this.props;
 
-    return (
-      <StyledIcon
-        {...this.props}
-        className={`${iconPrefix} ${iconPrefix}-${name} ${className}`}
-        style={{ fontSize: size, color: color || 'inherit', ...style }}
-      />
-    );
+    return <StyledIcon {...props} className={`${this.constructor.getIconClassName(name)} ${className}`} />;
   }
 }
 

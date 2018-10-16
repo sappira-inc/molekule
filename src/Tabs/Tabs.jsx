@@ -1,88 +1,92 @@
 import React, { Component } from 'react';
-import styled, { css } from 'styled-components';
+import { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { createComponent } from '../utils';
 
 const TabsProvider = createComponent({
   name: 'Tabs',
-}).extend`
-  display: flex;
-  flex-direction: ${p => (p.vertical ? 'row' : 'column')};
-`;
+  style: ({ vertical }) => css`
+    display: flex;
+    flex-direction: ${vertical ? 'row' : 'column'};
+  `,
+});
 
 const TabList = createComponent({
   name: 'TabList',
   tag: 'ul',
-}).extend`
-  display: flex;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  flex-direction: ${p => (p.vertical ? 'column' : 'row')};
-  ${p =>
-    !p.vertical &&
-    css`
-      border-bottom: 1px solid #dfe3e8;
-    `};
-`;
+  style: ({ vertical }) => css`
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    flex-direction: ${vertical ? 'column' : 'row'};
 
+    ${!vertical &&
+      css`
+        border-bottom: 1px solid #dfe3e8;
+      `};
+  `,
+});
 const TabListItem = createComponent({
   name: 'TabListItem',
   tag: 'li',
-}).extend`
-  display: flex;
-  margin: 0;
-  padding: 0;
-`;
+  style: () => css`
+    display: flex;
+    margin: 0;
+    padding: 0;
+  `,
+});
 
 const Tab = createComponent({
   name: 'Tab',
   tag: 'button',
-}).extend`
-  appearance: none;
-  margin: 0;
-  padding: 0;
-  background: none;
-  border: none;
-  font-size: 14px;
-  font-family: inherit;
-  position: relative;
-  justify-content: center;
-  cursor: pointer;
-  margin-${p => (p.vertical ? 'left' : 'top')}: 1px;
-  margin-${p => (p.vertical ? 'right' : 'bottom')}: -1px;
-  padding: ${p => (p.vertical ? '0' : '0 12px')};
-  outline: none;
-  white-space: nowrap;
-  opacity: ${p => (p.disabled ? 0.5 : 1)};
-
-  &:active {
+  style: ({ vertical, disabled }) => css`
+    appearance: none;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    font-size: 14px;
+    font-family: inherit;
+    position: relative;
+    justify-content: center;
+    cursor: pointer;
+    margin-${vertical ? 'left' : 'top'}: 1px;
+    margin-${vertical ? 'right' : 'bottom'}: -1px;
+    padding: ${vertical ? '0' : '0 12px'};
     outline: none;
-  }
-`;
+    white-space: nowrap;
+    opacity: ${disabled ? 0.5 : 1};
+
+    &:active {
+      outline: none;
+    }
+  `,
+});
 
 const TabTitle = createComponent({
   name: 'TabTitle',
   tag: 'span',
-}).extend`
-  color: ${p => (p.active ? '#212b36' : '#637381')};
-  display: block;
-  padding: ${p => (p.vertical ? '8px 12px 8px 8px' : '12px 8px')};
-  border-${p => (p.vertical ? 'left' : 'bottom')}: 4px solid ${p =>
-  p.active ? p.theme.colors.primary : 'transparent'};
+  style: ({ active, vertical, theme }) => css`
+    display: block;
+    color: ${active ? '#212b36' : '#637381'};
+    padding: ${vertical ? '8px 12px 8px 8px' : '12px 8px'};
+    border-${vertical ? 'left' : 'bottom'}: 4px solid ${active ? theme.colors.primary : 'transparent'};
 
-  &::hover {
-    color: #212b36;
-    border-color: ${p => (p.active ? p.theme.colors.primary : '#d9dee3')};
-  }
-`;
+    &::hover {
+      color: #212b36;
+      border-color: ${active ? theme.colors.primary : '#d9dee3'};
+    }
+  `,
+});
 
 const TabContent = createComponent({
   name: 'TabContent',
   tag: 'div',
-}).extend`
-  width: 100%;
-`;
+  style: css`
+    width: 100%;
+  `,
+});
 
 class Tabs extends Component {
   static propTypes = {

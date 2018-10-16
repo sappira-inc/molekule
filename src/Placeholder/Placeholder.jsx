@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { css } from 'styled-components';
 import Box from '../Box';
 import Button from '../Button';
 import Spinner from '../Spinner';
@@ -7,15 +8,16 @@ import { createComponent } from '../utils';
 
 const Container = createComponent({
   name: 'Placeholder',
-}).extend`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  min-height: 50px;
-`;
+  style: css`
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+  `,
+});
 
 export default class Loadable extends React.Component {
   static propTypes = {

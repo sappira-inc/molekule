@@ -8,15 +8,15 @@ import { createComponent } from '../utils';
 
 const InputContainer = createComponent({
   name: 'InputContainer',
-}).extend`
-  position: relative;
-`;
+  style: css`
+    position: relative;
+  `,
+});
 
 const StyledInput = createComponent({
   name: 'Input',
   tag: 'input',
-}).extend`
-  ${({ isFloating, size, theme, borderRadius = theme.radius }) => css`
+  style: ({ isFloating, size, theme, borderRadius = theme.radius }) => css`
     border: 1px solid ${theme.colors.grayLight};
     height: ${theme.heights[size]}px;
     display: block;
@@ -47,8 +47,8 @@ const StyledInput = createComponent({
       css`
         padding-bottom: 0;
       `};
-  `};
-`;
+  `,
+});
 
 const StyledTextArea = StyledInput.withComponent('textarea');
 

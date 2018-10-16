@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css, keyframes } from 'styled-components';
 import { space } from 'styled-system';
-import { darken } from 'polished';
+import { lighten } from 'polished';
 import { getComponentVariant, createComponent } from '../utils';
 
 const spinKeyframes = keyframes`
@@ -26,26 +26,25 @@ const loadingCss = ({ height, fontColor }) => css`
     content: '';
     border-color: ${fontColor};
     animation: ${spinKeyframes} 820ms infinite linear;
-    border-width: ${height / 12}px;
+    border-width: ${height * 0.05}px;
     border-style: solid;
     border-radius: 100%;
     border-right-color: transparent;
     border-top-color: transparent;
-    height: ${height / 2}px;
     left: 50%;
-    margin-left: -${height / 4}px;
-    margin-top: -${height / 4}px;
+    margin-left: -${height * 0.25}px;
+    margin-top: -${height * 0.25}px;
     position: absolute;
     top: 48%;
-    width: ${height / 2}px;
+    height: ${height * 0.5}px;
+    width: ${height * 0.5}px;
   }
 `;
 
 const StyledButton = createComponent({
   name: 'Button',
   tag: 'button',
-}).extend`
-  ${({
+  style: ({
     variant,
     size,
     theme,
@@ -71,31 +70,32 @@ const StyledButton = createComponent({
       appearance: none;
       border-radius: ${borderRadius}px;
       pointer-events: ${disabled ? 'none' : 'auto'};
-      opacity: ${disabled ? '0.65' : '1'};
-      color: ${fontColor};
+      opacity: ${disabled ? 0.65 : 1};
+      color: ${outline ? backgroundColor : fontColor};
       height: ${height}px;
-      padding: 0 ${height / 2}px;
+      padding: 0 ${height * 0.5}px;
       font-size: ${fontSize}px;
       width: ${block ? '100%' : 'auto'};
       background: ${outline || transparent ? 'transparent' : backgroundColor};
-      border: ${transparent ? 'none' : `1px solid ${outline ? fontColor : darken(0.05, backgroundColor)}`};
+      border: ${transparent ? 'none' : `1px solid ${backgroundColor}`};
       transition: 175ms;
 
-      ${loading ? loadingCss({ height, fontColor }) : ''};
-      ${space};
+      ${loading && loadingCss({ height, fontColor })};
 
       &:hover {
-        background: ${darken(0.05, backgroundColor)};
-        border-color: ${darken(0.05, backgroundColor)};
+        background: ${outline ? 'transparent' : lighten(0.05, backgroundColor)};
+        border-color: ${lighten(0.05, backgroundColor)};
       }
 
       &:active {
-        background: ${darken(0.075, backgroundColor)};
-        border-color: ${darken(0.075, backgroundColor)};
+        background: ${outline ? 'transparent' : lighten(0.075, backgroundColor)};
+        border-color: ${lighten(0.075, backgroundColor)};
       }
+
+      ${space};
     `;
-  }};
-`;
+  },
+});
 
 const Button = props => <StyledButton {...props} />;
 
@@ -119,10 +119,13 @@ Button.defaultProps = {
   transparent: false,
 };
 
-Button.Group = createComponent({ name: 'ButtonGroup' }).extend`
-  & > *:not(:first-child) {
-    margin-left: 1rem;
-  }
-`;
+Button.Group = createComponent({
+  name: 'ButtonGroup',
+  style: css`
+    & > *:not(:first-child) {
+      margin-left: 1rem;
+    }
+  `,
+});
 
 export default Button;

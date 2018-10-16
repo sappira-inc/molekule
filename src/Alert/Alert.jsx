@@ -6,8 +6,7 @@ import { getComponentVariant, createComponent } from '../utils';
 
 const StyledAlert = createComponent({
   name: 'Alert',
-}).extend`
-  ${({ variant, theme }) => {
+  style: ({ variant, theme }) => {
     const { backgroundColor, fontColor } = getComponentVariant(theme, 'Alert', variant);
 
     return css`
@@ -24,11 +23,11 @@ const StyledAlert = createComponent({
         color: inherit;
         text-decoration: underline;
       }
-    `;
-  }};
 
-  ${space};
-`;
+      ${space};
+    `;
+  },
+});
 
 const Alert = props => <StyledAlert {...props} />;
 
