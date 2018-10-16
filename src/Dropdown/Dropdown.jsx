@@ -1,24 +1,31 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { css } from 'styled-components';
 import { Portal } from 'react-portal';
 import Popper from 'popper.js';
 import Box from '../Box';
+import { createComponent } from '../utils';
 
-const DropdownTrigger = styled.div`
-  display: inline-block;
-`;
+const DropdownTrigger = createComponent({
+  name: 'DropdownTrigger',
+  style: css`
+    display: inline-block;
+  `,
+});
 
-const DropdownMenu = styled.div`
-  z-index: 10;
-  position: absolute;
-  background: white;
-  border-radius: 4px;
-  border: 1px solid #e4edf5;
-  box-shadow: 0 0 3px 0 rgba(178, 194, 212, 0.3);
-  min-width: 150px;
-  width: ${p => `${p.width || 150}px`};
-`;
+const DropdownMenu = createComponent({
+  name: 'DropdownMenu',
+  style: ({ width = 150 }) => css`
+    z-index: 10;
+    position: absolute;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #e4edf5;
+    box-shadow: 0 0 3px 0 rgba(178, 194, 212, 0.3);
+    min-width: 150px;
+    width: ${width}px;
+  `,
+});
 
 export default class Dropdown extends React.Component {
   static propTypes = {
@@ -153,50 +160,68 @@ export default class Dropdown extends React.Component {
   }
 }
 
-Dropdown.Header = styled.div`
-  padding: 8px 12px;
-  font-size: 1rem;
-  border-bottom: 1px solid ${p => p.theme.colors.grayLight};
-`;
+Dropdown.Header = createComponent({
+  name: 'DropdownHeader',
+  style: css`
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-bottom: 1px solid ${p => p.theme.colors.grayLight};
+  `,
+});
 
-Dropdown.Body = styled(Box)`
-  padding: 12px;
-`;
+Dropdown.Body = createComponent({
+  name: 'DropdownBody',
+  as: Box,
+  style: css`
+    padding: 1rem;
+  `,
+});
 
-Dropdown.Title = styled.h3`
-  display: block;
-  font-weight: 600;
-  font-size: 14px;
-  color: ${p => p.theme.colors.primary};
-  margin: 0 0 4px;
-`;
+Dropdown.Title = createComponent({
+  name: 'DropdownTitle',
+  tag: 'h3',
+  style: ({ theme }) => css`
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    color: ${theme.colors.primary};
+    margin: 0 0 4px;
+  `,
+});
 
-Dropdown.Item = styled.div`
-  opacity: ${p => (p.disabled ? 0.5 : 1)};
-  pointer-events: ${p => (p.disabled ? 'none' : 'initial')};
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  align-items: center;
-  margin-left: -12px;
-  margin-right: -12px;
-  padding: 4px 12px;
-  font-size: 14px;
-  cursor: pointer;
-
-  & + ${Dropdown.Title} {
-    margin-top: 12px;
-  }
-
-  &:hover {
+Dropdown.Item = createComponent({
+  name: 'DropdownItem',
+  style: ({ disabled }) => css`
+    opacity: ${disabled ? 0.5 : 1};
+    pointer-events: ${disabled ? 'none' : 'initial'};
+    text-decoration: none;
     color: inherit;
-  }
-`;
+    display: flex;
+    align-items: center;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding: 4px 1rem;
+    font-size: 14px;
+    cursor: pointer;
 
-Dropdown.Footer = styled.footer`
-  background: {p => p.theme.colors.grayLightest};
-  padding: 12px;
-  border-radius: 0 0 4px 4px;
-  border-top: 1px solid ${p => p.theme.colors.grayLight};
-  font-size: 14px;
-`;
+    & + ${Dropdown.Title} {
+      margin-top: 1rem;
+    }
+
+    &:hover {
+      color: inherit;
+    }
+  `,
+});
+
+Dropdown.Footer = createComponent({
+  name: 'DropdownFooter',
+  as: 'footer',
+  style: ({ theme }) => css`
+    background: ${theme.colors.grayLightest};
+    padding: 1rem;
+    border-radius: 0 0 4px 4px;
+    border-top: 1px solid ${theme.colors.grayLight};
+    font-size: 14px;
+  `,
+});

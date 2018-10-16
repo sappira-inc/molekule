@@ -4,8 +4,8 @@ export default (overrides = {}) => {
   const colors = merge(
     {
       primary: '#2DAAF2',
-      grayLightest: '#D9DCE2',
-      grayLight: '#B4BAC5',
+      grayLightest: '#F1F4F6',
+      grayLight: '#DEE0E4',
       grayMid: '#8E97A7',
       grayDark: '#43526D',
       red: '#F06071',

@@ -6,11 +6,7 @@ export default {
   port: 1234,
   wrapper: 'docs/wrapper.js',
   propsParser: true,
-  menu: [
-    ['Introduction'],
-    ['Guides', ['Theming'],
-    ['Components', ['Grid']]
-  ],
+  menu: [['Introduction'], ['Guides', ['Theming']], ['Components', ['Grid']]],
   htmlContext: {
     head: {
       links: [
