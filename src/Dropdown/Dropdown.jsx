@@ -15,11 +15,11 @@ const DropdownTrigger = createComponent({
 
 const DropdownMenu = createComponent({
   name: 'DropdownMenu',
-  style: ({ width = 150 }) => css`
+  style: ({ width = 150, theme }) => css`
     z-index: 10;
     position: absolute;
     background: white;
-    border-radius: 4px;
+    border-radius: ${theme.radius}px;
     border: 1px solid #e4edf5;
     box-shadow: 0 0 3px 0 rgba(178, 194, 212, 0.3);
     min-width: 150px;
@@ -163,7 +163,7 @@ export default class Dropdown extends React.Component {
 Dropdown.Header = createComponent({
   name: 'DropdownHeader',
   style: css`
-    padding: 0.75rem 1rem;
+    padding: 12px 16px;
     font-size: 1rem;
     border-bottom: 1px solid ${p => p.theme.colors.grayLight};
   `,
@@ -219,7 +219,7 @@ Dropdown.Footer = createComponent({
   as: 'footer',
   style: ({ theme }) => css`
     background: ${theme.colors.grayLightest};
-    padding: 1rem;
+    padding: 12px 16px;
     border-radius: 0 0 4px 4px;
     border-top: 1px solid ${theme.colors.grayLight};
     font-size: 14px;

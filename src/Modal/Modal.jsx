@@ -232,6 +232,7 @@ Modal.Footer = createComponent({
   style: ({ theme }) => css`
     padding: 12px 16px;
     background: ${theme.colors.grayLightest};
+    border-top: 1px solid ${theme.colors.grayLight};
   `,
 });
 
