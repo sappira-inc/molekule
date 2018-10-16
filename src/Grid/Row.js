@@ -12,12 +12,12 @@ const getMargin = p => {
 const StyledRow = createComponent({
   name: 'Row',
   as: Flex,
-  style: ({ vertical }) => {
+  style: ({ vertical, reverse }) => {
     const direction = vertical ? 'column' : 'row';
 
     return css`
       flex: 0 1 auto;
-      flex-direction: ${p.reverse ? `${direction}-reverse` : direction};
+      flex-direction: ${reverse ? `${direction}-reverse` : direction};
       flex-wrap: wrap;
       margin-right: -${getMargin}px;
       margin-left: -${getMargin}px;

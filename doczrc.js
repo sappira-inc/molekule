@@ -6,8 +6,32 @@ export default {
   port: 1234,
   wrapper: 'docs/wrapper.js',
   propsParser: true,
-  modifyBundlerConfig: config => {
-    config.optimization = {
+  menu: [
+    ['Introduction'],
+    ['Guides', ['Theming'],
+    ['Components', ['Grid']]
+  ],
+  htmlContext: {
+    head: {
+      links: [
+        {
+          rel: 'stylesheet',
+          href: 'https://codemirror.net/theme/dracula.css',
+        },
+        {
+          rel: 'stylesheet',
+          href: 'https://cdn.materialdesignicons.com/2.8.94/css/materialdesignicons.min.css',
+        },
+      ],
+    },
+  },
+  themeConfig: {
+    mode: 'dark',
+    codemirrorTheme: 'dracula',
+  },
+  modifyBundlerConfig: config => ({
+    ...config,
+    optimization: {
       runtimeChunk: true,
       nodeEnv: 'production',
       namedModules: true,
@@ -17,7 +41,6 @@ export default {
         name: 'vendors',
       },
       minimize: false,
-    };
-    return config;
-  },
+    },
+  }),
 };

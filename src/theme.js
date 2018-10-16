@@ -3,15 +3,15 @@ import { merge } from 'lodash';
 export default (overrides = {}) => {
   const colors = merge(
     {
-      primary: '#0747A5',
-      grayLightest: '#f1f5f9',
-      grayLight: '#e4edf5',
-      grayMid: '#8297a4',
-      grayDark: '#576574',
-      red: '#c0392b',
-      blue: '#2980b9',
-      green: '#27ae60',
-      orange: '#e67e22',
+      primary: '#2DAAF2',
+      grayLightest: '#D9DCE2',
+      grayLight: '#B4BAC5',
+      grayMid: '#8E97A7',
+      grayDark: '#43526D',
+      red: '#F06071',
+      blue: '#0747A5',
+      green: '#09BB84',
+      orange: '#FFA057',
     },
     overrides.colors
   );
