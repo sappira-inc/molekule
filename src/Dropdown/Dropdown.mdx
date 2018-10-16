@@ -3,9 +3,10 @@ menu: Components
 name: Dropdown
 ---
 
-import { Playground, PropsTable } from 'docz'
-import Dropdown from './Dropdown.jsx'
-import Button from '../Button'
+import { Playground, PropsTable } from 'docz';
+import { Fragment } from 'react';
+import Dropdown from './Dropdown.jsx';
+import Button from '../Button';
 
 # Dropdown
 
@@ -17,9 +18,11 @@ Easily display contextual overlays using custom trigger elements.
 ## Example
 <Playground>
   <Dropdown
+    width={250}
     trigger={<Button variant="success">Open Dropdown</Button>}
-    render={({ close }) => (
-      <div>
+  >
+    {({ close }) => (
+      <Fragment>
         <Dropdown.Header>Header</Dropdown.Header>
 
         <Dropdown.Body>
@@ -33,9 +36,9 @@ Easily display contextual overlays using custom trigger elements.
         </Dropdown.Body>
 
         <Dropdown.Footer>Footer</Dropdown.Footer>
-      </div>
+      </Fragment>
     )}
-  />
+  </Dropdown>
 </Playground>
 
 

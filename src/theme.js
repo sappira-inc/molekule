@@ -5,7 +5,7 @@ export default (overrides = {}) => {
     {
       primary: '#0747A5',
       grayLightest: '#f1f5f9',
-      grayLight: '#cfd7df',
+      grayLight: '#e4edf5',
       grayMid: '#8297a4',
       grayDark: '#576574',
       red: '#c0392b',
