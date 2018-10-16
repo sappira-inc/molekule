@@ -8,7 +8,7 @@ exports[`Card 1`] = `
 
 .c1 {
   padding: 1rem;
-  border-bottom: 1px solid #e4edf5;
+  border-bottom: 1px solid #DEE0E4;
 }
 
 .c2 {
@@ -17,40 +17,26 @@ exports[`Card 1`] = `
 
 .c3 {
   padding: 1rem;
-  border-top: 1px solid #e4edf5;
+  border-top: 1px solid #DEE0E4;
 }
 
-<Card
-  shadow={true}
+<div
+  className="re-card c0"
 >
-  <styled.div
-    shadow={true}
+  <div
+    className="re-card-header c1"
   >
-    <div
-      className="re-card c0"
-    >
-      <styled.div>
-        <div
-          className="re-card-header c1"
-        >
-          Header
-        </div>
-      </styled.div>
-      <styled.div>
-        <div
-          className="re-card-body c2"
-        >
-          Body
-        </div>
-      </styled.div>
-      <styled.div>
-        <div
-          className="re-card-footer c3"
-        >
-          Footer
-        </div>
-      </styled.div>
-    </div>
-  </styled.div>
-</Card>
+    Header
+  </div>
+  <div
+    className="re-card-body c2"
+  >
+    Body
+  </div>
+  <div
+    className="re-card-footer c3"
+  >
+    Footer
+  </div>
+</div>
 `;

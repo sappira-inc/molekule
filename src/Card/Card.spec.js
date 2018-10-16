@@ -1,9 +1,9 @@
 import React from 'react';
-import { mountWithTheme } from '../../test/utils';
+import { renderWithTheme } from '../../test/utils';
 import Card from './Card';
 
 test('Card', () => {
-  const component = mountWithTheme(
+  const component = renderWithTheme(
     <Card>
       <Card.Header>Header</Card.Header>
       <Card.Body>Body</Card.Body>
@@ -11,5 +11,5 @@ test('Card', () => {
     </Card>
   );
 
-  expect(component).toMatchSnapshot();
+  expect(component.toJSON()).toMatchSnapshot();
 });

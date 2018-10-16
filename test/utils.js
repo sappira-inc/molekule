@@ -1,10 +1,7 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { ThemeProvider } from 'styled-components';
-import theme from '../src/theme';
+import renderer from 'react-test-renderer';
+import ThemeProvider from '../src/ThemeProvider';
 
-export const mountWithTheme = (children, options) => {
-  const wrapper = mount(<ThemeProvider theme={theme}>{children}</ThemeProvider>, options);
-  const instance = wrapper.instance();
-  return wrapper.mount({ context: instance.getChildContext() }).children();
-};
+export function renderWithTheme(component, options) {
+  return renderer.create(<ThemeProvider>{component}</ThemeProvider>, options);
+}

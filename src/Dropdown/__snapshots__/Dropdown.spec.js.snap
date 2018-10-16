@@ -17,146 +17,41 @@ exports[`Dropdown 1`] = `
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border-radius: 2px;
+  border-radius: 4px;
   pointer-events: auto;
   opacity: 1;
-  color: #5759D6;
+  color: white;
   height: 36px;
   padding: 0 18px;
   font-size: 12px;
   width: auto;
-  background: #dcddf7;
-  border: 1px solid #c7c9f2;
+  background: #2DAAF2;
+  border: 1px solid #2DAAF2;
   -webkit-transition: 175ms;
   transition: 175ms;
 }
 
 .c1:hover {
-  background: #c7c9f2;
-  border-color: #c7c9f2;
+  background: #45b4f3;
+  border-color: #45b4f3;
 }
 
 .c1:active {
-  background: #bdbff0;
-  border-color: #bdbff0;
-}
-
-<Dropdown
-  autoclose={true}
-  boundariesElement="window"
-  on="click"
-  placement="bottom-start"
-  trigger={
-    <Button
-      block={false}
-      disabled={false}
-      loading={false}
-      outline={false}
-      size="md"
-      transparent={false}
-      variant="primary"
-    >
-      Trigger
-    </Button>
-  }
->
-  <styled.div
-    aria-expanded={false}
-    aria-haspopup="true"
-    innerRef={
-      Object {
-        "current": .c0 {
-  display: inline-block;
-}
-
-.c1 {
-  font-family: inherit;
-  display: inline-block;
-  text-align: center;
-  cursor: pointer;
-  text-transform: capitalize;
-  font-weight: bold;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border-radius: 2px;
-  pointer-events: auto;
-  opacity: 1;
-  color: #5759D6;
-  height: 36px;
-  padding: 0 18px;
-  font-size: 12px;
-  width: auto;
-  background: #dcddf7;
-  border: 1px solid #c7c9f2;
-  -webkit-transition: 175ms;
-  transition: 175ms;
-}
-
-.c1:hover {
-  background: #c7c9f2;
-  border-color: #c7c9f2;
-}
-
-.c1:active {
-  background: #bdbff0;
-  border-color: #bdbff0;
+  background: #51b9f4;
+  border-color: #51b9f4;
 }
 
 <div
-          aria-expanded="false"
-          aria-haspopup="true"
-          class="c0"
-        >
-          <button
-            class="re-button re-button-primary c1"
-          >
-            Trigger
-          </button>
-        </div>,
-      }
-    }
+  aria-expanded={false}
+  aria-haspopup="true"
+  className="re-dropdown-trigger c0"
+>
+  <button
+    className="re-button re-button-primary c1"
+    disabled={false}
+    size="md"
   >
-    <div
-      aria-expanded={false}
-      aria-haspopup="true"
-      className="c0"
-    >
-      <Button
-        block={false}
-        disabled={false}
-        loading={false}
-        outline={false}
-        size="md"
-        transparent={false}
-        variant="primary"
-      >
-        <styled.button
-          block={false}
-          disabled={false}
-          loading={false}
-          outline={false}
-          size="md"
-          transparent={false}
-          variant="primary"
-        >
-          <button
-            className="re-button re-button-primary c1"
-            disabled={false}
-            size="md"
-          >
-            Trigger
-          </button>
-        </styled.button>
-      </Button>
-    </div>
-  </styled.div>
-  <Portal>
-    <Portal
-      containerInfo={<div />}
-    />
-  </Portal>
-</Dropdown>
+    Trigger
+  </button>
+</div>
 `;

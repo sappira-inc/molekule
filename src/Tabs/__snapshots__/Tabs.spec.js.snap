@@ -63,20 +63,20 @@ exports[`<Tabs /> renders 1`] = `
 }
 
 .c4 {
-  color: #212b36;
   display: block;
+  color: #212b36;
   padding: 12px 8px;
-  border-bottom: 4px solid #5759D6;
+  border-bottom: 4px solid #2DAAF2;
 }
 
 .c4::hover {
   color: #212b36;
-  border-color: #5759D6;
+  border-color: #2DAAF2;
 }
 
 .c5 {
-  color: #637381;
   display: block;
+  color: #637381;
   padding: 12px 8px;
   border-bottom: 4px solid transparent;
 }
@@ -90,117 +90,50 @@ exports[`<Tabs /> renders 1`] = `
   width: 100%;
 }
 
-<Tabs
-  tabs={
-    Array [
-      Object {
-        "content": <TabContent
-          body="one"
-        />,
-        "id": "test-one",
-        "title": "Tab One",
-      },
-      Object {
-        "content": <TabContent
-          body="two"
-        />,
-        "id": "test-two",
-        "onActive": [MockFunction],
-        "title": "Tab Two",
-      },
-    ]
-  }
-  vertical={false}
+<div
+  className="re-tabs c0"
 >
-  <styled.div
-    vertical={false}
+  <ul
+    className="re-tab-list c1"
   >
-    <div
-      className="re-tabs c0"
+    <li
+      className="re-tab-list-item c2"
     >
-      <styled.ul
-        vertical={false}
+      <button
+        className="re-tab c3"
+        id="test-one"
+        onClick={[Function]}
       >
-        <ul
-          className="re-tab-list c1"
+        <span
+          className="re-tab-title c4"
         >
-          <styled.li
-            key="test-one"
-          >
-            <li
-              className="re-tab-list-item c2"
-            >
-              <styled.button
-                id="test-one"
-                onClick={[Function]}
-                vertical={false}
-              >
-                <button
-                  className="re-tab c3"
-                  id="test-one"
-                  onClick={[Function]}
-                >
-                  <styled.span
-                    active={true}
-                    vertical={false}
-                  >
-                    <span
-                      className="re-tab-title c4"
-                    >
-                      Tab One
-                    </span>
-                  </styled.span>
-                </button>
-              </styled.button>
-            </li>
-          </styled.li>
-          <styled.li
-            key="test-two"
-          >
-            <li
-              className="re-tab-list-item c2"
-            >
-              <styled.button
-                id="test-two"
-                onClick={[Function]}
-                vertical={false}
-              >
-                <button
-                  className="re-tab c3"
-                  id="test-two"
-                  onClick={[Function]}
-                >
-                  <styled.span
-                    active={false}
-                    vertical={false}
-                  >
-                    <span
-                      className="re-tab-title c5"
-                    >
-                      Tab Two
-                    </span>
-                  </styled.span>
-                </button>
-              </styled.button>
-            </li>
-          </styled.li>
-        </ul>
-      </styled.ul>
-      <styled.div>
-        <div
-          className="re-tab-content c6"
+          Tab One
+        </span>
+      </button>
+    </li>
+    <li
+      className="re-tab-list-item c2"
+    >
+      <button
+        className="re-tab c3"
+        id="test-two"
+        onClick={[Function]}
+      >
+        <span
+          className="re-tab-title c5"
         >
-          <TabContent
-            body="one"
-          >
-            <div>
-              This is the content for Tab 
-              one
-            </div>
-          </TabContent>
-        </div>
-      </styled.div>
+          Tab Two
+        </span>
+      </button>
+    </li>
+  </ul>
+  <div
+    className="re-tab-content c6"
+  >
+    <div>
+      This is the content for Tab 
+      one
     </div>
-  </styled.div>
-</Tabs>
+  </div>
+</div>
 `;

@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from './Modal.jsx';
+import Modal from './Modal';
 import Button from '../Button';
 import Box from '../Box';
 

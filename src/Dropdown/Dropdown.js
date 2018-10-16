@@ -142,13 +142,13 @@ export default class Dropdown extends React.Component {
 
     return (
       <Fragment>
-        <DropdownTrigger innerRef={this.triggerRef} aria-haspopup="true" aria-expanded={isOpen}>
+        <DropdownTrigger ref={this.triggerRef} aria-haspopup="true" aria-expanded={isOpen}>
           {trigger}
         </DropdownTrigger>
 
         <Portal>
           {isOpen && (
-            <DropdownMenu innerRef={this.menuRef} width={width}>
+            <DropdownMenu ref={this.menuRef} width={width}>
               {renderFn({
                 close: this.toggle,
               })}

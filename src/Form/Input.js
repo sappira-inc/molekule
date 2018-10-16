@@ -70,7 +70,7 @@ export default class Input extends Component {
     autogrow: PropTypes.bool,
     size: PropTypes.string,
     floating: PropTypes.bool,
-    innerRef: PropTypes.shape(),
+    ref: PropTypes.shape(),
   };
 
   static defaultProps = {
@@ -87,7 +87,7 @@ export default class Input extends Component {
     onBlur() {},
     onChange() {},
     floating: false,
-    innerRef: {},
+    ref: {},
   };
 
   state = {
@@ -98,7 +98,7 @@ export default class Input extends Component {
   inputRef = React.createRef();
 
   get ref() {
-    return this.props.innerRef || this.inputRef;
+    return this.props.ref || this.inputRef;
   }
 
   componentDidMount() {
@@ -221,7 +221,7 @@ export default class Input extends Component {
     const inputProps = {
       ...rest,
       id,
-      innerRef: this.ref,
+      ref: this.ref,
       size,
       value: this.state.value,
       onChange: this.onChange,

@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
-import { mountWithTheme } from '../../test/utils';
+import { renderWithTheme } from '../../test/utils';
 import Dropdown from './Dropdown';
 import Button from '../Button';
 
 test('Dropdown', () => {
-  const component = mountWithTheme(
+  const component = renderWithTheme(
     <Dropdown trigger={<Button>Trigger</Button>}>
       {() => (
         <Fragment>
@@ -13,8 +13,14 @@ test('Dropdown', () => {
           <Dropdown.Footer>Footer</Dropdown.Footer>
         </Fragment>
       )}
-    </Dropdown>
+    </Dropdown>,
+    {
+      createNodeMock: () => ({
+        addEventListener: () => {},
+        removeEventListener: () => {},
+      }),
+    }
   );
 
-  expect(component).toMatchSnapshot();
+  expect(component.toJSON()).toMatchSnapshot();
 });
