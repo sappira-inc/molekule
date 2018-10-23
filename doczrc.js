@@ -21,10 +21,7 @@ export default {
       ],
     },
   },
-  themeConfig: {
-    mode: 'dark',
-    codemirrorTheme: 'dracula',
-  },
+  themeConfig: {},
   modifyBundlerConfig: config => ({
     ...config,
     optimization: {

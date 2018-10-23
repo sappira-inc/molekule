@@ -1,6 +1,8 @@
 import { merge } from 'lodash';
 
 export default (overrides = {}) => {
+  const shadow = '0 3px 6px hsla(0,0%,60%,.1), 0 3px 6px hsla(0,0%,60%,.15), 0 -1px 2px hsla(0,0%,60%,.02)';
+
   const colors = merge(
     {
       primary: '#2DAAF2',
@@ -80,15 +82,16 @@ export default (overrides = {}) => {
   };
 
   return {
+    breakpoints,
     classPrefix: 're',
     colors,
-    radius: 4,
+    fontSizes,
+    grid,
+    heights,
     radii,
+    radius: 4,
+    shadow,
     typography,
     variants,
-    heights,
-    fontSizes,
-    breakpoints,
-    grid,
   };
 };

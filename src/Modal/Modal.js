@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { keyframes, css } from 'styled-components';
 import * as animations from 'react-animations';
-import { Portal } from 'react-portal';
+import { Portal } from '../Portal';
 import { createComponent } from '../utils';
 
 const getAnimation = name => keyframes`${animations[name]}`;
@@ -47,6 +47,7 @@ const ModalContent = createComponent({
     background-clip: padding-box;
     box-shadow: 0 8px 30px rgba(0, 29, 54, 0.1);
     border-radius: 4px;
+    overflow: hidden;
 
     ${opening &&
       css`

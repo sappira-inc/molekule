@@ -1,0 +1,66 @@
+---
+menu: Core
+name: Collapse
+---
+
+# Collapse
+
+import { Playground, PropsTable } from 'docz';
+import Button from '../Button';
+import Box from '../Box';
+import Collapse from './Collapse';
+
+Collapse is used to show and hide content. Use a button, anchor, or other clickable element as triggers.
+
+## Props
+<PropsTable of={Collapse} />
+
+## Example
+<Playground>
+  {() => {
+    class Example extends React.Component {
+      constructor(props) {
+        super(props);
+
+        this.state = {
+          isOpen: false
+        }
+      }
+
+      toggle() {
+        this.setState({
+          isOpen: !this.state.isOpen,
+        })
+      }
+
+      render() {
+        return (
+          <React.Fragment>
+            <Button onClick={() => this.toggle()}>Toggle</Button>
+
+            <Collapse isOpen={this.state.isOpen}>
+              <Box p={3} mt={3} style={{ background: 'gainsboro' }}>
+                I'm in a collapsible element!
+              </Box>
+            </Collapse>
+          </React.Fragment>
+        )
+      }
+    }
+
+    return <Example />
+  }}
+</Playground>
+
+## Example with Custom Trigger
+<Playground>
+  <Collapse
+    renderTrigger={({ toggle }) => (
+      <Button onClick={toggle}>Click the custom trigger</Button>
+    )}
+  >
+    <Box p={3} mt={3} style={{ background: 'gainsboro' }}>
+      I'm in a collapsible element!
+    </Box>
+  </Collapse>
+</Playground>
