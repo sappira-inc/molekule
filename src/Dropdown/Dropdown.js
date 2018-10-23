@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'styled-components';
-import { Portal } from 'react-portal';
 import Popper from 'popper.js';
 import Box from '../Box';
+import Portal from '../Portal';
 import { createComponent } from '../utils';
 
 const DropdownTrigger = createComponent({

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { keyframes, css } from 'styled-components';
 import * as animations from 'react-animations';
-import { Portal } from '../Portal';
+import Portal from '../Portal';
 import { createComponent } from '../utils';
 
 const getAnimation = name => keyframes`${animations[name]}`;
