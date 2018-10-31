@@ -25,6 +25,6 @@ export RadioGroup from './Form/RadioGroup';
 export Row from './Grid/Row';
 export Select from './Form/Select';
 export Spinner from './Spinner';
-export Swtich from './Form/Switch';
+export Switch from './Form/Switch';
 export Tabs from './Tabs';
 export ThemeProvider from './ThemeProvider';
