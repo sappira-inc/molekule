@@ -161,7 +161,7 @@ export default class Formbot extends React.Component {
     });
   };
 
-  onChange = (field, value) => {
+  onChange = (field, value, callback) => {
     this.updateField(field, { validated: false }).then(() => {
       this.setState(
         {
@@ -173,6 +173,10 @@ export default class Formbot extends React.Component {
         () => {
           this.validateField(field);
           this.props.onChange(field, value, this.state.values);
+
+          if (typeof callback === 'function') {
+            callback(this.state.values);
+          }
         }
       );
     });
