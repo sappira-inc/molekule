@@ -220,6 +220,7 @@ export default class Input extends Component {
     const inputProps = {
       ...rest,
       id,
+      className,
       ref: this.ref,
       size,
       value: this.state.value,
