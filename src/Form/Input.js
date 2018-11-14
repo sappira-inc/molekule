@@ -196,7 +196,6 @@ export default class Input extends Component {
 
   render() {
     const {
-      className,
       style,
       minRows,
       maxRows,
@@ -220,7 +219,6 @@ export default class Input extends Component {
     const inputProps = {
       ...rest,
       id,
-      className,
       ref: this.ref,
       size,
       value: this.state.value,
