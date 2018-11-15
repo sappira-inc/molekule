@@ -68,7 +68,7 @@ export default (overrides = {}) => {
     xl: 16,
   };
 
-  const breakpoints = [368, 768, 1024, 1440];
+  const breakpoints = [480, 768, 1024, 1440];
 
   const grid = {
     containerMaxWidth: 1000,
