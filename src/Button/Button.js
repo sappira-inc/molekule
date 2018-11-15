@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css, keyframes } from 'styled-components';
-import { space } from 'styled-system';
+import { space, flex } from 'styled-system';
 import { lighten } from 'polished';
 import { getComponentVariant, createComponent } from '../utils';
 
@@ -144,6 +144,8 @@ Button.Group = createComponent({
     },
   }) => css`
     display: flex;
+    justify-content: center;
+    ${flex}
 
     & > *:not(:first-child) {
       margin-left: 1rem;
