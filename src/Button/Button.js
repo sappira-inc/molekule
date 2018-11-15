@@ -119,12 +119,37 @@ Button.defaultProps = {
   transparent: false,
 };
 
+const verticalCss = ({ sizes, vertical }) => {
+  const maybeNumber = parseInt(vertical, 10);
+  const fallback = sizes[vertical] || sizes.sm;
+  const breakpoint = Number.isInteger(maybeNumber) ? `${maybeNumber}px` : `${fallback}px`;
+
+  return css`
+    @media (max-width: ${breakpoint}) {
+      flex-direction: column;
+
+      & > *:not(:first-child) {
+        margin: 1rem 0 0;
+      }
+    }
+  `;
+};
+
 Button.Group = createComponent({
   name: 'ButtonGroup',
-  style: css`
+  style: ({
+    vertical = false,
+    theme: {
+      grid: { sizes },
+    },
+  }) => css`
+    display: flex;
+
     & > *:not(:first-child) {
       margin-left: 1rem;
     }
+
+    ${vertical && verticalCss({ sizes, vertical })}
   `,
 });
 
