@@ -10,12 +10,12 @@ const VALIDATIONS = {
   },
   minLength: (val, minLength) => {
     if (!val || `${val}`.length < minLength) {
-      throw new Error(`This field must be longer than ${minLength} characters`);
+      throw new Error(`This field must be at least ${minLength} characters`);
     }
   },
   maxLength: (val, maxLength) => {
     if (val && `${val}`.length > maxLength) {
-      throw new Error(`This field cannot be less than ${maxLength} characters`);
+      throw new Error(`This field cannot be more than ${maxLength} characters`);
     }
   },
 };
