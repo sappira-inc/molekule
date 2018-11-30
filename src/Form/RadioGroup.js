@@ -35,15 +35,19 @@ export default class RadioGroup extends Component {
     size: 'md',
   };
 
+  static getDerivedStateFromProps(props, state) {
+    if (props.value === state.value) {
+      return null;
+    }
+
+    return {
+      value: props.value,
+    }
+  }
+
   state = {
     value: this.props.value || null,
   };
-
-  componentDidUpdate() {
-    if (this.props.value !== undefined && this.props.value !== this.state.value) {
-      this.handleChange(null, this.props.value);
-    }
-  }
 
   handleChange = (field, value) => {
     // Bail out if value is the same
