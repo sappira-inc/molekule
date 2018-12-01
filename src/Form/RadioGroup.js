@@ -36,7 +36,7 @@ export default class RadioGroup extends Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    if (props.value && props.value !== state.value) {
+    if (props.value !== undefined && props.value !== state.value) {
       return {
         value: props.value,
       };
