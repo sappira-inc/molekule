@@ -22,7 +22,7 @@ Form Checkbox component. Different sizes are available.
   <Checkbox id="checkbox" name="checkbox" />
 </Playground>
 
-### Checkbox Group
+### Checkbox Group vertical
 <Playground>
   {() => {
     const checkboxValues = [
@@ -37,19 +37,41 @@ Form Checkbox component. Different sizes are available.
         label: 'Checkbox 2',
       },
     ];
+
     return (
       <div>
-        <h3>Vertical</h3>
         <CheckboxGroup name="checkboxes" id="checkboxes" choices={checkboxValues} />
+      </div>
+    )
+  }}
+</Playground>
 
-        <h3>Horizontal</h3>
+### Checkbox Group horizontal
+<Playground>
+  {() => {
+    const checkboxValues = [
+      {
+        id: 1,
+        value: 'test',
+        label: 'Checkbox 1',
+      },
+      {
+        id: 2,
+        value: 'test2',
+        label: 'Checkbox 2',
+      },
+    ];
+
+    return (
+      <div>
         <CheckboxGroup horizontal name="checkboxes" id="checkboxes" choices={checkboxValues} />
       </div>
     )
   }}
 </Playground>
 
-### Checkbox colors
+
+### Checkbox Group exclusivity
 <Playground>
   {() => {
     const checkboxValues = [
@@ -63,11 +85,29 @@ Form Checkbox component. Different sizes are available.
         value: 'test2',
         label: 'Checkbox 2',
       },
+      {
+        id: 3,
+        value: 'neither',
+        label: 'Neither',
+        exclusive: true,
+      },
     ];
+
     return (
-      <React.Fragment>
-        <Checkbox id="checkbox" name="checkbox" color="green" />
-      </React.Fragment>
+      <div>
+        <CheckboxGroup horizontal name="checkboxes" id="checkboxes" choices={checkboxValues} />
+      </div>
     )
   }}
+</Playground>
+
+
+### Checkbox colors
+<Playground>
+  {() => (
+    <React.Fragment>
+      <Checkbox id="checkbox" name="checkbox" colorOn="green" colorOff="red" />
+      <Checkbox id="checkbox" name="checkbox" colorOn="green" colorOff="red" value={true} />
+    </React.Fragment>
+  )}
 </Playground>

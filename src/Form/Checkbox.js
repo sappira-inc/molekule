@@ -76,20 +76,22 @@ export default class Checkbox extends React.Component {
     disabled: false,
   };
 
+  static getDerivedStateFromProps(props, state) {
+    if (props.value && props.value !== state.value) {
+      return {
+        value: props.value,
+      };
+    }
+
+    return null;
+  }
+
   state = {
     value: this.props.value,
   };
 
   get checked() {
     return this.state.value === this.props.valueTrue;
-  }
-
-  componentDidUpdate() {
-    if (this.props.value !== undefined && this.state.value !== this.props.value) {
-      this.setState({
-        value: this.props.value,
-      });
-    }
   }
 
   handleChange = () => {
