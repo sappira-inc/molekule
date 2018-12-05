@@ -14,7 +14,7 @@ const spinKeyframes = keyframes`
     transform: rotate(360deg);
 }`;
 
-const loadingCss = ({ height, fontColor }) => css`
+const loadingCss = ({ height, fontColor, outline, backgroundColor }) => css`
   color: transparent !important;
   pointer-events: none;
   position: relative;
@@ -24,7 +24,7 @@ const loadingCss = ({ height, fontColor }) => css`
   &::after {
     display: block;
     content: '';
-    border-color: ${fontColor};
+    border-color: ${outline ? backgroundColor : fontColor};
     animation: ${spinKeyframes} 820ms infinite linear;
     border-width: ${height * 0.05}px;
     border-style: solid;
@@ -80,7 +80,7 @@ const StyledButton = createComponent({
       border: ${transparent ? 'none' : `1px solid ${backgroundColor}`};
       transition: 175ms;
 
-      ${loading && loadingCss({ height, fontColor })};
+      ${loading && loadingCss({ height, fontColor, outline, backgroundColor })};
 
       &:hover {
         background: ${outline ? 'transparent' : lighten(0.05, backgroundColor)};
