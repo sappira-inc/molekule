@@ -40,7 +40,7 @@ const linkify = ({ children, linkStyle = {} }) =>
       }, []);
 
       // Add any leftovers after the last url
-      return [...stringParts, string].filter(Boolean);
+      return [...stringParts, string];
     }
 
     return linkify({ children: child.props.children, linkStyle });
