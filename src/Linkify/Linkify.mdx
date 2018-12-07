@@ -12,7 +12,15 @@ Automatically parse links contained in a body of text.
 
 ## Example
 <Playground>
-  <Linkify>
-    Checkout http://google.com. Another one that is not that great is http://bing.com.
-  </Linkify>
+  {() => {
+    const testEvaluatedUrl = 'https://www.facebook.com/heydoctor.co';
+    return (
+        <Linkify linkStyle={{ color: 'magenta' }}>
+          <div>
+            Checkout http://google.com. <span onmouseover="alert('yo')"
+            >Another</span> one that's not so great is http://bing.com. You could also checkout duckduckgo.com if you're into that whole privacy thing. <img src="fake.jpg" onError={() => {}} alt="hacker" /> Oh, and you should also check out https://heydoctor.co. <Linkify>I wonder if nested Linkify works {testEvaluatedUrl}</Linkify>
+          </div>
+        </Linkify>
+    )
+  }}
 </Playground>
