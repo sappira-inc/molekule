@@ -11,10 +11,7 @@ describe('Linkify', () => {
 
   test('escapes HTML entities', () => {
     const component = renderWithTheme(
-      <Linkify>
-        <img src="fake.jpg" onError={() => {}} alt="hacker" />
-        <span>heheh got hacked</span>
-      </Linkify>
+      <Linkify>{`<img src="fake.jpg" onError={() => {}} alt="hacker" /><span>heheh got hacked</span>`}</Linkify>
     );
 
     expect(component).toMatchSnapshot();

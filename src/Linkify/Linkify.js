@@ -9,7 +9,7 @@ const detectLinks = ({ children, linkStyle = {} }) =>
     if (typeof child === 'string') {
       const words = child.split(' ');
       return words.map((word, index) => {
-        const isLastWord = words.length === index - 1;
+        const isLastWord = words.length - 1 === index;
 
         if (URL_REGEX.test(word)) {
           return (

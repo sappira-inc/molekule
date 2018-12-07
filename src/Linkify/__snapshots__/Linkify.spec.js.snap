@@ -20,14 +20,20 @@ Array [
   "is ",
   "a ",
   "cool ",
-  "site. ",
+  "site.",
 ]
 `;
 
 exports[`Linkify escapes HTML entities 1`] = `
 Array [
-  "heheh ",
+  "<img ",
+  "src=\\"fake.jpg\\" ",
+  "onError={() ",
+  "=> ",
+  "{}} ",
+  "alt=\\"hacker\\" ",
+  "/><span>heheh ",
   "got ",
-  "hacked ",
+  "hacked</span>",
 ]
 `;
