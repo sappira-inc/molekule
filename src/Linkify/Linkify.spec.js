@@ -16,4 +16,12 @@ describe('Linkify', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('can receive linkStyle', () => {
+    const component = renderWithTheme(
+      <Linkify linkStyle={{ color: 'magenta' }}>Hello! https://google.com is a cool site.</Linkify>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });
