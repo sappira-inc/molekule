@@ -1,31 +1,46 @@
 import React from 'react';
-import styled from 'styled-components';
 
-const Container = styled.span`
-  a {
-    color: inherit;
-    text-decoration: underline;
-  }
-`;
+const URL_REGEX = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|])/gi;
 
-const escapeHtmlChars = (unsafe = '') =>
-  unsafe
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+const detectLinks = ({ children, linkStyle = {} }) =>
+  React.Children.map(children, child => {
+    if (!child) return null;
 
-const REGEX = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|])/gi;
+    if (typeof child === 'string') {
+      const words = child.split(' ');
+      return words.map((word, index) => {
+        const isLastWord = words.length === index - 1;
 
-const parse = string =>
-  escapeHtmlChars(string).replace(
-    REGEX,
-    url => `<a target="_blank" rel="noopener noreferrer" href="${url}">${url}</a>`
-  );
+        if (URL_REGEX.test(word)) {
+          return (
+            <>
+              <a
+                key={word}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: 'inherit',
+                  textDecoration: 'underline',
+                  ...linkStyle,
+                }}
+                href={word}>
+                {word}
+              </a>
 
-const Linkify = props => (
-  <Container style={props.style || {}} dangerouslySetInnerHTML={{ __html: parse(props.children) }} />
-);
+              {isLastWord ? '' : ' '}
+            </>
+          );
+        }
 
-export default Linkify;
+        return isLastWord ? word : `${word} `;
+      });
+    }
+
+    if (React.isValidElement(child)) {
+      return detectLinks({ children: child.props.children, linkStyle });
+    }
+
+    return child;
+  });
+
+export default props => detectLinks(props);

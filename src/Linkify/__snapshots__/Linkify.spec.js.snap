@@ -1,37 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Linkify converts links to anchor tags 1`] = `
-.c0 a {
-  color: inherit;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-<span
-  className="c0"
-  dangerouslySetInnerHTML={
-    Object {
-      "__html": "Hello! <a target=\\"_blank\\" rel=\\"noopener noreferrer\\" href=\\"https://google.com\\">https://google.com</a> is a cool site.",
+Array [
+  "Hello! ",
+  <a
+    href="https://google.com"
+    rel="noopener noreferrer"
+    style={
+      Object {
+        "color": "inherit",
+        "textDecoration": "underline",
+      }
     }
-  }
-  style={Object {}}
-/>
+    target="_blank"
+  >
+    https://google.com
+  </a>,
+  " ",
+  "is ",
+  "a ",
+  "cool ",
+  "site. ",
+]
 `;
 
 exports[`Linkify escapes HTML entities 1`] = `
-.c0 a {
-  color: inherit;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-<span
-  className="c0"
-  dangerouslySetInnerHTML={
-    Object {
-      "__html": "&lt;span onmouseover=alert(&#039;XSS&#039;)&gt;&lt;/span&gt;",
-    }
-  }
-  style={Object {}}
-/>
+Array [
+  "heheh ",
+  "got ",
+  "hacked ",
+]
 `;
