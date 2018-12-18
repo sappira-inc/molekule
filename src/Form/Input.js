@@ -54,7 +54,7 @@ const StyledTextArea = StyledInput.withComponent('textarea');
 
 export default class Input extends Component {
   static propTypes = {
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     disabled: PropTypes.bool,
     placeholder: PropTypes.string,
     multiline: PropTypes.bool,
