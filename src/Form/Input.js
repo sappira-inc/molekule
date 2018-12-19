@@ -52,9 +52,20 @@ const StyledInput = createComponent({
 
 const StyledTextArea = StyledInput.withComponent('textarea');
 
+const validateValueProp = (props, propName, componentName) => {
+  if (props.type === 'number' && typeof props.value !== 'number') {
+    return new Error(`Invalid prop ${propName} supplied to ${componentName} with type="number", expected Number`);
+  }
+  if (typeof props[propName] !== 'string' && props.type !== 'number') {
+    return new Error(`Invalid prop ${propName} supplied to ${componentName}, expected String`);
+  }
+  return null;
+};
+
 export default class Input extends Component {
   static propTypes = {
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    value: validateValueProp,
+    type: PropTypes.string,
     disabled: PropTypes.bool,
     placeholder: PropTypes.string,
     multiline: PropTypes.bool,
@@ -62,7 +73,6 @@ export default class Input extends Component {
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
-    type: PropTypes.string,
     minRows: PropTypes.number,
     rows: PropTypes.number,
     maxRows: PropTypes.number,
