@@ -53,7 +53,7 @@ const StyledInput = createComponent({
 const StyledTextArea = StyledInput.withComponent('textarea');
 
 const validateValueProp = (props, propName, componentName) => {
-  if (props.type === 'number' && typeof props.value !== 'number') {
+  if (props.type === 'number' && typeof props[propName] !== 'number') {
     return new Error(`Invalid prop ${propName} supplied to ${componentName} with type="number", expected Number`);
   }
   if (typeof props[propName] !== 'string' && props.type !== 'number') {
