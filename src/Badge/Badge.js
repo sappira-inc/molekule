@@ -1,36 +1,39 @@
-import styled from 'styled-components';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { css } from 'styled-components';
 import { space } from 'styled-system';
-import { lighten, darken, getLuminance } from 'polished';
+import { getComponentVariant, createComponent } from '../utils';
 
-const FONT_SIZES = {
-  sm: 8,
-  md: 10,
-  lg: 12,
+const StyledBadge = createComponent({
+  name: 'Badge',
+  tag: 'span',
+  style: ({ variant, theme, size }) => {
+    const { backgroundColor, fontColor } = getComponentVariant(theme, 'Badge', variant);
+    const fontSize = theme.fontSizes[size];
+
+    return css`
+      padding: ${fontSize / 3}px ${fontSize / 1.5}px;
+      font-size: ${theme.fontSizes[size]}px;
+      font-family: ${theme.typography.fontFamily || 'inherit'};
+      font-weight: bold;
+      border-radius: ${fontSize}px;
+      background: ${backgroundColor};
+      color: ${fontColor};
+      ${space};
+    `;
+  },
+});
+
+const Badge = props => <StyledBadge {...props} />;
+
+Badge.propTypes = {
+  variant: PropTypes.string,
+  size: PropTypes.string,
 };
 
-const Badge = styled.span`
-  display: inline-block;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-
-  ${({ variant = 'primary', size = 'md', theme }) => {
-    const ogColor = theme.colors[variant] || theme.colors[theme.variants[variant]];
-    const luminance = getLuminance(ogColor);
-    const bgColor = lighten(0.25, ogColor);
-    const fontColor = luminance < 0.1 ? '#ffffff' : darken(0.3, ogColor);
-    const fontSize = FONT_SIZES[size];
-
-    return `
-      padding: ${fontSize / 4}px ${fontSize / 2}px;
-      font-size: ${fontSize}px;
-      font-family: ${theme.typography.fontFamily};
-      border-radius: ${theme.radius}px;
-      background: ${bgColor};
-      color: ${fontColor};
-    `;
-  }};
-
-  ${space};
-`;
+Badge.defaultProps = {
+  variant: 'info',
+  size: 'md',
+};
 
 export default Badge;

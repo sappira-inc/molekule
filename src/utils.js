@@ -1,18 +1,19 @@
 import { get, kebabCase } from 'lodash';
 import styled from 'styled-components';
-import { themeGet as styledThemeGet } from 'styled-system';
 
-export const themeGet = styledThemeGet;
+export const themeGet = (theme, lookup, fallback) => get(theme, lookup, fallback);
 
-export const getFromTheme = (theme, lookup, fallback) => get(theme, lookup, fallback);
-
-export const getComponentVariant = (theme, key, variant) => {
-  const config = getFromTheme(theme, `components.${key}.variants.${variant}`, theme.variants[variant]);
+export const getComponentVariant = (theme, componentName, variant) => {
+  const config = themeGet(
+    theme,
+    `components.${componentName}.variants.${variant}`,
+    theme.variants[componentName][variant]
+  );
   if (!config) throw new Error(`Molekule: "${variant}" variant not found in theme...`);
   return config;
 };
 
-export const getComponentStyle = key => ({ theme }) => getFromTheme(theme, `components.${key}.style`, {});
+export const getComponentStyle = componentName => ({ theme }) => themeGet(theme, `components.${componentName}.style`);
 
 export const getComponentClassName = name => ({ theme: { classPrefix }, variant }) =>
   `${classPrefix}-${name} ${variant ? `${classPrefix}-${name}-${variant}` : ''}`.trim();

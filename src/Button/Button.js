@@ -4,6 +4,7 @@ import { css, keyframes } from 'styled-components';
 import { space, flex } from 'styled-system';
 import { lighten } from 'polished';
 import { getComponentVariant, createComponent } from '../utils';
+import Flex from '../Flex';
 
 const spinKeyframes = keyframes`
   from {
@@ -137,21 +138,18 @@ const verticalCss = ({ sizes, vertical }) => {
 
 Button.Group = createComponent({
   name: 'ButtonGroup',
+  as: Flex,
   style: ({
     vertical = false,
     theme: {
       grid: { sizes },
     },
   }) => css`
-    display: flex;
-    justify-content: center;
-    ${flex}
-
     & > *:not(:first-child) {
       margin-left: 1rem;
     }
 
-    ${vertical && verticalCss({ sizes, vertical })}
+    ${vertical && verticalCss({ sizes, vertical })};
   `,
 });
 
