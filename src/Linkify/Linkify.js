@@ -10,10 +10,17 @@ const Link = styled.a.attrs({
   text-decoration: underline;
 `;
 
+const Root = styled.div`
+  div:nth-child(n + 2) {
+    margin-top: 5px;
+  }
+`;
+
 const defaultOptions = {
   className: 'linkify-container',
   renderers: {
-    paragraph: 'span',
+    paragraph: 'div',
+    root: props => <Root {...props} />,
     link: props => <Link {...props} />,
   },
 };
