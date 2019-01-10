@@ -1,43 +1,81 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Linkify can receive linkStyle 1`] = `
-Array [
-  "Hello! ",
-  <a
-    href="https://google.com"
-    rel="noopener noreferrer"
-    style={
-      Object {
-        "color": "magenta",
-        "textDecoration": "underline",
+.c1 {
+  color: inherit;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c0 div:nth-child(n + 2) {
+  margin-top: 5px;
+}
+
+<div
+  className="linkify-container c0"
+>
+  <div>
+    Hello! 
+    <a
+      className="c1"
+      href="https://google.com"
+      rel="noopener noreferrer"
+      style={
+        Object {
+          "color": "magenta",
+        }
       }
-    }
-    target="_blank"
-  >
-    https://google.com
-  </a>,
-  " is a cool site.",
-]
+      target="_blank"
+    >
+      https://google.com
+    </a>
+     is a cool site.
+  </div>
+</div>
 `;
 
 exports[`Linkify converts links to anchor tags 1`] = `
-Array [
-  "Hello! ",
-  <a
-    href="https://google.com"
-    rel="noopener noreferrer"
-    style={
-      Object {
-        "color": "inherit",
-        "textDecoration": "underline",
-      }
-    }
-    target="_blank"
-  >
-    https://google.com
-  </a>,
-  " is a cool site.",
-]
+.c1 {
+  color: inherit;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c0 div:nth-child(n + 2) {
+  margin-top: 5px;
+}
+
+<div
+  className="linkify-container c0"
+>
+  <div>
+    Hello! 
+    <a
+      className="c1"
+      href="https://google.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      https://google.com
+    </a>
+     is a cool site.
+  </div>
+</div>
 `;
 
-exports[`Linkify escapes HTML entities 1`] = `"<img src=\\"fake.jpg\\" onError={() => {}} alt=\\"hacker\\" /><span>heheh got hacked</span>"`;
+exports[`Linkify escapes HTML entities 1`] = `
+.c0 div:nth-child(n + 2) {
+  margin-top: 5px;
+}
+
+<div
+  className="linkify-container c0"
+>
+  <div>
+    &lt;img src="fake.jpg" onError={() =&gt; {}} alt="hacker" /&gt;
+    &lt;span&gt;
+    heheh got hacked
+    &lt;/span&gt;
+  </div>
+</div>
+`;
