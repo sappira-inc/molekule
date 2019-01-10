@@ -24,4 +24,10 @@ describe('Linkify', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('can render markdown', () => {
+    const component = renderWithTheme(<Linkify>[this is a link](http://google.com)</Linkify>);
+
+    expect(component).toMatchSnapshot();
+  });
 });

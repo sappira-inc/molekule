@@ -34,6 +34,33 @@ exports[`Linkify can receive linkStyle 1`] = `
 </div>
 `;
 
+exports[`Linkify can render markdown 1`] = `
+.c1 {
+  color: inherit;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c0 div:nth-child(n + 2) {
+  margin-top: 5px;
+}
+
+<div
+  className="linkify-container c0"
+>
+  <div>
+    <a
+      className="c1"
+      href="http://google.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      this is a link
+    </a>
+  </div>
+</div>
+`;
+
 exports[`Linkify converts links to anchor tags 1`] = `
 .c1 {
   color: inherit;
