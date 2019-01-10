@@ -16,17 +16,17 @@ const Root = styled.div`
   }
 `;
 
-const defaultOptions = {
+const defaultOptions = props => ({
   className: 'linkify-container',
   renderers: {
     paragraph: 'div',
-    root: props => <Root {...props} />,
-    link: props => <Link {...props} />,
+    root: p => <Root {...p} />,
+    link: p => <Link {...p} style={props.linkStyle} />,
   },
-};
+});
 
 export default props => (
-  <ReactMarkdown {...defaultOptions} {...props}>
+  <ReactMarkdown {...defaultOptions(props)} {...props}>
     {props.children}
   </ReactMarkdown>
 );
