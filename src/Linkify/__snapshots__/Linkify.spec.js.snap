@@ -99,10 +99,26 @@ exports[`Linkify escapes HTML entities 1`] = `
   className="linkify-container c0"
 >
   <div>
-    &lt;img src="fake.jpg" onError={() =&gt; {}} alt="hacker" /&gt;
-    &lt;span&gt;
+    &lt;
+    img src=
+    "
+    fake.jpg
+    "
+     onError={() =
+    &gt;
+     {}} alt=
+    "
+    hacker
+    "
+     /
+    &gt;
+    &lt;
+    span
+    &gt;
     heheh got hacked
-    &lt;/span&gt;
+    &lt;
+    /span
+    &gt;
   </div>
 </div>
 `;

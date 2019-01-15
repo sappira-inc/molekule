@@ -1,4 +1,5 @@
 import React from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 
@@ -27,6 +28,6 @@ const defaultOptions = props => ({
 
 export default props => (
   <ReactMarkdown {...defaultOptions(props)} {...props}>
-    {props.children}
+    {renderToStaticMarkup(props.children)}
   </ReactMarkdown>
 );
