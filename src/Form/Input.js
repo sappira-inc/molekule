@@ -50,7 +50,9 @@ const StyledInput = createComponent({
   `,
 });
 
-const AutogrowShadowEl = createComponent({
+const StyledTextArea = StyledInput.withComponent('textarea');
+
+const AutogrowShadow = createComponent({
   name: 'AutogrowShadow',
   tag: 'textarea',
   style: css`
@@ -58,8 +60,6 @@ const AutogrowShadowEl = createComponent({
     left: -9999px;
   `,
 });
-
-const StyledTextArea = StyledInput.withComponent('textarea');
 
 const validateValueProp = (props, propName, componentName) => {
   if (props.type === 'number' && typeof props[propName] !== 'number') {
@@ -150,8 +150,8 @@ export default class Input extends Component {
   }
 
   componentWillUnmount() {
-    if (this.autogrowShadowEl && this.autogrowShadowEl.parentNode) {
-      this.autogrowShadowEl.parentNode.removeChild(this.autogrowShadowEl);
+    if (this.autogrowShadowNode && this.autogrowShadowNode.parentNode) {
+      this.autogrowShadowNode.parentNode.removeChild(this.autogrowShadowNode);
     }
   }
 
@@ -177,29 +177,30 @@ export default class Input extends Component {
   };
 
   onChange = e => {
-    this.autogrow();
     this.setState({ value: e.target.value });
     this.props.onChange(e.target.name, e.target.value);
   };
 
   handleAutogrowRef = node => {
-    this.autogrowShadowEl = node;
+    this.autogrowShadowNode = node;
     this.autogrow();
   };
 
   autogrow() {
-    const { multiline, autogrow, minRows, maxRows, rowHeight, lineHeight } = this.props;
-    if (!multiline || !autogrow) {
+    if (!this.props.autogrow || !this.autogrowShadowNode) {
       return;
     }
+
+    const { minRows, maxRows, rowHeight, lineHeight } = this.props;
 
     const minHeight = minRows * rowHeight * lineHeight;
     const maxHeight = maxRows * rowHeight * lineHeight;
 
-    this.autogrowShadowEl.style.width = `${this.ref.current.clientWidth}px`;
-    this.autogrowShadowEl.value = this.state.value;
+    this.autogrowShadowNode.style.width = `${this.ref.current.clientWidth}px`;
+    this.autogrowShadowNode.value = this.state.value;
 
-    let height = this.autogrowShadowEl.scrollHeight + rowHeight;
+    let height = this.autogrowShadowNode.scrollHeight + rowHeight * lineHeight;
+
     if (height < minHeight) {
       height = minHeight;
     } else if (height > maxHeight) {
@@ -270,7 +271,7 @@ export default class Input extends Component {
           {multiline ? <StyledTextArea {...inputProps} /> : <StyledInput {...inputProps} />}
         </InputContainer>
 
-        {autogrow && <AutogrowShadowEl ref={this.handleAutogrowRef} />}
+        {autogrow && <AutogrowShadow ref={this.handleAutogrowRef} />}
 
         {!this.state.focused && error ? <FormError styles={rest.styles}>{error}</FormError> : null}
       </Field>
