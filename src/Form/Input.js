@@ -50,6 +50,15 @@ const StyledInput = createComponent({
   `,
 });
 
+const AutogrowShadowEl = createComponent({
+  name: 'AutogrowShadow',
+  tag: 'textarea',
+  style: css`
+    position: absolute;
+    left: -9999px;
+  `,
+});
+
 const StyledTextArea = StyledInput.withComponent('textarea');
 
 const validateValueProp = (props, propName, componentName) => {
@@ -77,6 +86,7 @@ export default class Input extends Component {
     rows: PropTypes.number,
     maxRows: PropTypes.number,
     rowHeight: PropTypes.number,
+    lineHeight: PropTypes.number,
     autogrow: PropTypes.bool,
     size: PropTypes.string,
     floating: PropTypes.bool,
@@ -89,7 +99,8 @@ export default class Input extends Component {
     minRows: 2,
     rows: 3,
     maxRows: 6,
-    rowHeight: 14 * 1.5,
+    rowHeight: 14,
+    lineHeight: 1.5,
     autogrow: false,
     disabled: false,
     size: 'md',
@@ -98,6 +109,15 @@ export default class Input extends Component {
     onChange() {},
     floating: false,
   };
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.value !== undefined && props.value !== state.value) {
+      return {
+        value: props.value,
+      };
+    }
+    return null;
+  }
 
   state = {
     value: this.props.value || '',
@@ -111,33 +131,27 @@ export default class Input extends Component {
   }
 
   componentDidMount() {
-    if (this.props.autogrow) {
-      this.createShadowElement();
-      this.autogrow();
+    if (this.props.autofocus && this.ref.current) {
+      this.ref.current.focus();
     }
 
-    if (this.props.autofocus) {
-      if (this.ref.current) {
-        this.ref.current.focus();
-      }
-    }
-  }
-
-  componentWillReceiveProps(props) {
-    if (props.value !== this.props.value) {
-      this.setState({ value: props.value });
+    if (this.props.multiline) {
+      /* eslint-disable-next-line react/no-did-mount-set-state */
+      this.setState({
+        height: this.props.rows * this.props.rowHeight * this.props.lineHeight,
+      });
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.value !== this.props.value) {
+  componentDidUpdate(oldProps, oldState) {
+    if (oldState.value !== this.state.value) {
       this.autogrow();
     }
   }
 
   componentWillUnmount() {
-    if (this.shadow) {
-      this.shadow.remove();
+    if (this.autogrowShadowEl && this.autogrowShadowEl.parentNode) {
+      this.autogrowShadowEl.parentNode.removeChild(this.autogrowShadowEl);
     }
   }
 
@@ -168,25 +182,24 @@ export default class Input extends Component {
     this.props.onChange(e.target.name, e.target.value);
   };
 
-  createShadowElement() {
-    this.shadow = document.createElement('textarea');
-    this.shadow.style.position = 'absolute';
-    this.shadow.style.left = '-9000px';
-    document.body.appendChild(this.shadow);
-  }
+  handleAutogrowRef = node => {
+    this.autogrowShadowEl = node;
+    this.autogrow();
+  };
 
   autogrow() {
-    const { multiline, autogrow, minRows, maxRows, rowHeight } = this.props;
+    const { multiline, autogrow, minRows, maxRows, rowHeight, lineHeight } = this.props;
     if (!multiline || !autogrow) {
       return;
     }
 
-    const minHeight = minRows * rowHeight;
-    const maxHeight = maxRows * rowHeight;
+    const minHeight = minRows * rowHeight * lineHeight;
+    const maxHeight = maxRows * rowHeight * lineHeight;
 
-    this.shadow.style.width = `${this.ref.current.clientWidth}px`;
-    this.shadow.value = this.props.value || this.state.value;
-    let height = this.shadow.scrollHeight + 14;
+    this.autogrowShadowEl.style.width = `${this.ref.current.clientWidth}px`;
+    this.autogrowShadowEl.value = this.state.value;
+
+    let height = this.autogrowShadowEl.scrollHeight + rowHeight;
     if (height < minHeight) {
       height = minHeight;
     } else if (height > maxHeight) {
@@ -235,7 +248,7 @@ export default class Input extends Component {
       onChange: this.onChange,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
-      style: autogrow ? { ...style, height: this.state.height } : style,
+      style: multiline ? { ...style, height: this.state.height } : style,
       placeholder,
       isFloatable: floating,
       isFloating,
@@ -256,6 +269,8 @@ export default class Input extends Component {
 
           {multiline ? <StyledTextArea {...inputProps} /> : <StyledInput {...inputProps} />}
         </InputContainer>
+
+        {autogrow && <AutogrowShadowEl ref={this.handleAutogrowRef} />}
 
         {!this.state.focused && error ? <FormError styles={rest.styles}>{error}</FormError> : null}
       </Field>
