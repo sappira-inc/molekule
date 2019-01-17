@@ -120,7 +120,6 @@ export default class Input extends Component {
   }
 
   state = {
-    value: this.props.value || '',
     focused: false,
   };
 
