@@ -40,31 +40,27 @@ export default class ModalDemo extends React.Component {
               <Modal.Body>{bodyTwo}</Modal.Body>
 
               <Modal.Footer>
-                <Box align="right">
-                  <Button.Group>
-                    <Button variant="gray" onClick={this.toggleModalTwo}>
-                      Cancel
-                    </Button>
-                    <Button variant="success" onClick={this.toggleModalTwo}>
-                      I&apos;m Done Anyways
-                    </Button>
-                  </Button.Group>
-                </Box>
+                <Button.Group justifyContent="flex-end">
+                  <Button variant="gray" onClick={this.toggleModalTwo}>
+                    Cancel
+                  </Button>
+                  <Button variant="success" onClick={this.toggleModalTwo}>
+                    I&apos;m Done Anyways
+                  </Button>
+                </Button.Group>
               </Modal.Footer>
             </Modal>
           </Modal.Body>
 
           <Modal.Footer>
-            <Box align="right">
-              <Button.Group>
-                <Button variant="gray" onClick={this.onCancel}>
-                  Cancel
-                </Button>
-                <Button variant="success" onClick={this.toggleModalTwo}>
-                  Open Another Modal
-                </Button>
-              </Button.Group>
-            </Box>
+            <Button.Group justifyContent="flex-end">
+              <Button variant="gray" onClick={this.onCancel}>
+                Cancel
+              </Button>
+              <Button variant="success" onClick={this.toggleModalTwo}>
+                Open Another Modal
+              </Button>
+            </Button.Group>
           </Modal.Footer>
         </Modal>
       </div>

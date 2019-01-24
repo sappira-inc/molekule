@@ -1,6 +1,7 @@
 export Accordion from './Accordion';
 export Alert from './Alert';
 export Avatar from './Avatar';
+export Badge from './Badge';
 export Box from './Box';
 export Button from './Button';
 export Card from './Card';
@@ -29,3 +30,4 @@ export Switch from './Form/Switch';
 export Tabs from './Tabs';
 export ThemeProvider from './ThemeProvider';
 export * from './Toast';
+export * from './utils';

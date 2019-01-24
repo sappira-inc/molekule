@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/sappira-inc/molekule/compare/v2.2.5...v3.0.0) (2019-01-17)
+
+
+### Bug Fixes
+
+* **Input:** Use parentNode.removeChild to teardown textarea shadow node in support of older browsers ([#15](https://github.com/sappira-inc/molekule/issues/15)) ([6169126](https://github.com/sappira-inc/molekule/commit/6169126))
+
+
+### Features
+
+* Add Badge component and update Badge/Alert variants ([#13](https://github.com/sappira-inc/molekule/issues/13)) ([cc3fcc0](https://github.com/sappira-inc/molekule/commit/cc3fcc0))
+
+
+### BREAKING CHANGES
+
+* the variants hash will require an update to scope variants by their associated components
+
+
+
 <a name="2.2.5"></a>
 ## [2.2.5](https://github.com/sappira-inc/molekule/compare/v2.2.4...v2.2.5) (2018-12-19)
 

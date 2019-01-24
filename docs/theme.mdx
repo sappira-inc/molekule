@@ -10,51 +10,156 @@ Molekule comes with a default theme. You can override any of these configuration
 
 ```js
 {
-  radii: [0, 2, 4],
-  typography: {
-    fontSize: 14,
+  "breakpoints": [
+    480,
+    768,
+    1024,
+    1440
+  ],
+  "classPrefix": "re",
+  "colors": {
+    "primaryDark": "#002BA0",
+    "primary": "#2DAAF2",
+    "primaryLight": "#9FB8FC",
+    "grayDark": "#43526D",
+    "grayMid": "#8E97A7",
+    "gray": "#8E97A7",
+    "grayLight": "#DEE0E4",
+    "grayLightest": "#F1F4F6",
+    "redDark": "#B22327",
+    "red": "#FD575D",
+    "redLight": " #FFCECF",
+    "blueDark": "#006DC1",
+    "blue": "#0747A5",
+    "blueLight": "#C8E8FF",
+    "greenDark": "#196C1C",
+    "green": "#00D684",
+    "greenLight": "#B4F7DE",
+    "orangeDark": "#BB520B",
+    "orange": "#FFAA70",
+    "orangeLight": "#FFD8BD",
+    "yellowDark": "#F1BC0B",
+    "yellow": "#FED23D",
+    "yellowLight": "#FFEDB1",
+    "purpleDark": "#8530FD",
+    "purple": "#9D58FE",
+    "purpleLight": "#DFC8FF"
   },
-  colors: {
-    primary: '#5759D6',
-    green: '#1dd1a1',
-    red: '#ee5253',
-    blue: '#48dbfb',
-    orange: '#feca57',
-    grayLight: '#e9eef4',
-    grayMid: '#8395a7',
-    grayDark: '#576574',
+  "fontSizes": {
+    "xs": 8,
+    "sm": 10,
+    "md": 12,
+    "lg": 14,
+    "xl": 16
   },
-  variants: {
-    success: 'green',
-    danger: 'red',
-    info: 'blue',
-    warning: 'orange',
+  "grid": {
+    "containerMaxWidth": 1000,
+    "gutter": 16,
+    "columns": 12,
+    "sizes": {
+      "xs": 480,
+      "sm": 768,
+      "md": 1024,
+      "lg": 1440
+    }
   },
-  heights: {
-    xs: 20,
-    sm: 28,
-    md: 32,
-    lg: 40,
-    xl: 44,
+  "heights": {
+    "xs": 28,
+    "sm": 32,
+    "md": 36,
+    "lg": 40,
+    "xl": 44
   },
-  fontSizes: {
-    xs: 10,
-    sm: 10,
-    md: 12,
-    lg: 14,
-    xl: 16,
+  "radii": [
+    0,
+    2,
+    4
+  ],
+  "radius": 4,
+  "shadow": "0 3px 6px hsla(0,0%,60%,.1), 0 3px 6px hsla(0,0%,60%,.15), 0 -1px 2px hsla(0,0%,60%,.02)",
+  "shadowHover": "0 6px 9px hsla(0,0%,60%,.2), 0 6px 9px hsla(0,0%,60%,.2), 0 -1px 2px hsla(0,0%,60%,.08)",
+  "typography": {
+    "fontSize": 12
   },
-  breakpoints: [386, 768, 1024, 1440],
-  grid: {
-    containerMaxWidth: 1000,
-    gutter: 15,
-    columns: 12,
-    sizes: {
-      xs: 386,
-      sm: 768,
-      md: 1024,
-      lg: 1440,
+  "variants": {
+    "Alert": {
+      "primary": {
+        "backgroundColor": "#9FB8FC",
+        "fontColor": "#002BA0"
+      },
+      "success": {
+        "backgroundColor": "#B4F7DE",
+        "fontColor": "#196C1C"
+      },
+      "danger": {
+        "backgroundColor": " #FFCECF",
+        "fontColor": "#B22327"
+      },
+      "warning": {
+        "backgroundColor": "#FFD8BD",
+        "fontColor": "#BB520B"
+      },
+      "info": {
+        "backgroundColor": "#C8E8FF",
+        "fontColor": "#006DC1"
+      },
+      "gray": {
+        "backgroundColor": "#DEE0E4",
+        "fontColor": "#43526D"
+      }
     },
-  },
-};
+    "Badge": {
+      "primary": {
+        "backgroundColor": "#9FB8FC",
+        "fontColor": "#002BA0"
+      },
+      "success": {
+        "backgroundColor": "#B4F7DE",
+        "fontColor": "#196C1C"
+      },
+      "danger": {
+        "backgroundColor": " #FFCECF",
+        "fontColor": "#B22327"
+      },
+      "warning": {
+        "backgroundColor": "#FFD8BD",
+        "fontColor": "#BB520B"
+      },
+      "info": {
+        "backgroundColor": "#C8E8FF",
+        "fontColor": "#006DC1"
+      },
+      "gray": {
+        "backgroundColor": "#DEE0E4",
+        "fontColor": "#43526D"
+      }
+    },
+    "Button": {
+      "primary": {
+        "backgroundColor": "#2DAAF2",
+        "fontColor": "white"
+      },
+      "success": {
+        "backgroundColor": "#00D684",
+        "fontColor": "white"
+      },
+      "danger": {
+        "backgroundColor": "#FD575D",
+        "fontColor": "white"
+      },
+      "warning": {
+        "backgroundColor": "#FFAA70",
+        "fontColor": "white"
+      },
+      "info": {
+        "backgroundColor": "#0747A5",
+        "fontColor": "white"
+      },
+      "gray": {
+        "backgroundColor": "#DEE0E4",
+        "fontColor": "#43526D"
+      }
+    }
+  }
+}
 ```
