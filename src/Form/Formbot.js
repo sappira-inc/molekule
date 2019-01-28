@@ -162,20 +162,20 @@ export default class Formbot extends React.Component {
   };
 
   onChange = (field, value) => {
-    this.updateField(field, { validated: false }).then(() => {
-      this.setState(
-        {
-          values: {
-            ...this.state.values,
-            [field]: value,
-          },
+    this.setState(
+      {
+        values: {
+          ...this.state.values,
+          [field]: value,
         },
-        () => {
+      },
+      () => {
+        this.props.onChange(field, value, this.state.values);
+        this.updateField(field, { validated: false }).then(() => {
           this.validateField(field);
-          this.props.onChange(field, value, this.state.values);
-        }
-      );
-    });
+        });
+      }
+    );
   };
 
   onBlur = field => {

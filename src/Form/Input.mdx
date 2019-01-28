@@ -6,6 +6,7 @@ name: Input
 import { Playground, PropsTable } from 'docz'
 import Input from './Input'
 import Button from '../Button'
+import Formbot from './Formbot';
 
 # Input
 
@@ -16,10 +17,37 @@ Form input component. Different sizes are available.
 <PropsTable of={Input} />
 
 ## Examples
+<Playground>
+  {() => {
+    class Controlled extends React.Component {
+      render() {
+        return (
+          <Formbot
+            onSubmit={console.log}
+            initialValues={{ value: '' }}
+            validations={{ value: (value) => {
+              if (value !== 'secretpassword') {
+                throw new Error('Try typing "secretpassword"')
+               }
+             }}}>
+            {({ values, errors, onChange, onSubmit }) => (
+              <form onSubmit={onSubmit}>
+                <Input label="Input with Formbot" name="value" value={values.value} error={errors.value} onChange={onChange}/>
+                <Button mt={2} type="submit">Submit</Button>
+              </form>
+            )}
+          </Formbot>
+        );
+      }
+    }
+
+    return <Controlled />
+  }}
+</Playground>
 
 ### Default Input
 <Playground>
-   <Input placeholder="Example" label="Example" autofocus />
+   <Input placeholder="Example" label="Example" />
 </Playground>
 
 ### Multiline Input
