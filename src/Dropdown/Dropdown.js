@@ -15,13 +15,13 @@ const DropdownTrigger = createComponent({
 
 const DropdownMenu = createComponent({
   name: 'DropdownMenu',
-  style: ({ width = 150, theme, border, radius }) => css`
+  style: ({ width = 150, theme, border, radius, boxShadow }) => css`
     z-index: 10;
     position: absolute;
     background: white;
     border-radius: ${radius || theme.radius}px;
     border: ${border ? '1px solid #e4edf5' : 'none'};
-    box-shadow: 0 0 3px 0 rgba(178, 194, 212, 0.3);
+    box-shadow: ${boxShadow || '0 0 3px 0 rgba(178, 194, 212, 0.3)'};
     min-width: 90px;
     width: ${width}px;
   `,
@@ -136,7 +136,7 @@ export default class Dropdown extends React.Component {
   };
 
   render() {
-    const { width, trigger, render, children } = this.props;
+    const { width, border, boxShadow, radius, trigger, render, children } = this.props;
     const { isOpen } = this.state;
 
     const renderFn = render || children;
@@ -149,7 +149,7 @@ export default class Dropdown extends React.Component {
 
         <Portal>
           {isOpen && (
-            <DropdownMenu ref={this.menuRef} width={width}>
+            <DropdownMenu ref={this.menuRef} width={width} border={border} boxShadow={boxShadow} radius={radius}>
               {renderFn({
                 close: this.toggle,
               })}
