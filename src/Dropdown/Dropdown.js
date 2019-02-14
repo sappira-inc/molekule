@@ -15,14 +15,14 @@ const DropdownTrigger = createComponent({
 
 const DropdownMenu = createComponent({
   name: 'DropdownMenu',
-  style: ({ width = 150, theme, border, radius, boxShadow }) => css`
+  style: ({ width = 150, theme }) => css`
     z-index: 10;
     position: absolute;
     background: white;
-    border-radius: ${radius || theme.radius}px;
-    border: ${border ? '1px solid #e4edf5' : 'none'};
-    box-shadow: ${boxShadow || '0 0 3px 0 rgba(178, 194, 212, 0.3)'};
-    min-width: 90px;
+    border-radius: ${theme.radius}px;
+    border: 1px solid #e4edf5;
+    box-shadow: 0 0 3px 0 rgba(178, 194, 212, 0.3);
+    min-width: 150px;
     width: ${width}px;
   `,
 });
@@ -33,16 +33,17 @@ export default class Dropdown extends React.Component {
     render: PropTypes.func,
     autoclose: PropTypes.bool,
     placement: PropTypes.string,
+    offset: PropTypes.string,
     boundariesElement: PropTypes.string,
     on: PropTypes.string,
   };
 
   static defaultProps = {
     autoclose: true,
+    offset: '0, 10', 
     placement: 'bottom-start',
     boundariesElement: 'window',
     on: 'click',
-    border: true,
   };
 
   triggerRef = React.createRef();
@@ -72,7 +73,7 @@ export default class Dropdown extends React.Component {
   }
 
   show = () => {
-    const { offset = '0, 10', placement, boundariesElement } = this.props;
+    const { placement, boundariesElement } = this.props;
 
     this.setState(
       {
@@ -136,7 +137,7 @@ export default class Dropdown extends React.Component {
   };
 
   render() {
-    const { width, border, boxShadow, radius, trigger, render, children } = this.props;
+    const { width, trigger, render, children } = this.props;
     const { isOpen } = this.state;
 
     const renderFn = render || children;
@@ -149,7 +150,7 @@ export default class Dropdown extends React.Component {
 
         <Portal>
           {isOpen && (
-            <DropdownMenu ref={this.menuRef} width={width} border={border} boxShadow={boxShadow} radius={radius}>
+            <DropdownMenu ref={this.menuRef} width={width}>
               {renderFn({
                 close: this.toggle,
               })}
