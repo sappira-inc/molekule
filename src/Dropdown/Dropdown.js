@@ -20,7 +20,7 @@ const DropdownMenu = createComponent({
     position: absolute;
     background: white;
     border-radius: ${radius || theme.radius}px;
-    border: ${border ? 1px solid #e4edf5 : none};
+    border: ${border ? '1px solid #e4edf5' : 'none'};
     box-shadow: 0 0 3px 0 rgba(178, 194, 212, 0.3);
     min-width: 90px;
     width: ${width}px;
@@ -72,7 +72,7 @@ export default class Dropdown extends React.Component {
   }
 
   show = () => {
-    const { offset, placement, boundariesElement } = this.props;
+    const { offset = '0, 10', placement, boundariesElement } = this.props;
 
     this.setState(
       {
@@ -83,7 +83,7 @@ export default class Dropdown extends React.Component {
           placement,
           modifiers: {
             offset: {
-              offset: offset || '0, 10',
+              offset,
             },
             flip: {
               behavior: ['left', 'bottom', 'top', 'right'],
