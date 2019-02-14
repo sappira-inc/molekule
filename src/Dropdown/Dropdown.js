@@ -22,7 +22,7 @@ const DropdownMenu = createComponent({
     border-radius: ${theme.radius}px;
     border: 1px solid #e4edf5;
     box-shadow: 0 0 3px 0 rgba(178, 194, 212, 0.3);
-    min-width: 150px;
+    min-width: 90px;
     width: ${width}px;
   `,
 });
