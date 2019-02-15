@@ -75,7 +75,7 @@ export default class Dropdown extends React.Component {
   }
 
   show = () => {
-    const { placement, boundariesElement } = this.props;
+    const { placement, boundariesElement, offset } = this.props;
 
     this.setState(
       {
