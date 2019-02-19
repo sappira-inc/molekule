@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { renderToStaticMarkup } from 'react-dom/server';
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
@@ -17,17 +18,30 @@ const Root = styled.div`
   }
 `;
 
-export default function Linkify({ children, source, linkStyle, ...props }) {
+export default function Linkify({ children, source, linkStyle, renderers, ...props }) {
   return (
     <ReactMarkdown
       source={renderToStaticMarkup(children || source)}
-      className="linkify-container"
       renderers={{
         paragraph: 'div',
         root: p => <Root {...p} />,
         link: p => <Link {...p} style={linkStyle} />,
+        ...renderers,
       }}
       {...props}
     />
   );
 }
+
+Linkify.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  source: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  className: PropTypes.string,
+  renderers: PropTypes.shape(),
+  linkStyle: PropTypes.shape(),
+};
+
+Linkify.defaultProps = {
+  className: 're-linkify',
+  renderers: {},
+};
