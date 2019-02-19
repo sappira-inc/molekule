@@ -17,15 +17,15 @@ const Root = styled.div`
   }
 `;
 
-const defaultOptions = ({ children, source, linkStyle, ...props }) => ({
-  source: renderToStaticMarkup(children || source),
-  className: 'linkify-container',
-  renderers: {
-    paragraph: 'div',
-    root: p => <Root {...p} />,
-    link: p => <Link {...p} style={linkStyle} />,
-  },
-  ...props,
-});
-
-export default props => <ReactMarkdown {...defaultOptions(props)} />;
+export default ({ children, source, linkStyle, ...props }) => (
+  <ReactMarkdown
+    source={renderToStaticMarkup(children || source)}
+    className="linkify-container"
+    renderers={{
+      paragraph: 'div',
+      root: p => <Root {...p} />,
+      link: p => <Link {...p} style={linkStyle} />,
+    }}
+    {...props}
+  />
+);
