@@ -12,7 +12,7 @@ exports[`Linkify can receive linkStyle 1`] = `
 }
 
 <div
-  className="linkify-container c0"
+  className="re-linkify c0"
 >
   <div>
     Hello! 
@@ -46,7 +46,7 @@ exports[`Linkify can render markdown 1`] = `
 }
 
 <div
-  className="linkify-container c0"
+  className="re-linkify c0"
 >
   <div>
     <a
@@ -73,7 +73,7 @@ exports[`Linkify converts links to anchor tags 1`] = `
 }
 
 <div
-  className="linkify-container c0"
+  className="re-linkify c0"
 >
   <div>
     Hello! 
@@ -96,7 +96,7 @@ exports[`Linkify escapes HTML entities 1`] = `
 }
 
 <div
-  className="linkify-container c0"
+  className="re-linkify c0"
 >
   <div>
     &lt;
