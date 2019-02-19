@@ -23,20 +23,20 @@ exports[`Card 1`] = `
 }
 
 <div
-  className="re-card c0"
+  className="re-box re-card c0"
 >
   <div
-    className="re-card-header c1"
+    className="re-box re-card-header c1"
   >
     Header
   </div>
   <div
-    className="re-card-body c2"
+    className="re-box re-card-body c2"
   >
     Body
   </div>
   <div
-    className="re-card-footer c3"
+    className="re-box re-card-footer c3"
   >
     Footer
   </div>

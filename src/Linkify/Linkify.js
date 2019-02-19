@@ -4,10 +4,10 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 
-const Link = styled.a.attrs({
+const Link = styled.a.attrs(() => ({
   target: '_blank',
   rel: 'noopener noreferrer',
-})`
+}))`
   color: inherit;
   text-decoration: underline;
 `;

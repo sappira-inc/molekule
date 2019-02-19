@@ -246,9 +246,9 @@ Dropdown.Item = createComponent({
 Dropdown.Footer = createComponent({
   name: 'DropdownFooter',
   as: Box,
-  attrs: {
+  props: () => ({
     as: 'footer',
-  },
+  }),
   style: ({ theme }) => css`
     background: ${theme.colors.grayLightest};
     padding: 0.75rem 1rem;
