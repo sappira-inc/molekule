@@ -26,6 +26,28 @@ Easily display contextual overlays using custom trigger elements. Dropdown's pos
 
         <Dropdown.Body>
           <Dropdown.SectionTitle>Section One</Dropdown.SectionTitle>
+          <Dropdown.Item onClick={console.log}>Item One</Dropdown.Item>
+          <Dropdown.Item>Item Two</Dropdown.Item>
+
+          <Dropdown.SectionTitle>Section Two</Dropdown.SectionTitle>
+          <Dropdown.Item onClick={close}>Item One</Dropdown.Item>
+          <Dropdown.Item disabled>Item Two</Dropdown.Item>
+        </Dropdown.Body>
+
+        <Dropdown.Footer>Footer</Dropdown.Footer>
+      </>
+    )}
+  </Dropdown>
+  <Dropdown
+    width={250}
+    trigger={<Button variant="success">Open Dropdown</Button>}
+  >
+    {({ close }) => (
+      <>
+        <Dropdown.Header title="Dropdown" />
+
+        <Dropdown.Body>
+          <Dropdown.SectionTitle>Section One</Dropdown.SectionTitle>
           <Dropdown.Item>Item One</Dropdown.Item>
           <Dropdown.Item>Item Two</Dropdown.Item>
 
