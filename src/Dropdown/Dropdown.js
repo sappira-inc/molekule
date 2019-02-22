@@ -141,14 +141,14 @@ export default class Dropdown extends React.Component {
     const renderFn = render || children;
 
     return (
-      <DropdownWrapper tabIndex={0} onBlur={this.handleBlur} onFocus={this.handleFocus}>
+      <DropdownWrapper tabIndex={0} onBlur={this.handleBlur}>
         <DropdownTrigger onClick={this.toggle} ref={this.triggerRef} aria-haspopup="true" aria-expanded={isOpen}>
           {trigger}
         </DropdownTrigger>
 
         <Portal>
           {isOpen && (
-            <DropdownMenu ref={this.menuRef} width={width}>
+            <DropdownMenu ref={this.menuRef} width={width} onFocus={this.handleFocus} tabIndex={0}>
               {renderFn({
                 close: this.toggle,
               })}
