@@ -51,7 +51,6 @@ export default class Dropdown extends React.Component {
     offset: '0, 10',
     placement: 'bottom-start',
     boundariesElement: 'window',
-    on: 'click',
     width: 150,
   };
 
@@ -62,15 +61,10 @@ export default class Dropdown extends React.Component {
     isOpen: false,
   };
 
-  componentDidMount() {
-    this.triggerRef.current.addEventListener(this.props.on, this.toggle);
-  }
-
   componentWillUnmount() {
     if (this.positioner) {
       this.positioner.destroy();
     }
-    this.triggerRef.current.removeEventListener(this.props.on, this.toggle);
   }
 
   componentDidUpdate() {
@@ -148,7 +142,7 @@ export default class Dropdown extends React.Component {
 
     return (
       <DropdownWrapper tabIndex={0} onBlur={this.handleBlur} onFocus={this.handleFocus}>
-        <DropdownTrigger ref={this.triggerRef} aria-haspopup="true" aria-expanded={isOpen}>
+        <DropdownTrigger onClick={this.toggle} ref={this.triggerRef} aria-haspopup="true" aria-expanded={isOpen}>
           {trigger}
         </DropdownTrigger>
 
