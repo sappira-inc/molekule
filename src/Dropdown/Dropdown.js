@@ -1,10 +1,17 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'styled-components';
 import Popper from 'popper.js';
 import Box from '../Box';
 import Portal from '../Portal';
 import { createComponent, themeGet } from '../utils';
+
+const DropdownWrapper = createComponent({
+  name: 'DropdownWrapper',
+  style: css`
+    display: inline-block;
+  `,
+});
 
 const DropdownTrigger = createComponent({
   name: 'DropdownTrigger',
@@ -56,7 +63,6 @@ export default class Dropdown extends React.Component {
   };
 
   componentDidMount() {
-    this.attachAutocloseListener();
     this.triggerRef.current.addEventListener(this.props.on, this.toggle);
   }
 
@@ -64,7 +70,6 @@ export default class Dropdown extends React.Component {
     if (this.positioner) {
       this.positioner.destroy();
     }
-    this.detachAutocloseListener();
     this.triggerRef.current.removeEventListener(this.props.on, this.toggle);
   }
 
@@ -121,22 +126,19 @@ export default class Dropdown extends React.Component {
     }
   };
 
-  attachAutocloseListener() {
-    if (!this.props.autoclose) {
-      return;
-    }
-    document.addEventListener('click', this.autoclose);
-  }
-
-  detachAutocloseListener() {
-    document.removeEventListener('click', this.autoclose);
-  }
-
   autoclose = e => {
-    if (this.state.isOpen && !this.menuRef.current.contains(e.target)) {
+    if (this.state.isOpen) {
       this.hide();
     }
   };
+
+  handleBlur = () => {
+    this.timeoutId = setTimeout(this.autoclose, 500);
+  }
+
+  handleFocus = () => {
+    clearTimeout(this.timeoutId);
+  }
 
   render() {
     const { width, trigger, render, children } = this.props;
@@ -145,7 +147,7 @@ export default class Dropdown extends React.Component {
     const renderFn = render || children;
 
     return (
-      <Fragment>
+      <DropdownWrapper tabIndex={0} onBlur={this.handleBlur} onFocus={this.handleFocus}>
         <DropdownTrigger ref={this.triggerRef} aria-haspopup="true" aria-expanded={isOpen}>
           {trigger}
         </DropdownTrigger>
@@ -159,7 +161,7 @@ export default class Dropdown extends React.Component {
             </DropdownMenu>
           )}
         </Portal>
-      </Fragment>
+      </DropdownWrapper>
     );
   }
 }
