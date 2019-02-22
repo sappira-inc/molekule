@@ -26,6 +26,7 @@ export default class Formbot extends React.Component {
     validations: PropTypes.shape({
       fieldName: PropTypes.oneOfType([PropTypes.func, PropTypes.shape()]),
     }),
+    validationSchema: PropTypes.object,
     onFocus: PropTypes.func,
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
@@ -35,6 +36,7 @@ export default class Formbot extends React.Component {
   static defaultProps = {
     initialValues: {},
     validations: {},
+    validationSchema: null,
     onFocus() {},
     onChange() {},
     onBlur() {},
@@ -48,7 +50,7 @@ export default class Formbot extends React.Component {
   };
 
   get validatable() {
-    return Object.keys(this.props.validations);
+    return Object.keys(this.props.validationSchema || this.props.validations);
   }
 
   get isValid() {
@@ -110,15 +112,27 @@ export default class Formbot extends React.Component {
 
   validateField(field) {
     return new Promise(resolve => {
-      const validation = this.props.validations[field];
+      const fieldState = this.state.fields[field] || {};
+      if (fieldState.validated) {
+        resolve();
+        return;
+      }
 
-      if (!validation) return;
+      const fromSchema = !!this.props.validationSchema;
+      const validation = (fromSchema ? this.props.validationSchema : this.props.validations)[field];
+
+      if (!validation) {
+        resolve();
+        return;
+      }
 
       const fieldValue = this.state.values[field];
       let errorMsg;
 
       try {
-        if (typeof validation === 'function') {
+        if (fromSchema) {
+          validation.validateSync(fieldValue, { values: this.state.values });
+        } else if (typeof validation === 'function') {
           validation(fieldValue);
         } else {
           Object.keys(validation).forEach(method => {
@@ -132,7 +146,11 @@ export default class Formbot extends React.Component {
           });
         }
       } catch (err) {
-        errorMsg = err.message;
+        if (fromSchema) {
+          errorMsg = err ? err.errors[0] : undefined;
+        } else {
+          errorMsg = err.message;
+        }
       } finally {
         this.updateField(field, { validated: true }).then(() => {
           this.setState(
