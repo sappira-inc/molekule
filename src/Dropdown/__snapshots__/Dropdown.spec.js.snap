@@ -6,6 +6,10 @@ exports[`Dropdown 1`] = `
 }
 
 .c1 {
+  display: inline-block;
+}
+
+.c2 {
   font-family: inherit;
   display: inline-block;
   text-align: center;
@@ -31,27 +35,34 @@ exports[`Dropdown 1`] = `
   transition: 175ms;
 }
 
-.c1:hover {
+.c2:hover {
   background: #45b4f3;
   border-color: #45b4f3;
 }
 
-.c1:active {
+.c2:active {
   background: #51b9f4;
   border-color: #51b9f4;
 }
 
 <div
-  aria-expanded={false}
-  aria-haspopup="true"
-  className="re-dropdown-trigger c0"
+  className="re-dropdown-wrapper c0"
+  onBlur={[Function]}
+  tabIndex={0}
 >
-  <button
-    className="re-button re-button-primary c1"
-    disabled={false}
-    size="md"
+  <div
+    aria-expanded={false}
+    aria-haspopup="true"
+    className="re-dropdown-trigger c1"
+    onClick={[Function]}
   >
-    Trigger
-  </button>
+    <button
+      className="re-button re-button-primary c2"
+      disabled={false}
+      size="md"
+    >
+      Trigger
+    </button>
+  </div>
 </div>
 `;
