@@ -52,7 +52,7 @@ export default class Formbot extends React.Component {
   };
 
   get validatable() {
-    return Object.keys(this.props.validationSchema || this.props.validations);
+    return Object.keys(this.props.validationSchema || this.props.validations).length !== 0;
   }
 
   get isValid() {
