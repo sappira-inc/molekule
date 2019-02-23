@@ -68,7 +68,7 @@ export default function() {
       }}>
       {({ values, onSubmit, onChange, errors, onBlur }) => (
         <form onSubmit={onSubmit}>
-          <FormGroup>
+          <FormGroup legend="A Group of Inputs">
             <Input
               onBlur={onBlur}
               error={errors.name}
@@ -78,8 +78,7 @@ export default function() {
               placeholder="Name"
               label="Name"
             />
-          </FormGroup>
-          <FormGroup>
+
             <Input
               onBlur={onBlur}
               error={errors.email}
@@ -89,8 +88,7 @@ export default function() {
               placeholder="Email"
               label="Email"
             />
-          </FormGroup>
-          <FormGroup>
+
             <Select
               onBlur={onBlur}
               error={errors.gender}
@@ -103,7 +101,8 @@ export default function() {
               placeholder="Select a Gender"
             />
           </FormGroup>
-          <FormGroup>
+
+          <FormGroup legend="Another Group of Inputs">
             <Input
               onBlur={onBlur}
               onChange={onChange}
@@ -115,8 +114,7 @@ export default function() {
               placeholder="Your Message"
               label="Write a Message"
             />
-          </FormGroup>
-          <FormGroup>
+
             <CheckboxGroup
               error={errors.checkboxes}
               value={values.checkboxes}
@@ -125,8 +123,7 @@ export default function() {
               onChange={onChange}
               choices={checkboxValues}
             />
-          </FormGroup>
-          <FormGroup>
+
             <RadioGroup
               error={errors.radioGroup}
               name="radioGroup"
@@ -136,8 +133,7 @@ export default function() {
               onChange={onChange}
               choices={radioValues}
             />
-          </FormGroup>
-          <FormGroup>
+
             <Switch name="switch1" id="switch1" onChange={onChange} toggled={values.switch1} />
           </FormGroup>
           <Button htmlType="submit" type="primary" size="sm">
