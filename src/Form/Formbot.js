@@ -26,7 +26,9 @@ export default class Formbot extends React.Component {
     validations: PropTypes.shape({
       fieldName: PropTypes.oneOfType([PropTypes.func, PropTypes.shape()]),
     }),
-    validationSchema: PropTypes.object,
+    validationSchema: PropTypes.shape({
+      fieldName: PropTypes.object,
+    }),
     onFocus: PropTypes.func,
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
@@ -36,7 +38,7 @@ export default class Formbot extends React.Component {
   static defaultProps = {
     initialValues: {},
     validations: {},
-    validationSchema: null,
+    validationSchema: {},
     onFocus() {},
     onChange() {},
     onBlur() {},
