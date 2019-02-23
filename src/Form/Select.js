@@ -6,6 +6,7 @@ import FormError from './FormError';
 import Icon from '../Icon';
 import Flex from '../Flex';
 import Label from './Label';
+import { createEasyInput } from './EasyInput';
 import { createComponent } from '../utils';
 
 const SelectContain = createComponent({
@@ -99,4 +100,4 @@ Select.propTypes = {
   label: PropTypes.string,
 };
 
-export default Select;
+export default createEasyInput(Select);

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Flex from '../Flex';
+import Box from '../Box';
 import Checkbox from './Checkbox';
 import Label from './Label';
 import FormError from './FormError';
-import Flex from '../Flex';
-import Box from '../Box';
+import { createEasyInput } from './EasyInput';
 import { createComponent } from '../utils';
 
 const StyledRadioGroup = createComponent({
@@ -12,7 +13,7 @@ const StyledRadioGroup = createComponent({
   as: Box,
 });
 
-export default class RadioGroup extends Component {
+class RadioGroup extends Component {
   static propTypes = {
     name: PropTypes.string,
     onChange: PropTypes.func,
@@ -96,3 +97,5 @@ export default class RadioGroup extends Component {
     );
   }
 }
+
+export default createEasyInput(RadioGroup);

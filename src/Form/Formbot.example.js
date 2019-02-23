@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Input from './Input';
 import Select from './Select';
-import Formbot from './Formbot';
+import Formbot, { Context } from './Formbot';
+import Form from './Form';
 import Button from '../Button';
 import FormGroup from './FormGroup';
 import CheckboxGroup from './CheckboxGroup';
@@ -38,6 +39,13 @@ const radioValues = [
   },
 ];
 
+const Values = () => {
+  const state = useContext(Context);
+  return (
+    <pre>{JSON.stringify(state.values, null, 2)}</pre>
+  )
+}
+
 export default function() {
   return (
     <Formbot
@@ -66,81 +74,40 @@ export default function() {
           required: true,
         },
       }}>
-      {({ values, onSubmit, onChange, errors, onBlur }) => (
-        <form onSubmit={onSubmit}>
-          <FormGroup legend="A Group of Inputs">
-            <Input
-              onBlur={onBlur}
-              error={errors.name}
-              onChange={onChange}
-              value={values.name}
-              name="name"
-              placeholder="Name"
-              label="Name"
-            />
+      <Form>
+        <FormGroup legend="A Group of Inputs">
+          <Input name="name" placeholder="Name" label="Name" />
+          <Input name="email" placeholder="Email" label="Email" />
 
-            <Input
-              onBlur={onBlur}
-              error={errors.email}
-              onChange={onChange}
-              value={values.email}
-              name="email"
-              placeholder="Email"
-              label="Email"
-            />
+          <Select
+            name="gender"
+            placeholder="Select a Gender"
+            label="Gender"
+            options={selectValues}
+          />
+        </FormGroup>
 
-            <Select
-              onBlur={onBlur}
-              error={errors.gender}
-              label="Gender"
-              onChange={onChange}
-              id="gender"
-              options={selectValues}
-              value={values.gender}
-              name="gender"
-              placeholder="Select a Gender"
-            />
-          </FormGroup>
+        <FormGroup legend="Another Group of Inputs">
+          <Input
+            name="message"
+            multiline
+            size="md"
+            autogrow
+            placeholder="Your Message"
+            label="Write a Message"
+          />
 
-          <FormGroup legend="Another Group of Inputs">
-            <Input
-              onBlur={onBlur}
-              onChange={onChange}
-              error={errors.message}
-              name="message"
-              multiline
-              size="md"
-              autogrow
-              placeholder="Your Message"
-              label="Write a Message"
-            />
+          <CheckboxGroup name="checkboxes" choices={checkboxValues} />
+          <RadioGroup name="radioGroup" horizontal choices={radioValues} />
+          <Switch name="switch1" />
+        </FormGroup>
 
-            <CheckboxGroup
-              error={errors.checkboxes}
-              value={values.checkboxes}
-              name="checkboxes"
-              id="checkboxes"
-              onChange={onChange}
-              choices={checkboxValues}
-            />
+        <Button htmlType="submit" type="primary" size="sm">
+          Submit
+        </Button>
 
-            <RadioGroup
-              error={errors.radioGroup}
-              name="radioGroup"
-              horizontal
-              value={values.radio}
-              id="radio"
-              onChange={onChange}
-              choices={radioValues}
-            />
-
-            <Switch name="switch1" id="switch1" onChange={onChange} toggled={values.switch1} />
-          </FormGroup>
-          <Button htmlType="submit" type="primary" size="sm">
-            Submit
-          </Button>
-        </form>
-      )}
+        <Values />
+      </Form>
     </Formbot>
   );
 }

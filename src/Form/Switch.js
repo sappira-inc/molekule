@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import { createEasyInput } from './EasyInput';
 
 const SwitchContain = styled.label`
   position: relative;
@@ -108,4 +109,4 @@ class Switch extends React.Component {
   }
 }
 
-export default Switch;
+export default createEasyInput(Switch);
