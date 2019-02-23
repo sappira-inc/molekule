@@ -23,12 +23,8 @@ const VALIDATIONS = {
 export default class Formbot extends React.Component {
   static propTypes = {
     initialValues: PropTypes.shape(),
-    validations: PropTypes.shape({
-      fieldName: PropTypes.oneOfType([PropTypes.func, PropTypes.shape()]),
-    }),
-    validationSchema: PropTypes.shape({
-      fieldName: PropTypes.object,
-    }),
+    validations: PropTypes.object,
+    validationSchema: PropTypes.object,
     onFocus: PropTypes.func,
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
@@ -38,7 +34,7 @@ export default class Formbot extends React.Component {
   static defaultProps = {
     initialValues: {},
     validations: {},
-    validationSchema: {},
+    validationSchema: null,
     onFocus() {},
     onChange() {},
     onBlur() {},
@@ -52,7 +48,7 @@ export default class Formbot extends React.Component {
   };
 
   get validatableFields() {
-    return Object.keys(this.props.validationSchema || this.props.validations);
+    return Object.keys(this.props.validationSchema || this.props.validations || {});
   }
 
   get validatable() {
