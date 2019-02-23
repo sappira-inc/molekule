@@ -16,6 +16,7 @@ export Flex from './Flex';
 export Formbot from './Form/Formbot';
 export FormError from './Form/FormError';
 export FormGroup from './Form/FormGroup';
+export FieldSet from './Form/FormGroup';
 export Icon from './Icon';
 export Input from './Form/Input';
 export Label from './Form/Label';
