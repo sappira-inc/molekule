@@ -54,9 +54,9 @@ class RadioGroup extends Component {
     // Bail out if value is the same
     if (this.state.value === value) return;
 
-    this.setState({ value });
-
-    this.props.onChange(this.props.name, value);
+    this.setState({ value }, () => {
+      this.props.onChange(this.props.name, value);
+    });
   };
 
   render() {
@@ -84,6 +84,7 @@ class RadioGroup extends Component {
                   label={choiceLabel}
                   value={this.state.value}
                   valueTrue={value}
+                  valueFalse={value}
                   iconOn="radiobox-marked"
                   iconOff="radiobox-blank"
                   onChange={this.handleChange}
