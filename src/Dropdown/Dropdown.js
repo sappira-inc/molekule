@@ -50,6 +50,7 @@ export default class Dropdown extends React.Component {
     autoclose: true,
     offset: '0, 10',
     placement: 'bottom-start',
+    positionFixed: false,
     boundariesElement: 'window',
     width: 150,
   };
@@ -74,7 +75,7 @@ export default class Dropdown extends React.Component {
   }
 
   show = () => {
-    const { placement, boundariesElement, offset } = this.props;
+    const { placement, positionFixed, boundariesElement, offset } = this.props;
 
     this.setState(
       {
@@ -83,6 +84,7 @@ export default class Dropdown extends React.Component {
       () => {
         this.positioner = new Popper(this.triggerRef.current, this.menuRef.current, {
           placement,
+          positionFixed,
           modifiers: {
             offset: {
               offset,
