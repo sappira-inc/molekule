@@ -51,8 +51,12 @@ export default class Formbot extends React.Component {
     errors: {},
   };
 
+  get validatableFields() {
+    return Object.keys(this.props.validationSchema || this.props.validations);
+  }
+
   get validatable() {
-    return Object.keys(this.props.validationSchema || this.props.validations).length !== 0;
+    return !!this.validatableFields.length;
   }
 
   get isValid() {
@@ -149,7 +153,7 @@ export default class Formbot extends React.Component {
         }
       } catch (err) {
         if (fromSchema) {
-          errorMsg = err ? err.errors[0] : undefined;
+          errorMsg = err.errors.length ? err.errors[0] : undefined;
         } else {
           errorMsg = err.message;
         }
@@ -171,7 +175,7 @@ export default class Formbot extends React.Component {
 
   validateAllFields() {
     return Promise.all(
-      this.validatable.map(field => this.updateField(field, {}).then(() => this.validateField(field)))
+      this.validatableFields.map(field => this.updateField(field, {}).then(() => this.validateField(field)))
     );
   }
 
