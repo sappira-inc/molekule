@@ -53,7 +53,6 @@ const SwitchThumb = styled.span`
 
 class Switch extends React.Component {
   static propTypes = {
-    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     value: PropTypes.bool,
     size: PropTypes.number,
@@ -97,12 +96,12 @@ class Switch extends React.Component {
   };
 
   render() {
-    const { id, name, size, variant, inset } = this.props;
+    const { name, size, variant, inset, ...props } = this.props;
     const { on } = this.state;
 
     return (
-      <SwitchContain size={size} inset={inset}>
-        <SwitchInput id={id} name={name} type="checkbox" on={on} onChange={this.handleChange} />
+      <SwitchContain {...props} size={size} inset={inset}>
+        <SwitchInput name={name} type="checkbox" on={on} onChange={this.handleChange} />
         <SwitchThumb variant={variant} size={size} on={on} inset={inset} />
       </SwitchContain>
     );

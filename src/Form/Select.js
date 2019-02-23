@@ -56,14 +56,13 @@ const IconContain = styled(Flex)`
   z-index: 1;
 `;
 
-function Select({ id, name = id, options, placeholder, value, error, onChange, onBlur, size = 'md', label }) {
+function Select({ id, name, options, placeholder, value, error, onChange, onBlur, size = 'md', label, ...props }) {
   return (
     <Field>
       {label && <Label size={size}>{label}</Label>}
       <SelectContain value={value} size={size}>
         <select
           name={name}
-          id={id}
           value={value}
           onChange={e => {
             if (typeof onChange === 'function') onChange(name, e.target.value);
@@ -88,7 +87,6 @@ function Select({ id, name = id, options, placeholder, value, error, onChange, o
 }
 
 Select.propTypes = {
-  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
   placeholder: PropTypes.string,
