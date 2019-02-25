@@ -16,7 +16,7 @@ function EasyInput({ name, Component, ...props  }) {
   }
 
   const value = state.values[name];
-  const defaultValue = Component.defaultProps.defaultValue !== undefined
+  const defaultValue = Component.defaultProps && Component.defaultProps.defaultValue !== undefined
     ? Component.defaultProps.defaultValue
     : '';
 
