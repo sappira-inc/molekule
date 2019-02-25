@@ -1,4 +1,4 @@
-import React, { PureComponent, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Context } from './Formbot';
 
 /**
@@ -6,22 +6,13 @@ import { Context } from './Formbot';
  * each subscribed component and there's currently no way to bail out of renders if the
  * values we care about haven't changed. Below is a sufficient workaround below and redux maintainers are discussing here: https://github.com/facebook/react/issues/14110
  */
-
-class PureInput extends PureComponent {
-  render() {
-    const { Component, ...props } = this.props;
-
-    return (
-      <Component {...props} />
-    )
-  }
-}
+const PureInput = React.memo(({ Component, ...props }) => <Component {...props} />);
 
 function EasyInput({ name, Component, ...props  }) {
   const state = useContext(Context);
 
   if (!state) {
-    return <PureInput name={name} {...props} />
+    return <PureInput name={name} Component={Component} {...props} />
   }
 
   return (
