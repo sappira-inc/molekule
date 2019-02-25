@@ -108,4 +108,4 @@ class Switch extends React.Component {
   }
 }
 
-export default createEasyInput(Switch);
+export default createEasyInput(Switch, false);

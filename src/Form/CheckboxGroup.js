@@ -92,4 +92,4 @@ class CheckboxGroup extends Component {
   }
 }
 
-export default createEasyInput(CheckboxGroup);
+export default createEasyInput(CheckboxGroup, []);

@@ -50,11 +50,6 @@ const Values = () => {
 export default function() {
   return (
     <Formbot
-      initialValues={{
-        name: '',
-        email: '',
-        message: '',
-      }}
       validations={{
         name: val => {
           if (val !== 'Bob') {
