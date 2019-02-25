@@ -23,6 +23,7 @@ class CheckboxGroup extends Component {
   };
 
   static defaultProps = {
+    defaultValue: [],
     color: 'primary',
     horizontal: false,
     onChange() {},
@@ -92,4 +93,4 @@ class CheckboxGroup extends Component {
   }
 }
 
-export default createEasyInput(CheckboxGroup, []);
+export default createEasyInput(CheckboxGroup);

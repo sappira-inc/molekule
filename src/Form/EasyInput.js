@@ -16,7 +16,9 @@ function EasyInput({ name, Component, ...props  }) {
   }
 
   const value = state.values[name];
-  const defaultValue = props.defaultValue !== undefined ? props.defaultValue : '';
+  const defaultValue = Component.defaultProps.defaultValue !== undefined
+    ? Component.defaultProps.defaultValue
+    : '';
 
   return (
     <PureInput
@@ -32,7 +34,6 @@ function EasyInput({ name, Component, ...props  }) {
   );
 }
 
-export const createEasyInput = (Component, defaultValue) => props =>
-  <EasyInput Component={Component} defaultValue={defaultValue} {...props} />
+export const createEasyInput = Component => props => <EasyInput Component={Component} {...props} />
 
 export default EasyInput;

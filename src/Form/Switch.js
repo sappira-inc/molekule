@@ -61,6 +61,7 @@ class Switch extends React.Component {
   };
 
   static defaultProps = {
+    defaultValue: false,
     variant: 'primary',
     size: 16,
     inset: 8,
@@ -108,4 +109,4 @@ class Switch extends React.Component {
   }
 }
 
-export default createEasyInput(Switch, false);
+export default createEasyInput(Switch);
