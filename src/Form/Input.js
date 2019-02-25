@@ -4,6 +4,7 @@ import { css } from 'styled-components';
 import Field from './Field';
 import StyledLabel from './Label';
 import FormError from './FormError';
+import { createEasyInput } from './EasyInput';
 import { createComponent } from '../utils';
 
 const InputContainer = createComponent({
@@ -71,7 +72,7 @@ const validateValueProp = (props, propName, componentName) => {
   return null;
 };
 
-export default class Input extends Component {
+class Input extends Component {
   static propTypes = {
     value: validateValueProp,
     type: PropTypes.string,
@@ -277,3 +278,5 @@ export default class Input extends Component {
     );
   }
 }
+
+export default createEasyInput(Input);

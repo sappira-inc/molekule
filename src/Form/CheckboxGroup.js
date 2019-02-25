@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Flex from '../Flex';
+import Box from '../Box';
 import Checkbox from './Checkbox';
 import FormError from './FormError';
-import Box from '../Box';
-import Flex from '../Flex';
+import { createEasyInput } from './EasyInput';
 
-export default class CheckboxGroup extends Component {
+class CheckboxGroup extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     color: PropTypes.string,
@@ -90,3 +91,5 @@ export default class CheckboxGroup extends Component {
     );
   }
 }
+
+export default createEasyInput(CheckboxGroup);

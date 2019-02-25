@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import Field from './Field';
@@ -6,6 +6,7 @@ import FormError from './FormError';
 import Icon from '../Icon';
 import Flex from '../Flex';
 import Label from './Label';
+import { createEasyInput } from './EasyInput';
 import { createComponent } from '../utils';
 
 const SelectContain = createComponent({
@@ -26,7 +27,7 @@ const SelectContain = createComponent({
     font-size: ${theme.fontSizes[size]}px;
     vertical-align: middle;
 
-    ${value &&
+    ${!value &&
       css`
         color: ${p => p.theme.colors.grayMid};
         select {
@@ -55,48 +56,74 @@ const IconContain = styled(Flex)`
   z-index: 1;
 `;
 
-function Select({ id, name = id, options, placeholder, value, error, onChange, onBlur, size = 'md', label }) {
-  return (
-    <Field>
-      {label && <Label size={size}>{label}</Label>}
-      <SelectContain value={value} size={size}>
-        <select
-          name={name}
-          id={id}
-          value={value}
-          onChange={e => {
-            if (typeof onChange === 'function') onChange(name, e.target.value);
-          }}
-          onBlur={e => {
-            if (typeof onBlur === 'function') onBlur(name, e.target.value);
-          }}>
-          <option value="">{placeholder || 'Select an option...'}</option>
-          {options.map(option => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-        <IconContain mr={2} alignItems="center" justifyContent="center">
-          <Icon name="chevron-down" size={18} />
-        </IconContain>
-      </SelectContain>
-      {error && <FormError>{error}</FormError>}
-    </Field>
-  );
+class Select extends Component {
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    options: PropTypes.array.isRequired,
+    placeholder: PropTypes.string,
+    value: PropTypes.string,
+    error: PropTypes.string,
+    onChange: PropTypes.func,
+    onBlur: PropTypes.func,
+    size: PropTypes.string,
+    label: PropTypes.string,
+  }
+
+  static defaultProps = {
+    onChange() {},
+    onBlur() {},
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.value !== undefined && props.value !== state.value) {
+      return {
+        value: props.value,
+      };
+    }
+    return null;
+  }
+
+  state = {
+    value: "",
+  };
+
+  handleChange = e => {
+    this.setState({ value: e.target.value });
+    this.props.onChange(e.target.name, e.target.value);
+  }
+
+  handleBlur = e => {
+    this.props.onBlur(e.target.name)
+  }
+
+  render() {
+    const { id, name, options, placeholder, error, size = 'md', label, ...props } = this.props;
+    const { value } = this.state;
+
+    return (
+      <Field>
+        {label && <Label size={size}>{label}</Label>}
+        <SelectContain value={value} size={size}>
+          <select
+            name={name}
+            value={value}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}>
+            <option value="">{placeholder || 'Select an option...'}</option>
+            {options.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <IconContain mr={2} alignItems="center" justifyContent="center">
+            <Icon name="chevron-down" size={18} />
+          </IconContain>
+        </SelectContain>
+        {error && <FormError>{error}</FormError>}
+      </Field>
+    )
+  }
 }
 
-Select.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  options: PropTypes.array.isRequired,
-  placeholder: PropTypes.string,
-  value: PropTypes.string,
-  error: PropTypes.string,
-  onChange: PropTypes.func,
-  onBlur: PropTypes.func,
-  size: PropTypes.string,
-  label: PropTypes.string,
-};
-
-export default Select;
+export default createEasyInput(Select);

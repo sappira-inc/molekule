@@ -4,6 +4,7 @@ import { css } from 'styled-components';
 import Icon from '../Icon';
 import FormError from '../Form/FormError';
 import Flex from '../Flex';
+import { createEasyInput } from './EasyInput';
 import { createComponent } from '../utils';
 
 const CheckboxContainer = createComponent({
@@ -44,7 +45,7 @@ const StyledLabel = createComponent({
   `,
 });
 
-export default class Checkbox extends React.Component {
+class Checkbox extends React.Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -148,3 +149,5 @@ export default class Checkbox extends React.Component {
     );
   }
 }
+
+export default createEasyInput(Checkbox);

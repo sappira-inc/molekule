@@ -7,6 +7,8 @@ import { Playground, PropsTable } from 'docz'
 import * as yup from 'yup';
 import FormExample from './Formbot.example'
 import Formbot from './Formbot'
+import Form from './Form';
+import Field from './Field';
 import Button from '../Button'
 import FormGroup from './FormGroup'
 import Input from './Input'
@@ -24,30 +26,20 @@ Quickly build a form using a Formbot and pre-configured form components. Formbot
 ### Formbot
 <Playground>
   <Formbot
-    initialValues={{
-      name: '',
-    }}
     validationSchema={{
-      name: yup.string().required().min(4),
+      email: yup.string().email().required(),
+      password: yup.string().required().min(4),
     }}>
-    {({ values, onSubmit, onChange, errors, onBlur }) => (
-      <form onSubmit={onSubmit}>
-        <FormGroup>
-          <Input
-            name="name"
-            label="Name"
-            value={values.name}
-            onBlur={onBlur}
-            error={errors.name}
-            onChange={onChange}
-          />
-        </FormGroup>
+    <Form>
+      <Input name="email" label="Email" />
+      <Input name="password" label="Password" />
 
-        <Button size="sm">
-          Submit
+      <Field>
+        <Button type="submit">
+          Sign In
         </Button>
-      </form>
-    )}
+      </Field>
+    </Form>
   </Formbot>
 </Playground>
 

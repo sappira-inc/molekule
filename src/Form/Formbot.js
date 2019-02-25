@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+export const Context = React.createContext(null);
+
 const VALIDATIONS = {
   required: (val, isRequired) => {
     if (!isRequired) return;
@@ -218,8 +220,8 @@ export default class Formbot extends React.Component {
     });
   };
 
-  render() {
-    return this.props.children({
+  getContext() {
+    return {
       ...this.props,
       values: this.state.values,
       errors: this.state.errors,
@@ -228,6 +230,16 @@ export default class Formbot extends React.Component {
       onBlur: this.onBlur,
       onSubmit: this.onSubmit,
       reset: this.reset,
-    });
+    }
+  }
+
+  render() {
+    const { children, ...props } = this.props;
+
+    return (
+      <Context.Provider value={this.getContext()}>
+        {typeof children === 'function' ? children(this.getContext()) : children}
+      </Context.Provider>
+    )
   }
 }
