@@ -4,6 +4,7 @@ import Select from './Select';
 import Formbot from './Formbot';
 import Button from '../Button';
 import FormGroup from './FormGroup';
+import FieldSet from './FieldSet';
 import CheckboxGroup from './CheckboxGroup';
 import RadioGroup from './RadioGroup';
 import Switch from './Switch';
@@ -73,7 +74,7 @@ export default function() {
       }}>
       {({ values, onSubmit, onChange, errors, onBlur }) => (
         <form onSubmit={onSubmit}>
-          <FormGroup>
+          <FieldSet legend="Some Fields">
             <Input
               onBlur={onBlur}
               error={errors.name}
@@ -83,8 +84,6 @@ export default function() {
               placeholder="Name"
               label="Name"
             />
-          </FormGroup>
-          <FormGroup>
             <Input
               onBlur={onBlur}
               error={errors.email}
@@ -94,8 +93,8 @@ export default function() {
               placeholder="Email"
               label="Email"
             />
-          </FormGroup>
-          <FormGroup>
+          </FieldSet>
+          <FieldSet legend="More Fields">
             <Select
               onBlur={onBlur}
               error={errors.gender}
@@ -107,8 +106,6 @@ export default function() {
               name="gender"
               placeholder="Select a Gender"
             />
-          </FormGroup>
-          <FormGroup>
             <Input
               onBlur={onBlur}
               onChange={onChange}
@@ -121,28 +118,26 @@ export default function() {
               placeholder="Your Message"
               label="Write a Message"
             />
-          </FormGroup>
-          <FormGroup>
-            <CheckboxGroup
-              error={errors.checkboxes}
-              value={values.checkboxes}
-              name="checkboxes"
-              id="checkboxes"
-              onChange={onChange}
-              choices={checkboxValues}
-            />
-          </FormGroup>
-          <FormGroup>
-            <RadioGroup
-              error={errors.radioGroup}
-              name="radioGroup"
-              horizontal
-              value={values.radio}
-              id="radio"
-              onChange={onChange}
-              choices={radioValues}
-            />
-          </FormGroup>
+            <FormGroup>
+              <CheckboxGroup
+                error={errors.checkboxes}
+                value={values.checkboxes}
+                name="checkboxes"
+                id="checkboxes"
+                onChange={onChange}
+                choices={checkboxValues}
+              />
+              <RadioGroup
+                error={errors.radioGroup}
+                name="radioGroup"
+                horizontal
+                value={values.radio}
+                id="radio"
+                onChange={onChange}
+                choices={radioValues}
+              />
+            </FormGroup>
+          </FieldSet>
           <FormGroup>
             <Switch name="switch1" id="switch1" onChange={onChange} toggled={values.switch1} />
           </FormGroup>
