@@ -41,6 +41,11 @@ const radioValues = [
 export default function() {
   return (
     <Formbot
+      initialValues={{
+        name: '',
+        email: '',
+        message: '',
+      }}
       validations={{
         name: val => {
           if (val !== 'Bob') {
@@ -106,6 +111,7 @@ export default function() {
             <Input
               onBlur={onBlur}
               onChange={onChange}
+              value={values.message}
               error={errors.message}
               name="message"
               multiline

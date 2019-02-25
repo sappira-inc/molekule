@@ -23,7 +23,10 @@ Quickly build a form using a Formbot and pre-configured form components. Formbot
 
 ### Formbot
 <Playground>
-   <Formbot
+  <Formbot
+    initialValues={{
+      name: '',
+    }}
     validationSchema={{
       name: yup.string().required().min(4),
     }}>
