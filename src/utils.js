@@ -26,7 +26,6 @@ export const createComponent = ({ name, tag = 'div', as, style, props: defaultPr
     ...props,
     className: getComponentClassName(props, kebabCase(name)),
   }))`
-    box-sizing: border-box;
     ${style}
     ${getComponentStyle(name)}
     ${({ styles = {} }) => styles[name] || {}}
