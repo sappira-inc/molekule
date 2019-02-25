@@ -24,7 +24,10 @@ Quickly build a form using a Formbot and pre-configured form components. Formbot
 
 ### Formbot
 <Playground>
-   <Formbot
+  <Formbot
+    initialValues={{
+      name: '',
+    }}
     validationSchema={{
       email: yup.string().email().required(),
       password: yup.string().required().min(4),

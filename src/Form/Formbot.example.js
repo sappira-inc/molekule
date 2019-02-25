@@ -5,6 +5,7 @@ import Formbot, { Context } from './Formbot';
 import Form from './Form';
 import Button from '../Button';
 import FormGroup from './FormGroup';
+import FieldSet from './FieldSet';
 import CheckboxGroup from './CheckboxGroup';
 import RadioGroup from './RadioGroup';
 import Switch from './Switch';
@@ -49,6 +50,11 @@ const Values = () => {
 export default function() {
   return (
     <Formbot
+      initialValues={{
+        name: '',
+        email: '',
+        message: '',
+      }}
       validations={{
         name: val => {
           if (val !== 'Bob') {
@@ -75,7 +81,7 @@ export default function() {
         },
       }}>
       <Form>
-        <FormGroup legend="A Group of Inputs">
+        <Fieldset legend="A Group of Inputs">
           <Input name="name" placeholder="Name" label="Name" />
           <Input name="email" placeholder="Email" label="Email" />
 
@@ -85,9 +91,9 @@ export default function() {
             label="Gender"
             options={selectValues}
           />
-        </FormGroup>
+        </Fieldset>
 
-        <FormGroup legend="Another Group of Inputs">
+        <Fieldset legend="Another Group of Inputs">
           <Input
             name="message"
             multiline
@@ -100,7 +106,7 @@ export default function() {
           <CheckboxGroup name="checkboxes" choices={checkboxValues} />
           <RadioGroup name="radioGroup" horizontal choices={radioValues} />
           <Switch name="switch1" />
-        </FormGroup>
+        </Fieldset>
 
         <Button htmlType="submit" type="primary" size="sm">
           Submit
