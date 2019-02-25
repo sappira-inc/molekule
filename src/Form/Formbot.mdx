@@ -8,6 +8,7 @@ import * as yup from 'yup';
 import FormExample from './Formbot.example'
 import Formbot from './Formbot'
 import Form from './Form';
+import Field from './Field';
 import Button from '../Button'
 import FormGroup from './FormGroup'
 import Input from './Input'
@@ -25,9 +26,6 @@ Quickly build a form using a Formbot and pre-configured form components. Formbot
 ### Formbot
 <Playground>
   <Formbot
-    initialValues={{
-      name: '',
-    }}
     validationSchema={{
       email: yup.string().email().required(),
       password: yup.string().required().min(4),
@@ -36,9 +34,11 @@ Quickly build a form using a Formbot and pre-configured form components. Formbot
       <Input name="email" label="Email" />
       <Input name="password" label="Password" />
 
-      <Button type="submit" size="sm">
-        Sign In
-      </Button>
+      <Field>
+        <Button type="submit">
+          Sign In
+        </Button>
+      </Field>
     </Form>
   </Formbot>
 </Playground>
