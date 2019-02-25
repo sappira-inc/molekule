@@ -29,7 +29,7 @@ const Container = styled.fieldset`
   }
 `;
 
-const FieldSet = ({ legend, children }) => (
+const Fieldset = ({ legend, children }) => (
   <Container>
     {legend && <Legend>{legend}</Legend>}
 
@@ -37,4 +37,5 @@ const FieldSet = ({ legend, children }) => (
   </Container>
 );
 
-export default FieldSet;
+export default Fieldset;
+

@@ -5,7 +5,7 @@ import Formbot, { Context } from './Formbot';
 import Form from './Form';
 import Button from '../Button';
 import FormGroup from './FormGroup';
-import FieldSet from './FieldSet';
+import Fieldset from './Fieldset';
 import CheckboxGroup from './CheckboxGroup';
 import RadioGroup from './RadioGroup';
 import Switch from './Switch';
