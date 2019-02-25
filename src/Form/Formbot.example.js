@@ -4,7 +4,7 @@ import Select from './Select';
 import Formbot from './Formbot';
 import Button from '../Button';
 import FormGroup from './FormGroup';
-import FieldSet from './FieldSet';
+import Fieldset from './Fieldset';
 import CheckboxGroup from './CheckboxGroup';
 import RadioGroup from './RadioGroup';
 import Switch from './Switch';
@@ -74,7 +74,7 @@ export default function() {
       }}>
       {({ values, onSubmit, onChange, errors, onBlur }) => (
         <form onSubmit={onSubmit}>
-          <FieldSet legend="Some Fields">
+          <Fieldset legend="Some Fields">
             <Input
               onBlur={onBlur}
               error={errors.name}
@@ -93,8 +93,8 @@ export default function() {
               placeholder="Email"
               label="Email"
             />
-          </FieldSet>
-          <FieldSet legend="More Fields">
+          </Fieldset>
+          <Fieldset legend="More Fields">
             <Select
               onBlur={onBlur}
               error={errors.gender}
@@ -137,7 +137,7 @@ export default function() {
                 choices={radioValues}
               />
             </FormGroup>
-          </FieldSet>
+          </Fieldset>
           <FormGroup>
             <Switch name="switch1" id="switch1" onChange={onChange} toggled={values.switch1} />
           </FormGroup>
