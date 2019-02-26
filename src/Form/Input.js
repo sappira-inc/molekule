@@ -60,6 +60,9 @@ const AutogrowShadow = createComponent({
     position: absolute;
     left: -9999px;
   `,
+  props: () => ({
+    tabIndex: -1,
+  }),
 });
 
 const validateValueProp = (props, propName, componentName) => {

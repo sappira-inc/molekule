@@ -105,6 +105,8 @@ export default class FormbotExample extends React.Component {
               label="Write a Message"
             />
 
+            <Input name="favorite_word" placeholder="Favorite Word" label="Favorite Word" />
+
             <CheckboxGroup name="checkboxes" choices={checkboxValues} />
             <RadioGroup name="radioGroup" horizontal choices={radioValues} />
             <Switch name="switch1" />
