@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import { Context } from './Formbot';
 
 /**
@@ -8,7 +8,7 @@ import { Context } from './Formbot';
  */
 const PureInput = React.memo(({ Component, ...props }) => <Component {...props} />);
 
-function EasyInput({ name, Component, ...props  }) {
+function EasyInput({ name, Component, ...props }) {
   const state = useContext(Context);
 
   if (!state) {
@@ -34,6 +34,8 @@ function EasyInput({ name, Component, ...props  }) {
   );
 }
 
-export const createEasyInput = Component => props => <EasyInput Component={Component} {...props} />
+export const createEasyInput = Component =>
+  forwardRef((props, ref) =>
+    <EasyInput Component={Component} forwardedRef={ref} {...props} />);
 
 export default EasyInput;

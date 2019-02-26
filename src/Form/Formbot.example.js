@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, createRef } from 'react';
 import Input from './Input';
 import Select from './Select';
 import Formbot, { Context } from './Formbot';
@@ -47,68 +47,76 @@ const Values = () => {
   )
 }
 
-export default function() {
-  return (
-    <Formbot
-      validations={{
-        name: val => {
-          if (val !== 'Bob') {
-            throw new Error('Your name must be Bob');
-          }
-        },
-        email: {
-          required: true,
-        },
-        gender: {
-          required: true,
-        },
-        message: {
-          required: true,
-        },
-        checkboxes: {
-          required: true,
-        },
-        radioGroup: {
-          required: true,
-        },
-        switch1: {
-          required: true,
-        },
-      }}>
-      <Form>
-        <Fieldset legend="A Group of Inputs">
-          <Input name="name" placeholder="Name" label="Name" />
-          <Input name="email" placeholder="Email" label="Email" />
+export default class FormbotExample extends React.Component {
+  nameRef = createRef();
 
-          <Select
-            name="gender"
-            placeholder="Select a Gender"
-            label="Gender"
-            options={selectValues}
-          />
-        </Fieldset>
+  componentDidMount() {
+    this.nameRef.current.focus();
+  }
 
-        <Fieldset legend="Another Group of Inputs">
-          <Input
-            name="message"
-            multiline
-            size="md"
-            autogrow
-            placeholder="Your Message"
-            label="Write a Message"
-          />
+  render() {
+    return (
+      <Formbot
+        validations={{
+          name: val => {
+            if (val !== 'Bob') {
+              throw new Error('Your name must be Bob');
+            }
+          },
+          email: {
+            required: true,
+          },
+          gender: {
+            required: true,
+          },
+          message: {
+            required: true,
+          },
+          checkboxes: {
+            required: true,
+          },
+          radioGroup: {
+            required: true,
+          },
+          switch1: {
+            required: true,
+          },
+        }}>
+        <Form>
+          <Fieldset legend="A Group of Inputs">
+            <Input name="name" placeholder="Name (should autofocus)" label="Name" ref={this.nameRef} />
+            <Input name="email" placeholder="Email" label="Email" />
 
-          <CheckboxGroup name="checkboxes" choices={checkboxValues} />
-          <RadioGroup name="radioGroup" horizontal choices={radioValues} />
-          <Switch name="switch1" />
-        </Fieldset>
+            <Select
+              name="gender"
+              placeholder="Select a Gender"
+              label="Gender"
+              options={selectValues}
+            />
+          </Fieldset>
 
-        <Button htmlType="submit" type="primary" size="sm">
-          Submit
-        </Button>
+          <Fieldset legend="Another Group of Inputs">
+            <Input
+              name="message"
+              multiline
+              size="md"
+              autogrow
+              placeholder="Your Message"
+              label="Write a Message"
+            />
 
-        <Values />
-      </Form>
-    </Formbot>
-  );
+            <CheckboxGroup name="checkboxes" choices={checkboxValues} />
+            <RadioGroup name="radioGroup" horizontal choices={radioValues} />
+            <Switch name="switch1" />
+          </Fieldset>
+
+          <Button htmlType="submit" type="primary" size="sm">
+            Submit
+          </Button>
+
+          <Values />
+        </Form>
+      </Formbot>
+    );
+  }
 }
