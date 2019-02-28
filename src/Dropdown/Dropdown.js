@@ -129,7 +129,7 @@ export default class Dropdown extends React.Component {
   };
 
   handleBlur = () => {
-    this.timeoutId = setTimeout(this.autoclose, 500);
+    this.timeoutId = setTimeout(this.autoclose);
   }
 
   handleFocus = () => {
