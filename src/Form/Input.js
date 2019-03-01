@@ -4,6 +4,7 @@ import { css } from 'styled-components';
 import Field from './Field';
 import StyledLabel from './Label';
 import FormError from './FormError';
+import { createEasyInput } from './EasyInput';
 import { createComponent } from '../utils';
 
 const InputContainer = createComponent({
@@ -59,6 +60,9 @@ const AutogrowShadow = createComponent({
     position: absolute;
     left: -9999px;
   `,
+  props: () => ({
+    tabIndex: -1,
+  }),
 });
 
 const validateValueProp = (props, propName, componentName) => {
@@ -71,7 +75,7 @@ const validateValueProp = (props, propName, componentName) => {
   return null;
 };
 
-export default class Input extends Component {
+class Input extends Component {
   static propTypes = {
     value: validateValueProp,
     type: PropTypes.string,
@@ -90,7 +94,7 @@ export default class Input extends Component {
     autogrow: PropTypes.bool,
     size: PropTypes.string,
     floating: PropTypes.bool,
-    ref: PropTypes.shape(),
+    forwardedRef: PropTypes.shape(),
   };
 
   static defaultProps = {
@@ -126,7 +130,7 @@ export default class Input extends Component {
   inputRef = React.createRef();
 
   get ref() {
-    return this.props.ref || this.inputRef;
+    return this.props.forwardedRef || this.inputRef;
   }
 
   componentDidMount() {
@@ -277,3 +281,5 @@ export default class Input extends Component {
     );
   }
 }
+
+export default createEasyInput(Input);

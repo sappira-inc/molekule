@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import { createEasyInput } from './EasyInput';
 
 const SwitchContain = styled.label`
   position: relative;
@@ -52,7 +53,6 @@ const SwitchThumb = styled.span`
 
 class Switch extends React.Component {
   static propTypes = {
-    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     value: PropTypes.bool,
     size: PropTypes.number,
@@ -61,6 +61,7 @@ class Switch extends React.Component {
   };
 
   static defaultProps = {
+    defaultValue: false,
     variant: 'primary',
     size: 16,
     inset: 8,
@@ -96,16 +97,16 @@ class Switch extends React.Component {
   };
 
   render() {
-    const { id, name, size, variant, inset } = this.props;
+    const { name, size, variant, inset, ...props } = this.props;
     const { on } = this.state;
 
     return (
-      <SwitchContain size={size} inset={inset}>
-        <SwitchInput id={id} name={name} type="checkbox" on={on} onChange={this.handleChange} />
+      <SwitchContain {...props} size={size} inset={inset}>
+        <SwitchInput name={name} type="checkbox" on={on} onChange={this.handleChange} />
         <SwitchThumb variant={variant} size={size} on={on} inset={inset} />
       </SwitchContain>
     );
   }
 }
 
-export default Switch;
+export default createEasyInput(Switch);

@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.2](https://github.com/sappira-inc/molekule/compare/v3.2.1...v3.2.2) (2019-02-26)
+
+
+### Bug Fixes
+
+* Forward input refs, add missing Form export, remove autogrow shadow element from tab order ([#22](https://github.com/sappira-inc/molekule/issues/22)) ([424195d](https://github.com/sappira-inc/molekule/commit/424195d))
+
+
+
+## [3.2.1](https://github.com/sappira-inc/molekule/compare/v3.2.0...v3.2.1) (2019-02-26)
+
+### Bug Fixes
+
+* Add back lodash dependency ([f367575](https://github.com/sappira-inc/molekule/commit/f367575))
+* Bump react peer dependencies ([9c4ec32](https://github.com/sappira-inc/molekule/commit/9c4ec32))
+
+
+
+# [3.2.0](https://github.com/sappira-inc/molekule/compare/v3.1.0...v3.2.0) (2019-02-26)
+
+
+### Features
+
+* **Formbot:** Support for yup via validationSchema; Add Context provider and EasyInput consumer ([#20](https://github.com/sappira-inc/molekule/issues/20)) ([2e457be](https://github.com/sappira-inc/molekule/commit/2e457be))
+
+
+
 # [3.1.0](https://github.com/sappira-inc/molekule/compare/v3.0.1...v3.1.0) (2019-02-20)
 
 
@@ -9,12 +36,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 * **Dropdown:** Support for configuring dropdown offset ([#17](https://github.com/sappira-inc/molekule/issues/17)) ([c739ff3](https://github.com/sappira-inc/molekule/commit/c739ff3))
 
-
 ### Features
 
 * **Linkify:** Add markdown support ([#14](https://github.com/sappira-inc/molekule/issues/14)) ([23b89d1](https://github.com/sappira-inc/molekule/commit/23b89d1))
-
-
 
 <a name="3.0.1"></a>
 ## [3.0.1](https://github.com/sappira-inc/molekule/compare/v3.0.0...v3.0.1) (2019-01-28)
