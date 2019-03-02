@@ -52,8 +52,8 @@ const ModalContent = createComponent({
   style: ({ minWidth, maxWidth, transitionState, animationIn, animationOut }) => css`
     position: relative;
     margin: auto;
-    min-width: ${minWidth || 250}px;
-    max-width: ${maxWidth || 768}px;
+    min-width: ${minWidth}px;
+    max-width: ${maxWidth}px;
     background: #ffffff;
     background-clip: padding-box;
     box-shadow: 0 8px 30px rgba(0, 29, 54, 0.1);
@@ -142,6 +142,8 @@ Modal.defaultProps = {
   showClose: true,
   closeOnBackdropClick: true,
   closeOnEscape: true,
+  minWidth: 250,
+  maxWidth: 768,
   animationIn: 'zoomIn',
   animationOut: 'zoomOut',
   animationDuration: 175,
