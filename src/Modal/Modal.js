@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { keyframes, css } from 'styled-components';
 import * as animations from 'react-animations';
+import { Transition } from 'react-transition-group';
 import Portal from '../Portal';
 import { createComponent, themeGet } from '../utils';
 
@@ -9,7 +10,7 @@ const getAnimation = name => keyframes`${animations[name]}`;
 
 const Backdrop = createComponent({
   name: 'ModalBackdrop',
-  style: ({ opening, closing }) => css`
+  style: ({ transitionState }) => css`
     top: 0;
     left: 0;
     right: 0;
@@ -24,12 +25,17 @@ const Backdrop = createComponent({
     background: rgba(0, 0, 0, 0.2);
     justify-content: center;
 
-    ${opening &&
+    ${transitionState === 'exited' &&
+      css`
+        display: none;
+      `}
+
+    ${transitionState === 'entering' &&
       css`
         animation: 0.35s ${getAnimation('fadeIn')};
       `};
 
-    ${closing &&
+    ${transitionState === 'exiting' &&
       css`
         animation: 0.35s ${getAnimation('fadeOut')};
       `};
@@ -38,7 +44,7 @@ const Backdrop = createComponent({
 
 const ModalContent = createComponent({
   name: 'ModalContent',
-  style: ({ minWidth, maxWidth, opening, closing, animationIn, animationOut }) => css`
+  style: ({ minWidth, maxWidth, transitionState, animationIn, animationOut }) => css`
     position: relative;
     margin: auto;
     min-width: ${minWidth || 250}px;
@@ -48,12 +54,12 @@ const ModalContent = createComponent({
     box-shadow: 0 8px 30px rgba(0, 29, 54, 0.1);
     border-radius: ${themeGet('radius')}px;
 
-    ${opening &&
+    ${transitionState === 'entering'  &&
       css`
         animation: 0.75s ${getAnimation(animationIn)};
       `};
 
-    ${closing &&
+    ${transitionState === 'exiting' &&
       css`
         animation: 0.75s ${getAnimation(animationOut)};
       `};
@@ -69,6 +75,7 @@ class Modal extends React.Component {
     maxWidth: PropTypes.number,
     animationIn: PropTypes.string,
     animationOut: PropTypes.string,
+    animationDuration: PropTypes.number,
     onClose: PropTypes.func,
   };
 
@@ -78,87 +85,39 @@ class Modal extends React.Component {
     closeOnEscape: true,
     animationIn: 'zoomIn',
     animationOut: 'zoomOut',
+    animationDuration: 175,
     onClose: () => {},
   };
 
   state = {
     open: this.props.open || false,
-    opening: false,
-    closing: false,
   };
 
-  componentDidUpdate(oldProps) {
-    if (!oldProps.open && this.props.open) {
-      this.open();
-    } else if (oldProps.open && !this.props.open) {
-      this.close();
-    }
+  static getDerivedStateFromProps(props, state) {
+    return props.open !== undefined && props.open !== state.open ? { open: props.open } : null;
   }
 
-  get isOpen() {
-    return !this.closed;
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleEscapeKey);
   }
 
-  get isClosed() {
-    const { open, opening, closing } = this.state;
-    return !open && !opening && !closing;
-  }
-
-  get isControlled() {
-    return 'open' in this.props;
-  }
-
-  open() {
-    this.setState(
-      {
-        opening: true,
-      },
-      () => {
-        setTimeout(() => {
-          document.addEventListener('keydown', this.handleEscapeKey);
-
-          this.setState({
-            open: true,
-            opening: false,
-          });
-        }, 250);
-      }
-    );
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleEscapeKey);
   }
 
   close() {
-    this.setState(
-      {
-        closing: true,
-      },
-      () => {
-        setTimeout(() => {
-          document.removeEventListener('keydown', this.handleEscapeKey);
-
-          this.setState({
-            open: false,
-            closing: false,
-          });
-        }, 250);
-      }
-    );
-  }
-
-  closeInternal() {
-    if (this.isControlled) {
+    this.setState({ open: false }, () => {
       this.props.onClose();
-    } else {
-      this.close();
-    }
+    });
   }
 
   handleEscapeKey = event => {
-    if (!this.props.closeOnEscape) {
+    if (!this.state.open || !this.props.closeOnEscape) {
       return;
     }
 
     if (event.keyCode === 27) {
-      this.closeInternal();
+      this.close();
     }
   };
 
@@ -167,7 +126,7 @@ class Modal extends React.Component {
       return;
     }
 
-    this.closeInternal();
+    this.close();
   };
 
   handleContentClick = event => {
@@ -175,22 +134,22 @@ class Modal extends React.Component {
   };
 
   render() {
-    if (this.isClosed) {
-      return null;
-    }
-
-    const { opening, closing } = this.state;
-    const { children, title, ...props } = this.props;
+    const { children, title, animationDuration, ...props } = this.props;
+    const { open } = this.state;
 
     return (
       <Portal>
-        <Backdrop opening={opening} closing={closing} onClick={this.handleBackdropClick}>
-          <ModalContent opening={opening} closing={closing} onClick={this.handleContentClick} {...props}>
-            {title && <Modal.Header title={title} />}
-            {children}
-          </ModalContent>
-        </Backdrop>
-      </Portal>
+        <Transition in={open} timeout={animationDuration}>
+          {state => (
+            <Backdrop transitionState={state} onClick={this.handleBackdropClick}>
+              <ModalContent transitionState={state} onClick={this.handleContentClick} {...props}>
+                {title && <Modal.Header title={title} />}
+                {children}
+              </ModalContent>
+            </Backdrop>
+          )}
+        </Transition>
+     </Portal>
     );
   }
 }
