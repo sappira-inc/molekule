@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { keyframes, css } from 'styled-components';
 import * as animations from 'react-animations';
 import { Transition } from 'react-transition-group';
 import Portal from '../Portal';
+import Flex from '../Flex';
+import Box from '../Box';
+import Icon from '../Icon';
 import { createComponent, themeGet } from '../utils';
+
+const ModalContext = createContext({});
 
 const getAnimation = name => keyframes`${animations[name]}`;
 
@@ -69,6 +74,7 @@ const ModalContent = createComponent({
 class Modal extends React.Component {
   static propTypes = {
     open: PropTypes.bool,
+    showClose: PropTypes.bool,
     closeOnBackdropClick: PropTypes.bool,
     closeOnEscape: PropTypes.bool,
     minWidth: PropTypes.number,
@@ -81,6 +87,7 @@ class Modal extends React.Component {
 
   static defaultProps = {
     open: false,
+    showClose: true,
     closeOnBackdropClick: true,
     closeOnEscape: true,
     animationIn: 'zoomIn',
@@ -105,7 +112,7 @@ class Modal extends React.Component {
     document.removeEventListener('keydown', this.handleEscapeKey);
   }
 
-  close() {
+  close = () => {
     this.setState({ open: false }, () => {
       this.props.onClose();
     });
@@ -134,25 +141,36 @@ class Modal extends React.Component {
   };
 
   render() {
-    const { children, title, animationDuration, ...props } = this.props;
+    const { children, title, animationDuration, showClose, ...props } = this.props;
     const { open } = this.state;
 
     return (
-      <Portal>
-        <Transition in={open} timeout={animationDuration}>
-          {state => (
-            <Backdrop transitionState={state} onClick={this.handleBackdropClick}>
-              <ModalContent transitionState={state} onClick={this.handleContentClick} {...props}>
-                {title && <Modal.Header title={title} />}
-                {children}
-              </ModalContent>
-            </Backdrop>
-          )}
-        </Transition>
-     </Portal>
+      <ModalContext.Provider value={{ close: this.close }}>
+        <Portal>
+          <Transition in={open} timeout={animationDuration}>
+            {state => (
+              <Backdrop transitionState={state} onClick={this.handleBackdropClick}>
+                <ModalContent transitionState={state} onClick={this.handleContentClick} {...props}>
+                  {title && <Modal.Header title={title} showClose={showClose} />}
+                  {children}
+                </ModalContent>
+              </Backdrop>
+            )}
+          </Transition>
+        </Portal>
+      </ModalContext.Provider>
     );
   }
 }
+
+Modal.Title = createComponent({
+  name: 'ModalTitle',
+  tag: 'h2',
+  style: css`
+    font-size: 1.25rem;
+    margin: 0;
+  `,
+});
 
 const ModalHeader = createComponent({
   name: 'ModalHeader',
@@ -172,23 +190,26 @@ const ModalHeaderInner = createComponent({
   `,
 });
 
-Modal.Header = ({ title, children }) => (
-  <ModalHeader>
-    <ModalHeaderInner>
-      {title && <Modal.Title>{title}</Modal.Title>}
-      {children}
-    </ModalHeaderInner>
-  </ModalHeader>
-);
+Modal.Header = ({ title, children, showClose = true }) => {
+  const { close } = useContext(ModalContext);
 
-Modal.Title = createComponent({
-  name: 'ModalTitle',
-  tag: 'h2',
-  style: css`
-    font-size: 1.25rem;
-    margin: 0;
-  `,
-});
+  return (
+    <ModalHeader>
+      <ModalHeaderInner>
+        <Flex alignItems="center">
+          {title && <Modal.Title>{title}</Modal.Title>}
+          {children}
+
+          {showClose && (
+            <Box ml="auto">
+              <Icon name="close" color="grayMid" style={{ cursor: 'pointer' }} onClick={close} />
+            </Box>
+          )}
+        </Flex>
+      </ModalHeaderInner>
+    </ModalHeader>
+  )
+}
 
 Modal.Body = createComponent({
   name: 'ModalBody',
