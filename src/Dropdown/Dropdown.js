@@ -162,14 +162,14 @@ export default class Dropdown extends React.Component {
     const renderFn = render || children;
 
     return (
-      <div tabIndex={0} onBlur={this.handleBlur}>
-        <DropdownTrigger onClick={this.handleToggle} onMouseEnter={this.handleToggle} onMouseLeave={this.handleBlur} ref={this.triggerRef} aria-haspopup="true" aria-expanded={isOpen}>
+      <div tabIndex={0} onBlur={this.handleBlur} onMouseLeave={this.handleBlur}>
+        <DropdownTrigger onClick={this.handleToggle} onMouseEnter={this.handleToggle} ref={this.triggerRef} aria-haspopup="true" aria-expanded={isOpen}>
           {trigger}
         </DropdownTrigger>
 
         <Portal>
           {isOpen && (
-            <DropdownMenu ref={this.menuRef} width={width} tabIndex={0} onFocus={this.handleFocus} onMouseEnter={this.handleFocus} onMouseLeave={this.handleBlur}>
+            <DropdownMenu ref={this.menuRef} width={width} tabIndex={0} onFocus={this.handleFocus} onMouseEnter={this.handleFocus}>
               {renderFn({
                 close: this.toggle,
               })}
