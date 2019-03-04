@@ -13,13 +13,6 @@ const DropdownWrapper = createComponent({
   `,
 });
 
-const DropdownTrigger = createComponent({
-  name: 'DropdownTrigger',
-  style: css`
-    display: inline-block;
-  `,
-});
-
 const DropdownMenu = createComponent({
   name: 'DropdownMenu',
   style: ({ width, theme }) => css`
@@ -143,7 +136,7 @@ export default class Dropdown extends React.Component {
     const renderFn = render || children;
 
     return (
-      <DropdownWrapper tabIndex={0} onBlur={this.handleBlur}>
+      <div tabIndex={0} onBlur={this.handleBlur}>
         <DropdownTrigger onClick={this.toggle} ref={this.triggerRef} aria-haspopup="true" aria-expanded={isOpen}>
           {trigger}
         </DropdownTrigger>
@@ -157,7 +150,7 @@ export default class Dropdown extends React.Component {
             </DropdownMenu>
           )}
         </Portal>
-      </DropdownWrapper>
+      </div>
     );
   }
 }
