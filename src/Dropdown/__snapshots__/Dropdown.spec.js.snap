@@ -43,6 +43,7 @@ exports[`Dropdown 1`] = `
 
 <div
   onBlur={[Function]}
+  onMouseLeave={[Function]}
   tabIndex={0}
 >
   <div
@@ -51,7 +52,6 @@ exports[`Dropdown 1`] = `
     className="re-dropdown-trigger c0"
     onClick={[Function]}
     onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
   >
     <button
       className="re-button re-button-primary c1"
