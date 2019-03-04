@@ -6,6 +6,16 @@ import Box from '../Box';
 import Portal from '../Portal';
 import { createComponent, themeGet } from '../utils';
 
+const blurEvents = {
+  click: 'blur',
+  mouseenter: 'mouseleave',
+};
+
+const focusEvents = {
+  click: 'focus',
+  mouseenter: 'mouseenter',
+};
+
 const DropdownTrigger = createComponent({
   name: 'DropdownTrigger',
   style: css`
@@ -132,13 +142,16 @@ export default class Dropdown extends React.Component {
   // This is necessary because we need to first check if
   // another child of the element has received focus as
   // the blur event fires prior to the new focus event.
-  handleBlur = () => {
-    this.timer = setTimeout(this.autoclose, 175);
+  handleBlur = e => {
+    console.log(e.type);
+    if (blurEvents[this.props.on] === e.type) {
+      this.timer = setTimeout(this.autoclose, 175);
+    }
   }
  
   // If a child receives focus, do not close the popover.
   handleFocus = e => { 
-    if (this.props.on === e.type){
+    if (focusEvents[this.props.on] === e.type){
       clearTimeout(this.timer);
     }
   }
