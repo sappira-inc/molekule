@@ -144,6 +144,7 @@ export default class Dropdown extends React.Component {
   // the blur event fires prior to the new focus event.
   handleBlur = e => {
     if (blurEvents[this.props.on] === e.type) {
+      // delay added to acccommodate mouse traversal of the interstitial space between trigger and menu
       this.timer = setTimeout(this.autoclose, 175);
     }
   }
