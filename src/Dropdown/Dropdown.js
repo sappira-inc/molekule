@@ -128,11 +128,11 @@ export default class Dropdown extends React.Component {
   }
  
   handleBlur = () => {
-    this.timeoutId = setTimeout(this.autoclose);
+    this.timer = setTimeout(this.autoclose);
   }
-
-  handleFocus = () => {
-    clearTimeout(this.timeoutId);
+ 
+  handleFocus = () => { 
+    clearTimeout(this.timer);
   }
  
   render() {
@@ -149,7 +149,7 @@ export default class Dropdown extends React.Component {
 
         <Portal>
           {isOpen && (
-            <DropdownMenu ref={this.menuRef} width={width} onFocus={this.handleFocus} tabIndex={0}>
+            <DropdownMenu ref={this.menuRef} width={width} tabIndex={0} onFocus={this.handleFocus}>
               {renderFn({
                 close: this.toggle,
               })}
