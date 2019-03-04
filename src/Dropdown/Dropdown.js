@@ -133,12 +133,14 @@ export default class Dropdown extends React.Component {
   // another child of the element has received focus as
   // the blur event fires prior to the new focus event.
   handleBlur = () => {
-    this.timer = setTimeout(this.autoclose);
+    this.timer = setTimeout(this.autoclose, 100);
   }
  
   // If a child receives focus, do not close the popover.
-  handleFocus = () => { 
-    clearTimeout(this.timer);
+  handleFocus = e => { 
+    if (this.props.on === e.type){
+      clearTimeout(this.timer);
+    }
   }
  
   render() {
@@ -149,13 +151,13 @@ export default class Dropdown extends React.Component {
 
     return (
       <div tabIndex={0} onBlur={this.handleBlur}>
-        <DropdownTrigger onClick={this.handleEvent} onMouseEnter={this.handleEvent} ref={this.triggerRef} aria-haspopup="true" aria-expanded={isOpen}>
+        <DropdownTrigger onClick={this.handleEvent} onMouseEnter={this.handleEvent} onMouseLeave={this.handleBlur} ref={this.triggerRef} aria-haspopup="true" aria-expanded={isOpen}>
           {trigger}
         </DropdownTrigger>
 
         <Portal>
           {isOpen && (
-            <DropdownMenu ref={this.menuRef} width={width} tabIndex={0} onFocus={this.handleFocus}>
+            <DropdownMenu ref={this.menuRef} width={width} tabIndex={0} onFocus={this.handleFocus} onMouseEnter={this.handleFocus} onMouseLeave={this.handleBlur}>
               {renderFn({
                 close: this.toggle,
               })}
