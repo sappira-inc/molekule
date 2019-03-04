@@ -45,7 +45,7 @@ export default class Dropdown extends React.Component {
     placement: PropTypes.string,
     offset: PropTypes.string,
     boundariesElement: PropTypes.string,
-    on: PropTypes.string,
+    on: PropTypes.oneOf(['click', 'mouseenter']),
     width: PropTypes.number,
   };
 
