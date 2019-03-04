@@ -130,7 +130,7 @@ export default class Dropdown extends React.Component {
     }
   };
   
-  handleEvent = e => {
+  handleToggle = e => {
     if (this.props.on === e.type) {
       e.stopPropagation();
       this.toggle();
@@ -143,7 +143,6 @@ export default class Dropdown extends React.Component {
   // another child of the element has received focus as
   // the blur event fires prior to the new focus event.
   handleBlur = e => {
-    console.log(e.type);
     if (blurEvents[this.props.on] === e.type) {
       this.timer = setTimeout(this.autoclose, 175);
     }
@@ -164,7 +163,7 @@ export default class Dropdown extends React.Component {
 
     return (
       <div tabIndex={0} onBlur={this.handleBlur}>
-        <DropdownTrigger onClick={this.handleEvent} onMouseEnter={this.handleEvent} onMouseLeave={this.handleBlur} ref={this.triggerRef} aria-haspopup="true" aria-expanded={isOpen}>
+        <DropdownTrigger onClick={this.handleToggle} onMouseEnter={this.handleToggle} onMouseLeave={this.handleBlur} ref={this.triggerRef} aria-haspopup="true" aria-expanded={isOpen}>
           {trigger}
         </DropdownTrigger>
 
