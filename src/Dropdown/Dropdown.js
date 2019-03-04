@@ -6,8 +6,8 @@ import Box from '../Box';
 import Portal from '../Portal';
 import { createComponent, themeGet } from '../utils';
 
-const DropdownWrapper = createComponent({
-  name: 'DropdownWrapper',
+const DropdownTrigger = createComponent({
+  name: 'DropdownTrigger',
   style: css`
     display: inline-block;
   `,
