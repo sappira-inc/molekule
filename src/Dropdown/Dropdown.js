@@ -133,7 +133,7 @@ export default class Dropdown extends React.Component {
   // another child of the element has received focus as
   // the blur event fires prior to the new focus event.
   handleBlur = () => {
-    this.timer = setTimeout(this.autoclose, 100);
+    this.timer = setTimeout(this.autoclose, 175);
   }
  
   // If a child receives focus, do not close the popover.
