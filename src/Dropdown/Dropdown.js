@@ -45,6 +45,7 @@ export default class Dropdown extends React.Component {
     placement: 'bottom-start',
     positionFixed: false,
     boundariesElement: 'window',
+    on: 'click',
     width: 150,
   };
 
@@ -105,9 +106,7 @@ export default class Dropdown extends React.Component {
     );
   };
 
-  toggle = e => {
-    if (e) e.stopPropagation();
-
+  toggle = () => {
     if (this.state.isOpen) {
       this.hide();
     } else {
@@ -120,7 +119,14 @@ export default class Dropdown extends React.Component {
       this.hide();
     }
   };
-
+  
+  handleEvent = e => {
+    if (this.props.on === e.type) {
+      e.stopPropagation();
+      this.toggle();
+    }
+  }
+ 
   handleBlur = () => {
     this.timeoutId = setTimeout(this.autoclose);
   }
@@ -128,7 +134,7 @@ export default class Dropdown extends React.Component {
   handleFocus = () => {
     clearTimeout(this.timeoutId);
   }
-
+ 
   render() {
     const { width, trigger, render, children } = this.props;
     const { isOpen } = this.state;
@@ -137,7 +143,7 @@ export default class Dropdown extends React.Component {
 
     return (
       <div tabIndex={0} onBlur={this.handleBlur}>
-        <DropdownTrigger onClick={this.toggle} ref={this.triggerRef} aria-haspopup="true" aria-expanded={isOpen}>
+        <DropdownTrigger onClick={this.handleEvent} onMouseEnter={this.handleEvent} ref={this.triggerRef} aria-haspopup="true" aria-expanded={isOpen}>
           {trigger}
         </DropdownTrigger>
 
