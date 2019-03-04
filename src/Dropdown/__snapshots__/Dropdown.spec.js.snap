@@ -6,10 +6,6 @@ exports[`Dropdown 1`] = `
 }
 
 .c1 {
-  display: inline-block;
-}
-
-.c2 {
   font-family: inherit;
   display: inline-block;
   text-align: center;
@@ -35,29 +31,30 @@ exports[`Dropdown 1`] = `
   transition: 175ms;
 }
 
-.c2:hover {
+.c1:hover {
   background: #45b4f3;
   border-color: #45b4f3;
 }
 
-.c2:active {
+.c1:active {
   background: #51b9f4;
   border-color: #51b9f4;
 }
 
 <div
-  className="re-dropdown-wrapper c0"
   onBlur={[Function]}
   tabIndex={0}
 >
   <div
     aria-expanded={false}
     aria-haspopup="true"
-    className="re-dropdown-trigger c1"
+    className="re-dropdown-trigger c0"
     onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <button
-      className="re-button re-button-primary c2"
+      className="re-button re-button-primary c1"
       disabled={false}
       size="md"
     >
