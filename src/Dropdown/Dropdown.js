@@ -115,7 +115,7 @@ export default class Dropdown extends React.Component {
   };
 
   autoclose = e => {
-    if (this.state.isOpen) {
+    if (this.state.isOpen && this.props.autoclose) {
       this.hide();
     }
   };
