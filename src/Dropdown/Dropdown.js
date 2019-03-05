@@ -20,6 +20,9 @@ const DropdownTrigger = createComponent({
   name: 'DropdownTrigger',
   style: css`
     display: inline-block;
+    &:focus {
+      outline: none;
+    }
   `,
 });
 
@@ -163,7 +166,7 @@ export default class Dropdown extends React.Component {
     const renderFn = render || children;
 
     return (
-      <div tabIndex={0} onBlur={this.handleBlur} onMouseLeave={this.handleBlur}>
+      <div style={{ outline: 'none' }} tabIndex={0} onBlur={this.handleBlur} onMouseLeave={this.handleBlur}>
         <DropdownTrigger onClick={this.handleToggle} onMouseEnter={this.handleToggle} ref={this.triggerRef} aria-haspopup="true" aria-expanded={isOpen}>
           {trigger}
         </DropdownTrigger>
