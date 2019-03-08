@@ -73,7 +73,7 @@ exports[`Dropdown 1`] = `
 </div>
 `;
 
-exports[`it opens on toggle event: \${event} 1`] = `
+exports[`closes on blur event 1`] = `
 <div
   onBlur={[Function]}
   onMouseLeave={[Function]}
@@ -106,7 +106,190 @@ exports[`it opens on toggle event: \${event} 1`] = `
 </div>
 `;
 
-exports[`it opens on toggle event: \${event} 2`] = `
+exports[`closes on mouseleave event 1`] = `
+<div
+  onBlur={[Function]}
+  onMouseLeave={[Function]}
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex={0}
+>
+  <styled.div
+    aria-expanded={false}
+    aria-haspopup="true"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+  >
+    <Button
+      block={false}
+      disabled={false}
+      loading={false}
+      outline={false}
+      size="md"
+      transparent={false}
+      variant="primary"
+    >
+      Trigger
+    </Button>
+  </styled.div>
+  <Portal />
+</div>
+`;
+
+exports[`it opens on toggle event: click 1`] = `
+<div
+  onBlur={[Function]}
+  onMouseLeave={[Function]}
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex={0}
+>
+  <styled.div
+    aria-expanded={true}
+    aria-haspopup="true"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+  >
+    <Button
+      block={false}
+      disabled={false}
+      loading={false}
+      outline={false}
+      size="md"
+      transparent={false}
+      variant="primary"
+    >
+      Trigger
+    </Button>
+  </styled.div>
+  <Portal>
+    <styled.div
+      onFocus={[Function]}
+      onMouseEnter={[Function]}
+      tabIndex={0}
+      width={150}
+    >
+      <Component>
+        Test
+      </Component>
+      <Styled(styled.div)>
+        Body
+      </Styled(styled.div)>
+      <Styled(styled.div)>
+        Footer
+      </Styled(styled.div)>
+    </styled.div>
+  </Portal>
+</div>
+`;
+
+exports[`it opens on toggle event: mouseenter 1`] = `
+<div
+  onBlur={[Function]}
+  onMouseLeave={[Function]}
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex={0}
+>
+  <styled.div
+    aria-expanded={true}
+    aria-haspopup="true"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+  >
+    <Button
+      block={false}
+      disabled={false}
+      loading={false}
+      outline={false}
+      size="md"
+      transparent={false}
+      variant="primary"
+    >
+      Trigger
+    </Button>
+  </styled.div>
+  <Portal>
+    <styled.div
+      onFocus={[Function]}
+      onMouseEnter={[Function]}
+      tabIndex={0}
+      width={150}
+    >
+      <Component>
+        Test
+      </Component>
+      <Styled(styled.div)>
+        Body
+      </Styled(styled.div)>
+      <Styled(styled.div)>
+        Footer
+      </Styled(styled.div)>
+    </styled.div>
+  </Portal>
+</div>
+`;
+
+exports[`remains open on blur + menu focus 1`] = `
+<div
+  onBlur={[Function]}
+  onMouseLeave={[Function]}
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex={0}
+>
+  <styled.div
+    aria-expanded={true}
+    aria-haspopup="true"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+  >
+    <Button
+      block={false}
+      disabled={false}
+      loading={false}
+      outline={false}
+      size="md"
+      transparent={false}
+      variant="primary"
+    >
+      Trigger
+    </Button>
+  </styled.div>
+  <Portal>
+    <styled.div
+      onFocus={[Function]}
+      onMouseEnter={[Function]}
+      tabIndex={0}
+      width={150}
+    >
+      <Component>
+        Test
+      </Component>
+      <Styled(styled.div)>
+        Body
+      </Styled(styled.div)>
+      <Styled(styled.div)>
+        Footer
+      </Styled(styled.div)>
+    </styled.div>
+  </Portal>
+</div>
+`;
+
+exports[`remains open on mouseleave + menu mouseenter 1`] = `
 <div
   onBlur={[Function]}
   onMouseLeave={[Function]}

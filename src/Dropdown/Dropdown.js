@@ -6,15 +6,17 @@ import Box from '../Box';
 import Portal from '../Portal';
 import { createComponent, themeGet } from '../utils';
 
-const blurEvents = {
+export const blurEvents = {
   click: 'blur',
   mouseenter: 'mouseleave',
 };
 
-const focusEvents = {
+export const focusEvents = {
   click: 'focus',
   mouseenter: 'mouseenter',
 };
+
+export const triggerEvents = ['click', 'mouseenter'];
 
 const DropdownTrigger = createComponent({
   name: 'DropdownTrigger',
@@ -48,7 +50,7 @@ export default class Dropdown extends React.Component {
     placement: PropTypes.string,
     offset: PropTypes.string,
     boundariesElement: PropTypes.string,
-    on: PropTypes.oneOf(['click', 'mouseenter']),
+    on: PropTypes.oneOf(triggerEvents),
     width: PropTypes.number,
   };
 

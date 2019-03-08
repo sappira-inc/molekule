@@ -4,6 +4,7 @@ import { renderWithTheme } from '../../test/utils';
 import Dropdown from './Dropdown';
 import Button from '../Button';
 import defaultTheme from '../theme';
+import { focusEvents, blurEvents, triggerEvents } from './Dropdown';
 
 jest.mock('popper.js', () => {
   const PopperJS = jest.requireActual('popper.js');
@@ -42,10 +43,12 @@ test('Dropdown', () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-// TODO: create trigger event list, and loop through to test
-test('it opens on toggle event: ${event}', () => {
+
+triggerEvents.forEach( event => {
+
+test(`it opens on toggle event: ${event}`, () => {
   const stopPropagation = jest.fn();
-  const wrapper = shallow(<Dropdown theme={defaultTheme} trigger={<Button>Trigger</Button>}>
+  const wrapper = shallow(<Dropdown theme={defaultTheme} trigger={<Button>Trigger</Button>} on={event}>
       {() => (
         <Fragment>
           <Dropdown.Header>Test</Dropdown.Header>
@@ -55,18 +58,69 @@ test('it opens on toggle event: ${event}', () => {
       )}
     </Dropdown>);
 
+  // open on trigger
+  const trigger = wrapper.childAt(0);
+  trigger.simulate(event, { type: event, stopPropagation });
   expect(wrapper).toMatchSnapshot()
+})
+
+const blurEvent = blurEvents[event];
+const focusEvent = focusEvents[event];
+
+test(`closes on ${blurEvents[event]} event`, async done => {
+  const stopPropagation = jest.fn();
+  const wrapper = shallow(<Dropdown theme={defaultTheme} trigger={<Button>Trigger</Button>} on={event}>
+      {() => (
+        <Fragment>
+          <Dropdown.Header>Test</Dropdown.Header>
+          <Dropdown.Body>Body</Dropdown.Body>
+          <Dropdown.Footer>Footer</Dropdown.Footer>
+        </Fragment>
+      )}
+    </Dropdown>);
+
   
   // open on trigger
   const trigger = wrapper.childAt(0);
-  trigger.simulate('click', { type: 'click', stopPropagation });
+  trigger.simulate(event, { type: event, stopPropagation });
+
+  // blur dropdown
+  wrapper.simulate(blurEvent, { type: blurEvent, stopPropagation });
+  await setTimeout(() => {
+    wrapper.update();
+    expect(wrapper).toMatchSnapshot();
+    done();
+  }, 180);
+})
+
+test(`remains open on ${blurEvent} + menu ${focusEvent}`, async done => {
+  const stopPropagation = jest.fn();
+  const wrapper = shallow(<Dropdown theme={defaultTheme} trigger={<Button>Trigger</Button>} on={event}>
+      {() => (
+        <Fragment>
+          <Dropdown.Header>Test</Dropdown.Header>
+          <Dropdown.Body>Body</Dropdown.Body>
+          <Dropdown.Footer>Footer</Dropdown.Footer>
+        </Fragment>
+      )}
+    </Dropdown>);
+
+  // open on trigger
+  const trigger = wrapper.childAt(0);
+  trigger.simulate(event, { type: event, stopPropagation });
 
   // blur dropdown and focus on menu
-  wrapper.simulate('blur', { type: 'blur' });
-
-  // blur dropdown without focus on menu
-  expect(wrapper).toMatchSnapshot()
+  const menu = wrapper.childAt(1).childAt(0);
+  wrapper.simulate(blurEvent, { type: blurEvent, stopPropagation });
+  menu.simulate(focusEvent, { type: focusEvent, stopPropagation });
+  await setTimeout(() => {
+    wrapper.update();
+    expect(wrapper).toMatchSnapshot();
+    done();
+  }, 180);
 })
+});
+
 
 // helpers
 /*
