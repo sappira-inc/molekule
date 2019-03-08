@@ -120,19 +120,3 @@ test(`remains open on ${blurEvent} + menu ${focusEvent}`, async done => {
   }, 180);
 })
 });
-
-
-// helpers
-/*
-const shallowWithTheme = (tree, theme) => {
-  const context = shallow(<ThemeProvider theme={theme} />)
-    .instance()
-    .getChildContext()
-  return shallow(tree, { context })
-}
-
-const wrapper = shallowWithTheme(<Button />, theme)
-test('it works', () => {
-  const wrapper = mount(<Button />)
-  expect(wrapper).toMatchSnapshot()
-}) */
