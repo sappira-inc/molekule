@@ -37,6 +37,9 @@ const DropdownMenu = createComponent({
     box-shadow: 0 0 3px 0 rgba(178, 194, 212, 0.3);
     min-width: 150px;
     width: ${width}px;
+    &:focus {
+      outline: none;
+    }
   `,
 });
 
