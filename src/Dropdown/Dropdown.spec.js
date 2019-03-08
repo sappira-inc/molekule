@@ -43,7 +43,6 @@ test('Dropdown', () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-
 triggerEvents.forEach( event => {
 
 test(`it opens on toggle event: ${event}`, () => {
@@ -78,7 +77,6 @@ test(`closes on ${blurEvents[event]} event`, async done => {
         </Fragment>
       )}
     </Dropdown>);
-
   
   // open on trigger
   const trigger = wrapper.childAt(0);
