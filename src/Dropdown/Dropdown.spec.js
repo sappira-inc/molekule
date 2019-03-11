@@ -66,7 +66,7 @@ test(`it opens on toggle event: ${event}`, () => {
 const blurEvent = blurEvents[event];
 const focusEvent = focusEvents[event];
 
-test(`closes on ${blurEvents[event]} event`, async done => {
+test(`closes on ${blurEvents[event]} event`, done => {
   const stopPropagation = jest.fn();
   const wrapper = shallow(<Dropdown theme={defaultTheme} trigger={<Button>Trigger</Button>} on={event}>
       {() => (
@@ -84,14 +84,14 @@ test(`closes on ${blurEvents[event]} event`, async done => {
 
   // blur dropdown
   wrapper.simulate(blurEvent, { type: blurEvent, stopPropagation });
-  await setTimeout(() => {
+  setTimeout(() => {
     wrapper.update();
     expect(wrapper).toMatchSnapshot();
     done();
   }, 180);
 })
 
-test(`remains open on ${blurEvent} + menu ${focusEvent}`, async done => {
+test(`remains open on ${blurEvent} + menu ${focusEvent}`, done => {
   const stopPropagation = jest.fn();
   const wrapper = shallow(<Dropdown theme={defaultTheme} trigger={<Button>Trigger</Button>} on={event}>
       {() => (
@@ -111,7 +111,7 @@ test(`remains open on ${blurEvent} + menu ${focusEvent}`, async done => {
   const menu = wrapper.childAt(1).childAt(0);
   wrapper.simulate(blurEvent, { type: blurEvent, stopPropagation });
   menu.simulate(focusEvent, { type: focusEvent, stopPropagation });
-  await setTimeout(() => {
+  setTimeout(() => {
     wrapper.update();
     expect(wrapper).toMatchSnapshot();
     done();
