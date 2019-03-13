@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { keyframes, css } from 'styled-components';
 import * as animations from 'react-animations';
+import { Transition } from 'react-transition-group';
 import Portal from '../Portal';
+import Flex from '../Flex';
+import Box from '../Box';
+import Icon from '../Icon';
 import { createComponent, themeGet } from '../utils';
+
+const ModalContext = createContext({});
 
 const getAnimation = name => keyframes`${animations[name]}`;
 
 const Backdrop = createComponent({
   name: 'ModalBackdrop',
-  style: ({ opening, closing }) => css`
+  style: ({ transitionState }) => css`
     top: 0;
     left: 0;
     right: 0;
@@ -24,12 +30,17 @@ const Backdrop = createComponent({
     background: rgba(0, 0, 0, 0.2);
     justify-content: center;
 
-    ${opening &&
+    ${transitionState === 'exited' &&
+      css`
+        display: none;
+      `}
+
+    ${transitionState === 'entering' &&
       css`
         animation: 0.35s ${getAnimation('fadeIn')};
       `};
 
-    ${closing &&
+    ${transitionState === 'exiting' &&
       css`
         animation: 0.35s ${getAnimation('fadeOut')};
       `};
@@ -38,162 +49,115 @@ const Backdrop = createComponent({
 
 const ModalContent = createComponent({
   name: 'ModalContent',
-  style: ({ minWidth, maxWidth, opening, closing, animationIn, animationOut }) => css`
+  style: ({ minWidth, maxWidth, transitionState, animationIn, animationOut }) => css`
     position: relative;
     margin: auto;
-    min-width: ${minWidth || 250}px;
-    max-width: ${maxWidth || 768}px;
+    min-width: ${minWidth}px;
+    max-width: ${maxWidth}px;
     background: #ffffff;
     background-clip: padding-box;
     box-shadow: 0 8px 30px rgba(0, 29, 54, 0.1);
     border-radius: ${themeGet('radius')}px;
 
-    ${opening &&
+    ${transitionState === 'entering' &&
       css`
         animation: 0.75s ${getAnimation(animationIn)};
       `};
 
-    ${closing &&
+    ${transitionState === 'exiting' &&
       css`
         animation: 0.75s ${getAnimation(animationOut)};
       `};
   `,
 });
 
-class Modal extends React.Component {
-  static propTypes = {
-    open: PropTypes.bool,
-    closeOnBackdropClick: PropTypes.bool,
-    closeOnEscape: PropTypes.bool,
-    minWidth: PropTypes.number,
-    maxWidth: PropTypes.number,
-    animationIn: PropTypes.string,
-    animationOut: PropTypes.string,
-    onClose: PropTypes.func,
+function Modal({ children, title, animationDuration, showClose, onClose, open, ...props }) {
+  const [isOpen, setOpen] = useState(open);
+
+  const handleClose = () => {
+    setOpen(false);
+    onClose();
   };
 
-  static defaultProps = {
-    open: false,
-    closeOnBackdropClick: true,
-    closeOnEscape: true,
-    animationIn: 'zoomIn',
-    animationOut: 'zoomOut',
-    onClose: () => {},
+  const handleContentClick = event => event.stopPropagation();
+
+  const handleBackdropClick = () => {
+    if (!props.closeOnBackdropClick) return;
+
+    handleClose();
   };
 
-  state = {
-    open: this.props.open || false,
-    opening: false,
-    closing: false,
-  };
-
-  componentDidUpdate(oldProps) {
-    if (!oldProps.open && this.props.open) {
-      this.open();
-    } else if (oldProps.open && !this.props.open) {
-      this.close();
-    }
-  }
-
-  get isOpen() {
-    return !this.closed;
-  }
-
-  get isClosed() {
-    const { open, opening, closing } = this.state;
-    return !open && !opening && !closing;
-  }
-
-  get isControlled() {
-    return 'open' in this.props;
-  }
-
-  open() {
-    this.setState(
-      {
-        opening: true,
-      },
-      () => {
-        setTimeout(() => {
-          document.addEventListener('keydown', this.handleEscapeKey);
-
-          this.setState({
-            open: true,
-            opening: false,
-          });
-        }, 250);
-      }
-    );
-  }
-
-  close() {
-    this.setState(
-      {
-        closing: true,
-      },
-      () => {
-        setTimeout(() => {
-          document.removeEventListener('keydown', this.handleEscapeKey);
-
-          this.setState({
-            open: false,
-            closing: false,
-          });
-        }, 250);
-      }
-    );
-  }
-
-  closeInternal() {
-    if (this.isControlled) {
-      this.props.onClose();
-    } else {
-      this.close();
-    }
-  }
-
-  handleEscapeKey = event => {
-    if (!this.props.closeOnEscape) {
-      return;
-    }
+  const handleKeyDown = useCallback(event => {
+    if (!isOpen || !props.closeOnEscape) return;
 
     if (event.keyCode === 27) {
-      this.closeInternal();
+      handleClose();
     }
-  };
+  });
 
-  handleBackdropClick = () => {
-    if (!this.props.closeOnBackdropClick) {
-      return;
+  useEffect(() => {
+    if (open !== isOpen) {
+      setOpen(open);
     }
+  }, [open]);
 
-    this.closeInternal();
-  };
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  });
 
-  handleContentClick = event => {
-    event.stopPropagation();
-  };
-
-  render() {
-    if (this.isClosed) {
-      return null;
-    }
-
-    const { opening, closing } = this.state;
-    const { children, title, ...props } = this.props;
-
-    return (
+  return (
+    <ModalContext.Provider value={{ handleClose }}>
       <Portal>
-        <Backdrop opening={opening} closing={closing} onClick={this.handleBackdropClick}>
-          <ModalContent opening={opening} closing={closing} onClick={this.handleContentClick} {...props}>
-            {title && <Modal.Header title={title} />}
-            {children}
-          </ModalContent>
-        </Backdrop>
+        <Transition in={isOpen} timeout={animationDuration}>
+          {state => (
+            <Backdrop transitionState={state} onClick={handleBackdropClick}>
+              <ModalContent transitionState={state} onClick={handleContentClick} {...props}>
+                {title && <Modal.Header title={title} showClose={showClose} />}
+                {children}
+              </ModalContent>
+            </Backdrop>
+          )}
+        </Transition>
       </Portal>
-    );
-  }
+    </ModalContext.Provider>
+  );
 }
+
+Modal.propTypes = {
+  open: PropTypes.bool,
+  showClose: PropTypes.bool,
+  closeOnBackdropClick: PropTypes.bool,
+  closeOnEscape: PropTypes.bool,
+  minWidth: PropTypes.number,
+  maxWidth: PropTypes.number,
+  animationIn: PropTypes.string,
+  animationOut: PropTypes.string,
+  animationDuration: PropTypes.number,
+  onClose: PropTypes.func,
+};
+
+Modal.defaultProps = {
+  open: false,
+  showClose: true,
+  closeOnBackdropClick: true,
+  closeOnEscape: true,
+  minWidth: 250,
+  maxWidth: 768,
+  animationIn: 'zoomIn',
+  animationOut: 'zoomOut',
+  animationDuration: 175,
+  onClose: () => {},
+};
+
+Modal.Title = createComponent({
+  name: 'ModalTitle',
+  tag: 'h2',
+  style: css`
+    font-size: 1.25rem;
+    margin: 0;
+  `,
+});
 
 const ModalHeader = createComponent({
   name: 'ModalHeader',
@@ -213,23 +177,26 @@ const ModalHeaderInner = createComponent({
   `,
 });
 
-Modal.Header = ({ title, children }) => (
-  <ModalHeader>
-    <ModalHeaderInner>
-      {title && <Modal.Title>{title}</Modal.Title>}
-      {children}
-    </ModalHeaderInner>
-  </ModalHeader>
-);
+Modal.Header = ({ title, children, showClose = true }) => {
+  const { handleClose } = useContext(ModalContext);
 
-Modal.Title = createComponent({
-  name: 'ModalTitle',
-  tag: 'h2',
-  style: css`
-    font-size: 1.25rem;
-    margin: 0;
-  `,
-});
+  return (
+    <ModalHeader>
+      <ModalHeaderInner>
+        <Flex alignItems="center">
+          {title && <Modal.Title>{title}</Modal.Title>}
+          {children}
+
+          {showClose && (
+            <Box ml="auto">
+              <Icon name="close" color="grayMid" style={{ cursor: 'pointer' }} onClick={handleClose} />
+            </Box>
+          )}
+        </Flex>
+      </ModalHeaderInner>
+    </ModalHeader>
+  );
+};
 
 Modal.Body = createComponent({
   name: 'ModalBody',

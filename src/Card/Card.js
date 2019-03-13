@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'styled-components';
-import { themeGet } from 'styled-system';
 import Box from '../Box';
-import { createComponent } from '../utils';
+import { themeGet, createComponent } from '../utils';
 
 const StyledCard = createComponent({
   name: 'Card',

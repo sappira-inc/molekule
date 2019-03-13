@@ -27,5 +27,5 @@ Toggle a working modal demo by clicking the button below. It will slide up and f
 When modals become too long for the user’s viewport or device, they scroll independent of the page itself.
 
 <Playground>
-  <ModalExample body={<div>{new Array(50).fill(null).map(() => <p>I'm really long annoying content.</p>)}</div>}/ >
+  <ModalExample body={<div>{new Array(50).fill(null).map((_, i) => <p key={i}>I'm really long annoying content.</p>)}</div>} />
 </Playground>
