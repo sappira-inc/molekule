@@ -1,7 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { css, keyframes } from 'styled-components';
-import { space, flex } from 'styled-system';
+import { space } from 'styled-system';
 import { lighten } from 'polished';
 import { getComponentVariant, createComponent } from '../utils';
 import Flex from '../Flex';
@@ -42,7 +41,7 @@ const loadingCss = ({ height, fontColor, outline, backgroundColor }) => css`
   }
 `;
 
-const StyledButton = createComponent({
+const Button = createComponent({
   name: 'Button',
   tag: 'button',
   style: ({
@@ -97,8 +96,6 @@ const StyledButton = createComponent({
     `;
   },
 });
-
-const Button = props => <StyledButton {...props} />;
 
 Button.propTypes = {
   variant: PropTypes.string,
