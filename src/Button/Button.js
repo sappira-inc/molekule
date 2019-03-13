@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { css, keyframes } from 'styled-components';
 import { space } from 'styled-system';
@@ -41,7 +42,7 @@ const loadingCss = ({ height, fontColor, outline, backgroundColor }) => css`
   }
 `;
 
-const Button = createComponent({
+const StyledButton = createComponent({
   name: 'Button',
   tag: 'button',
   style: ({
@@ -96,6 +97,8 @@ const Button = createComponent({
     `;
   },
 });
+
+const Button = React.forwardRef((props, ref) => <StyledButton {...props} ref={ref} />);
 
 Button.propTypes = {
   variant: PropTypes.string,
