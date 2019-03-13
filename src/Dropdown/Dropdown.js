@@ -9,7 +9,7 @@ import Portal from '../Portal';
 import { useKeyPress } from '../hooks';
 import { createComponent, themeGet } from '../utils';
 
-const PLACEMENT_TRANSITION_ORIGINS = {
+export const PLACEMENT_TRANSITION_ORIGINS = {
   'top-start': '0 100%',
   top: '50% 100%',
   'top-end': '100% 100%',

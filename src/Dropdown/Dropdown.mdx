@@ -3,8 +3,10 @@ menu: Core
 name: Dropdown
 ---
 
+import { useState } from 'react';
 import { Playground, PropsTable } from 'docz';
-import Dropdown from './Dropdown';
+import Dropdown, { PLACEMENT_TRANSITION_ORIGINS } from './Dropdown';
+import RadioGroup from '../Form/RadioGroup';
 import Button from '../Button';
 
 # Dropdown
@@ -17,52 +19,73 @@ Easily display contextual overlays using custom trigger elements. Dropdown's pos
 ## Example
 
 <Playground>
-  <Button.Group>
-    <Dropdown
-      placement="top"
-      width={250}
-      trigger={<Button variant="success">Open Dropdown</Button>}
-    >
-      {({ close }) => (
+  {() => {
+    function Example() {
+      const [placement, setPlacement] = useState('top');
+      return (
         <>
-          <Dropdown.Header title="Dropdown" />
+          <Button.Group>
+            <RadioGroup
+              label="Placement"
+              value={placement}
+              choices={Object.keys(PLACEMENT_TRANSITION_ORIGINS).map(placement => ({
+                value: placement,
+                label: placement,
+              }))}
+              onChange={(_, val) => setPlacement(val)}
+            />
+            <Dropdown
+              placement={placement}
+              width={250}
+              trigger={<Button variant="success">Open Dropdown</Button>}
+            >
+              {({ close }) => (
+                <>
+                  <Dropdown.Header title="Dropdown" />
 
-          <Dropdown.Body>
-            <Dropdown.SectionTitle>Section One</Dropdown.SectionTitle>
-            <Dropdown.Item>Item One</Dropdown.Item>
-            <Dropdown.Item>Item Two</Dropdown.Item>
+                  <Dropdown.Body>
+                    <Dropdown.SectionTitle>Section One</Dropdown.SectionTitle>
+                    <Dropdown.Item>Item One</Dropdown.Item>
+                    <Dropdown.Item>Item Two</Dropdown.Item>
 
-            <Dropdown.SectionTitle>Section Two</Dropdown.SectionTitle>
-            <Dropdown.Item as="a" onClick={close} href="http://google.com" target="_blank">Item One</Dropdown.Item>
-            <Dropdown.Item disabled>Item Two</Dropdown.Item>
-          </Dropdown.Body>
+                    <Dropdown.SectionTitle>Section Two</Dropdown.SectionTitle>
+                    <Dropdown.Item as="a" onClick={close} href="http://google.com" target="_blank">Item One</Dropdown.Item>
+                    <Dropdown.Item disabled>Item Two</Dropdown.Item>
+                  </Dropdown.Body>
 
-          <Dropdown.Footer>Footer</Dropdown.Footer>
+                  <Dropdown.Footer>Footer</Dropdown.Footer>
+                </>
+              )}
+            </Dropdown>
+
+            <Dropdown
+              width={250}
+              trigger={<Button>Open Other Dropdown</Button>}
+            >
+              {({ close }) => (
+                <>
+                  <Dropdown.Header title="Dropdown" />
+
+                  <Dropdown.Body>
+                    <Dropdown.SectionTitle>Section One</Dropdown.SectionTitle>
+                    <Dropdown.Item>Item One</Dropdown.Item>
+                    <Dropdown.Item>Item Two</Dropdown.Item>
+
+                    <Dropdown.SectionTitle>Section Two</Dropdown.SectionTitle>
+                    <Dropdown.Item onClick={close}>Item One</Dropdown.Item>
+                    <Dropdown.Item disabled>Item Two</Dropdown.Item>
+                  </Dropdown.Body>
+
+                  <Dropdown.Footer>Footer</Dropdown.Footer>
+                </>
+              )}
+            </Dropdown>
+          </Button.Group>
         </>
-      )}
-    </Dropdown>
+      );
+    }
 
-    <Dropdown
-      width={250}
-      trigger={<Button>Open Other Dropdown</Button>}
-    >
-      {({ close }) => (
-        <>
-          <Dropdown.Header title="Dropdown" />
+    return <Example />
+  }}
 
-          <Dropdown.Body>
-            <Dropdown.SectionTitle>Section One</Dropdown.SectionTitle>
-            <Dropdown.Item>Item One</Dropdown.Item>
-            <Dropdown.Item>Item Two</Dropdown.Item>
-
-            <Dropdown.SectionTitle>Section Two</Dropdown.SectionTitle>
-            <Dropdown.Item onClick={close}>Item One</Dropdown.Item>
-            <Dropdown.Item disabled>Item Two</Dropdown.Item>
-          </Dropdown.Body>
-
-          <Dropdown.Footer>Footer</Dropdown.Footer>
-        </>
-      )}
-    </Dropdown>
-  </Button.Group>
 </Playground>
