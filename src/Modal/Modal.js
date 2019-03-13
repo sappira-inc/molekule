@@ -59,7 +59,7 @@ const ModalContent = createComponent({
     box-shadow: 0 8px 30px rgba(0, 29, 54, 0.1);
     border-radius: ${themeGet('radius')}px;
 
-    ${transitionState === 'entering'  &&
+    ${transitionState === 'entering' &&
       css`
         animation: 0.75s ${getAnimation(animationIn)};
       `};
@@ -77,7 +77,7 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, .
   const handleClose = () => {
     setOpen(false);
     onClose();
-  }
+  };
 
   const handleContentClick = event => event.stopPropagation();
 
@@ -104,7 +104,7 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, .
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  })
+  });
 
   return (
     <ModalContext.Provider value={{ handleClose }}>
@@ -121,7 +121,7 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, .
         </Transition>
       </Portal>
     </ModalContext.Provider>
-  )
+  );
 }
 
 Modal.propTypes = {
@@ -195,8 +195,8 @@ Modal.Header = ({ title, children, showClose = true }) => {
         </Flex>
       </ModalHeaderInner>
     </ModalHeader>
-  )
-}
+  );
+};
 
 Modal.Body = createComponent({
   name: 'ModalBody',
