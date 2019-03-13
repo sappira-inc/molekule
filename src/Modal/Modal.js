@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { keyframes, css } from 'styled-components';
 import * as animations from 'react-animations';
@@ -7,6 +7,7 @@ import Portal from '../Portal';
 import Flex from '../Flex';
 import Box from '../Box';
 import Icon from '../Icon';
+import { useKeyPress } from '../hooks';
 import { createComponent, themeGet } from '../utils';
 
 const ModalContext = createContext({});
@@ -87,12 +88,9 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, .
     handleClose();
   };
 
-  const handleKeyDown = useCallback(event => {
+  useKeyPress('Escape', () => {
     if (!isOpen || !props.closeOnEscape) return;
-
-    if (event.keyCode === 27) {
-      handleClose();
-    }
+    handleClose();
   });
 
   useEffect(() => {
@@ -100,11 +98,6 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, .
       setOpen(open);
     }
   }, [open]);
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  });
 
   return (
     <ModalContext.Provider value={{ handleClose }}>
