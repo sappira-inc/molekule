@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import FocusTrap from 'react-focus-lock';
 import { Transition } from 'react-transition-group';
@@ -7,7 +7,9 @@ import { css, keyframes } from 'styled-components';
 import Box from '../Box';
 import Portal from '../Portal';
 import { useKeyPress } from '../hooks';
-import { createComponent, themeGet } from '../utils';
+import { createComponent, themeGet, findNextFocusableElement, findPreviousFocusableElement } from '../utils';
+
+const DropdownContext = React.createContext({});
 
 export const PLACEMENT_TRANSITION_ORIGINS = {
   'top-start': '0 100%',
@@ -23,6 +25,8 @@ export const PLACEMENT_TRANSITION_ORIGINS = {
   left: '100% 50%',
   'left-end': '100% 100%',
 };
+
+const ARROW_KEYS = ['ArrowUp', 'ArrowDown'];
 
 export default function Dropdown({
   autoclose,
@@ -63,6 +67,19 @@ export default function Dropdown({
     }
   });
 
+  useKeyPress(ARROW_KEYS, event => {
+    if (isOpen && menuRef.current) {
+      event.preventDefault();
+      const focusArgs = [menuRef.current, document.activeElement];
+      const nextFocusable =
+        event.key === 'ArrowUp' ? findPreviousFocusableElement(...focusArgs) : findNextFocusableElement(...focusArgs);
+
+      if (nextFocusable) {
+        nextFocusable.focus();
+      }
+    }
+  });
+
   const handleMenuBlur = () => {
     if (autoclose) {
       // Use timeout to delay examination of activeElement until after blur/focus
@@ -76,74 +93,78 @@ export default function Dropdown({
     }
   };
 
-  const renderFn = render || children;
+  const renderer = render || children;
 
   return (
-    <Manager>
-      <Reference>
-        {({ ref: triggerRef }) =>
-          React.cloneElement(trigger, {
-            ref: node => {
-              triggerRef(node);
+    <DropdownContext.Provider value={{ close }}>
+      <Manager>
+        <Reference>
+          {({ ref: triggerRef }) =>
+            React.cloneElement(trigger, {
+              ref: node => {
+                triggerRef(node);
 
-              const { ref } = trigger;
-              if (typeof ref === 'function') {
-                ref(node);
-              }
-            },
-            ariahaspopup: true,
-            'aria-expanded': isOpen,
-            onClick: handleTrigger,
-          })
-        }
-      </Reference>
+                const { ref } = trigger;
+                if (typeof ref === 'function') {
+                  ref(node);
+                }
+              },
+              ariahaspopup: true,
+              'aria-expanded': isOpen,
+              onClick: handleTrigger,
+            })
+          }
+        </Reference>
 
-      {isOpen && (
-        <Portal>
-          <Popper
-            innerRef={popperRef}
-            placement={placement}
-            positionFixed={positionFixed}
-            modifiers={{
-              offset: {
-                offset,
-              },
-              flip: {
-                enabled: false,
-              },
-              preventOverflow: {
-                boundariesElement,
-                padding: 12,
-              },
-              // Prevents wacky jumps in Transition component
-              computeStyle: { gpuAcceleration: false },
-            }}>
-            {({ ref, style }) => (
-              <Transition in={isOpen} timeout={0} appear>
-                {state => (
-                  <FocusTrap autoFocus={false}>
-                    <DropdownMenu
-                      ref={menuInner => {
-                        menuRef.current = menuInner;
-                        ref(menuInner);
-                      }}
-                      style={style}
-                      placement={placement}
-                      transitionState={state}
-                      onBlur={handleMenuBlur}
-                      {...menuProps}>
-                      {renderFn({
-                        close,
-                      })}
-                    </DropdownMenu>
-                  </FocusTrap>
-                )}
-              </Transition>
-            )}
-          </Popper>
-        </Portal>
-      )}
-    </Manager>
+        {isOpen && (
+          <Portal>
+            <Popper
+              innerRef={popperRef}
+              placement={placement}
+              positionFixed={positionFixed}
+              modifiers={{
+                offset: {
+                  offset,
+                },
+                flip: {
+                  enabled: false,
+                },
+                preventOverflow: {
+                  boundariesElement,
+                  padding: 12,
+                },
+                // Prevents wacky jumps in Transition component
+                computeStyle: { gpuAcceleration: false },
+              }}>
+              {({ ref, style }) => (
+                <Transition in={isOpen} timeout={0} appear>
+                  {state => (
+                    <FocusTrap autoFocus={false}>
+                      <DropdownMenu
+                        ref={menuInner => {
+                          menuRef.current = menuInner;
+                          ref(menuInner);
+                        }}
+                        style={style}
+                        placement={placement}
+                        transitionState={state}
+                        onBlur={handleMenuBlur}
+                        {...menuProps}>
+                        {typeof renderer === 'function'
+                          ? renderer({
+                              close,
+                            })
+                          : renderer}
+                      </DropdownMenu>
+                    </FocusTrap>
+                  )}
+                </Transition>
+              )}
+            </Popper>
+          </Portal>
+        )}
+      </Manager>
+    </DropdownContext.Provider>
   );
 }
 
@@ -262,24 +283,30 @@ Dropdown.SectionTitle = createComponent({
   `,
 });
 
-Dropdown.Item = createComponent({
+const StyledDropdownItem = createComponent({
   name: 'DropdownItem',
-  props: () => ({
-    tabIndex: 0,
+  props: ({ disabled }) => ({
+    tabIndex: disabled ? -1 : 0,
+    role: 'button',
   }),
   as: Box,
   style: ({ disabled, theme }) => css`
-    display: flex;
-    align-items: center;
+    display: block;
+    width: calc(100% + 2rem);
     opacity: ${disabled ? 0.3 : 1};
     pointer-events: ${disabled ? 'none' : 'initial'};
+    user-select: ${disabled ? 'none' : 'initial'};
     text-decoration: none;
     color: inherit;
     cursor: pointer;
-    margin: 0 -1rem;
+    margin: 0 calc(-1rem);
     padding: 0.25rem 1rem;
     transition: 125ms background;
     outline: none;
+    appearance: none;
+    border: 0;
+    font: inherit;
+    text-align: left;
 
     & + ${Dropdown.SectionTitle} {
       margin-top: 1rem;
@@ -292,6 +319,19 @@ Dropdown.Item = createComponent({
     }
   `,
 });
+
+Dropdown.Item = function DropdownItem({ closeOnClick = true, onClick, ...props }) {
+  const { close } = useContext(DropdownContext);
+  const handleClick = () => {
+    if (closeOnClick) {
+      close();
+    }
+    if (typeof onClick === 'function') {
+      onClick();
+    }
+  };
+  return <StyledDropdownItem onClick={handleClick} {...props} />;
+};
 
 Dropdown.Footer = createComponent({
   name: 'DropdownFooter',
