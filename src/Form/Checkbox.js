@@ -19,7 +19,6 @@ const CheckboxContainer = createComponent({
       margin-left: ${p => (p.horizontal ? '12px' : 0)};
       margin-top: ${p => (p.horizontal ? 0 : '4px')};
     }
-    ${p => p.style}
   `,
 });
 
