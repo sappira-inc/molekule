@@ -19,6 +19,7 @@ const CheckboxContainer = createComponent({
       margin-left: ${p => (p.horizontal ? '12px' : 0)};
       margin-top: ${p => (p.horizontal ? 0 : '4px')};
     }
+    ${p => p.style}
   `,
 });
 
@@ -28,14 +29,6 @@ const StyledInput = createComponent({
   style: css`
     display: none;
     pointer-events: ${p => (p.disabled ? 'none' : 'auto')};
-  `,
-});
-
-const StyledIcon = createComponent({
-  name: 'CheckboxIcon',
-  as: Icon,
-  style: ({ margin }) => css`
-    margin: ${margin};
   `,
 });
 
@@ -64,6 +57,7 @@ class Checkbox extends React.Component {
     color: PropTypes.string,
     horizontal: PropTypes.bool,
     disabled: PropTypes.bool,
+    styles: PropTypes.object,
   };
 
   static defaultProps = {
@@ -78,6 +72,7 @@ class Checkbox extends React.Component {
     horizontal: false,
     onChange() {},
     disabled: false,
+    styles: {},
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -123,16 +118,16 @@ class Checkbox extends React.Component {
       iconOn,
       iconOff,
       iconSize,
-      iconMargin,
       colorOn,
       colorOff,
       horizontal,
       disabled,
+      styles,
     } = this.props;
     const { checked } = this;
 
     return (
-      <CheckboxContainer horizontal={horizontal}>
+      <CheckboxContainer horizontal={horizontal} style={styles.CheckboxContainer}>
         <StyledInput
           id={id}
           name={name}
@@ -143,7 +138,7 @@ class Checkbox extends React.Component {
         />
 
         <Flex alignItems="center">
-          <StyledIcon margin={iconMargin} size={iconSize} color={checked ? colorOn : colorOff} name={checked ? iconOn : iconOff} />
+          <Icon size={iconSize} color={checked ? colorOn : colorOff} name={checked ? iconOn : iconOff} />
 
           {label && <StyledLabel fontSize={fontSize}>{label}</StyledLabel>}
         </Flex>

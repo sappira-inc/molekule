@@ -22,7 +22,6 @@ class RadioGroup extends Component {
     colorOn: PropTypes.string,
     colorOff: PropTypes.string,
     fontSize: PropTypes.number,
-    iconMargin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     iconSize: PropTypes.number,
     choices: PropTypes.arrayOf(
       PropTypes.shape({
@@ -31,11 +30,13 @@ class RadioGroup extends Component {
         disabled: PropTypes.bool,
       })
     ),
+    styles: PropTypes.object,
   };
 
   static defaultProps = {
     choices: [],
     onChange() {},
+    styles: {},
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -62,7 +63,7 @@ class RadioGroup extends Component {
   };
 
   render() {
-    const { choices, error, horizontal, label, name, colorOn, colorOff, fontSize, iconSize, iconMargin } = this.props;
+    const { choices, error, horizontal, label, name, colorOn, colorOff, fontSize, iconSize, styles } = this.props;
 
     return (
       <StyledRadioGroup>
@@ -90,8 +91,8 @@ class RadioGroup extends Component {
                   iconOn="radiobox-marked"
                   iconOff="radiobox-blank"
                   iconSize={iconSize}
-                  iconMargin={iconMargin}
                   onChange={this.handleChange}
+                  styles={styles}
                 />
               );
             })}
