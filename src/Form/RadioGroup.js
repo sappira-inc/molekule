@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { css } from 'styled-components';
 import Flex from '../Flex';
 import Box from '../Box';
 import Checkbox from './Checkbox';
@@ -30,9 +29,9 @@ class RadioGroup extends Component {
         disabled: PropTypes.bool,
       })
     ),
-    styles: PropTypes.object,
+    styles: PropTypes.shape(),
     iconOn: PropTypes.string,
-    iconOf: PropTypes.string,
+    iconOff: PropTypes.string,
   };
 
   static defaultProps = {
@@ -67,7 +66,7 @@ class RadioGroup extends Component {
   };
 
   render() {
-    const { choices, error, horizontal, label, name, colorOn, colorOff, ...checkboxProps } = this.props;
+    const { choices, error, horizontal, label, name, ...checkboxProps } = this.props;
 
     return (
       <StyledRadioGroup>
@@ -86,8 +85,6 @@ class RadioGroup extends Component {
                   key={key}
                   name={key}
                   horizontal={horizontal}
-                  colorOn={colorOn}
-                  colorOff={colorOff}
                   label={choiceLabel}
                   value={this.state.value}
                   valueTrue={value}
