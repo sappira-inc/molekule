@@ -84,3 +84,26 @@ Form Radio component. Both font and icon sizes are configurable.
     )
   }}
 </Playground>
+
+### Radio Group sizes
+<Playground>
+  {() => {
+    const radioValues = [
+      {
+        id: 1,
+        value: 'radio1',
+        name: 'radio1',
+        label: 'Radio 1',
+      },
+      {
+        id: 2,
+        value: 'radio2',
+        name: 'radio2',
+        label: 'Radio 2',
+      },
+    ];
+    return (
+      <RadioGroup iconSize={10} fontSize={10} iconMargin={10} name="radio" id="radio" choices={radioValues} value='radio2' />
+    )
+  }}
+</Playground>

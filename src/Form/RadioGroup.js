@@ -21,7 +21,9 @@ class RadioGroup extends Component {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     colorOn: PropTypes.string,
     colorOff: PropTypes.string,
-    size: PropTypes.string,
+    fontSize: PropTypes.number,
+    iconMargin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    iconSize: PropTypes.number,
     choices: PropTypes.arrayOf(
       PropTypes.shape({
         value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
