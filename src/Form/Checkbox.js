@@ -61,7 +61,7 @@ class Checkbox extends React.Component {
     color: PropTypes.string,
     horizontal: PropTypes.bool,
     disabled: PropTypes.bool,
-    styles: PropTypes.object,
+    styles: PropTypes.shape(),
   };
 
   static defaultProps = {
