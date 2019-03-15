@@ -32,6 +32,11 @@ const StyledInput = createComponent({
   `,
 });
 
+const StyledIcon = createComponent({
+  name: 'CheckboxIcon',
+  as: Icon,
+});
+
 const StyledLabel = createComponent({
   name: 'CheckboxLabel',
   as: Flex,
@@ -138,7 +143,7 @@ class Checkbox extends React.Component {
         />
 
         <Flex alignItems="center">
-          <Icon size={iconSize} color={checked ? colorOn : colorOff} name={checked ? iconOn : iconOff} />
+          <StyledIcon size={iconSize} color={checked ? colorOn : colorOff} name={checked ? iconOn : iconOff} />
 
           {label && <StyledLabel fontSize={fontSize}>{label}</StyledLabel>}
         </Flex>
