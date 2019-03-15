@@ -34,6 +34,9 @@ const StyledInput = createComponent({
 const StyledIcon = createComponent({
   name: 'CheckboxIcon',
   as: Icon,
+  style: ({ margin }) => css`
+    margin: ${margin};
+  `,
 });
 
 const StyledLabel = createComponent({
@@ -120,6 +123,7 @@ class Checkbox extends React.Component {
       iconOn,
       iconOff,
       iconSize,
+      iconMargin,
       colorOn,
       colorOff,
       horizontal,
@@ -139,7 +143,7 @@ class Checkbox extends React.Component {
         />
 
         <Flex alignItems="center">
-          <StyledIcon size={iconSize} color={checked ? colorOn : colorOff} name={checked ? iconOn : iconOff} />
+          <StyledIcon margin={iconMargin} size={iconSize} color={checked ? colorOn : colorOff} name={checked ? iconOn : iconOff} />
 
           {label && <StyledLabel fontSize={fontSize}>{label}</StyledLabel>}
         </Flex>
