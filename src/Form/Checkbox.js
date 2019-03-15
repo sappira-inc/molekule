@@ -145,7 +145,7 @@ class Checkbox extends React.Component {
         <Flex alignItems="center">
           <StyledIcon size={iconSize} color={checked ? colorOn : colorOff} name={checked ? iconOn : iconOff} />
 
-          {label && <StyledLabel fontSize={fontSize}>{label}</StyledLabel>}
+          {label && <StyledLabel fontSize={fontSize} style={styles.Label}>{label}</StyledLabel>}
         </Flex>
 
         {!this.state.focused && error ? <FormError>{error}</FormError> : null}
