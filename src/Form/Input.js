@@ -94,7 +94,7 @@ class Input extends Component {
     autogrow: PropTypes.bool,
     size: PropTypes.string,
     floating: PropTypes.bool,
-    forwardedRef: PropTypes.oneOfType([PropTypes.shape(). PropTypes.func]),
+    forwardedRef: PropTypes.oneOfType([PropTypes.shape(), PropTypes.func]),
   };
 
   static defaultProps = {
