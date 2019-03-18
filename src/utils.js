@@ -30,14 +30,16 @@ export const createComponent = ({ name, tag = 'div', as, style, props: defaultPr
   `;
 };
 
-const createTreeWalker = (root, currentNode) => {
+// eslint-disable-next-line
+const focusableFilter = node =>
+  node.tabIndex >= 0 && !node.hasAttribute('disabled') ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+
+const createTreeWalker = (root, currentNode, filterFn = () => NodeFilter.FILTER_ACCEPT) => {
   const treeWalker = document.createTreeWalker(
     root,
     NodeFilter.SHOW_ELEMENT,
     {
-      acceptNode(node) {
-        return node.tabIndex >= 0 && !node.hasAttribute('disabled') ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
-      },
+      acceptNode: filterFn,
     },
     false
   );
@@ -46,7 +48,7 @@ const createTreeWalker = (root, currentNode) => {
 };
 
 export const findPreviousFocusableElement = (root, currentNode) => {
-  const treeWalker = createTreeWalker(root, currentNode);
+  const treeWalker = createTreeWalker(root, currentNode, focusableFilter);
 
   if (!treeWalker.previousNode() || treeWalker.currentNode === root) {
     return treeWalker.lastChild();
@@ -56,7 +58,7 @@ export const findPreviousFocusableElement = (root, currentNode) => {
 };
 
 export const findNextFocusableElement = (root, currentNode) => {
-  const treeWalker = createTreeWalker(root, currentNode);
+  const treeWalker = createTreeWalker(root, currentNode, focusableFilter);
 
   if (!treeWalker.nextNode() || treeWalker.currentNode === root) {
     treeWalker.currentNode = root;
