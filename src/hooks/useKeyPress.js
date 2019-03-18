@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 
 export default function useKeyPress(targetKeys, callback, keyEvent = 'keydown') {
-  const keys = Array.isArray(targetKeys) ? targetKeys : [targetKeys];
+  const keys = [].concat(targetKeys);
 
   const pressHandler = useCallback(
     event => {
