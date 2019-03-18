@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderWithTheme, fireEvent, wait, cleanup, waitForDomChange } from '../../test/utils';
+import { renderWithTheme, fireEvent, wait, waitForDomChange } from '../../test/utils';
 import Dropdown from './Dropdown';
 import Button from '../Button';
 
@@ -60,7 +60,6 @@ describe('<Dropdown />', () => {
   };
 
   beforeEach(() => {
-    cleanup();
     renderUtils = renderDropdown();
   });
 
