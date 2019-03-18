@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Tabs /> renders 1`] = `
-.c0 {
+<DocumentFragment>
+  .c0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -91,49 +92,47 @@ exports[`<Tabs /> renders 1`] = `
 }
 
 <div
-  className="re-tabs c0"
->
-  <ul
-    className="re-tab-list c1"
+    class="re-tabs c0"
   >
-    <li
-      className="re-tab-list-item c2"
+    <ul
+      class="re-tab-list c1"
     >
-      <button
-        className="re-tab c3"
-        id="test-one"
-        onClick={[Function]}
+      <li
+        class="re-tab-list-item c2"
       >
-        <span
-          className="re-tab-title c4"
+        <button
+          class="re-tab c3"
+          id="test-one"
         >
-          Tab One
-        </span>
-      </button>
-    </li>
-    <li
-      className="re-tab-list-item c2"
+          <span
+            class="re-tab-title c4"
+          >
+            Tab One
+          </span>
+        </button>
+      </li>
+      <li
+        class="re-tab-list-item c2"
+      >
+        <button
+          class="re-tab c3"
+          id="test-two"
+        >
+          <span
+            class="re-tab-title c5"
+          >
+            Tab Two
+          </span>
+        </button>
+      </li>
+    </ul>
+    <div
+      class="re-tab-content c6"
     >
-      <button
-        className="re-tab c3"
-        id="test-two"
-        onClick={[Function]}
-      >
-        <span
-          className="re-tab-title c5"
-        >
-          Tab Two
-        </span>
-      </button>
-    </li>
-  </ul>
-  <div
-    className="re-tab-content c6"
-  >
-    <div>
-      This is the content for Tab 
-      one
+      <div>
+        This is the content for Tab one
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

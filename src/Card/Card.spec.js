@@ -3,7 +3,7 @@ import { renderWithTheme } from '../../test/utils';
 import Card from './Card';
 
 test('Card', () => {
-  const component = renderWithTheme(
+  const { asFragment } = renderWithTheme(
     <Card>
       <Card.Header>Header</Card.Header>
       <Card.Body>Body</Card.Body>
@@ -11,5 +11,5 @@ test('Card', () => {
     </Card>
   );
 
-  expect(component.toJSON()).toMatchSnapshot();
+  expect(asFragment()).toMatchSnapshot();
 });

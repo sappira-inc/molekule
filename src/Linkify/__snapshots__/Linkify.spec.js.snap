@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Linkify can receive linkStyle 1`] = `
-.c1 {
+<DocumentFragment>
+  .c1 {
   color: inherit;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -12,30 +13,28 @@ exports[`Linkify can receive linkStyle 1`] = `
 }
 
 <div
-  className="re-linkify c0"
->
-  <div>
-    Hello! 
-    <a
-      className="c1"
-      href="https://google.com"
-      rel="noopener noreferrer"
-      style={
-        Object {
-          "color": "magenta",
-        }
-      }
-      target="_blank"
-    >
-      https://google.com
-    </a>
-     is a cool site.
+    class="re-linkify c0"
+  >
+    <div>
+      Hello! 
+      <a
+        class="c1"
+        href="https://google.com"
+        rel="noopener noreferrer"
+        style="color: magenta;"
+        target="_blank"
+      >
+        https://google.com
+      </a>
+       is a cool site.
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`Linkify can render markdown 1`] = `
-.c1 {
+<DocumentFragment>
+  .c1 {
   color: inherit;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -46,23 +45,25 @@ exports[`Linkify can render markdown 1`] = `
 }
 
 <div
-  className="re-linkify c0"
->
-  <div>
-    <a
-      className="c1"
-      href="http://google.com"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      this is a link
-    </a>
+    class="re-linkify c0"
+  >
+    <div>
+      <a
+        class="c1"
+        href="http://google.com"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        this is a link
+      </a>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`Linkify converts links to anchor tags 1`] = `
-.c1 {
+<DocumentFragment>
+  .c1 {
   color: inherit;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -73,52 +74,36 @@ exports[`Linkify converts links to anchor tags 1`] = `
 }
 
 <div
-  className="re-linkify c0"
->
-  <div>
-    Hello! 
-    <a
-      className="c1"
-      href="https://google.com"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      https://google.com
-    </a>
-     is a cool site.
+    class="re-linkify c0"
+  >
+    <div>
+      Hello! 
+      <a
+        class="c1"
+        href="https://google.com"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        https://google.com
+      </a>
+       is a cool site.
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`Linkify escapes HTML entities 1`] = `
-.c0 div:nth-child(n + 2) {
+<DocumentFragment>
+  .c0 div:nth-child(n + 2) {
   margin-top: 5px;
 }
 
 <div
-  className="re-linkify c0"
->
-  <div>
-    &lt;
-    img src=
-    "
-    fake.jpg
-    "
-     onError={() =
-    &gt;
-     {}} alt=
-    "
-    hacker
-    "
-     /
-    &gt;
-    &lt;
-    span
-    &gt;
-    heheh got hacked
-    &lt;
-    /span
-    &gt;
+    class="re-linkify c0"
+  >
+    <div>
+      &lt;img src="fake.jpg" onError={() =&gt; {}} alt="hacker" /&gt;&lt;span&gt;heheh got hacked&lt;/span&gt;
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;

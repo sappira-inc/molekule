@@ -24,8 +24,8 @@ describe('<Tabs />', () => {
   });
 
   test('renders', () => {
-    const component = renderWithTheme(<Tabs tabs={TABS} />);
+    const { asFragment } = renderWithTheme(<Tabs tabs={TABS} />);
 
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 
-export default function useKeyPress(targetKeys, callback, keyEvents = ['keydown']) {
+export default function useKeyPress(targetKeys, callback, keyEvent = 'keydown') {
   const keys = Array.isArray(targetKeys) ? targetKeys : [targetKeys];
 
   const pressHandler = useCallback(
@@ -13,14 +13,7 @@ export default function useKeyPress(targetKeys, callback, keyEvents = ['keydown'
   );
 
   useEffect(() => {
-    keyEvents.forEach(keyEvent => {
-      window.addEventListener(keyEvent, pressHandler);
-    });
-
-    return () => {
-      keyEvents.forEach(keyEvent => {
-        window.removeEventListener(keyEvent, pressHandler);
-      });
-    };
-  }, [targetKeys, callback, keyEvents]);
+    window.addEventListener(keyEvent, pressHandler);
+    return () => window.removeEventListener(keyEvent, pressHandler);
+  }, [targetKeys, callback, keyEvent]);
 }

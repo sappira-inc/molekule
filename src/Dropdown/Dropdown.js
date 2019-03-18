@@ -37,6 +37,7 @@ export default function Dropdown({
   trigger,
   render,
   children,
+  portalNode,
   ...menuProps
 }) {
   const popperRef = useRef();
@@ -52,7 +53,7 @@ export default function Dropdown({
     toggle();
   };
 
-  // Wait for next tick after open to prevent page scroll when focusing
+  // Wait for next tick after open to prevent page jump when focusing
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => {
@@ -86,7 +87,7 @@ export default function Dropdown({
       // events have been processed.
       setTimeout(() => {
         const nextActiveElement = document.activeElement;
-        if (!menuRef.current.contains(nextActiveElement)) {
+        if (menuRef.current && !menuRef.current.contains(nextActiveElement)) {
           close();
         }
       });
@@ -109,7 +110,7 @@ export default function Dropdown({
                   ref(node);
                 }
               },
-              ariahaspopup: true,
+              'aria-haspopup': true,
               'aria-expanded': isOpen,
               onClick: handleTrigger,
             })
@@ -117,7 +118,7 @@ export default function Dropdown({
         </Reference>
 
         {isOpen && (
-          <Portal>
+          <Portal node={portalNode}>
             <Popper
               innerRef={popperRef}
               placement={placement}
@@ -149,6 +150,7 @@ export default function Dropdown({
                         placement={placement}
                         transitionState={state}
                         onBlur={handleMenuBlur}
+                        data-testid="dropdown-menu"
                         {...menuProps}>
                         {typeof renderer === 'function'
                           ? renderer({
@@ -180,6 +182,7 @@ Dropdown.propTypes = {
   zIndex: PropTypes.number,
   transitionDuration: PropTypes.number,
   transitionTimingFunction: PropTypes.string,
+  portalNode: PropTypes.instanceOf(Element),
 };
 
 Dropdown.defaultProps = {

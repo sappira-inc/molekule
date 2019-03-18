@@ -1,7 +1,9 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from 'react-testing-library';
 import ThemeProvider from '../src/ThemeProvider';
 
-export function renderWithTheme(component, options) {
-  return renderer.create(<ThemeProvider>{component}</ThemeProvider>, options);
+export function renderWithTheme(component, options = {}) {
+  return render(<ThemeProvider>{component}</ThemeProvider>, options);
 }
+
+export * from 'react-testing-library';
