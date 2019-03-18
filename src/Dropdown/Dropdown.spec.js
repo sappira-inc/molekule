@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderWithTheme, fireEvent, wait, act, cleanup, waitForDomChange } from '../../test/utils';
+import { renderWithTheme, fireEvent, wait, cleanup, waitForDomChange } from '../../test/utils';
 import Dropdown from './Dropdown';
 import Button from '../Button';
 
@@ -55,9 +55,7 @@ describe('<Dropdown />', () => {
 
   const openDropdown = async () => {
     const trigger = renderUtils.getByText('Trigger');
-    act(() => {
-      fireEvent.click(trigger, { stopPropagation: () => null });
-    });
+    fireEvent.click(trigger, { stopPropagation: () => null });
     return assertDropdownOpen();
   };
 
