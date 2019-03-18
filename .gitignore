@@ -6,3 +6,4 @@ dist
 lib
 .docz
 .vscode/
+coverage
