@@ -1,6 +1,4 @@
-import '@babel/polyfill';
 import React from 'react';
-import 'jest-dom/extend-expect';
 import { renderWithTheme, fireEvent, wait, act, cleanup, waitForDomChange } from '../../test/utils';
 import Dropdown from './Dropdown';
 import Button from '../Button';
