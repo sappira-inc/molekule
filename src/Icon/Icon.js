@@ -1,11 +1,13 @@
-import React from 'react';
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { css } from 'styled-components';
 import { createComponent } from '../utils';
 
 const Icon = createComponent({
   name: 'Icon',
   tag: 'i',
+  props: ({ name, className }) => ({
+    className: `${Icon.getClassName(name)} ${className || ''}`,
+  }),
   style: ({ theme, size, color, disabled }) => {
     const colorFromTheme = theme.colors[color];
     const resolvedColor = colorFromTheme || color;
@@ -24,14 +26,12 @@ const Icon = createComponent({
 });
 
 Icon.propTypes = {
-  name: Proptypes.string.isRequired,
-  size: Proptypes.number,
-  color: Proptypes.string,
+  name: PropTypes.string.isRequired,
+  size: PropTypes.number,
+  color: PropTypes.string,
 };
 
 Icon.iconPrefix = 'mdi';
-Icon.getIconClassName = name => `${Icon.iconPrefix} ${Icon.iconPrefix}-${name}`;
+Icon.getClassName = name => `${Icon.iconPrefix} ${Icon.iconPrefix}-${name}`;
 
-export default React.forwardRef(({ name, className, ...props }, ref) => (
-  <Icon {...props} ref={ref} className={`${Icon.getIconClassName(name)} ${className || ''}`} />
-));
+export default Icon;

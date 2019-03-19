@@ -16,14 +16,19 @@ export const getComponentStyle = componentName => themeGet(`components.${compone
 export const getComponentClassName = ({ className, theme: { classPrefix }, variant }, name) =>
   `${className || ''} ${classPrefix}-${name} ${variant ? `${classPrefix}-${name}-${variant}` : ''}`.trim();
 
-export const createComponent = ({ name, tag = 'div', as, style, props: defaultProps = () => ({}) }) => {
+export const createComponent = ({ name, tag = 'div', as, style, props: baseProps = () => ({}) }) => {
   const component = as ? styled(as) : styled[tag];
 
-  return component.attrs(props => ({
-    ...defaultProps(props),
-    ...props,
-    className: getComponentClassName(props, kebabCase(name)),
-  }))`
+  return component.attrs(props => {
+    const resolvedProps = {
+      ...baseProps(props),
+      ...props,
+    };
+    return {
+      ...resolvedProps,
+      className: getComponentClassName(resolvedProps, kebabCase(name)),
+    };
+  })`
     ${style}
     ${getComponentStyle(name)}
     ${({ styles = {} }) => styles[name] || {}}
