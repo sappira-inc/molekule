@@ -100,7 +100,7 @@ export default function Dropdown({
     <DropdownContext.Provider value={{ close }}>
       <Manager>
         <Reference>
-          {({ ref: triggerRef }) =>
+          {({ ref: triggerRef, style = {} }) =>
             React.cloneElement(trigger, {
               ref: node => {
                 triggerRef(node);
@@ -113,6 +113,10 @@ export default function Dropdown({
               'aria-haspopup': true,
               'aria-expanded': isOpen,
               onClick: handleTrigger,
+              style: {
+                cursor: 'pointer',
+                ...style,
+              },
             })
           }
         </Reference>

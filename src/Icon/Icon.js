@@ -3,7 +3,7 @@ import Proptypes from 'prop-types';
 import { css } from 'styled-components';
 import { createComponent } from '../utils';
 
-const StyledIcon = createComponent({
+const Icon = createComponent({
   name: 'Icon',
   tag: 'i',
   style: ({ theme, size, color, disabled }) => {
@@ -12,7 +12,7 @@ const StyledIcon = createComponent({
 
     return css`
       color: ${resolvedColor || 'inherit'};
-      font-size: ${`${size}px` || 'inherit'};
+      font-size: ${size ? `${size}px` : 'inherit'};
 
       ${disabled &&
         css`
@@ -23,23 +23,15 @@ const StyledIcon = createComponent({
   },
 });
 
-class Icon extends React.Component {
-  static iconPrefix = 'mdi';
-  static getIconClassName(name) {
-    return `${this.iconPrefix} ${this.iconPrefix}-${name}`;
-  }
-
-  render() {
-    const { name, className = '', ...props } = this.props;
-
-    return <StyledIcon {...props} className={`${this.constructor.getIconClassName(name)} ${className}`} />;
-  }
-}
-
 Icon.propTypes = {
   name: Proptypes.string.isRequired,
   size: Proptypes.number,
   color: Proptypes.string,
 };
 
-export default Icon;
+Icon.iconPrefix = 'mdi';
+Icon.getIconClassName = name => `${Icon.iconPrefix} ${Icon.iconPrefix}-${name}`;
+
+export default React.forwardRef(({ name, className, ...props }, ref) => (
+  <Icon {...props} ref={ref} className={`${Icon.getIconClassName(name)} ${className || ''}`} />
+));

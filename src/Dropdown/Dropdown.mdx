@@ -6,6 +6,7 @@ name: Dropdown
 import { useState } from 'react';
 import { Playground, PropsTable } from 'docz';
 import Dropdown, { PLACEMENT_TRANSITION_ORIGINS } from './Dropdown';
+import Icon from '../Icon';
 import RadioGroup from '../Form/RadioGroup';
 import Button from '../Button';
 
@@ -26,7 +27,7 @@ Easily display contextual overlays using custom trigger elements. Dropdown's pos
         <>
           <Button.Group>
             <RadioGroup
-              label="Placement"
+              label={<strong>Placement</strong>}
               value={placement}
               choices={Object.keys(PLACEMENT_TRANSITION_ORIGINS).map(placement => ({
                 value: placement,
@@ -73,6 +74,24 @@ Easily display contextual overlays using custom trigger elements. Dropdown's pos
 
               <Dropdown.Footer>Footer</Dropdown.Footer>
             </Dropdown>
+
+            <div>
+              <Dropdown
+                width={250}
+                placement="top"
+                trigger={<Icon name="information-outline" />}
+              >
+                <Dropdown.Header title="Dropdown" />
+
+                <Dropdown.Body>
+                  <Dropdown.SectionTitle>Section One</Dropdown.SectionTitle>
+                  <Dropdown.Item>Item One</Dropdown.Item>
+                  <Dropdown.Item>Item Two</Dropdown.Item>
+                </Dropdown.Body>
+
+                <Dropdown.Footer>Footer</Dropdown.Footer>
+              </Dropdown>
+            </div>
           </Button.Group>
         </>
       );
