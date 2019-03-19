@@ -28,6 +28,15 @@ export const PLACEMENT_TRANSITION_ORIGINS = {
 
 const ARROW_KEYS = ['ArrowUp', 'ArrowDown'];
 
+const TriggerWrapper = createComponent({
+  name: 'DropdownTrigger',
+  style: css`
+    display: inline-block;
+    align-self: flex-start;
+    outline: none;
+  `,
+});
+
 export default function Dropdown({
   autoclose,
   placement,
@@ -104,28 +113,22 @@ export default function Dropdown({
     <DropdownContext.Provider value={{ close }}>
       <Manager>
         <Reference>
-          {({ ref: triggerRef }) =>
-            React.cloneElement(trigger, {
-              ref: node => {
-                triggerRef(node);
-
-                const { ref } = trigger;
-                if (typeof ref === 'function') {
-                  ref(node);
-                }
-              },
-              role: trigger.role || 'button',
-              tabIndex: trigger.tabIndex || 0,
-              'aria-haspopup': true,
-              'aria-expanded': isOpen,
-              onClick: handleTrigger,
-              onKeyPress: handleTrigger,
-              style: {
-                cursor: 'pointer',
-                ...(trigger.style || {}),
-              },
-            })
-          }
+          {({ ref: triggerRef }) => (
+            <TriggerWrapper ref={triggerRef} tabIndex={-1}>
+              {React.cloneElement(trigger, {
+                role: trigger.role || 'button',
+                tabIndex: trigger.tabIndex || 0,
+                'aria-haspopup': true,
+                'aria-expanded': isOpen,
+                onClick: handleTrigger,
+                onKeyPress: handleTrigger,
+                style: {
+                  cursor: 'pointer',
+                  ...(trigger.style || {}),
+                },
+              })}
+            </TriggerWrapper>
+          )}
         </Reference>
 
         {isOpen && (
