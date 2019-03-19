@@ -100,7 +100,7 @@ export default function Dropdown({
     <DropdownContext.Provider value={{ close }}>
       <Manager>
         <Reference>
-          {({ ref: triggerRef, style = {} }) =>
+          {({ ref: triggerRef }) =>
             React.cloneElement(trigger, {
               ref: node => {
                 triggerRef(node);
@@ -115,7 +115,7 @@ export default function Dropdown({
               onClick: handleTrigger,
               style: {
                 cursor: 'pointer',
-                ...style,
+                ...(trigger.style || {}),
               },
             })
           }

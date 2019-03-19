@@ -42,6 +42,7 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
     aria-expanded="false"
     aria-haspopup="true"
     class="re-button re-button-primary c0"
+    style="cursor: pointer;"
   >
     Trigger
   </button>
@@ -90,6 +91,7 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
     aria-expanded="true"
     aria-haspopup="true"
     class="re-button re-button-primary c0"
+    style="cursor: pointer;"
   >
     Trigger
   </button>
