@@ -85,6 +85,7 @@ export default class Collapse extends Component {
   };
 
   onEntered = (node, isAppearing) => {
+    this.setState({ height: node.scrollHeight });
     this.props.onEntered(node, isAppearing);
   };
 
