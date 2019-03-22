@@ -4,11 +4,11 @@ import Select from './Select';
 import Formbot, { Context } from './Formbot';
 import Form from './Form';
 import Button from '../Button';
-import FormGroup from './FormGroup';
 import Fieldset from './Fieldset';
 import CheckboxGroup from './CheckboxGroup';
 import RadioGroup from './RadioGroup';
 import Switch from './Switch';
+import PhoneInput from './PhoneInput';
 
 const selectValues = [{ id: 1, value: 'male', label: 'Male' }, { id: 1, value: 'female', label: 'Female' }];
 
@@ -42,10 +42,8 @@ const radioValues = [
 
 const Values = () => {
   const state = useContext(Context);
-  return (
-    <pre>{JSON.stringify(state.values, null, 2)}</pre>
-  )
-}
+  return <pre>{JSON.stringify(state.values, null, 2)}</pre>;
+};
 
 export default class FormbotExample extends React.Component {
   nameRef = createRef();
@@ -86,24 +84,12 @@ export default class FormbotExample extends React.Component {
           <Fieldset legend="A Group of Inputs">
             <Input name="name" placeholder="Name (should autofocus)" label="Name" ref={this.nameRef} />
             <Input name="email" placeholder="Email" label="Email" />
-
-            <Select
-              name="gender"
-              placeholder="Select a Gender"
-              label="Gender"
-              options={selectValues}
-            />
+            <PhoneInput name="phone" placeholder="Phone Number" label="Phone" />
+            <Select name="gender" placeholder="Select a Gender" label="Gender" options={selectValues} />
           </Fieldset>
 
           <Fieldset legend="Another Group of Inputs">
-            <Input
-              name="message"
-              multiline
-              size="md"
-              autogrow
-              placeholder="Your Message"
-              label="Write a Message"
-            />
+            <Input name="message" multiline size="md" autogrow placeholder="Your Message" label="Write a Message" />
 
             <Input name="favorite_word" placeholder="Favorite Word" label="Favorite Word" />
 
