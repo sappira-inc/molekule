@@ -18,7 +18,7 @@ Easily display contextual overlays using custom trigger elements. Dropdown's pos
 ## Props
 <PropsTable of={Dropdown} />
 
-## Example
+## Examples
 
 <Playground>
   {() => {
@@ -99,8 +99,9 @@ Easily display contextual overlays using custom trigger elements. Dropdown's pos
                 width={250}
                 placement="top"
                 styles={{ TriggerWrapper: { display: 'flex', flex: 1 } }}
-		trigger={<Flex flex={1} justifyContent="space-between" ><Button style={{ width: `100%`}}>Open Flex Dropdown</Button> </Flex>}
-              >
+                trigger={(<Flex flex={1} justifyContent="space-between">
+                  <Button style={{ width: `100%`}}>Open Flex Dropdown</Button>
+                </Flex>)}>
                 <Dropdown.Header title="Dropdown" />
 
                 <Dropdown.Body>
