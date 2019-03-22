@@ -31,8 +31,8 @@ const ARROW_KEYS = ['ArrowUp', 'ArrowDown'];
 const TriggerWrapper = createComponent({
   name: 'DropdownTrigger',
   style: css`
-    display: inline-block;
     align-self: flex-start;
+    display: inline-block;
     outline: none;
   `,
 });
@@ -47,6 +47,7 @@ export default function Dropdown({
   render,
   children,
   portalNode,
+  styles = {},
   ...menuProps
 }) {
   const popperRef = useRef();
@@ -114,7 +115,7 @@ export default function Dropdown({
       <Manager>
         <Reference>
           {({ ref: triggerRef }) => (
-            <TriggerWrapper ref={triggerRef} tabIndex={-1}>
+            <TriggerWrapper style={styles.TriggerWrapper} ref={triggerRef} tabIndex={-1}>
               {React.cloneElement(trigger, {
                 role: trigger.role || 'button',
                 tabIndex: trigger.tabIndex || 0,
