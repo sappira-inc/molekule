@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { Playground, PropsTable } from 'docz';
 import Dropdown, { PLACEMENT_TRANSITION_ORIGINS } from './Dropdown';
 import Icon from '../Icon';
+import Flex from '../Flex';
 import RadioGroup from '../Form/RadioGroup';
 import Button from '../Button';
 
@@ -92,6 +93,25 @@ Easily display contextual overlays using custom trigger elements. Dropdown's pos
                 <Dropdown.Footer>Footer</Dropdown.Footer>
               </Dropdown>
             </div>
+
+            <Flex flex={1}>
+              <Dropdown
+                width={250}
+                placement="top"
+                styles={{ TriggerWrapper: { display: 'flex', flex: 1 } }}
+		trigger={<Flex flex={1} justifyContent="space-between" ><Button style={{ width: `100%`}}>Open Flex Dropdown</Button> </Flex>}
+              >
+                <Dropdown.Header title="Dropdown" />
+
+                <Dropdown.Body>
+                  <Dropdown.SectionTitle>Section One</Dropdown.SectionTitle>
+                  <Dropdown.Item>Item One</Dropdown.Item>
+                  <Dropdown.Item>Item Two</Dropdown.Item>
+                </Dropdown.Body>
+
+                <Dropdown.Footer>Footer</Dropdown.Footer>
+              </Dropdown>
+            </Flex>
           </Button.Group>
         </>
       );

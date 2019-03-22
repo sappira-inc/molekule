@@ -3,10 +3,10 @@
 exports[`<Dropdown /> only renders trigger on mount 1`] = `
 <DocumentFragment>
   .c0 {
-  display: inline-block;
   -webkit-align-self: flex-start;
   -ms-flex-item-align: start;
   align-self: flex-start;
+  display: inline-block;
   outline: none;
 }
 
@@ -67,10 +67,10 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
 exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
 <DocumentFragment>
   .c0 {
-  display: inline-block;
   -webkit-align-self: flex-start;
   -ms-flex-item-align: start;
   align-self: flex-start;
+  display: inline-block;
   outline: none;
 }
 
