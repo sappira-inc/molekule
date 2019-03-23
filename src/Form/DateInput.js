@@ -8,7 +8,11 @@ import { getNextCursorPosition, isDeletingCharacter } from '../utils';
 const formatDate = (datePattern, dateString = '') => {
   const formatter = new DateFormatter(datePattern);
 
+  // Process our date string, bounding values between 1 and 31, and prepending 0s for
+  // for single digit blocks that can't have 2 numbers, e.g. 5
   let tmpDate = formatter.getValidatedDate(`${dateString}`);
+
+  // Blocks look something like [2, 2, 4], telling us how long each chunk should be
   return formatter.getBlocks().reduce((str, blockLength, index, blockArr) => {
     const block = tmpDate.substring(0, blockLength);
     if (!block) {
