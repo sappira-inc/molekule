@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<DateInput /> snapshot 1`] = `
+exports[`<PhoneInput /> snapshot 1`] = `
 <DocumentFragment>
   .c1 {
   position: relative;

@@ -3,24 +3,25 @@ import PropTypes from 'prop-types';
 import DateFormatter from 'cleave.js/src/shortcuts/DateFormatter';
 import Input from './Input';
 import { createEasyInput } from './EasyInput';
-import { getNextCursorPosition } from '../utils';
+import { getNextCursorPosition, isDeletingCharacter } from '../utils';
 
-const formatDateString = (datePattern, dateString) => {
+const formatDateString = (datePattern, dateString = '') => {
   const formatter = new DateFormatter(datePattern);
 
   let tmpDate = formatter.getValidatedDate(`${dateString}`);
-  return formatter.getBlocks().reduce((str, blockLength, index) => {
+  return formatter.getBlocks().reduce((str, blockLength, index, blockArr) => {
     const block = tmpDate.substring(0, blockLength);
     if (!block) {
       return str;
     }
     tmpDate = tmpDate.substring(blockLength);
-    return `${str}${index !== 0 ? '/' : ''}${block}`;
+    const shouldAppendSlash = block.length === blockLength && index < blockArr.length - 1;
+    return `${str}${block}${shouldAppendSlash ? '/' : ''}`;
   }, '');
 };
 
 function DateInput({ forwardedRef, value: propValue, onChange, datePattern, ...inputProps }) {
-  const [currentValue, setValue] = useState(propValue || '');
+  const [currentValue, setValue] = useState(formatDateString(datePattern, propValue));
   const ref = forwardedRef || useRef();
   const cursorPosition = useRef(currentValue.length);
 
@@ -36,17 +37,21 @@ function DateInput({ forwardedRef, value: propValue, onChange, datePattern, ...i
     }
   }, [currentValue]);
 
-  const handleChange = (name, val, event) => {
-    const formattedValue = formatDateString(datePattern, val);
+  const handleChange = (name, newValue, event) => {
+    const isDeletingSlash = isDeletingCharacter(
+      '/',
+      newValue,
+      currentValue,
+      event.target.selectionEnd || newValue.length
+    );
+    const formattedValue = isDeletingSlash ? newValue : formatDateString(datePattern, newValue);
 
-    if (formattedValue !== currentValue) {
-      cursorPosition.current = getNextCursorPosition(event.target.selectionEnd, formattedValue, currentValue);
+    cursorPosition.current = getNextCursorPosition(event.target.selectionEnd, formattedValue, currentValue);
 
-      setValue(formattedValue);
+    setValue(formattedValue);
 
-      if (onChange) {
-        onChange(name, formattedValue);
-      }
+    if (onChange) {
+      onChange(name, formattedValue);
     }
   };
 

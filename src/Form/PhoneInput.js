@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import { AsYouType } from 'libphonenumber-js';
 import Input from './Input';
 import { createEasyInput } from './EasyInput';
-import { getNextCursorPosition } from '../utils';
+import { getNextCursorPosition, isDeletingCharacter } from '../utils';
 
-const formatPhoneNumber = (countryCode, newValue, oldValue = '') => {
+const formatPhoneNumber = (countryCode, value = '') => {
   const formatter = new AsYouType(countryCode);
-  // Don't format if we're deleting the trailing paren; formatter adds a paren to "(408"
-  const isDeletingParen = oldValue && oldValue.substr(-1) === ')' && newValue.length < oldValue.length;
-  return isDeletingParen ? newValue : formatter.input(newValue.replace(/\D/g, ''));
+  return formatter.input(value.replace(/\D/g, ''));
 };
 
 function PhoneInput({ forwardedRef, value: propValue, onChange, countryCode, ...inputProps }) {
@@ -31,16 +29,20 @@ function PhoneInput({ forwardedRef, value: propValue, onChange, countryCode, ...
   }, [currentValue]);
 
   const handleChange = (name, newValue, event) => {
-    const formattedValue = format(newValue, currentValue);
+    const isDeletingParen = isDeletingCharacter(
+      ')',
+      newValue,
+      currentValue,
+      event.target.selectionEnd || currentValue.length
+    );
+    const formattedValue = isDeletingParen ? newValue : format(newValue, currentValue);
 
-    if (formattedValue !== currentValue) {
-      cursorPosition.current = getNextCursorPosition(event.target.selectionEnd, formattedValue, currentValue);
+    cursorPosition.current = getNextCursorPosition(event.target.selectionEnd, formattedValue, currentValue);
 
-      setValue(formattedValue);
+    setValue(formattedValue);
 
-      if (onChange) {
-        onChange(name, formattedValue);
-      }
+    if (onChange) {
+      onChange(name, formattedValue);
     }
   };
 

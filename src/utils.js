@@ -83,3 +83,11 @@ export const getNextCursorPosition = (cursorPos, newValue, oldValue) => {
 
   return nextPosition;
 };
+
+export const isDeletingCharacter = (char, newValue, oldValue, cursorPos) =>
+  // We're going backwords
+  newValue.length < oldValue.length &&
+  // String ends with slash
+  oldValue.substr(-1) === char &&
+  // Cursor is at end of string
+  cursorPos >= newValue.length;
