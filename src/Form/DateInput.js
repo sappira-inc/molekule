@@ -5,7 +5,7 @@ import Input from './Input';
 import { createEasyInput } from './EasyInput';
 import { getNextCursorPosition, isDeletingCharacter } from '../utils';
 
-const formatDateString = (datePattern, dateString = '') => {
+const formatDate = (datePattern, dateString = '') => {
   const formatter = new DateFormatter(datePattern);
 
   let tmpDate = formatter.getValidatedDate(`${dateString}`);
@@ -21,13 +21,13 @@ const formatDateString = (datePattern, dateString = '') => {
 };
 
 function DateInput({ forwardedRef, value: propValue, onChange, datePattern, ...inputProps }) {
-  const [currentValue, setValue] = useState(formatDateString(datePattern, propValue));
+  const [currentValue, setValue] = useState(formatDate(datePattern, propValue));
   const ref = forwardedRef || useRef();
   const cursorPosition = useRef(currentValue.length);
 
   useEffect(() => {
     if (propValue !== currentValue) {
-      setValue(formatDateString(datePattern, propValue));
+      setValue(formatDate(datePattern, propValue));
     }
   }, [propValue]);
 
@@ -44,7 +44,7 @@ function DateInput({ forwardedRef, value: propValue, onChange, datePattern, ...i
       currentValue,
       event.target.selectionEnd || newValue.length
     );
-    const formattedValue = isDeletingSlash ? newValue : formatDateString(datePattern, newValue);
+    const formattedValue = isDeletingSlash ? newValue : formatDate(datePattern, newValue);
 
     cursorPosition.current = getNextCursorPosition(event.target.selectionEnd, formattedValue, currentValue);
 

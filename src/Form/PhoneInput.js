@@ -18,7 +18,7 @@ function PhoneInput({ forwardedRef, value: propValue, onChange, countryCode, ...
 
   useEffect(() => {
     if (propValue !== currentValue) {
-      setValue(formatPhoneNumber(countryCode, propValue, currentValue));
+      setValue(format(propValue, currentValue));
     }
   }, [propValue]);
 

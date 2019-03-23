@@ -1,6 +1,7 @@
 import React from 'react';
 import { renderWithTheme, fireEvent, act } from '../../test/utils';
 import PhoneInput from './PhoneInput';
+import ThemeProvider from '../ThemeProvider';
 
 describe('<PhoneInput />', () => {
   const renderInput = props => {
@@ -43,5 +44,15 @@ describe('<PhoneInput />', () => {
 
     updateInputValue(input, '(408');
     expect(input.value).toEqual('(408');
+  });
+
+  test('updates internally when value prop changes', () => {
+    const { input, rerender } = renderInput({ value: '(408)' });
+    rerender(
+      <ThemeProvider>
+        <PhoneInput placeholder="input" value="4087213456" />
+      </ThemeProvider>
+    );
+    expect(input.value).toEqual('(408) 721-3456');
   });
 });

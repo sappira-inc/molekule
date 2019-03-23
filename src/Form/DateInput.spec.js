@@ -1,6 +1,7 @@
 import React from 'react';
 import { renderWithTheme, fireEvent, act } from '../../test/utils';
 import DateInput from './DateInput';
+import ThemeProvider from '../ThemeProvider';
 
 describe('<DateInput />', () => {
   const renderInput = props => {
@@ -61,5 +62,15 @@ describe('<DateInput />', () => {
 
     updateInputValue(input, '12/05');
     expect(input.value).toEqual('12/05');
+  });
+
+  test('updates internally when value prop changes', () => {
+    const { input, rerender } = renderInput({ value: '01/05' });
+    rerender(
+      <ThemeProvider>
+        <DateInput placeholder="input" value="01/09/1990" />
+      </ThemeProvider>
+    );
+    expect(input.value).toEqual('01/09/1990');
   });
 });
