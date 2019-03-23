@@ -181,7 +181,7 @@ class Input extends Component {
 
   onChange = e => {
     this.setState({ value: e.target.value });
-    this.props.onChange(e.target.name, e.target.value);
+    this.props.onChange(e.target.name, e.target.value, e);
   };
 
   handleAutogrowRef = node => {

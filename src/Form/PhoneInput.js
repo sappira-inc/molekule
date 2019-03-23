@@ -1,35 +1,50 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { AsYouType } from 'libphonenumber-js';
 import Input from './Input';
 import { createEasyInput } from './EasyInput';
+import { getNextCursorPosition } from '../utils';
 
-function PhoneInput({ value: passedValue, onChange, countryCode, ...inputProps }) {
+const formatPhoneNumber = (countryCode, newValue, oldValue = '') => {
   const formatter = new AsYouType(countryCode);
+  // Don't format if we're deleting the trailing paren; formatter adds a paren to "(408"
+  const isDeletingParen = oldValue && oldValue.substr(-1) === ')' && newValue.length < oldValue.length;
+  return isDeletingParen ? newValue : formatter.input(newValue.replace(/\D/g, ''));
+};
 
-  const formatPhoneNumber = (newVal, prevVal = '') => {
-    const isDeletingParen = prevVal && prevVal.substr(-1) === ')' && newVal.length < prevVal.length;
-    const output = isDeletingParen ? newVal : formatter.input(newVal);
-    formatter.reset();
-    return output;
-  };
-
-  const [value, setValue] = useState(formatPhoneNumber(passedValue));
-
-  const handleInputChange = (name, newVal) => {
-    // Formatter adds a paren to "(408" so we skip formatting if current value has the paren
-    const formatted = formatPhoneNumber(newVal, value);
-    setValue(formatted);
-    onChange(name, newVal);
-  };
+function PhoneInput({ forwardedRef, value: propValue, onChange, countryCode, ...inputProps }) {
+  const format = (newValue, oldValue) => formatPhoneNumber(countryCode, newValue, oldValue);
+  const [currentValue, setValue] = useState(format(propValue));
+  const ref = forwardedRef || useRef();
+  const cursorPosition = useRef(currentValue.length);
 
   useEffect(() => {
-    if (passedValue !== value) {
-      setValue(formatPhoneNumber(passedValue, value));
+    if (propValue !== currentValue) {
+      setValue(formatPhoneNumber(countryCode, propValue, currentValue));
     }
-  }, [passedValue]);
+  }, [propValue]);
 
-  return <Input value={value} onChange={handleInputChange} {...inputProps} />;
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.setSelectionRange(cursorPosition.current, cursorPosition.current);
+    }
+  }, [currentValue]);
+
+  const handleChange = (name, newValue, event) => {
+    const formattedValue = format(newValue, currentValue);
+
+    if (formattedValue !== currentValue) {
+      cursorPosition.current = getNextCursorPosition(event.target.selectionEnd, formattedValue, currentValue);
+
+      setValue(formattedValue);
+
+      if (onChange) {
+        onChange(name, formattedValue);
+      }
+    }
+  };
+
+  return <Input forwardedRef={ref} value={currentValue} onChange={handleChange} {...inputProps} />;
 }
 
 PhoneInput.propTypes = {

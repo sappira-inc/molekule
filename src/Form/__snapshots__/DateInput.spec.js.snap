@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Dropdown /> only renders trigger on mount 1`] = `
+<DocumentFragment>
+  .c1 {
+  position: relative;
+  -webkit-transition: 175ms;
+  transition: 175ms;
+}
+
+.c1 + .c0 {
+  margin-top: 1rem;
+}
+
+.c2 {
+  position: relative;
+}
+
+.c3 {
+  border: 1px solid #DEE0E4;
+  height: 36px;
+  display: block;
+  outline: none;
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  -webkit-transition: 250ms all;
+  transition: 250ms all;
+  -webkit-appearance: none;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.c3:hover,
+.c3:focus,
+.c3:active {
+  border-color: #8E97A7;
+}
+
+.c3::-webkit-input-placeholder {
+  color: #8E97A7;
+}
+
+.c3::-moz-placeholder {
+  color: #8E97A7;
+}
+
+.c3:-ms-input-placeholder {
+  color: #8E97A7;
+}
+
+.c3::placeholder {
+  color: #8E97A7;
+}
+
+.c3[disabled] {
+  opacity: 0.65;
+}
+
+<div
+    class="c0 re-field c1"
+  >
+    <div
+      class="re-input-container c2"
+    >
+      <input
+        class="re-input c3"
+        placeholder="Input"
+        rows="3"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

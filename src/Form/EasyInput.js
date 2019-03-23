@@ -12,18 +12,19 @@ function EasyInput({ name, Component, ...props }) {
   const state = useContext(Context);
 
   if (!state) {
-    return <PureInput name={name} Component={Component} {...props} />
+    return <PureInput name={name} Component={Component} {...props} />;
   }
 
   const value = state.values[name];
-  const defaultValue = Component.defaultProps && Component.defaultProps.defaultValue !== undefined
-    ? Component.defaultProps.defaultValue
-    : '';
+  const defaultValue =
+    Component.defaultProps && Component.defaultProps.defaultValue !== undefined
+      ? Component.defaultProps.defaultValue
+      : '';
 
   return (
     <PureInput
       name={name}
-      value={value !== undefined ? value : defaultValue }
+      value={value !== undefined ? value : defaultValue}
       error={state.errors[name]}
       onChange={state.onChange}
       onBlur={state.onBlur}
@@ -35,7 +36,6 @@ function EasyInput({ name, Component, ...props }) {
 }
 
 export const createEasyInput = Component =>
-  forwardRef((props, ref) =>
-    <EasyInput Component={Component} forwardedRef={ref} {...props} />);
+  forwardRef((props, ref) => <EasyInput Component={Component} forwardedRef={ref} {...props} />);
 
 export default EasyInput;
