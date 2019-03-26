@@ -5,8 +5,8 @@ import { createComponent } from '../utils';
 const Icon = createComponent({
   name: 'Icon',
   tag: 'i',
-  props: ({ name, className }) => ({
-    className: `${Icon.getClassName(name)} ${className || ''}`,
+  props: ({ name }) => ({
+    passedClassName: Icon.getClassName(name),
   }),
   style: ({ theme, size, color, disabled }) => {
     const colorFromTheme = theme.colors[color];

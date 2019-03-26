@@ -13,8 +13,10 @@ export const getComponentVariant = (theme, componentName, variant) => {
 
 export const getComponentStyle = componentName => themeGet(`components.${componentName}.style`);
 
-export const getComponentClassName = ({ className, theme: { classPrefix }, variant }, name) =>
-  `${className || ''} ${classPrefix}-${name} ${variant ? `${classPrefix}-${name}-${variant}` : ''}`.trim();
+export const getComponentClassName = ({ className, passedClassName, theme: { classPrefix }, variant }, name) =>
+  `${className || ''} ${passedClassName || ''} ${classPrefix}-${name} ${
+    variant ? `${classPrefix}-${name}-${variant}` : ''
+  }`.trim();
 
 export const createComponent = ({ name, tag = 'div', as, style, props: baseProps = () => ({}) }) => {
   const component = as ? styled(as) : styled[tag];
