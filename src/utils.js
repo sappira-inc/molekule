@@ -13,25 +13,23 @@ export const getComponentVariant = (theme, componentName, variant) => {
 
 export const getComponentStyle = componentName => themeGet(`components.${componentName}.style`);
 
-const getComponentClassName = ({ className, passedClassName, theme: { classPrefix }, variant }, name) =>
-  `${className || ''} ${passedClassName || ''} ${classPrefix}-${name} ${
-    variant ? `${classPrefix}-${name}-${variant}` : ''
-  }`
-    .split(' ')
-    .filter(Boolean)
-    .join(' ');
+const getComponentClassName = ({ baseClassName, theme: { classPrefix }, variant }, name) =>
+  `${baseClassName || ''} ${classPrefix}-${name} ${variant ? `${classPrefix}-${name}-${variant}` : ''}`.trim();
 
 export const createComponent = ({ name, tag = 'div', as, style, props: baseProps = () => ({}) }) => {
   const component = as ? styled(as) : styled[tag];
 
   return component.attrs(props => {
-    const resolvedProps = {
-      ...baseProps(props),
-      ...props,
+    const resolvedProps = { ...baseProps(props), ...props };
+
+    const finalProps = {
+      ...resolvedProps,
+      baseClassName: get(resolvedProps, 'baseClassName', props.className),
     };
+
     return {
       ...resolvedProps,
-      className: getComponentClassName(resolvedProps, kebabCase(name)),
+      className: getComponentClassName(finalProps, kebabCase(name)),
     };
   })`
     ${style}
