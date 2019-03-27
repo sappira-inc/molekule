@@ -1,4 +1,4 @@
-import { get, kebabCase, flow } from 'lodash';
+import { get, kebabCase } from 'lodash';
 import styled from 'styled-components';
 
 export const themeGet = (lookup, fallback) => ({ theme } = {}) => get(theme, lookup, fallback);
@@ -13,17 +13,13 @@ export const getComponentVariant = (theme, componentName, variant) => {
 
 export const getComponentStyle = componentName => themeGet(`components.${componentName}.style`);
 
-const getComponentClassName = flow(
-  ({ className, passedClassName, theme: { classPrefix }, variant }, name) =>
-    `${className || ''} ${passedClassName || ''} ${classPrefix}-${name} ${
-      variant ? `${classPrefix}-${name}-${variant}` : ''
-    }`,
-  string =>
-    string
-      .split(' ')
-      .filter(Boolean)
-      .join(' ')
-);
+const getComponentClassName = ({ className, passedClassName, theme: { classPrefix }, variant }, name) =>
+  `${className || ''} ${passedClassName || ''} ${classPrefix}-${name} ${
+    variant ? `${classPrefix}-${name}-${variant}` : ''
+  }`
+    .split(' ')
+    .filter(Boolean)
+    .join(' ');
 
 export const createComponent = ({ name, tag = 'div', as, style, props: baseProps = () => ({}) }) => {
   const component = as ? styled(as) : styled[tag];
