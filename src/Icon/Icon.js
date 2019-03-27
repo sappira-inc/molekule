@@ -6,7 +6,7 @@ const Icon = createComponent({
   name: 'Icon',
   tag: 'i',
   props: ({ name }) => ({
-    baseClassName: Icon.getClassName(name),
+    className: Icon.getClassName(name),
   }),
   style: ({ theme, size, color, disabled }) => {
     const colorFromTheme = theme.colors[color];
