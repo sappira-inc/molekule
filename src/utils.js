@@ -22,8 +22,8 @@ export const createComponent = ({ name, tag = 'div', as, style, props: getBasePr
   return component.attrs(props => {
     const baseProps = getBaseProps(props);
     const finalProps = {
-      ...props,
       ...baseProps,
+      ...props,
       className: baseProps.className || props.className,
     };
 
