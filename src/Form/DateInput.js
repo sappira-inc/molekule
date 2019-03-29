@@ -45,15 +45,11 @@ function DateInput({ forwardedRef, value: propValue, onChange, datePattern, ...i
   }, [currentValue]);
 
   const handleChange = (name, newValue, event) => {
-    const isDeletingSlash = isDeletingCharacter(
-      '/',
-      newValue,
-      currentValue,
-      event.target.selectionEnd || newValue.length
-    );
+    const cursorPos = event.target.selectionEnd || newValue.length;
+    const isDeletingSlash = isDeletingCharacter('/', newValue, currentValue, cursorPos);
     const formattedValue = isDeletingSlash ? newValue : formatDate(datePattern, newValue);
 
-    cursorPosition.current = getNextCursorPosition(event.target.selectionEnd, formattedValue, currentValue);
+    cursorPosition.current = getNextCursorPosition(cursorPos, formattedValue, currentValue);
 
     setValue(formattedValue);
 
