@@ -84,10 +84,10 @@ export const getNextCursorPosition = (cursorPos, newValue, oldValue) => {
   return nextPosition;
 };
 
-export const isDeletingCharacter = (char, newValue, oldValue, cursorPos) =>
-  // String ends with provided character
-  oldValue.substr(-1) === char &&
-  // We're going backwords
-  newValue.length < oldValue.length &&
-  // Cursor is at end of string
-  cursorPos >= newValue.length;
+export const isDeletingCharacter = (char, newValue, oldValue, cursorPos) => {
+  const currentCharacter = oldValue.charAt(cursorPos);
+  const isCharacter = char instanceof RegExp ? char.test(currentCharacter) : char === currentCharacter;
+
+  // Character before our cursor matches test and new value is shorter than old value
+  return isCharacter && newValue.length < oldValue.length;
+};

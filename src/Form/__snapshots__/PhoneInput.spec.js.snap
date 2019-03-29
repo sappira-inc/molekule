@@ -67,7 +67,7 @@ exports[`<PhoneInput /> snapshot 1`] = `
         class="re-input c3"
         placeholder="Input"
         rows="3"
-        type="text"
+        type="tel"
         value=""
       />
     </div>

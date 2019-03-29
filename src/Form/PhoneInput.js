@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { AsYouType } from 'libphonenumber-js';
+import { AsYouType, isSupportedCountry, getCountryCallingCode, parseDigits } from 'libphonenumber-js/min';
+import examplePhoneNumbers from 'libphonenumber-js/examples.mobile.json';
 import Input from './Input';
 import { createEasyInput } from './EasyInput';
 import { getNextCursorPosition, isDeletingCharacter } from '../utils';
 
 const formatPhoneNumber = (countryCode, value = '') => {
   const formatter = new AsYouType(countryCode);
-  return formatter.input(value.replace(/\D/g, ''));
+  return formatter.input(parseDigits(value));
 };
 
 function PhoneInput({ forwardedRef, value: propValue, onChange, countryCode, ...inputProps }) {
@@ -15,6 +16,7 @@ function PhoneInput({ forwardedRef, value: propValue, onChange, countryCode, ...
   const [currentValue, setValue] = useState(format(propValue));
   const ref = forwardedRef || useRef();
   const cursorPosition = useRef(currentValue.length);
+  const countryCodeSupported = isSupportedCountry(countryCode);
 
   useEffect(() => {
     if (propValue !== currentValue) {
@@ -26,18 +28,30 @@ function PhoneInput({ forwardedRef, value: propValue, onChange, countryCode, ...
     if (ref.current) {
       ref.current.setSelectionRange(cursorPosition.current, cursorPosition.current);
     }
-  }, [currentValue]);
+  }, [currentValue, cursorPosition.current]);
 
   const handleChange = (name, newValue, event) => {
-    const isDeletingParen = isDeletingCharacter(
-      ')',
-      newValue,
-      currentValue,
-      event.target.selectionEnd || currentValue.length
-    );
-    const formattedValue = isDeletingParen ? newValue : format(newValue, currentValue);
+    let value = newValue;
+    const cursorPos = event.target.selectionEnd || value.length;
+    const isDeletingNonDigit = isDeletingCharacter(/\D/, value, currentValue, cursorPos);
 
-    cursorPosition.current = getNextCursorPosition(event.target.selectionEnd, formattedValue, currentValue);
+    if (!isDeletingNonDigit && countryCodeSupported) {
+      const countryCallingCode = getCountryCallingCode(countryCode);
+      const examplePhoneNumber = examplePhoneNumbers[countryCode];
+      const parsedNewValue = parseDigits(value);
+      const beginsWithCountryCode = parsedNewValue.substr(0, countryCallingCode.length) === countryCallingCode;
+      const maxLength = beginsWithCountryCode
+        ? countryCallingCode.length + examplePhoneNumber.length
+        : examplePhoneNumber.length;
+
+      if (parsedNewValue.length > maxLength) {
+        value = currentValue;
+      }
+    }
+
+    const formattedValue = isDeletingNonDigit ? value : format(value, currentValue);
+
+    cursorPosition.current = getNextCursorPosition(cursorPos, formattedValue, currentValue);
 
     setValue(formattedValue);
 
@@ -46,7 +60,7 @@ function PhoneInput({ forwardedRef, value: propValue, onChange, countryCode, ...
     }
   };
 
-  return <Input forwardedRef={ref} value={currentValue} onChange={handleChange} {...inputProps} />;
+  return <Input type="tel" forwardedRef={ref} value={currentValue} onChange={handleChange} {...inputProps} />;
 }
 
 PhoneInput.propTypes = {

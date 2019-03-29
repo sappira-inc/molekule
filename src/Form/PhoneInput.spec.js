@@ -55,4 +55,10 @@ describe('<PhoneInput />', () => {
     );
     expect(input.value).toEqual('(408) 721-3456');
   });
+
+  test('handles country codes', () => {
+    const { input } = renderInput({ value: '14088675309' });
+
+    expect(input.value).toEqual('1 (408) 867-5309');
+  });
 });
