@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import Field from './Field';
@@ -36,7 +36,7 @@ const SelectContainer = createComponent({
   `,
 });
 
-const IconContain = styled(Flex)`
+const IconContainer = styled(Flex)`
   position: absolute;
   height: 100%;
   right: 0;
@@ -96,6 +96,12 @@ class Select extends Component {
     value: '',
   };
 
+  innerRef = createRef();
+
+  get ref() {
+    return this.props.forwardedRef || this.innerRef;
+  }
+
   handleChange = e => {
     this.setState({ value: e.target.value });
     this.props.onChange(e.target.name, e.target.value);
@@ -113,7 +119,13 @@ class Select extends Component {
       <Field>
         {label && <Label size={size}>{label}</Label>}
         <SelectContainer value={value} size={size}>
-          <SelectInput name={name} value={value} onChange={this.handleChange} onBlur={this.handleBlur}>
+          <SelectInput
+            {...props}
+            ref={this.ref}
+            name={name}
+            value={value}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}>
             <SelectOption value="">{placeholder || 'Select an option...'}</SelectOption>
             {options.map(option => (
               <SelectOption key={option.value} value={option.value}>
@@ -121,9 +133,9 @@ class Select extends Component {
               </SelectOption>
             ))}
           </SelectInput>
-          <IconContain aria-hidden="true" mr={2} alignItems="center" justifyContent="center">
+          <IconContainer aria-hidden="true" mr={2} alignItems="center" justifyContent="center">
             <Icon name="chevron-down" size={18} />
-          </IconContain>
+          </IconContainer>
         </SelectContainer>
         {error && <FormError>{error}</FormError>}
       </Field>
