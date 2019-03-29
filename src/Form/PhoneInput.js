@@ -49,7 +49,7 @@ function PhoneInput({ forwardedRef, value: propValue, onChange, countryCode, ...
     // @FIXME: Looking at newValue.length is jank for testing backspaces because we can't trigger a backspace event
     // programmatically
     const cursorPos = typeof event.target.selectionStart === 'number' ? event.target.selectionStart : newValue.length;
-    const isDeletingNonDigit = isDeletingCharacter(/\D/, newValue, currentValue, cursorPos);
+    const isDeletingNonDigit = isDeletingCharacter(/\D/, currentValue, newValue, cursorPos);
     const nextValue = isDeletingNonDigit ? newValue : format(currentValue, newValue);
 
     if (nextValue === currentValue) {
@@ -61,7 +61,7 @@ function PhoneInput({ forwardedRef, value: propValue, onChange, countryCode, ...
         cursorPosition.current = nextCursorPos;
       });
     } else {
-      cursorPosition.current = getNextCursorPosition(cursorPos, nextValue, currentValue);
+      cursorPosition.current = getNextCursorPosition(cursorPos, currentValue, nextValue);
     }
 
     setValue(nextValue);

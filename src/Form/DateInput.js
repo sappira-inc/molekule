@@ -47,15 +47,15 @@ function DateInput({ forwardedRef, value: propValue, delimiter, pattern, onChang
 
   const handleChange = (name, newValue, event) => {
     const cursorPos = event.target.selectionEnd || newValue.length;
-    const isDeletingDelimiter = isDeletingCharacter(delimiter, newValue, currentValue, cursorPos);
-    const formattedValue = isDeletingDelimiter ? newValue : format(newValue);
+    const isDeletingDelimiter = isDeletingCharacter(delimiter, currentValue, newValue, cursorPos);
+    const nextValue = isDeletingDelimiter ? newValue : format(newValue);
 
-    cursorPosition.current = getNextCursorPosition(cursorPos, formattedValue, currentValue);
+    cursorPosition.current = getNextCursorPosition(cursorPos, currentValue, nextValue);
 
-    setValue(formattedValue);
+    setValue(nextValue);
 
     if (onChange) {
-      onChange(name, formattedValue);
+      onChange(name, nextValue);
     }
   };
 

@@ -84,7 +84,7 @@ export const getNextCursorPosition = (cursorPos, newValue, oldValue) => {
   return nextPosition;
 };
 
-export const isDeletingCharacter = (char, newValue, oldValue, cursorPos) => {
+export const isDeletingCharacter = (char, oldValue, newValue, cursorPos) => {
   const currentCharacter = oldValue.charAt(cursorPos);
   const isCharacter = char instanceof RegExp ? char.test(currentCharacter) : char === currentCharacter;
 
