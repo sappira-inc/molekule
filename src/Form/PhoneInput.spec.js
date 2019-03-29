@@ -61,4 +61,18 @@ describe('<PhoneInput />', () => {
 
     expect(input.value).toEqual('1 (408) 867-5309');
   });
+
+  describe('truncates a number that is too long', () => {
+    test('with country code', () => {
+      const { input } = renderInput({ value: '1408867530903133' });
+
+      expect(input.value).toEqual('1 (408) 867-5309');
+    });
+
+    test('without country code', () => {
+      const { input } = renderInput({ value: '408867530903133' });
+
+      expect(input.value).toEqual('(408) 867-5309');
+    });
+  });
 });

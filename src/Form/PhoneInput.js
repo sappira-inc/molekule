@@ -6,61 +6,72 @@ import Input from './Input';
 import { createEasyInput } from './EasyInput';
 import { getNextCursorPosition, isDeletingCharacter } from '../utils';
 
-const formatPhoneNumber = (countryCode, value = '') => {
+const formatPhoneNumber = ({ countryCode, countryCodeSupported, oldValue = '', newValue = '' }) => {
   const formatter = new AsYouType(countryCode);
-  return formatter.input(parseDigits(value));
+  let value = parseDigits(newValue);
+
+  if (countryCodeSupported) {
+    const countryCallingCode = getCountryCallingCode(countryCode);
+    const examplePhoneNumber = examplePhoneNumbers[countryCode];
+    const beginsWithCountryCode = value.substr(0, countryCallingCode.length) === countryCallingCode;
+    const maxLength = beginsWithCountryCode
+      ? countryCallingCode.length + examplePhoneNumber.length
+      : examplePhoneNumber.length;
+
+    if (value.length > maxLength) {
+      value = parseDigits(oldValue).substr(0, maxLength);
+    }
+  }
+
+  return formatter.input(value);
 };
 
 function PhoneInput({ forwardedRef, value: propValue, onChange, countryCode, ...inputProps }) {
-  const format = (newValue, oldValue) => formatPhoneNumber(countryCode, newValue, oldValue);
-  const [currentValue, setValue] = useState(format(propValue));
-  const ref = forwardedRef || useRef();
-  const cursorPosition = useRef(currentValue.length);
   const countryCodeSupported = isSupportedCountry(countryCode);
+  const format = (oldValue, newValue) => formatPhoneNumber({ countryCode, countryCodeSupported, oldValue, newValue });
+  const [currentValue, setValue] = useState(format(propValue, propValue));
+  const inputRef = forwardedRef || useRef();
+  const cursorPosition = useRef(currentValue.length);
 
   useEffect(() => {
     if (propValue !== currentValue) {
-      setValue(format(propValue, currentValue));
+      setValue(format(currentValue, propValue));
     }
   }, [propValue]);
 
   useEffect(() => {
-    if (ref.current) {
-      ref.current.setSelectionRange(cursorPosition.current, cursorPosition.current);
+    if (inputRef.current) {
+      inputRef.current.setSelectionRange(cursorPosition.current, cursorPosition.current);
     }
   }, [currentValue, cursorPosition.current]);
 
   const handleChange = (name, newValue, event) => {
-    let value = newValue;
-    const cursorPos = event.target.selectionEnd || value.length;
-    const isDeletingNonDigit = isDeletingCharacter(/\D/, value, currentValue, cursorPos);
+    // @FIXME: Looking at newValue.length is jank for testing backspaces because we can't trigger a backspace event
+    // programmatically
+    const cursorPos = typeof event.target.selectionStart === 'number' ? event.target.selectionStart : newValue.length;
+    const isDeletingNonDigit = isDeletingCharacter(/\D/, newValue, currentValue, cursorPos);
+    const nextValue = isDeletingNonDigit ? newValue : format(currentValue, newValue);
 
-    if (!isDeletingNonDigit && countryCodeSupported) {
-      const countryCallingCode = getCountryCallingCode(countryCode);
-      const examplePhoneNumber = examplePhoneNumbers[countryCode];
-      const parsedNewValue = parseDigits(value);
-      const beginsWithCountryCode = parsedNewValue.substr(0, countryCallingCode.length) === countryCallingCode;
-      const maxLength = beginsWithCountryCode
-        ? countryCallingCode.length + examplePhoneNumber.length
-        : examplePhoneNumber.length;
-
-      if (parsedNewValue.length > maxLength) {
-        value = currentValue;
-      }
+    if (nextValue === currentValue) {
+      // The DOM thinks we're adding a character but we actually don't after formatting,
+      // so we need to subtract 1 from the next cursor position and reset to where we just were
+      setTimeout(() => {
+        const nextCursorPos = cursorPos - 1;
+        inputRef.current.setSelectionRange(nextCursorPos, nextCursorPos);
+        cursorPosition.current = nextCursorPos;
+      });
+    } else {
+      cursorPosition.current = getNextCursorPosition(cursorPos, nextValue, currentValue);
     }
 
-    const formattedValue = isDeletingNonDigit ? value : format(value, currentValue);
-
-    cursorPosition.current = getNextCursorPosition(cursorPos, formattedValue, currentValue);
-
-    setValue(formattedValue);
+    setValue(nextValue);
 
     if (onChange) {
-      onChange(name, formattedValue);
+      onChange(name, nextValue);
     }
   };
 
-  return <Input type="tel" forwardedRef={ref} value={currentValue} onChange={handleChange} {...inputProps} />;
+  return <Input type="tel" forwardedRef={inputRef} value={currentValue} onChange={handleChange} {...inputProps} />;
 }
 
 PhoneInput.propTypes = {
