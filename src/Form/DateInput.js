@@ -19,7 +19,10 @@ const formatDate = (datePattern, dateString = '') => {
       return str;
     }
     tmpDate = tmpDate.substring(blockLength);
+
+    // Append a slash if our block is complete and we're not at the last block
     const shouldAppendSlash = block.length === blockLength && index < blockArr.length - 1;
+
     return `${str}${block}${shouldAppendSlash ? '/' : ''}`;
   }, '');
 };
