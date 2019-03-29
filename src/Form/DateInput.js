@@ -20,7 +20,7 @@ const formatDate = (pattern, delimiter, dateString = '') => {
     }
     tmpDate = tmpDate.substring(blockLength);
 
-    // Append a slash if our block is complete and we're not at the last block
+    // Append the delimiter if our block is complete and we're not at the last block
     const shouldAppendDelimiter = block.length === blockLength && index < blockArr.length - 1;
 
     return `${str}${block}${shouldAppendDelimiter ? delimiter : ''}`;

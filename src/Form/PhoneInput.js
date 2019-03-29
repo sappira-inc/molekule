@@ -31,7 +31,7 @@ function PhoneInput({ forwardedRef, value: propValue, onChange, countryCode, ...
   const format = (oldValue, newValue) => formatPhoneNumber({ countryCode, countryCodeSupported, oldValue, newValue });
   const [currentValue, setValue] = useState(format(propValue, propValue));
   const inputRef = forwardedRef || useRef();
-  const cursorPosition = useRef(currentValue.length);
+  const cursorPosition = useRef();
 
   useEffect(() => {
     if (propValue !== currentValue) {
@@ -40,7 +40,7 @@ function PhoneInput({ forwardedRef, value: propValue, onChange, countryCode, ...
   }, [propValue]);
 
   useEffect(() => {
-    if (inputRef.current) {
+    if (inputRef.current && typeof cursorPosition.current === 'number') {
       inputRef.current.setSelectionRange(cursorPosition.current, cursorPosition.current);
     }
   }, [currentValue, cursorPosition.current]);

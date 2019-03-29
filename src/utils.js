@@ -73,7 +73,7 @@ export const findNextFocusableElement = (root, currentNode) => {
   return treeWalker.currentNode;
 };
 
-export const getNextCursorPosition = (cursorPos, newValue, oldValue) => {
+export const getNextCursorPosition = (cursorPos, oldValue, newValue) => {
   const cursorDiff = newValue.length - oldValue.length;
   let nextPosition = cursorPos;
 
