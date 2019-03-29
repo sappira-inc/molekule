@@ -5,8 +5,8 @@ import Input from './Input';
 import { createEasyInput } from './EasyInput';
 import { getNextCursorPosition, isDeletingCharacter } from '../utils';
 
-const formatDate = (datePattern, dateString = '') => {
-  const formatter = new DateFormatter(datePattern);
+const formatDate = (pattern, delimiter, dateString = '') => {
+  const formatter = new DateFormatter(pattern);
 
   // Process our date string, bounding values between 1 and 31, and prepending 0s for
   // for single digit blocks that can't have 2 numbers, e.g. 5
@@ -21,20 +21,21 @@ const formatDate = (datePattern, dateString = '') => {
     tmpDate = tmpDate.substring(blockLength);
 
     // Append a slash if our block is complete and we're not at the last block
-    const shouldAppendSlash = block.length === blockLength && index < blockArr.length - 1;
+    const shouldAppendDelimiter = block.length === blockLength && index < blockArr.length - 1;
 
-    return `${str}${block}${shouldAppendSlash ? '/' : ''}`;
+    return `${str}${block}${shouldAppendDelimiter ? delimiter : ''}`;
   }, '');
 };
 
-function DateInput({ forwardedRef, value: propValue, onChange, datePattern, ...inputProps }) {
-  const [currentValue, setValue] = useState(formatDate(datePattern, propValue));
+function DateInput({ forwardedRef, value: propValue, delimiter, pattern, onChange, ...inputProps }) {
+  const format = value => formatDate(pattern, delimiter, value);
+  const [currentValue, setValue] = useState(format(propValue));
   const ref = forwardedRef || useRef();
   const cursorPosition = useRef(currentValue.length);
 
   useEffect(() => {
     if (propValue !== currentValue) {
-      setValue(formatDate(datePattern, propValue));
+      setValue(format(propValue));
     }
   }, [propValue]);
 
@@ -46,8 +47,8 @@ function DateInput({ forwardedRef, value: propValue, onChange, datePattern, ...i
 
   const handleChange = (name, newValue, event) => {
     const cursorPos = event.target.selectionEnd || newValue.length;
-    const isDeletingSlash = isDeletingCharacter('/', newValue, currentValue, cursorPos);
-    const formattedValue = isDeletingSlash ? newValue : formatDate(datePattern, newValue);
+    const isDeletingDelimiter = isDeletingCharacter(delimiter, newValue, currentValue, cursorPos);
+    const formattedValue = isDeletingDelimiter ? newValue : format(newValue);
 
     cursorPosition.current = getNextCursorPosition(cursorPos, formattedValue, currentValue);
 
@@ -63,11 +64,13 @@ function DateInput({ forwardedRef, value: propValue, onChange, datePattern, ...i
 
 DateInput.propTypes = {
   ...Input.propTypes,
-  datePattern: PropTypes.arrayOf(PropTypes.string),
+  pattern: PropTypes.arrayOf(PropTypes.string),
+  delimiter: PropTypes.string,
 };
 
 DateInput.defaultProps = {
-  datePattern: ['m', 'd', 'Y'],
+  pattern: ['m', 'd', 'Y'],
+  delimiter: '/',
 };
 
 export default createEasyInput(DateInput);

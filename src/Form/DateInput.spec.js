@@ -64,6 +64,12 @@ describe('<DateInput />', () => {
     expect(input.value).toEqual('12/05');
   });
 
+  test('takes custom delimter and pattern', () => {
+    const { input } = renderInput({ value: '2000-5', pattern: ['Y', 'm', 'd'], delimiter: '-' });
+
+    expect(input.value).toEqual('2000-05-');
+  });
+
   test('updates internally when value prop changes', () => {
     const { input, rerender } = renderInput({ value: '01/05' });
     rerender(
