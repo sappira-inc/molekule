@@ -38,7 +38,6 @@ function DateInput({ delimiter, pattern, forwardedRef, value: propValue, onKeyDo
   const format = value => formatDate(pattern, delimiter, value);
   const [currentValue, setValue] = useState(format(propValue));
   const inputRef = forwardedRef || useRef();
-  const lastKeyPressed = useRef();
 
   useEffect(() => {
     if (propValue !== currentValue) {
@@ -47,8 +46,6 @@ function DateInput({ delimiter, pattern, forwardedRef, value: propValue, onKeyDo
   }, [propValue]);
 
   const handleKeyDown = event => {
-    lastKeyPressed.current = event.key;
-
     const isLetterLike = /^\w{1}$/.test(event.key);
     if (isLetterLike && currentValue.replace(/\D/g, '').length >= getRawMaxLength(pattern)) {
       event.preventDefault();
@@ -61,7 +58,7 @@ function DateInput({ delimiter, pattern, forwardedRef, value: propValue, onKeyDo
   };
 
   const handleChange = (name, newValue, event) => {
-    const nextValue = lastKeyPressed.current === 'Backspace' ? newValue.trim() : format(newValue);
+    const nextValue = newValue.length < currentValue.length ? newValue.trim() : format(newValue);
     const nextCursorPosition = getNextCursorPosition(event.target.selectionStart, currentValue, nextValue);
 
     setValue(nextValue);

@@ -26,7 +26,6 @@ function PhoneInput({ countryCode, forwardedRef, value: propValue, onKeyDown, on
 
   const [currentValue, setValue] = useState(format(propValue));
   const inputRef = forwardedRef || useRef();
-  const lastKeyPressed = useRef();
 
   useEffect(() => {
     if (propValue !== currentValue) {
@@ -35,8 +34,6 @@ function PhoneInput({ countryCode, forwardedRef, value: propValue, onKeyDown, on
   }, [propValue]);
 
   const handleKeyDown = event => {
-    lastKeyPressed.current = event.key;
-
     const isLetterLike = /^\w{1}$/.test(event.key);
     if (isLetterLike) {
       const cursorPos = event.target.selectionStart;
@@ -56,7 +53,7 @@ function PhoneInput({ countryCode, forwardedRef, value: propValue, onKeyDown, on
   };
 
   const handleChange = (name, newValue, event) => {
-    const nextValue = lastKeyPressed.current === 'Backspace' ? newValue.trim() : format(newValue);
+    const nextValue = newValue.length < currentValue.length ? newValue.trim() : format(newValue);
     const nextCursorPosition = getNextCursorPosition(event.target.selectionStart, currentValue, nextValue);
 
     setValue(nextValue);
