@@ -4,74 +4,81 @@ import { AsYouType, isSupportedCountry, getCountryCallingCode, parseDigits } fro
 import examplePhoneNumbers from 'libphonenumber-js/examples.mobile.json';
 import Input from './Input';
 import { createEasyInput } from './EasyInput';
-import { getNextCursorPosition, isDeletingCharacter } from '../utils';
+import { getNextCursorPosition } from '../utils';
 
-const formatPhoneNumber = ({ countryCode, countryCodeSupported, oldValue = '', newValue = '' }) => {
-  const formatter = new AsYouType(countryCode);
-  let value = parseDigits(newValue);
-
-  if (countryCodeSupported) {
-    const countryCallingCode = getCountryCallingCode(countryCode);
-    const examplePhoneNumber = examplePhoneNumbers[countryCode];
-    const beginsWithCountryCode = value.substr(0, countryCallingCode.length) === countryCallingCode;
-    const maxLength = beginsWithCountryCode
-      ? countryCallingCode.length + examplePhoneNumber.length
-      : examplePhoneNumber.length;
-
-    if (value.length > maxLength) {
-      value = parseDigits(oldValue).substr(0, maxLength);
-    }
-  }
-
-  return formatter.input(value);
+export const getRawMaxLength = (countryCode, value) => {
+  const countryCallingCode = getCountryCallingCode(countryCode);
+  const beginsWithCountryCode = parseDigits(value).substr(0, countryCallingCode.length) === countryCallingCode;
+  const examplePhoneNumber = examplePhoneNumbers[countryCode];
+  return beginsWithCountryCode ? countryCallingCode.length + examplePhoneNumber.length : examplePhoneNumber.length;
 };
 
-function PhoneInput({ forwardedRef, value: propValue, onChange, countryCode, ...inputProps }) {
+function PhoneInput({ countryCode, forwardedRef, value: propValue, onKeyDown, onChange, ...inputProps }) {
   const countryCodeSupported = isSupportedCountry(countryCode);
-  const format = (oldValue, newValue) => formatPhoneNumber({ countryCode, countryCodeSupported, oldValue, newValue });
-  const [currentValue, setValue] = useState(format(propValue, propValue));
+  if (!countryCodeSupported) {
+    throw new Error(`${countryCode} is not supported`);
+  }
+
+  const format = (value = '') => {
+    const parsed = parseDigits(value).substr(0, getRawMaxLength(countryCode, value));
+    return new AsYouType(countryCode).input(parsed);
+  };
+
+  const [currentValue, setValue] = useState(format(propValue));
   const inputRef = forwardedRef || useRef();
-  const cursorPosition = useRef();
+  const lastKeyPressed = useRef();
 
   useEffect(() => {
     if (propValue !== currentValue) {
-      setValue(format(currentValue, propValue));
+      setValue(format(propValue));
     }
   }, [propValue]);
 
-  useEffect(() => {
-    if (inputRef.current && typeof cursorPosition.current === 'number') {
-      inputRef.current.setSelectionRange(cursorPosition.current, cursorPosition.current);
-    }
-  }, [currentValue, cursorPosition.current]);
+  const handleKeyDown = event => {
+    lastKeyPressed.current = event.key;
 
-  const handleChange = (name, newValue, event) => {
-    // @FIXME: Looking at newValue.length is jank for testing backspaces because we can't trigger a backspace event
-    // programmatically
-    const cursorPos = typeof event.target.selectionStart === 'number' ? event.target.selectionStart : newValue.length;
-    const isDeletingNonDigit = isDeletingCharacter(/\D/, currentValue, newValue, cursorPos);
-    const nextValue = isDeletingNonDigit ? newValue : format(currentValue, newValue);
-
-    if (nextValue === currentValue) {
-      // The DOM thinks we're adding a character but we actually don't after formatting,
-      // so we need to subtract 1 from the next cursor position and reset to where we just were
-      setTimeout(() => {
-        const nextCursorPos = cursorPos - 1;
-        inputRef.current.setSelectionRange(nextCursorPos, nextCursorPos);
-        cursorPosition.current = nextCursorPos;
-      });
-    } else {
-      cursorPosition.current = getNextCursorPosition(cursorPos, currentValue, nextValue);
+    const isLetterLike = /^\w{1}$/.test(event.key);
+    if (isLetterLike) {
+      const cursorPos = event.target.selectionStart;
+      const nextFormattedValue = format(
+        currentValue.substring(0, cursorPos) + event.key + currentValue.substring(cursorPos)
+      );
+      const nextValueRawLength = parseDigits(currentValue).length + 1;
+      if (nextValueRawLength > getRawMaxLength(countryCode, nextFormattedValue)) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
     }
 
-    setValue(nextValue);
-
-    if (onChange) {
-      onChange(name, nextValue);
+    if (onKeyDown) {
+      onKeyDown(event);
     }
   };
 
-  return <Input type="tel" forwardedRef={inputRef} value={currentValue} onChange={handleChange} {...inputProps} />;
+  const handleChange = (name, newValue, event) => {
+    const nextValue = lastKeyPressed.current === 'Backspace' ? newValue.trim() : format(newValue);
+    const nextCursorPosition = getNextCursorPosition(event.target.selectionStart, currentValue, nextValue);
+
+    setValue(nextValue);
+    setTimeout(() => {
+      inputRef.current.setSelectionRange(nextCursorPosition, nextCursorPosition);
+    });
+
+    if (onChange) {
+      onChange(name, nextValue, event);
+    }
+  };
+
+  return (
+    <Input
+      type="tel"
+      forwardedRef={inputRef}
+      value={currentValue}
+      onKeyDown={handleKeyDown}
+      onChange={handleChange}
+      {...inputProps}
+    />
+  );
 }
 
 PhoneInput.propTypes = {

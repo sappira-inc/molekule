@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderWithTheme, fireEvent, act } from '../../test/utils';
-import DateInput from './DateInput';
+import DateInput, { getRawMaxLength } from './DateInput';
 import ThemeProvider from '../ThemeProvider';
 
 describe('<DateInput />', () => {
@@ -17,6 +17,11 @@ describe('<DateInput />', () => {
       fireEvent.change(input, { target: { value } });
     });
   };
+
+  test('#getMaxDateLength', () => {
+    expect(getRawMaxLength(['m', 'd', 'Y'])).toEqual(8);
+    expect(getRawMaxLength(['m', 'd', 'y'])).toEqual(6);
+  });
 
   test('snapshot', () => {
     const { asFragment } = renderInput();
@@ -56,10 +61,10 @@ describe('<DateInput />', () => {
     expect(input.value).toEqual('12/05/1992');
   });
 
-  // @FIXME: Tried to test actual backspace with fireEvent.keyDown here to no avail
   test('can remove trailing slash when backspacing', () => {
     const { input } = renderInput({ value: '12/05/' });
 
+    fireEvent.keyDown(input, { key: 'Backspace' });
     updateInputValue(input, '12/05');
     expect(input.value).toEqual('12/05');
   });

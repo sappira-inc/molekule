@@ -42,6 +42,7 @@ describe('<PhoneInput />', () => {
   test('can delete paren', () => {
     const { input } = renderInput({ value: '(408)' });
 
+    fireEvent.keyDown(input, { key: 'Backspace' });
     updateInputValue(input, '(408');
     expect(input.value).toEqual('(408');
   });
