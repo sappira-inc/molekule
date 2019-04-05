@@ -84,4 +84,10 @@ describe('<DateInput />', () => {
     );
     expect(input.value).toEqual('01/09/1990');
   });
+
+  test('initially displays initialValue if provided', () => {
+    const { input } = renderInput({ initialValue: '01/01/2000', value: '2000-01-01' });
+
+    expect(input.value).toEqual('01/01/2000');
+  });
 });
