@@ -34,15 +34,26 @@ const formatDate = (pattern, delimiter, dateString = '') => {
   }, '');
 };
 
-function DateInput({ delimiter, pattern, forwardedRef, value: propValue, onKeyDown, onChange, ...inputProps }) {
+function DateInput({
+  delimiter,
+  pattern,
+  forwardedRef,
+  initialValue,
+  value: propValue,
+  onKeyDown,
+  onChange,
+  ...inputProps
+}) {
   const format = value => formatDate(pattern, delimiter, value);
-  const [currentValue, setValue] = useState(format(propValue));
+  const [currentValue, setValue] = useState(initialValue || format(propValue));
   const inputRef = forwardedRef || useRef();
+  const oldPropValue = useRef(propValue);
 
   useEffect(() => {
-    if (propValue !== currentValue) {
+    if (oldPropValue.current !== propValue && propValue !== currentValue) {
       setValue(format(propValue));
     }
+    oldPropValue.current = propValue;
   }, [propValue]);
 
   const handleKeyDown = event => {
@@ -84,6 +95,7 @@ function DateInput({ delimiter, pattern, forwardedRef, value: propValue, onKeyDo
 
 DateInput.propTypes = {
   ...Input.propTypes,
+  initialValue: PropTypes.string,
   pattern: PropTypes.arrayOf(PropTypes.string),
   delimiter: PropTypes.string,
 };
