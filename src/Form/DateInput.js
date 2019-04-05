@@ -47,13 +47,13 @@ function DateInput({
   const format = value => formatDate(pattern, delimiter, value);
   const [currentValue, setValue] = useState(initialValue || format(propValue));
   const inputRef = forwardedRef || useRef();
-  const oldPropValue = useRef(propValue);
+  const previousValue = useRef(propValue);
 
   useEffect(() => {
-    if (oldPropValue.current !== propValue && propValue !== currentValue) {
+    if (previousValue.current !== propValue && propValue !== currentValue) {
       setValue(format(propValue));
     }
-    oldPropValue.current = propValue;
+    previousValue.current = propValue;
   }, [propValue]);
 
   const handleKeyDown = event => {
