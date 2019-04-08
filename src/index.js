@@ -24,6 +24,7 @@ export Input from './Form/Input';
 export Label from './Form/Label';
 export Linkify from './Linkify';
 export Modal from './Modal';
+export Portal from './Portal';
 export PhoneInput from './Form/PhoneInput';
 export Placeholder from './Placeholder';
 export RadioGroup from './Form/RadioGroup';
