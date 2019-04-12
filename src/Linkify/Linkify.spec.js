@@ -30,4 +30,10 @@ describe('Linkify', () => {
 
     expect(asFragment()).toMatchSnapshot();
   });
+  test('reformats code blocks', () => {
+    const linkContent = "dear doctor,\n\n    I'm \"5'9\" and 160'";
+    const { asFragment } = renderWithTheme(<Linkify>{linkContent}</Linkify>);
+
+    expect(asFragment()).toMatchSnapshot();
+  });
 });

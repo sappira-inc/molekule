@@ -19,9 +19,11 @@ const Root = styled.div`
 `;
 
 export default function Linkify({ children, source, linkStyle, renderers, ...props }) {
+  let linkContent = children || source;
+  if (typeof linkContent === 'string') linkContent = linkContent.replace(/\r/g, '\n').replace(/[ \t]+/g, ' ');
   return (
     <ReactMarkdown
-      source={renderToStaticMarkup(children || source)}
+      source={renderToStaticMarkup(linkContent)}
       renderers={{
         paragraph: 'div',
         root: p => <Root {...p} />,

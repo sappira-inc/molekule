@@ -107,3 +107,22 @@ exports[`Linkify escapes HTML entities 1`] = `
   </div>
 </DocumentFragment>
 `;
+
+exports[`Linkify reformats code blocks 1`] = `
+<DocumentFragment>
+  .c0 div:nth-child(n + 2) {
+  margin-top: 5px;
+}
+
+<div
+    class="re-linkify c0"
+  >
+    <div>
+      dear doctor,
+    </div>
+    <div>
+       I'm "5'9" and 160'
+    </div>
+  </div>
+</DocumentFragment>
+`;
