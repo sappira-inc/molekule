@@ -47,8 +47,7 @@ export default function Linkify({ source, linkStyle, renderers, ...props }) {
 }
 
 Linkify.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-  source: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  source: PropTypes.string,
   className: PropTypes.string,
   renderers: PropTypes.shape(),
   linkStyle: PropTypes.shape(),
