@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { renderToStaticMarkup } from 'react-dom/server';
-import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
+import ReactMarkdown from 'react-markdown';
 
 const Link = styled.a.attrs(() => ({
   target: '_blank',
@@ -13,21 +12,33 @@ const Link = styled.a.attrs(() => ({
 `;
 
 const Root = styled.div`
-  div:nth-child(n + 2) {
-    margin-top: 5px;
+  white-space: pre-wrap;
+
+  p:first-child {
+    margin-top: 0;
+  }
+
+  div + div {
+    margin-top: 8px;
   }
 `;
 
-export default function Linkify({ children, source, linkStyle, renderers, ...props }) {
-  let linkContent = children || source;
-  if (typeof linkContent === 'string') linkContent = linkContent.replace(/\r/g, '\n').replace(/[ \t]+/g, ' ');
+export default function Linkify({ source, linkStyle, renderers, ...props }) {
+  if (typeof source !== 'string') {
+    throw new Error('Molekule: source prop must be a valid markdown string');
+  }
+
+  // Convert all carriage returns to new lines
+  const markdownString = source.replace(/\r/g, '\n');
+
   return (
     <ReactMarkdown
-      source={renderToStaticMarkup(linkContent)}
+      source={markdownString}
       renderers={{
         paragraph: 'div',
         root: p => <Root {...p} />,
         link: p => <Link {...p} style={linkStyle} />,
+        code: ({ value }) => <span>{value}</span>,
         ...renderers,
       }}
       {...props}
@@ -36,8 +47,7 @@ export default function Linkify({ children, source, linkStyle, renderers, ...pro
 }
 
 Linkify.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-  source: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  source: PropTypes.string,
   className: PropTypes.string,
   renderers: PropTypes.shape(),
   linkStyle: PropTypes.shape(),

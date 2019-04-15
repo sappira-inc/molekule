@@ -8,8 +8,16 @@ exports[`Linkify can receive linkStyle 1`] = `
   text-decoration: underline;
 }
 
-.c0 div:nth-child(n + 2) {
-  margin-top: 5px;
+.c0 {
+  white-space: pre-wrap;
+}
+
+.c0 p:first-child {
+  margin-top: 0;
+}
+
+.c0 div + div {
+  margin-top: 8px;
 }
 
 <div
@@ -40,8 +48,16 @@ exports[`Linkify can render markdown 1`] = `
   text-decoration: underline;
 }
 
-.c0 div:nth-child(n + 2) {
-  margin-top: 5px;
+.c0 {
+  white-space: pre-wrap;
+}
+
+.c0 p:first-child {
+  margin-top: 0;
+}
+
+.c0 div + div {
+  margin-top: 8px;
 }
 
 <div
@@ -69,8 +85,16 @@ exports[`Linkify converts links to anchor tags 1`] = `
   text-decoration: underline;
 }
 
-.c0 div:nth-child(n + 2) {
-  margin-top: 5px;
+.c0 {
+  white-space: pre-wrap;
+}
+
+.c0 p:first-child {
+  margin-top: 0;
+}
+
+.c0 div + div {
+  margin-top: 8px;
 }
 
 <div
@@ -94,8 +118,16 @@ exports[`Linkify converts links to anchor tags 1`] = `
 
 exports[`Linkify escapes HTML entities 1`] = `
 <DocumentFragment>
-  .c0 div:nth-child(n + 2) {
-  margin-top: 5px;
+  .c0 {
+  white-space: pre-wrap;
+}
+
+.c0 p:first-child {
+  margin-top: 0;
+}
+
+.c0 div + div {
+  margin-top: 8px;
 }
 
 <div
@@ -110,8 +142,16 @@ exports[`Linkify escapes HTML entities 1`] = `
 
 exports[`Linkify reformats code blocks 1`] = `
 <DocumentFragment>
-  .c0 div:nth-child(n + 2) {
-  margin-top: 5px;
+  .c0 {
+  white-space: pre-wrap;
+}
+
+.c0 p:first-child {
+  margin-top: 0;
+}
+
+.c0 div + div {
+  margin-top: 8px;
 }
 
 <div
@@ -120,9 +160,9 @@ exports[`Linkify reformats code blocks 1`] = `
     <div>
       dear doctor,
     </div>
-    <div>
-       I'm "5'9" and 160'
-    </div>
+    <span>
+      I'm "5'9" and 160'
+    </span>
   </div>
 </DocumentFragment>
 `;
