@@ -4,14 +4,14 @@ import Linkify from './Linkify';
 
 describe('Linkify', () => {
   test('converts links to anchor tags', () => {
-    const { asFragment } = renderWithTheme(<Linkify>Hello! https://google.com is a cool site.</Linkify>);
+    const { asFragment } = renderWithTheme(<Linkify source="Hello! https://google.com is a cool site." />);
 
     expect(asFragment()).toMatchSnapshot();
   });
 
   test('escapes HTML entities', () => {
     const { asFragment } = renderWithTheme(
-      <Linkify>{`<img src="fake.jpg" onError={() => {}} alt="hacker" /><span>heheh got hacked</span>`}</Linkify>
+      <Linkify source={`<img src="fake.jpg" onError={() => {}} alt="hacker" /><span>heheh got hacked</span>`} />
     );
 
     expect(asFragment()).toMatchSnapshot();
@@ -19,20 +19,21 @@ describe('Linkify', () => {
 
   test('can receive linkStyle', () => {
     const { asFragment } = renderWithTheme(
-      <Linkify linkStyle={{ color: 'magenta' }}>Hello! https://google.com is a cool site.</Linkify>
+      <Linkify linkStyle={{ color: 'magenta' }} source="Hello! https://google.com is a cool site." />
     );
 
     expect(asFragment()).toMatchSnapshot();
   });
 
   test('can render markdown', () => {
-    const { asFragment } = renderWithTheme(<Linkify>[this is a link](http://google.com)</Linkify>);
+    const { asFragment } = renderWithTheme(<Linkify source="[this is a link](http://google.com)" />);
 
     expect(asFragment()).toMatchSnapshot();
   });
+
   test('reformats code blocks', () => {
-    const linkContent = "dear doctor,\n\n    I'm \"5'9\" and 160'";
-    const { asFragment } = renderWithTheme(<Linkify>{linkContent}</Linkify>);
+    const linkContent = "dear doctor,\n\n    I'm \"5'9\"     and 160'";
+    const { asFragment } = renderWithTheme(<Linkify source={linkContent} />);
 
     expect(asFragment()).toMatchSnapshot();
   });
