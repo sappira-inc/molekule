@@ -160,9 +160,9 @@ exports[`Linkify reformats code blocks 1`] = `
     <div>
       dear doctor,
     </div>
-    <span>
+    <div>
       I'm "5'9" and 160'
-    </span>
+    </div>
   </div>
 </DocumentFragment>
 `;
