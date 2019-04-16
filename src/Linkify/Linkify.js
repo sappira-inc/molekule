@@ -38,7 +38,7 @@ export default function Linkify({ source, linkStyle, renderers, ...props }) {
         paragraph: 'div',
         root: p => <Root {...p} />,
         link: p => <Link {...p} style={linkStyle} />,
-        code: ({ value }) => <span>{value}</span>,
+        code: ({ value }) => <div>{value}</div>,
         ...renderers,
       }}
       {...props}
