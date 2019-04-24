@@ -19,8 +19,9 @@ function PhoneInput({ countryCode, forwardedRef, value: propValue, onKeyDown, on
     throw new Error(`${countryCode} is not supported`);
   }
 
-  const format = (value = '') => {
-    const parsed = parseDigits(value).substr(0, getRawMaxLength(countryCode, value));
+  const format = value => {
+    const phoneString = value || '';
+    const parsed = parseDigits(phoneString).substr(0, getRawMaxLength(countryCode, phoneString));
     return new AsYouType(countryCode).input(parsed);
   };
 
