@@ -26,14 +26,13 @@ export default class ModalDemo extends React.Component {
   };
 
   render() {
-    const { body, bodyTwo = 'Im a nested modal!', groupId, ...props } = this.props;
+    const { body, bodyTwo = 'Im a nested modal!', ...props } = this.props;
 
     return (
       <div>
         <Button onClick={this.toggle}>Open Modal</Button>
 
         <Modal
-          groupId={`${groupId}-outer`}
           open={this.state.isModalOpen}
           onClose={this.toggle}
           title="Example Modal"
@@ -45,7 +44,6 @@ export default class ModalDemo extends React.Component {
             </>
 
             <Modal
-              groupId={`${groupId}-inner`}
               open={this.state.isModalTwoOpen}
               onClose={this.toggleModalTwo}
               title="Example Modal Two"

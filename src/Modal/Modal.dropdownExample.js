@@ -27,7 +27,7 @@ export default class ModalDropdownDemo extends React.Component {
   };
 
   render() {
-    const { body, groupId, ...props } = this.props;
+    const { body, ...props } = this.props;
 
     return (
       <div>
@@ -45,7 +45,6 @@ export default class ModalDropdownDemo extends React.Component {
         </Dropdown>
 
         <Modal
-          groupId={`${groupId}-outer`}
           open={this.state.isModalOpen}
           onClose={this.toggle}
           title="Example Dropdown Modal"

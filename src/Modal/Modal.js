@@ -73,7 +73,7 @@ const ModalContent = createComponent({
   `,
 });
 
-function Modal({ groupId, children, title, animationDuration, showClose, onClose, open, ...props }) {
+function Modal({ children, title, animationDuration, showClose, onClose, open, ...props }) {
   const [isOpen, setOpen] = useState(open);
 
   const handleClose = () => {
@@ -106,7 +106,7 @@ function Modal({ groupId, children, title, animationDuration, showClose, onClose
         <Transition in={isOpen} timeout={animationDuration}>
           {state => (
             <Backdrop transitionState={state} onClick={handleBackdropClick}>
-              <FocusLock group={groupId} disabled={!isOpen}>
+              <FocusLock disabled={!isOpen}>
                 <ModalContent transitionState={state} onClick={handleContentClick} {...props}>
                   {title && <Modal.Header title={title} showClose={showClose} />}
                   {children}
@@ -121,7 +121,6 @@ function Modal({ groupId, children, title, animationDuration, showClose, onClose
 }
 
 Modal.propTypes = {
-  groupId: PropTypes.string.isRequired,
   open: PropTypes.bool,
   showClose: PropTypes.bool,
   closeOnBackdropClick: PropTypes.bool,
