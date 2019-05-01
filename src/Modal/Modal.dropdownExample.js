@@ -2,8 +2,9 @@ import React from 'react';
 import Modal from './Modal';
 import Button from '../Button';
 import Input from '../Form/Input';
+import Dropdown from '../Dropdown';
 
-export default class ModalDemo extends React.Component {
+export default class ModalDropdownDemo extends React.Component {
   state = {
     isModalOpen: false,
     isModalTwoOpen: false,
@@ -26,52 +27,40 @@ export default class ModalDemo extends React.Component {
   };
 
   render() {
-    const { body, bodyTwo = 'Im a nested modal!', groupId, ...props } = this.props;
+    const { body, groupId, ...props } = this.props;
 
     return (
       <div>
-        <Button onClick={this.toggle}>Open Modal</Button>
+        <Dropdown placement="0 100%" width={250} trigger={<Button variant="success">Open Dropdown</Button>}>
+          <Dropdown.Header title="Dropdown" />
+
+          <Dropdown.Body>
+            <Dropdown.SectionTitle>Section One</Dropdown.SectionTitle>
+            <Dropdown.Item onClick={this.toggle} as="button">
+              Open Modal
+            </Dropdown.Item>
+          </Dropdown.Body>
+
+          <Dropdown.Footer>Footer</Dropdown.Footer>
+        </Dropdown>
 
         <Modal
           groupId={`${groupId}-outer`}
           open={this.state.isModalOpen}
           onClose={this.toggle}
-          title="Example Modal"
+          title="Example Dropdown Modal"
           {...props}>
           <Modal.Body>
             <>
               {body}
               <Input autoFocus name="password" label="Password" />
             </>
-
-            <Modal
-              groupId={`${groupId}-inner`}
-              open={this.state.isModalTwoOpen}
-              onClose={this.toggleModalTwo}
-              title="Example Modal Two"
-              {...props}>
-              <Modal.Body>{bodyTwo}</Modal.Body>
-
-              <Modal.Footer>
-                <Button.Group justifyContent="flex-end">
-                  <Button variant="gray" onClick={this.toggleModalTwo}>
-                    Cancel
-                  </Button>
-                  <Button variant="success" onClick={this.toggleModalTwo}>
-                    I&apos;m Done Anyways
-                  </Button>
-                </Button.Group>
-              </Modal.Footer>
-            </Modal>
           </Modal.Body>
 
           <Modal.Footer>
             <Button.Group justifyContent="flex-end">
               <Button variant="gray" onClick={this.onCancel}>
                 Cancel
-              </Button>
-              <Button variant="success" onClick={this.toggleModalTwo}>
-                Open Another Modal
               </Button>
             </Button.Group>
           </Modal.Footer>

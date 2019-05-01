@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { keyframes, css } from 'styled-components';
 import * as animations from 'react-animations';
 import { Transition } from 'react-transition-group';
+import FocusLock from 'react-focus-lock';
 import Portal from '../Portal';
 import Flex from '../Flex';
 import Box from '../Box';
@@ -72,7 +73,7 @@ const ModalContent = createComponent({
   `,
 });
 
-function Modal({ children, title, animationDuration, showClose, onClose, open, ...props }) {
+function Modal({ groupId, children, title, animationDuration, showClose, onClose, open, ...props }) {
   const [isOpen, setOpen] = useState(open);
 
   const handleClose = () => {
@@ -105,10 +106,12 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, .
         <Transition in={isOpen} timeout={animationDuration}>
           {state => (
             <Backdrop transitionState={state} onClick={handleBackdropClick}>
-              <ModalContent transitionState={state} onClick={handleContentClick} {...props}>
-                {title && <Modal.Header title={title} showClose={showClose} />}
-                {children}
-              </ModalContent>
+              <FocusLock group={groupId} disabled={!isOpen}>
+                <ModalContent transitionState={state} onClick={handleContentClick} {...props}>
+                  {title && <Modal.Header title={title} showClose={showClose} />}
+                  {children}
+                </ModalContent>
+              </FocusLock>
             </Backdrop>
           )}
         </Transition>
@@ -118,6 +121,7 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, .
 }
 
 Modal.propTypes = {
+  groupId: PropTypes.string.isRequired,
   open: PropTypes.bool,
   showClose: PropTypes.bool,
   closeOnBackdropClick: PropTypes.bool,
