@@ -20,7 +20,7 @@ Modals are a great way to add dialogs to your site for lightboxes, user notifica
 Toggle a working modal demo by clicking the button below. It will slide up and fade in from the bottom of the page.
 
 <Playground>
-  <ModalExample groupId={1} body="I am an example modal that displays example content to prove that I can actually do some things" maxWidth={300} />
+  <ModalExample body="I am an example modal that displays example content to prove that I can actually do some things" maxWidth={300} />
 </Playground>
 
 ## Handling Long Content
@@ -28,7 +28,7 @@ Toggle a working modal demo by clicking the button below. It will slide up and f
 When modals become too long for the user’s viewport or device, they scroll independent of the page itself.
 
 <Playground>
-  <ModalExample groupdId={2} body={<div>{new Array(50).fill(null).map((_, i) => <p key={i}>I'm really long annoying content.</p>)}</div>} />
+  <ModalExample body={<div>{new Array(50).fill(null).map((_, i) => <p key={i}>I'm really long annoying content.</p>)}</div>} />
 </Playground>
 
 ## Handling Dropdown Triggered Content
@@ -36,5 +36,5 @@ When modals become too long for the user’s viewport or device, they scroll ind
 When modals are triggered by dropdowns with returnFocus set to true, modals still receive focus. 
 
 <Playground>
-  <ModalDropdownExample groupdId={3} body="I'm triggered by a dropdown" />
+  <ModalDropdownExample body="I'm triggered by a dropdown" />
 </Playground>
