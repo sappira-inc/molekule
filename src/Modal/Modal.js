@@ -106,7 +106,7 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, .
         <Transition in={isOpen} timeout={animationDuration}>
           {state => (
             <Backdrop transitionState={state} onClick={handleBackdropClick}>
-              <FocusLock lockProps={{ style: { height: '100%' } }} disabled={!isOpen}>
+              <FocusLock lockProps={{ style: { maxHeight: '100%' } }} disabled={!isOpen}>
                 <ModalContent transitionState={state} onClick={handleContentClick} {...props}>
                   {title && <Modal.Header title={title} showClose={showClose} />}
                   {children}
