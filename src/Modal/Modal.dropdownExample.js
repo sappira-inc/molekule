@@ -31,7 +31,7 @@ export default class ModalDropdownDemo extends React.Component {
 
     return (
       <div>
-        <Dropdown placement="0 100%" width={250} trigger={<Button variant="success">Open Dropdown</Button>}>
+        <Dropdown placement="top" width={250} trigger={<Button variant="success">Open Dropdown</Button>}>
           <Dropdown.Header title="Dropdown" />
 
           <Dropdown.Body>
