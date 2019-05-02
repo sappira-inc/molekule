@@ -7,15 +7,10 @@ import Dropdown from '../Dropdown';
 export default class ModalDropdownDemo extends React.Component {
   state = {
     isModalOpen: false,
-    isModalTwoOpen: false,
   };
 
   toggle = () => {
-    this.setState({ isModalOpen: !this.state.isModalOpen, isModalTwoOpen: false });
-  };
-
-  toggleModalTwo = () => {
-    this.setState({ isModalTwoOpen: !this.state.isModalTwoOpen });
+    this.setState({ isModalOpen: !this.state.isModalOpen });
   };
 
   onCancel = () => {
