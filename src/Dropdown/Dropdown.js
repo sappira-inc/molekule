@@ -83,7 +83,7 @@ export default function Dropdown({
   });
 
   useKeyPress(ARROW_KEYS, event => {
-    if (isOpen && menuRef.current) {
+    if (isOpen && !!menuRef.current) {
       event.preventDefault();
       const focusArgs = [menuRef.current, document.activeElement];
       const nextFocusable =
@@ -97,14 +97,10 @@ export default function Dropdown({
 
   const handleMenuBlur = () => {
     if (autoclose) {
-      // Use timeout to delay examination of activeElement until after blur/focus
-      // events have been processed.
-      setTimeout(() => {
-        const nextActiveElement = document.activeElement;
-        if (menuRef.current && !menuRef.current.contains(nextActiveElement)) {
-          close();
-        }
-      });
+      const nextActiveElement = document.activeElement;
+      if (menuRef.current && !menuRef.current.contains(nextActiveElement)) {
+        close();
+      }
     }
   };
 
