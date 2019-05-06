@@ -67,9 +67,9 @@ export default function Dropdown({
   }
   const toggle = () => (isOpen ? close() : open());
 
-
   const handleTrigger = e => {
     e.stopPropagation();
+    e.preventDefault();
     toggle();
   }
 
@@ -86,9 +86,9 @@ export default function Dropdown({
     }
   }, [isOpen]);
 
-  useKeyPress(['Enter', 'Space'], e => {
-    handleTrigger(e);
-  });
+  const handleKeyPress = e => {
+    if (e.which === 13 || e.which === 32) handleTrigger(e);
+  };
 
   useKeyPress('Escape', () => {
     if (isOpen) {
@@ -135,6 +135,7 @@ export default function Dropdown({
                 'aria-haspopup': true,
                 'aria-expanded': isOpen,
                 onClick: handleClick,
+                onKeyPress: handleKeyPress,
                 style: {
                   cursor: 'pointer',
                   ...(trigger.style || {}),
