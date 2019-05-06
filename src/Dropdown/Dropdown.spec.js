@@ -54,10 +54,15 @@ describe('<Dropdown />', () => {
     wait(() => {
       expect(renderUtils.queryByText('Header')).not.toBeInTheDocument();
     });
+ 
+  const assertMountedDropdownOpen = wrapper => {
+    expect(wrapper).toMatchSnapshot('is open');
+    expect(wrapper.find('footer')).toHaveLength(1);
+  }
 
   const openDropdown = async (eventCallback) => {
     const trigger = renderUtils.getByText('Trigger');
-    const callback = eventCallback || triggerEvents[0];
+    const callback = eventCallback || clickTrigger;
     callback(trigger);
     return assertDropdownOpen();
   };
@@ -71,24 +76,36 @@ describe('<Dropdown />', () => {
   });
 
   const stopPropagation = jest.fn()
+  const preventDefault = jest.fn()
   const clickTrigger = trigger => {
-    fireEvent.click(trigger, { stopPropagation });
-  };
-  const keyDownTrigger = (key = 'Enter') => (trigger) => {
-    fireEvent.keyDown(trigger, { key, stopPropagation });
+    fireEvent.click(trigger, { stopPropagation, preventDefault });
   };
 
-  const triggerEvents = [
-    clickTrigger,
-    keyDownTrigger(),
-    keyDownTrigger('Space')
-  ];
+  const baseTrigger = { stopPropagation, preventDefault };
+  const triggerEvents = {
+    'click': { type: 'click', ...baseTrigger },
+    'enter': { type: 'keypress', which: '32', ...baseTrigger },
+    'space': { type: 'keypress', which: '13', ...baseTrigger },
+  };
 
-  triggerEvents.forEach( event => {
-    test('opens menu with focus when trigger is clicked', async () => {
-      await openDropdown(event);
-      expect(renderUtils.asFragment()).toMatchSnapshot();
-      expect(renderUtils.getByTestId('dropdown-menu') === document.activeElement).toBeTruthy();
+  const mountAndOpenDropdown = (triggerEvent = triggerEvents.click) => {
+    const wrapper = mount(<Dropdown theme={defaultTheme} trigger={<div>Trigger</div>}>
+          <Dropdown.Header>Test</Dropdown.Header>
+          <Dropdown.Body>Body</Dropdown.Body>
+          <Dropdown.Footer>Footer</Dropdown.Footer>
+    </Dropdown>);
+
+    // open on trigger
+    const trigger = (wrapper.find('[role="button"]'));
+    trigger.simulate(triggerEvent.type, triggerEvent);
+    return wrapper;
+  };
+
+  // use enzyme since can't trigger keypress
+  Object.keys(triggerEvents).forEach( async eventKey => {
+    test(`menu opens with focus via ${eventKey} trigger`, async () => {
+       const wrapper = await mountAndOpenDropdown();
+       assertMountedDropdownOpen(wrapper);
     });
   });
 
@@ -99,30 +116,18 @@ describe('<Dropdown />', () => {
   });
 
   // use enzyme since can't trigger blur via dom
-  test('closes on blur event', done => {
-  const stopPropagation = jest.fn();
-  const wrapper = mount(<Dropdown theme={defaultTheme} trigger={<div>Trigger</div>}>
-          <Dropdown.Header>Test</Dropdown.Header>
-          <Dropdown.Body>Body</Dropdown.Body>
-          <Dropdown.Footer>Footer</Dropdown.Footer>
-    </Dropdown>);
+  test('closes on blur event', async () => {
+    const wrapper = await mountAndOpenDropdown();
+    assertMountedDropdownOpen(wrapper);
 
+    // blur dropdown menu
+    const menu = wrapper.find('.laCjkz');
+    menu.simulate('blur', { type: 'blur', stopPropagation, preventDefault });
 
-  // open on trigger
-  const trigger = (wrapper.find('[role="button"]'));
-  trigger.simulate('click', { type: 'click', stopPropagation });
-  expect(wrapper).toMatchSnapshot('is open');
-  expect(wrapper.find('footer')).toHaveLength(1);
-
-  // blur dropdown menu
-  const menu = wrapper.find('.laCjkz');
-  menu.simulate('blur', { type: 'blur', stopPropagation });
-
-  wrapper.update();
-  expect(wrapper).toMatchSnapshot('is closed');
-  expect(wrapper.find('footer')).toHaveLength(0);
-  done();
-})
+    wrapper.update();
+    expect(wrapper).toMatchSnapshot('is closed');
+    expect(wrapper.find('footer')).toHaveLength(0);
+  })
 
   test('arrow keys navigate to focusable elements', async () => {
     await openDropdown();

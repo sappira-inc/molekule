@@ -1020,6 +1020,2754 @@ exports[`<Dropdown /> closes on blur event: is open 1`] = `
 </Dropdown>
 `;
 
+exports[`<Dropdown /> menu opens with focus via click trigger: is open 1`] = `
+.c0 {
+  -webkit-align-self: flex-start;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+  display: inline-block;
+  outline: none;
+}
+
+.c1 {
+  z-index: 10;
+  background: white;
+  border-radius: px;
+  border: 1px solid #e4edf5;
+  outline: none;
+  box-shadow: 0 0 3px 0 rgba(178,194,212,0.3);
+  width: 150px;
+  opacity: 0.75;
+  -webkit-transform: scale(0.75);
+  -ms-transform: scale(0.75);
+  transform: scale(0.75);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
+  animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
+}
+
+.c2 {
+  padding: 0.75rem 1rem 0;
+}
+
+.c3 {
+  padding: 0 0 0.25rem;
+  border-bottom: 2px solid gray;
+}
+
+.c4 {
+  padding: 1rem;
+}
+
+.c5 {
+  background: gray;
+  padding: 0.75rem 1rem;
+  border-radius: 0 0 px px;
+}
+
+<Dropdown
+  autoclose={true}
+  boundariesElement="viewport"
+  offset="0, 10"
+  placement="bottom-start"
+  positionFixed={false}
+  theme={[Function]}
+  transitionDuration={225}
+  transitionTimingFunction="cubic-bezier(0.25, 0.1, 0.17, 1.2)"
+  trigger={
+    <div>
+      Trigger
+    </div>
+  }
+  width={150}
+  zIndex={10}
+>
+  <Manager>
+    <Reference>
+      <InnerReference
+        setReferenceNode={[Function]}
+      >
+        <styled.div
+          tabIndex={-1}
+        >
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  [Function],
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-bwzfXH",
+                  "isStatic": false,
+                  "lastClassName": "c0",
+                  "rules": Array [
+                    "
+    ",
+                    "
+    align-self: flex-start;
+    display: inline-block;
+    outline: none;
+  ",
+                    "
+    ",
+                    [Function],
+                    "
+    ",
+                    [Function],
+                    "
+  ",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-bwzfXH",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={[Function]}
+            tabIndex={-1}
+          >
+            <div
+              className="undefined-dropdown-trigger c0"
+              tabIndex={-1}
+            >
+              <div
+                aria-expanded={true}
+                aria-haspopup={true}
+                onClick={[Function]}
+                onKeyPress={[Function]}
+                role="button"
+                style={
+                  Object {
+                    "cursor": "pointer",
+                  }
+                }
+                tabIndex={0}
+              >
+                Trigger
+              </div>
+            </div>
+          </StyledComponent>
+        </styled.div>
+      </InnerReference>
+    </Reference>
+    <Portal>
+      <Portal
+        containerInfo={
+          .c0 {
+  z-index: 10;
+  background: white;
+  border-radius: px;
+  border: 1px solid #e4edf5;
+  outline: none;
+  box-shadow: 0 0 3px 0 rgba(178,194,212,0.3);
+  width: 150px;
+  opacity: 0.75;
+  -webkit-transform: scale(0.75);
+  -ms-transform: scale(0.75);
+  transform: scale(0.75);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
+  animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
+}
+
+.c1 {
+  padding: 0.75rem 1rem 0;
+}
+
+.c2 {
+  padding: 0 0 0.25rem;
+  border-bottom: 2px solid gray;
+}
+
+.c3 {
+  padding: 1rem;
+}
+
+.c4 {
+  background: gray;
+  padding: 0.75rem 1rem;
+  border-radius: 0 0 px px;
+}
+
+<div>
+            <div
+              data-focus-guard="true"
+              style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+              tabindex="0"
+            />
+            <div
+              data-focus-guard="true"
+              style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+              tabindex="1"
+            />
+            <div
+              data-focus-lock-disabled="false"
+            >
+              <div
+                class="undefined-dropdown-menu c0"
+                data-testid="dropdown-menu"
+                style="position: absolute; top: 0px; left: 0px; opacity: 0; pointer-events: none;"
+                tabindex="0"
+                width="150"
+              >
+                <header
+                  class="undefined-dropdown-header c1"
+                >
+                  <div
+                    class="undefined-dropdown-header-inner c2"
+                  >
+                    Test
+                  </div>
+                </header>
+                <div
+                  class="undefined-box undefined-dropdown-body c3"
+                >
+                  Body
+                </div>
+                <footer
+                  class="undefined-box undefined-dropdown-footer c4"
+                >
+                  Footer
+                </footer>
+              </div>
+            </div>
+            <div
+              data-focus-guard="true"
+              style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+              tabindex="0"
+            />
+          </div>
+        }
+      >
+        <Popper
+          innerRef={
+            Object {
+              "current": undefined,
+            }
+          }
+          modifiers={
+            Object {
+              "computeStyle": Object {
+                "gpuAcceleration": false,
+              },
+              "flip": Object {
+                "enabled": false,
+              },
+              "offset": Object {
+                "offset": "0, 10",
+              },
+              "preventOverflow": Object {
+                "boundariesElement": "viewport",
+                "padding": 12,
+              },
+            }
+          }
+          placement="bottom-start"
+          positionFixed={false}
+        >
+          <InnerPopper
+            eventsEnabled={true}
+            innerRef={
+              Object {
+                "current": undefined,
+              }
+            }
+            modifiers={
+              Object {
+                "computeStyle": Object {
+                  "gpuAcceleration": false,
+                },
+                "flip": Object {
+                  "enabled": false,
+                },
+                "offset": Object {
+                  "offset": "0, 10",
+                },
+                "preventOverflow": Object {
+                  "boundariesElement": "viewport",
+                  "padding": 12,
+                },
+              }
+            }
+            placement="bottom-start"
+            positionFixed={false}
+            referenceElement={
+              .c0 {
+  -webkit-align-self: flex-start;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+  display: inline-block;
+  outline: none;
+}
+
+<div
+                class="undefined-dropdown-trigger c0"
+                tabindex="-1"
+              >
+                <div
+                  aria-expanded="true"
+                  aria-haspopup="true"
+                  role="button"
+                  style="cursor: pointer;"
+                  tabindex="0"
+                >
+                  Trigger
+                </div>
+              </div>
+            }
+          >
+            <Transition
+              appear={true}
+              enter={true}
+              exit={true}
+              in={true}
+              mountOnEnter={false}
+              onEnter={[Function]}
+              onEntered={[Function]}
+              onEntering={[Function]}
+              onExit={[Function]}
+              onExited={[Function]}
+              onExiting={[Function]}
+              timeout={0}
+              unmountOnExit={false}
+            >
+              <FocusLock
+                as="div"
+                autoFocus={false}
+                disabled={false}
+                lockProps={Object {}}
+                noFocusGuards={false}
+                persistentFocus={false}
+                returnFocus={true}
+              >
+                <div
+                  data-focus-guard={true}
+                  key="guard-first"
+                  style={
+                    Object {
+                      "height": "0px",
+                      "left": "1px",
+                      "overflow": "hidden",
+                      "padding": 0,
+                      "position": "fixed",
+                      "top": "1px",
+                      "width": "1px",
+                    }
+                  }
+                  tabIndex={0}
+                />
+                <div
+                  data-focus-guard={true}
+                  key="guard-nearest"
+                  style={
+                    Object {
+                      "height": "0px",
+                      "left": "1px",
+                      "overflow": "hidden",
+                      "padding": 0,
+                      "position": "fixed",
+                      "top": "1px",
+                      "width": "1px",
+                    }
+                  }
+                  tabIndex={1}
+                />
+                <div
+                  data-focus-lock-disabled={false}
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                >
+                  <SideEffect(FocusWatcher)
+                    autoFocus={false}
+                    disabled={false}
+                    observed={
+                      <div
+                        data-focus-lock-disabled="false"
+                      >
+                        <div
+                          class="undefined-dropdown-menu c1"
+                          data-testid="dropdown-menu"
+                          style="position: absolute; top: 0px; left: 0px; opacity: 0; pointer-events: none;"
+                          tabindex="0"
+                          width="150"
+                        >
+                          <header
+                            class="undefined-dropdown-header c2"
+                          >
+                            <div
+                              class="undefined-dropdown-header-inner c3"
+                            >
+                              Test
+                            </div>
+                          </header>
+                          <div
+                            class="undefined-box undefined-dropdown-body c4"
+                          >
+                            Body
+                          </div>
+                          <footer
+                            class="undefined-box undefined-dropdown-footer c5"
+                          >
+                            Footer
+                          </footer>
+                        </div>
+                      </div>
+                    }
+                    onActivation={[Function]}
+                    onDeactivation={[Function]}
+                    persistentFocus={false}
+                    shards={Array []}
+                  >
+                    <FocusWatcher
+                      autoFocus={false}
+                      disabled={false}
+                      observed={
+                        <div
+                          data-focus-lock-disabled="false"
+                        >
+                          <div
+                            class="undefined-dropdown-menu c1"
+                            data-testid="dropdown-menu"
+                            style="position: absolute; top: 0px; left: 0px; opacity: 0; pointer-events: none;"
+                            tabindex="0"
+                            width="150"
+                          >
+                            <header
+                              class="undefined-dropdown-header c2"
+                            >
+                              <div
+                                class="undefined-dropdown-header-inner c3"
+                              >
+                                Test
+                              </div>
+                            </header>
+                            <div
+                              class="undefined-box undefined-dropdown-body c4"
+                            >
+                              Body
+                            </div>
+                            <footer
+                              class="undefined-box undefined-dropdown-footer c5"
+                            >
+                              Footer
+                            </footer>
+                          </div>
+                        </div>
+                      }
+                      onActivation={[Function]}
+                      onDeactivation={[Function]}
+                      persistentFocus={false}
+                      shards={Array []}
+                    />
+                  </SideEffect(FocusWatcher)>
+                  <styled.div
+                    data-testid="dropdown-menu"
+                    onBlur={[Function]}
+                    placement="bottom-start"
+                    style={
+                      Object {
+                        "left": 0,
+                        "opacity": 0,
+                        "pointerEvents": "none",
+                        "position": "absolute",
+                        "top": 0,
+                      }
+                    }
+                    theme={[Function]}
+                    transitionDuration={225}
+                    transitionState="entering"
+                    transitionTimingFunction="cubic-bezier(0.25, 0.1, 0.17, 1.2)"
+                    width={150}
+                    zIndex={10}
+                  >
+                    <StyledComponent
+                      data-testid="dropdown-menu"
+                      forwardedComponent={
+                        Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "attrs": Array [
+                            [Function],
+                          ],
+                          "componentStyle": ComponentStyle {
+                            "componentId": "sc-htpNat",
+                            "isStatic": false,
+                            "lastClassName": "c1",
+                            "rules": Array [
+                              "
+    ",
+                              [Function],
+                              "
+    ",
+                              [Function],
+                              "
+    ",
+                              [Function],
+                              "
+  ",
+                            ],
+                          },
+                          "displayName": "styled.div",
+                          "foldedComponentIds": Array [],
+                          "render": [Function],
+                          "styledComponentId": "sc-htpNat",
+                          "target": "div",
+                          "toString": [Function],
+                          "warnTooManyClasses": [Function],
+                          "withComponent": [Function],
+                        }
+                      }
+                      forwardedRef={[Function]}
+                      onBlur={[Function]}
+                      placement="bottom-start"
+                      style={
+                        Object {
+                          "left": 0,
+                          "opacity": 0,
+                          "pointerEvents": "none",
+                          "position": "absolute",
+                          "top": 0,
+                        }
+                      }
+                      theme={[Function]}
+                      transitionDuration={225}
+                      transitionState="entering"
+                      transitionTimingFunction="cubic-bezier(0.25, 0.1, 0.17, 1.2)"
+                      width={150}
+                      zIndex={10}
+                    >
+                      <div
+                        className="undefined-dropdown-menu c1"
+                        data-testid="dropdown-menu"
+                        onBlur={[Function]}
+                        style={
+                          Object {
+                            "left": 0,
+                            "opacity": 0,
+                            "pointerEvents": "none",
+                            "position": "absolute",
+                            "top": 0,
+                          }
+                        }
+                        tabIndex={0}
+                        width={150}
+                      >
+                        <Component>
+                          <styled.header>
+                            <StyledComponent
+                              forwardedComponent={
+                                Object {
+                                  "$$typeof": Symbol(react.forward_ref),
+                                  "attrs": Array [
+                                    [Function],
+                                  ],
+                                  "componentStyle": ComponentStyle {
+                                    "componentId": "sc-bxivhb",
+                                    "isStatic": false,
+                                    "lastClassName": "c2",
+                                    "rules": Array [
+                                      "
+    ",
+                                      "
+    padding: 0.75rem 1rem 0;
+  ",
+                                      "
+    ",
+                                      [Function],
+                                      "
+    ",
+                                      [Function],
+                                      "
+  ",
+                                    ],
+                                  },
+                                  "displayName": "styled.header",
+                                  "foldedComponentIds": Array [],
+                                  "render": [Function],
+                                  "styledComponentId": "sc-bxivhb",
+                                  "target": "header",
+                                  "toString": [Function],
+                                  "warnTooManyClasses": [Function],
+                                  "withComponent": [Function],
+                                }
+                              }
+                              forwardedRef={null}
+                            >
+                              <header
+                                className="undefined-dropdown-header c2"
+                              >
+                                <styled.div>
+                                  <StyledComponent
+                                    forwardedComponent={
+                                      Object {
+                                        "$$typeof": Symbol(react.forward_ref),
+                                        "attrs": Array [
+                                          [Function],
+                                        ],
+                                        "componentStyle": ComponentStyle {
+                                          "componentId": "sc-ifAKCX",
+                                          "isStatic": false,
+                                          "lastClassName": "c3",
+                                          "rules": Array [
+                                            "
+    ",
+                                            "
+    padding: 0 0 0.25rem;
+    border-bottom: 2px solid ",
+                                            [Function],
+                                            ";
+  ",
+                                            "
+    ",
+                                            [Function],
+                                            "
+    ",
+                                            [Function],
+                                            "
+  ",
+                                          ],
+                                        },
+                                        "displayName": "styled.div",
+                                        "foldedComponentIds": Array [],
+                                        "render": [Function],
+                                        "styledComponentId": "sc-ifAKCX",
+                                        "target": "div",
+                                        "toString": [Function],
+                                        "warnTooManyClasses": [Function],
+                                        "withComponent": [Function],
+                                      }
+                                    }
+                                    forwardedRef={null}
+                                  >
+                                    <div
+                                      className="undefined-dropdown-header-inner c3"
+                                    >
+                                      Test
+                                    </div>
+                                  </StyledComponent>
+                                </styled.div>
+                              </header>
+                            </StyledComponent>
+                          </styled.header>
+                        </Component>
+                        <Styled(styled.div)>
+                          <StyledComponent
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [
+                                  [Function],
+                                  [Function],
+                                ],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-bZQynM",
+                                  "isStatic": false,
+                                  "lastClassName": "c4",
+                                  "rules": Array [
+                                    "
+    ",
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    "
+    ",
+                                    [Function],
+                                    "
+    ",
+                                    [Function],
+                                    "
+  ",
+                                    "
+    ",
+                                    "
+    padding: 1rem;
+  ",
+                                    "
+    ",
+                                    [Function],
+                                    "
+    ",
+                                    [Function],
+                                    "
+  ",
+                                  ],
+                                },
+                                "displayName": "Styled(styled.div)",
+                                "foldedComponentIds": Array [
+                                  "sc-bdVaJa",
+                                ],
+                                "propTypes": Object {
+                                  "alignSelf": [Function],
+                                  "bg": [Function],
+                                  "color": [Function],
+                                  "display": [Function],
+                                  "flex": [Function],
+                                  "fontSize": [Function],
+                                  "fontWeight": [Function],
+                                  "justifySelf": [Function],
+                                  "lineHeight": [Function],
+                                  "m": [Function],
+                                  "mb": [Function],
+                                  "ml": [Function],
+                                  "mr": [Function],
+                                  "mt": [Function],
+                                  "mx": [Function],
+                                  "my": [Function],
+                                  "p": [Function],
+                                  "pb": [Function],
+                                  "pl": [Function],
+                                  "pr": [Function],
+                                  "pt": [Function],
+                                  "px": [Function],
+                                  "py": [Function],
+                                  "textAlign": [Function],
+                                  "width": [Function],
+                                },
+                                "render": [Function],
+                                "styledComponentId": "sc-bZQynM",
+                                "target": "div",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                          >
+                            <div
+                              className="undefined-box undefined-dropdown-body c4"
+                            >
+                              Body
+                            </div>
+                          </StyledComponent>
+                        </Styled(styled.div)>
+                        <Styled(styled.div)>
+                          <StyledComponent
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [
+                                  [Function],
+                                  [Function],
+                                ],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-dnqmqq",
+                                  "isStatic": false,
+                                  "lastClassName": "c5",
+                                  "rules": Array [
+                                    "
+    ",
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    "
+    ",
+                                    [Function],
+                                    "
+    ",
+                                    [Function],
+                                    "
+  ",
+                                    "
+    ",
+                                    [Function],
+                                    "
+    ",
+                                    [Function],
+                                    "
+    ",
+                                    [Function],
+                                    "
+  ",
+                                  ],
+                                },
+                                "displayName": "Styled(styled.div)",
+                                "foldedComponentIds": Array [
+                                  "sc-bdVaJa",
+                                ],
+                                "propTypes": Object {
+                                  "alignSelf": [Function],
+                                  "bg": [Function],
+                                  "color": [Function],
+                                  "display": [Function],
+                                  "flex": [Function],
+                                  "fontSize": [Function],
+                                  "fontWeight": [Function],
+                                  "justifySelf": [Function],
+                                  "lineHeight": [Function],
+                                  "m": [Function],
+                                  "mb": [Function],
+                                  "ml": [Function],
+                                  "mr": [Function],
+                                  "mt": [Function],
+                                  "mx": [Function],
+                                  "my": [Function],
+                                  "p": [Function],
+                                  "pb": [Function],
+                                  "pl": [Function],
+                                  "pr": [Function],
+                                  "pt": [Function],
+                                  "px": [Function],
+                                  "py": [Function],
+                                  "textAlign": [Function],
+                                  "width": [Function],
+                                },
+                                "render": [Function],
+                                "styledComponentId": "sc-dnqmqq",
+                                "target": "div",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                          >
+                            <footer
+                              className="undefined-box undefined-dropdown-footer c5"
+                            >
+                              Footer
+                            </footer>
+                          </StyledComponent>
+                        </Styled(styled.div)>
+                      </div>
+                    </StyledComponent>
+                  </styled.div>
+                </div>
+                <div
+                  data-focus-guard={true}
+                  style={
+                    Object {
+                      "height": "0px",
+                      "left": "1px",
+                      "overflow": "hidden",
+                      "padding": 0,
+                      "position": "fixed",
+                      "top": "1px",
+                      "width": "1px",
+                    }
+                  }
+                  tabIndex={0}
+                />
+              </FocusLock>
+            </Transition>
+          </InnerPopper>
+        </Popper>
+      </Portal>
+    </Portal>
+  </Manager>
+</Dropdown>
+`;
+
+exports[`<Dropdown /> menu opens with focus via enter trigger: is open 1`] = `
+.c0 {
+  -webkit-align-self: flex-start;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+  display: inline-block;
+  outline: none;
+}
+
+.c1 {
+  z-index: 10;
+  background: white;
+  border-radius: px;
+  border: 1px solid #e4edf5;
+  outline: none;
+  box-shadow: 0 0 3px 0 rgba(178,194,212,0.3);
+  width: 150px;
+  opacity: 0.75;
+  -webkit-transform: scale(0.75);
+  -ms-transform: scale(0.75);
+  transform: scale(0.75);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
+  animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
+}
+
+.c2 {
+  padding: 0.75rem 1rem 0;
+}
+
+.c3 {
+  padding: 0 0 0.25rem;
+  border-bottom: 2px solid gray;
+}
+
+.c4 {
+  padding: 1rem;
+}
+
+.c5 {
+  background: gray;
+  padding: 0.75rem 1rem;
+  border-radius: 0 0 px px;
+}
+
+<Dropdown
+  autoclose={true}
+  boundariesElement="viewport"
+  offset="0, 10"
+  placement="bottom-start"
+  positionFixed={false}
+  theme={[Function]}
+  transitionDuration={225}
+  transitionTimingFunction="cubic-bezier(0.25, 0.1, 0.17, 1.2)"
+  trigger={
+    <div>
+      Trigger
+    </div>
+  }
+  width={150}
+  zIndex={10}
+>
+  <Manager>
+    <Reference>
+      <InnerReference
+        setReferenceNode={[Function]}
+      >
+        <styled.div
+          tabIndex={-1}
+        >
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  [Function],
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-bwzfXH",
+                  "isStatic": false,
+                  "lastClassName": "c0",
+                  "rules": Array [
+                    "
+    ",
+                    "
+    align-self: flex-start;
+    display: inline-block;
+    outline: none;
+  ",
+                    "
+    ",
+                    [Function],
+                    "
+    ",
+                    [Function],
+                    "
+  ",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-bwzfXH",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={[Function]}
+            tabIndex={-1}
+          >
+            <div
+              className="undefined-dropdown-trigger c0"
+              tabIndex={-1}
+            >
+              <div
+                aria-expanded={true}
+                aria-haspopup={true}
+                onClick={[Function]}
+                onKeyPress={[Function]}
+                role="button"
+                style={
+                  Object {
+                    "cursor": "pointer",
+                  }
+                }
+                tabIndex={0}
+              >
+                Trigger
+              </div>
+            </div>
+          </StyledComponent>
+        </styled.div>
+      </InnerReference>
+    </Reference>
+    <Portal>
+      <Portal
+        containerInfo={
+          .c0 {
+  z-index: 10;
+  background: white;
+  border-radius: px;
+  border: 1px solid #e4edf5;
+  outline: none;
+  box-shadow: 0 0 3px 0 rgba(178,194,212,0.3);
+  width: 150px;
+  opacity: 0.75;
+  -webkit-transform: scale(0.75);
+  -ms-transform: scale(0.75);
+  transform: scale(0.75);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
+  animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
+}
+
+.c1 {
+  padding: 0.75rem 1rem 0;
+}
+
+.c2 {
+  padding: 0 0 0.25rem;
+  border-bottom: 2px solid gray;
+}
+
+.c3 {
+  padding: 1rem;
+}
+
+.c4 {
+  background: gray;
+  padding: 0.75rem 1rem;
+  border-radius: 0 0 px px;
+}
+
+<div>
+            <div
+              data-focus-guard="true"
+              style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+              tabindex="0"
+            />
+            <div
+              data-focus-guard="true"
+              style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+              tabindex="1"
+            />
+            <div
+              data-focus-lock-disabled="false"
+            >
+              <div
+                class="undefined-dropdown-menu c0"
+                data-testid="dropdown-menu"
+                style="position: absolute; top: 0px; left: 0px; opacity: 0; pointer-events: none;"
+                tabindex="0"
+                width="150"
+              >
+                <header
+                  class="undefined-dropdown-header c1"
+                >
+                  <div
+                    class="undefined-dropdown-header-inner c2"
+                  >
+                    Test
+                  </div>
+                </header>
+                <div
+                  class="undefined-box undefined-dropdown-body c3"
+                >
+                  Body
+                </div>
+                <footer
+                  class="undefined-box undefined-dropdown-footer c4"
+                >
+                  Footer
+                </footer>
+              </div>
+            </div>
+            <div
+              data-focus-guard="true"
+              style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+              tabindex="0"
+            />
+          </div>
+        }
+      >
+        <Popper
+          innerRef={
+            Object {
+              "current": undefined,
+            }
+          }
+          modifiers={
+            Object {
+              "computeStyle": Object {
+                "gpuAcceleration": false,
+              },
+              "flip": Object {
+                "enabled": false,
+              },
+              "offset": Object {
+                "offset": "0, 10",
+              },
+              "preventOverflow": Object {
+                "boundariesElement": "viewport",
+                "padding": 12,
+              },
+            }
+          }
+          placement="bottom-start"
+          positionFixed={false}
+        >
+          <InnerPopper
+            eventsEnabled={true}
+            innerRef={
+              Object {
+                "current": undefined,
+              }
+            }
+            modifiers={
+              Object {
+                "computeStyle": Object {
+                  "gpuAcceleration": false,
+                },
+                "flip": Object {
+                  "enabled": false,
+                },
+                "offset": Object {
+                  "offset": "0, 10",
+                },
+                "preventOverflow": Object {
+                  "boundariesElement": "viewport",
+                  "padding": 12,
+                },
+              }
+            }
+            placement="bottom-start"
+            positionFixed={false}
+            referenceElement={
+              .c0 {
+  -webkit-align-self: flex-start;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+  display: inline-block;
+  outline: none;
+}
+
+<div
+                class="undefined-dropdown-trigger c0"
+                tabindex="-1"
+              >
+                <div
+                  aria-expanded="true"
+                  aria-haspopup="true"
+                  role="button"
+                  style="cursor: pointer;"
+                  tabindex="0"
+                >
+                  Trigger
+                </div>
+              </div>
+            }
+          >
+            <Transition
+              appear={true}
+              enter={true}
+              exit={true}
+              in={true}
+              mountOnEnter={false}
+              onEnter={[Function]}
+              onEntered={[Function]}
+              onEntering={[Function]}
+              onExit={[Function]}
+              onExited={[Function]}
+              onExiting={[Function]}
+              timeout={0}
+              unmountOnExit={false}
+            >
+              <FocusLock
+                as="div"
+                autoFocus={false}
+                disabled={false}
+                lockProps={Object {}}
+                noFocusGuards={false}
+                persistentFocus={false}
+                returnFocus={true}
+              >
+                <div
+                  data-focus-guard={true}
+                  key="guard-first"
+                  style={
+                    Object {
+                      "height": "0px",
+                      "left": "1px",
+                      "overflow": "hidden",
+                      "padding": 0,
+                      "position": "fixed",
+                      "top": "1px",
+                      "width": "1px",
+                    }
+                  }
+                  tabIndex={0}
+                />
+                <div
+                  data-focus-guard={true}
+                  key="guard-nearest"
+                  style={
+                    Object {
+                      "height": "0px",
+                      "left": "1px",
+                      "overflow": "hidden",
+                      "padding": 0,
+                      "position": "fixed",
+                      "top": "1px",
+                      "width": "1px",
+                    }
+                  }
+                  tabIndex={1}
+                />
+                <div
+                  data-focus-lock-disabled={false}
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                >
+                  <SideEffect(FocusWatcher)
+                    autoFocus={false}
+                    disabled={false}
+                    observed={
+                      <div
+                        data-focus-lock-disabled="false"
+                      >
+                        <div
+                          class="undefined-dropdown-menu c1"
+                          data-testid="dropdown-menu"
+                          style="position: absolute; top: 0px; left: 0px; opacity: 0; pointer-events: none;"
+                          tabindex="0"
+                          width="150"
+                        >
+                          <header
+                            class="undefined-dropdown-header c2"
+                          >
+                            <div
+                              class="undefined-dropdown-header-inner c3"
+                            >
+                              Test
+                            </div>
+                          </header>
+                          <div
+                            class="undefined-box undefined-dropdown-body c4"
+                          >
+                            Body
+                          </div>
+                          <footer
+                            class="undefined-box undefined-dropdown-footer c5"
+                          >
+                            Footer
+                          </footer>
+                        </div>
+                      </div>
+                    }
+                    onActivation={[Function]}
+                    onDeactivation={[Function]}
+                    persistentFocus={false}
+                    shards={Array []}
+                  >
+                    <FocusWatcher
+                      autoFocus={false}
+                      disabled={false}
+                      observed={
+                        <div
+                          data-focus-lock-disabled="false"
+                        >
+                          <div
+                            class="undefined-dropdown-menu c1"
+                            data-testid="dropdown-menu"
+                            style="position: absolute; top: 0px; left: 0px; opacity: 0; pointer-events: none;"
+                            tabindex="0"
+                            width="150"
+                          >
+                            <header
+                              class="undefined-dropdown-header c2"
+                            >
+                              <div
+                                class="undefined-dropdown-header-inner c3"
+                              >
+                                Test
+                              </div>
+                            </header>
+                            <div
+                              class="undefined-box undefined-dropdown-body c4"
+                            >
+                              Body
+                            </div>
+                            <footer
+                              class="undefined-box undefined-dropdown-footer c5"
+                            >
+                              Footer
+                            </footer>
+                          </div>
+                        </div>
+                      }
+                      onActivation={[Function]}
+                      onDeactivation={[Function]}
+                      persistentFocus={false}
+                      shards={Array []}
+                    />
+                  </SideEffect(FocusWatcher)>
+                  <styled.div
+                    data-testid="dropdown-menu"
+                    onBlur={[Function]}
+                    placement="bottom-start"
+                    style={
+                      Object {
+                        "left": 0,
+                        "opacity": 0,
+                        "pointerEvents": "none",
+                        "position": "absolute",
+                        "top": 0,
+                      }
+                    }
+                    theme={[Function]}
+                    transitionDuration={225}
+                    transitionState="entering"
+                    transitionTimingFunction="cubic-bezier(0.25, 0.1, 0.17, 1.2)"
+                    width={150}
+                    zIndex={10}
+                  >
+                    <StyledComponent
+                      data-testid="dropdown-menu"
+                      forwardedComponent={
+                        Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "attrs": Array [
+                            [Function],
+                          ],
+                          "componentStyle": ComponentStyle {
+                            "componentId": "sc-htpNat",
+                            "isStatic": false,
+                            "lastClassName": "c1",
+                            "rules": Array [
+                              "
+    ",
+                              [Function],
+                              "
+    ",
+                              [Function],
+                              "
+    ",
+                              [Function],
+                              "
+  ",
+                            ],
+                          },
+                          "displayName": "styled.div",
+                          "foldedComponentIds": Array [],
+                          "render": [Function],
+                          "styledComponentId": "sc-htpNat",
+                          "target": "div",
+                          "toString": [Function],
+                          "warnTooManyClasses": [Function],
+                          "withComponent": [Function],
+                        }
+                      }
+                      forwardedRef={[Function]}
+                      onBlur={[Function]}
+                      placement="bottom-start"
+                      style={
+                        Object {
+                          "left": 0,
+                          "opacity": 0,
+                          "pointerEvents": "none",
+                          "position": "absolute",
+                          "top": 0,
+                        }
+                      }
+                      theme={[Function]}
+                      transitionDuration={225}
+                      transitionState="entering"
+                      transitionTimingFunction="cubic-bezier(0.25, 0.1, 0.17, 1.2)"
+                      width={150}
+                      zIndex={10}
+                    >
+                      <div
+                        className="undefined-dropdown-menu c1"
+                        data-testid="dropdown-menu"
+                        onBlur={[Function]}
+                        style={
+                          Object {
+                            "left": 0,
+                            "opacity": 0,
+                            "pointerEvents": "none",
+                            "position": "absolute",
+                            "top": 0,
+                          }
+                        }
+                        tabIndex={0}
+                        width={150}
+                      >
+                        <Component>
+                          <styled.header>
+                            <StyledComponent
+                              forwardedComponent={
+                                Object {
+                                  "$$typeof": Symbol(react.forward_ref),
+                                  "attrs": Array [
+                                    [Function],
+                                  ],
+                                  "componentStyle": ComponentStyle {
+                                    "componentId": "sc-bxivhb",
+                                    "isStatic": false,
+                                    "lastClassName": "c2",
+                                    "rules": Array [
+                                      "
+    ",
+                                      "
+    padding: 0.75rem 1rem 0;
+  ",
+                                      "
+    ",
+                                      [Function],
+                                      "
+    ",
+                                      [Function],
+                                      "
+  ",
+                                    ],
+                                  },
+                                  "displayName": "styled.header",
+                                  "foldedComponentIds": Array [],
+                                  "render": [Function],
+                                  "styledComponentId": "sc-bxivhb",
+                                  "target": "header",
+                                  "toString": [Function],
+                                  "warnTooManyClasses": [Function],
+                                  "withComponent": [Function],
+                                }
+                              }
+                              forwardedRef={null}
+                            >
+                              <header
+                                className="undefined-dropdown-header c2"
+                              >
+                                <styled.div>
+                                  <StyledComponent
+                                    forwardedComponent={
+                                      Object {
+                                        "$$typeof": Symbol(react.forward_ref),
+                                        "attrs": Array [
+                                          [Function],
+                                        ],
+                                        "componentStyle": ComponentStyle {
+                                          "componentId": "sc-ifAKCX",
+                                          "isStatic": false,
+                                          "lastClassName": "c3",
+                                          "rules": Array [
+                                            "
+    ",
+                                            "
+    padding: 0 0 0.25rem;
+    border-bottom: 2px solid ",
+                                            [Function],
+                                            ";
+  ",
+                                            "
+    ",
+                                            [Function],
+                                            "
+    ",
+                                            [Function],
+                                            "
+  ",
+                                          ],
+                                        },
+                                        "displayName": "styled.div",
+                                        "foldedComponentIds": Array [],
+                                        "render": [Function],
+                                        "styledComponentId": "sc-ifAKCX",
+                                        "target": "div",
+                                        "toString": [Function],
+                                        "warnTooManyClasses": [Function],
+                                        "withComponent": [Function],
+                                      }
+                                    }
+                                    forwardedRef={null}
+                                  >
+                                    <div
+                                      className="undefined-dropdown-header-inner c3"
+                                    >
+                                      Test
+                                    </div>
+                                  </StyledComponent>
+                                </styled.div>
+                              </header>
+                            </StyledComponent>
+                          </styled.header>
+                        </Component>
+                        <Styled(styled.div)>
+                          <StyledComponent
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [
+                                  [Function],
+                                  [Function],
+                                ],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-bZQynM",
+                                  "isStatic": false,
+                                  "lastClassName": "c4",
+                                  "rules": Array [
+                                    "
+    ",
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    "
+    ",
+                                    [Function],
+                                    "
+    ",
+                                    [Function],
+                                    "
+  ",
+                                    "
+    ",
+                                    "
+    padding: 1rem;
+  ",
+                                    "
+    ",
+                                    [Function],
+                                    "
+    ",
+                                    [Function],
+                                    "
+  ",
+                                  ],
+                                },
+                                "displayName": "Styled(styled.div)",
+                                "foldedComponentIds": Array [
+                                  "sc-bdVaJa",
+                                ],
+                                "propTypes": Object {
+                                  "alignSelf": [Function],
+                                  "bg": [Function],
+                                  "color": [Function],
+                                  "display": [Function],
+                                  "flex": [Function],
+                                  "fontSize": [Function],
+                                  "fontWeight": [Function],
+                                  "justifySelf": [Function],
+                                  "lineHeight": [Function],
+                                  "m": [Function],
+                                  "mb": [Function],
+                                  "ml": [Function],
+                                  "mr": [Function],
+                                  "mt": [Function],
+                                  "mx": [Function],
+                                  "my": [Function],
+                                  "p": [Function],
+                                  "pb": [Function],
+                                  "pl": [Function],
+                                  "pr": [Function],
+                                  "pt": [Function],
+                                  "px": [Function],
+                                  "py": [Function],
+                                  "textAlign": [Function],
+                                  "width": [Function],
+                                },
+                                "render": [Function],
+                                "styledComponentId": "sc-bZQynM",
+                                "target": "div",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                          >
+                            <div
+                              className="undefined-box undefined-dropdown-body c4"
+                            >
+                              Body
+                            </div>
+                          </StyledComponent>
+                        </Styled(styled.div)>
+                        <Styled(styled.div)>
+                          <StyledComponent
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [
+                                  [Function],
+                                  [Function],
+                                ],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-dnqmqq",
+                                  "isStatic": false,
+                                  "lastClassName": "c5",
+                                  "rules": Array [
+                                    "
+    ",
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    "
+    ",
+                                    [Function],
+                                    "
+    ",
+                                    [Function],
+                                    "
+  ",
+                                    "
+    ",
+                                    [Function],
+                                    "
+    ",
+                                    [Function],
+                                    "
+    ",
+                                    [Function],
+                                    "
+  ",
+                                  ],
+                                },
+                                "displayName": "Styled(styled.div)",
+                                "foldedComponentIds": Array [
+                                  "sc-bdVaJa",
+                                ],
+                                "propTypes": Object {
+                                  "alignSelf": [Function],
+                                  "bg": [Function],
+                                  "color": [Function],
+                                  "display": [Function],
+                                  "flex": [Function],
+                                  "fontSize": [Function],
+                                  "fontWeight": [Function],
+                                  "justifySelf": [Function],
+                                  "lineHeight": [Function],
+                                  "m": [Function],
+                                  "mb": [Function],
+                                  "ml": [Function],
+                                  "mr": [Function],
+                                  "mt": [Function],
+                                  "mx": [Function],
+                                  "my": [Function],
+                                  "p": [Function],
+                                  "pb": [Function],
+                                  "pl": [Function],
+                                  "pr": [Function],
+                                  "pt": [Function],
+                                  "px": [Function],
+                                  "py": [Function],
+                                  "textAlign": [Function],
+                                  "width": [Function],
+                                },
+                                "render": [Function],
+                                "styledComponentId": "sc-dnqmqq",
+                                "target": "div",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                          >
+                            <footer
+                              className="undefined-box undefined-dropdown-footer c5"
+                            >
+                              Footer
+                            </footer>
+                          </StyledComponent>
+                        </Styled(styled.div)>
+                      </div>
+                    </StyledComponent>
+                  </styled.div>
+                </div>
+                <div
+                  data-focus-guard={true}
+                  style={
+                    Object {
+                      "height": "0px",
+                      "left": "1px",
+                      "overflow": "hidden",
+                      "padding": 0,
+                      "position": "fixed",
+                      "top": "1px",
+                      "width": "1px",
+                    }
+                  }
+                  tabIndex={0}
+                />
+              </FocusLock>
+            </Transition>
+          </InnerPopper>
+        </Popper>
+      </Portal>
+    </Portal>
+  </Manager>
+</Dropdown>
+`;
+
+exports[`<Dropdown /> menu opens with focus via space trigger: is open 1`] = `
+.c0 {
+  -webkit-align-self: flex-start;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+  display: inline-block;
+  outline: none;
+}
+
+.c1 {
+  z-index: 10;
+  background: white;
+  border-radius: px;
+  border: 1px solid #e4edf5;
+  outline: none;
+  box-shadow: 0 0 3px 0 rgba(178,194,212,0.3);
+  width: 150px;
+  opacity: 0.75;
+  -webkit-transform: scale(0.75);
+  -ms-transform: scale(0.75);
+  transform: scale(0.75);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
+  animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
+}
+
+.c2 {
+  padding: 0.75rem 1rem 0;
+}
+
+.c3 {
+  padding: 0 0 0.25rem;
+  border-bottom: 2px solid gray;
+}
+
+.c4 {
+  padding: 1rem;
+}
+
+.c5 {
+  background: gray;
+  padding: 0.75rem 1rem;
+  border-radius: 0 0 px px;
+}
+
+<Dropdown
+  autoclose={true}
+  boundariesElement="viewport"
+  offset="0, 10"
+  placement="bottom-start"
+  positionFixed={false}
+  theme={[Function]}
+  transitionDuration={225}
+  transitionTimingFunction="cubic-bezier(0.25, 0.1, 0.17, 1.2)"
+  trigger={
+    <div>
+      Trigger
+    </div>
+  }
+  width={150}
+  zIndex={10}
+>
+  <Manager>
+    <Reference>
+      <InnerReference
+        setReferenceNode={[Function]}
+      >
+        <styled.div
+          tabIndex={-1}
+        >
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [
+                  [Function],
+                ],
+                "componentStyle": ComponentStyle {
+                  "componentId": "sc-bwzfXH",
+                  "isStatic": false,
+                  "lastClassName": "c0",
+                  "rules": Array [
+                    "
+    ",
+                    "
+    align-self: flex-start;
+    display: inline-block;
+    outline: none;
+  ",
+                    "
+    ",
+                    [Function],
+                    "
+    ",
+                    [Function],
+                    "
+  ",
+                  ],
+                },
+                "displayName": "styled.div",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "sc-bwzfXH",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={[Function]}
+            tabIndex={-1}
+          >
+            <div
+              className="undefined-dropdown-trigger c0"
+              tabIndex={-1}
+            >
+              <div
+                aria-expanded={true}
+                aria-haspopup={true}
+                onClick={[Function]}
+                onKeyPress={[Function]}
+                role="button"
+                style={
+                  Object {
+                    "cursor": "pointer",
+                  }
+                }
+                tabIndex={0}
+              >
+                Trigger
+              </div>
+            </div>
+          </StyledComponent>
+        </styled.div>
+      </InnerReference>
+    </Reference>
+    <Portal>
+      <Portal
+        containerInfo={
+          .c0 {
+  z-index: 10;
+  background: white;
+  border-radius: px;
+  border: 1px solid #e4edf5;
+  outline: none;
+  box-shadow: 0 0 3px 0 rgba(178,194,212,0.3);
+  width: 150px;
+  opacity: 0.75;
+  -webkit-transform: scale(0.75);
+  -ms-transform: scale(0.75);
+  transform: scale(0.75);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
+  animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
+}
+
+.c1 {
+  padding: 0.75rem 1rem 0;
+}
+
+.c2 {
+  padding: 0 0 0.25rem;
+  border-bottom: 2px solid gray;
+}
+
+.c3 {
+  padding: 1rem;
+}
+
+.c4 {
+  background: gray;
+  padding: 0.75rem 1rem;
+  border-radius: 0 0 px px;
+}
+
+<div>
+            <div
+              data-focus-guard="true"
+              style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+              tabindex="0"
+            />
+            <div
+              data-focus-guard="true"
+              style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+              tabindex="1"
+            />
+            <div
+              data-focus-lock-disabled="false"
+            >
+              <div
+                class="undefined-dropdown-menu c0"
+                data-testid="dropdown-menu"
+                style="position: absolute; top: 0px; left: 0px; opacity: 0; pointer-events: none;"
+                tabindex="0"
+                width="150"
+              >
+                <header
+                  class="undefined-dropdown-header c1"
+                >
+                  <div
+                    class="undefined-dropdown-header-inner c2"
+                  >
+                    Test
+                  </div>
+                </header>
+                <div
+                  class="undefined-box undefined-dropdown-body c3"
+                >
+                  Body
+                </div>
+                <footer
+                  class="undefined-box undefined-dropdown-footer c4"
+                >
+                  Footer
+                </footer>
+              </div>
+            </div>
+            <div
+              data-focus-guard="true"
+              style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+              tabindex="0"
+            />
+          </div>
+        }
+      >
+        <Popper
+          innerRef={
+            Object {
+              "current": undefined,
+            }
+          }
+          modifiers={
+            Object {
+              "computeStyle": Object {
+                "gpuAcceleration": false,
+              },
+              "flip": Object {
+                "enabled": false,
+              },
+              "offset": Object {
+                "offset": "0, 10",
+              },
+              "preventOverflow": Object {
+                "boundariesElement": "viewport",
+                "padding": 12,
+              },
+            }
+          }
+          placement="bottom-start"
+          positionFixed={false}
+        >
+          <InnerPopper
+            eventsEnabled={true}
+            innerRef={
+              Object {
+                "current": undefined,
+              }
+            }
+            modifiers={
+              Object {
+                "computeStyle": Object {
+                  "gpuAcceleration": false,
+                },
+                "flip": Object {
+                  "enabled": false,
+                },
+                "offset": Object {
+                  "offset": "0, 10",
+                },
+                "preventOverflow": Object {
+                  "boundariesElement": "viewport",
+                  "padding": 12,
+                },
+              }
+            }
+            placement="bottom-start"
+            positionFixed={false}
+            referenceElement={
+              .c0 {
+  -webkit-align-self: flex-start;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+  display: inline-block;
+  outline: none;
+}
+
+<div
+                class="undefined-dropdown-trigger c0"
+                tabindex="-1"
+              >
+                <div
+                  aria-expanded="true"
+                  aria-haspopup="true"
+                  role="button"
+                  style="cursor: pointer;"
+                  tabindex="0"
+                >
+                  Trigger
+                </div>
+              </div>
+            }
+          >
+            <Transition
+              appear={true}
+              enter={true}
+              exit={true}
+              in={true}
+              mountOnEnter={false}
+              onEnter={[Function]}
+              onEntered={[Function]}
+              onEntering={[Function]}
+              onExit={[Function]}
+              onExited={[Function]}
+              onExiting={[Function]}
+              timeout={0}
+              unmountOnExit={false}
+            >
+              <FocusLock
+                as="div"
+                autoFocus={false}
+                disabled={false}
+                lockProps={Object {}}
+                noFocusGuards={false}
+                persistentFocus={false}
+                returnFocus={true}
+              >
+                <div
+                  data-focus-guard={true}
+                  key="guard-first"
+                  style={
+                    Object {
+                      "height": "0px",
+                      "left": "1px",
+                      "overflow": "hidden",
+                      "padding": 0,
+                      "position": "fixed",
+                      "top": "1px",
+                      "width": "1px",
+                    }
+                  }
+                  tabIndex={0}
+                />
+                <div
+                  data-focus-guard={true}
+                  key="guard-nearest"
+                  style={
+                    Object {
+                      "height": "0px",
+                      "left": "1px",
+                      "overflow": "hidden",
+                      "padding": 0,
+                      "position": "fixed",
+                      "top": "1px",
+                      "width": "1px",
+                    }
+                  }
+                  tabIndex={1}
+                />
+                <div
+                  data-focus-lock-disabled={false}
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                >
+                  <SideEffect(FocusWatcher)
+                    autoFocus={false}
+                    disabled={false}
+                    observed={
+                      <div
+                        data-focus-lock-disabled="false"
+                      >
+                        <div
+                          class="undefined-dropdown-menu c1"
+                          data-testid="dropdown-menu"
+                          style="position: absolute; top: 0px; left: 0px; opacity: 0; pointer-events: none;"
+                          tabindex="0"
+                          width="150"
+                        >
+                          <header
+                            class="undefined-dropdown-header c2"
+                          >
+                            <div
+                              class="undefined-dropdown-header-inner c3"
+                            >
+                              Test
+                            </div>
+                          </header>
+                          <div
+                            class="undefined-box undefined-dropdown-body c4"
+                          >
+                            Body
+                          </div>
+                          <footer
+                            class="undefined-box undefined-dropdown-footer c5"
+                          >
+                            Footer
+                          </footer>
+                        </div>
+                      </div>
+                    }
+                    onActivation={[Function]}
+                    onDeactivation={[Function]}
+                    persistentFocus={false}
+                    shards={Array []}
+                  >
+                    <FocusWatcher
+                      autoFocus={false}
+                      disabled={false}
+                      observed={
+                        <div
+                          data-focus-lock-disabled="false"
+                        >
+                          <div
+                            class="undefined-dropdown-menu c1"
+                            data-testid="dropdown-menu"
+                            style="position: absolute; top: 0px; left: 0px; opacity: 0; pointer-events: none;"
+                            tabindex="0"
+                            width="150"
+                          >
+                            <header
+                              class="undefined-dropdown-header c2"
+                            >
+                              <div
+                                class="undefined-dropdown-header-inner c3"
+                              >
+                                Test
+                              </div>
+                            </header>
+                            <div
+                              class="undefined-box undefined-dropdown-body c4"
+                            >
+                              Body
+                            </div>
+                            <footer
+                              class="undefined-box undefined-dropdown-footer c5"
+                            >
+                              Footer
+                            </footer>
+                          </div>
+                        </div>
+                      }
+                      onActivation={[Function]}
+                      onDeactivation={[Function]}
+                      persistentFocus={false}
+                      shards={Array []}
+                    />
+                  </SideEffect(FocusWatcher)>
+                  <styled.div
+                    data-testid="dropdown-menu"
+                    onBlur={[Function]}
+                    placement="bottom-start"
+                    style={
+                      Object {
+                        "left": 0,
+                        "opacity": 0,
+                        "pointerEvents": "none",
+                        "position": "absolute",
+                        "top": 0,
+                      }
+                    }
+                    theme={[Function]}
+                    transitionDuration={225}
+                    transitionState="entering"
+                    transitionTimingFunction="cubic-bezier(0.25, 0.1, 0.17, 1.2)"
+                    width={150}
+                    zIndex={10}
+                  >
+                    <StyledComponent
+                      data-testid="dropdown-menu"
+                      forwardedComponent={
+                        Object {
+                          "$$typeof": Symbol(react.forward_ref),
+                          "attrs": Array [
+                            [Function],
+                          ],
+                          "componentStyle": ComponentStyle {
+                            "componentId": "sc-htpNat",
+                            "isStatic": false,
+                            "lastClassName": "c1",
+                            "rules": Array [
+                              "
+    ",
+                              [Function],
+                              "
+    ",
+                              [Function],
+                              "
+    ",
+                              [Function],
+                              "
+  ",
+                            ],
+                          },
+                          "displayName": "styled.div",
+                          "foldedComponentIds": Array [],
+                          "render": [Function],
+                          "styledComponentId": "sc-htpNat",
+                          "target": "div",
+                          "toString": [Function],
+                          "warnTooManyClasses": [Function],
+                          "withComponent": [Function],
+                        }
+                      }
+                      forwardedRef={[Function]}
+                      onBlur={[Function]}
+                      placement="bottom-start"
+                      style={
+                        Object {
+                          "left": 0,
+                          "opacity": 0,
+                          "pointerEvents": "none",
+                          "position": "absolute",
+                          "top": 0,
+                        }
+                      }
+                      theme={[Function]}
+                      transitionDuration={225}
+                      transitionState="entering"
+                      transitionTimingFunction="cubic-bezier(0.25, 0.1, 0.17, 1.2)"
+                      width={150}
+                      zIndex={10}
+                    >
+                      <div
+                        className="undefined-dropdown-menu c1"
+                        data-testid="dropdown-menu"
+                        onBlur={[Function]}
+                        style={
+                          Object {
+                            "left": 0,
+                            "opacity": 0,
+                            "pointerEvents": "none",
+                            "position": "absolute",
+                            "top": 0,
+                          }
+                        }
+                        tabIndex={0}
+                        width={150}
+                      >
+                        <Component>
+                          <styled.header>
+                            <StyledComponent
+                              forwardedComponent={
+                                Object {
+                                  "$$typeof": Symbol(react.forward_ref),
+                                  "attrs": Array [
+                                    [Function],
+                                  ],
+                                  "componentStyle": ComponentStyle {
+                                    "componentId": "sc-bxivhb",
+                                    "isStatic": false,
+                                    "lastClassName": "c2",
+                                    "rules": Array [
+                                      "
+    ",
+                                      "
+    padding: 0.75rem 1rem 0;
+  ",
+                                      "
+    ",
+                                      [Function],
+                                      "
+    ",
+                                      [Function],
+                                      "
+  ",
+                                    ],
+                                  },
+                                  "displayName": "styled.header",
+                                  "foldedComponentIds": Array [],
+                                  "render": [Function],
+                                  "styledComponentId": "sc-bxivhb",
+                                  "target": "header",
+                                  "toString": [Function],
+                                  "warnTooManyClasses": [Function],
+                                  "withComponent": [Function],
+                                }
+                              }
+                              forwardedRef={null}
+                            >
+                              <header
+                                className="undefined-dropdown-header c2"
+                              >
+                                <styled.div>
+                                  <StyledComponent
+                                    forwardedComponent={
+                                      Object {
+                                        "$$typeof": Symbol(react.forward_ref),
+                                        "attrs": Array [
+                                          [Function],
+                                        ],
+                                        "componentStyle": ComponentStyle {
+                                          "componentId": "sc-ifAKCX",
+                                          "isStatic": false,
+                                          "lastClassName": "c3",
+                                          "rules": Array [
+                                            "
+    ",
+                                            "
+    padding: 0 0 0.25rem;
+    border-bottom: 2px solid ",
+                                            [Function],
+                                            ";
+  ",
+                                            "
+    ",
+                                            [Function],
+                                            "
+    ",
+                                            [Function],
+                                            "
+  ",
+                                          ],
+                                        },
+                                        "displayName": "styled.div",
+                                        "foldedComponentIds": Array [],
+                                        "render": [Function],
+                                        "styledComponentId": "sc-ifAKCX",
+                                        "target": "div",
+                                        "toString": [Function],
+                                        "warnTooManyClasses": [Function],
+                                        "withComponent": [Function],
+                                      }
+                                    }
+                                    forwardedRef={null}
+                                  >
+                                    <div
+                                      className="undefined-dropdown-header-inner c3"
+                                    >
+                                      Test
+                                    </div>
+                                  </StyledComponent>
+                                </styled.div>
+                              </header>
+                            </StyledComponent>
+                          </styled.header>
+                        </Component>
+                        <Styled(styled.div)>
+                          <StyledComponent
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [
+                                  [Function],
+                                  [Function],
+                                ],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-bZQynM",
+                                  "isStatic": false,
+                                  "lastClassName": "c4",
+                                  "rules": Array [
+                                    "
+    ",
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    "
+    ",
+                                    [Function],
+                                    "
+    ",
+                                    [Function],
+                                    "
+  ",
+                                    "
+    ",
+                                    "
+    padding: 1rem;
+  ",
+                                    "
+    ",
+                                    [Function],
+                                    "
+    ",
+                                    [Function],
+                                    "
+  ",
+                                  ],
+                                },
+                                "displayName": "Styled(styled.div)",
+                                "foldedComponentIds": Array [
+                                  "sc-bdVaJa",
+                                ],
+                                "propTypes": Object {
+                                  "alignSelf": [Function],
+                                  "bg": [Function],
+                                  "color": [Function],
+                                  "display": [Function],
+                                  "flex": [Function],
+                                  "fontSize": [Function],
+                                  "fontWeight": [Function],
+                                  "justifySelf": [Function],
+                                  "lineHeight": [Function],
+                                  "m": [Function],
+                                  "mb": [Function],
+                                  "ml": [Function],
+                                  "mr": [Function],
+                                  "mt": [Function],
+                                  "mx": [Function],
+                                  "my": [Function],
+                                  "p": [Function],
+                                  "pb": [Function],
+                                  "pl": [Function],
+                                  "pr": [Function],
+                                  "pt": [Function],
+                                  "px": [Function],
+                                  "py": [Function],
+                                  "textAlign": [Function],
+                                  "width": [Function],
+                                },
+                                "render": [Function],
+                                "styledComponentId": "sc-bZQynM",
+                                "target": "div",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                          >
+                            <div
+                              className="undefined-box undefined-dropdown-body c4"
+                            >
+                              Body
+                            </div>
+                          </StyledComponent>
+                        </Styled(styled.div)>
+                        <Styled(styled.div)>
+                          <StyledComponent
+                            forwardedComponent={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "attrs": Array [
+                                  [Function],
+                                  [Function],
+                                ],
+                                "componentStyle": ComponentStyle {
+                                  "componentId": "sc-dnqmqq",
+                                  "isStatic": false,
+                                  "lastClassName": "c5",
+                                  "rules": Array [
+                                    "
+    ",
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    [Function],
+                                    "
+  ",
+                                    "
+    ",
+                                    [Function],
+                                    "
+    ",
+                                    [Function],
+                                    "
+  ",
+                                    "
+    ",
+                                    [Function],
+                                    "
+    ",
+                                    [Function],
+                                    "
+    ",
+                                    [Function],
+                                    "
+  ",
+                                  ],
+                                },
+                                "displayName": "Styled(styled.div)",
+                                "foldedComponentIds": Array [
+                                  "sc-bdVaJa",
+                                ],
+                                "propTypes": Object {
+                                  "alignSelf": [Function],
+                                  "bg": [Function],
+                                  "color": [Function],
+                                  "display": [Function],
+                                  "flex": [Function],
+                                  "fontSize": [Function],
+                                  "fontWeight": [Function],
+                                  "justifySelf": [Function],
+                                  "lineHeight": [Function],
+                                  "m": [Function],
+                                  "mb": [Function],
+                                  "ml": [Function],
+                                  "mr": [Function],
+                                  "mt": [Function],
+                                  "mx": [Function],
+                                  "my": [Function],
+                                  "p": [Function],
+                                  "pb": [Function],
+                                  "pl": [Function],
+                                  "pr": [Function],
+                                  "pt": [Function],
+                                  "px": [Function],
+                                  "py": [Function],
+                                  "textAlign": [Function],
+                                  "width": [Function],
+                                },
+                                "render": [Function],
+                                "styledComponentId": "sc-dnqmqq",
+                                "target": "div",
+                                "toString": [Function],
+                                "warnTooManyClasses": [Function],
+                                "withComponent": [Function],
+                              }
+                            }
+                            forwardedRef={null}
+                          >
+                            <footer
+                              className="undefined-box undefined-dropdown-footer c5"
+                            >
+                              Footer
+                            </footer>
+                          </StyledComponent>
+                        </Styled(styled.div)>
+                      </div>
+                    </StyledComponent>
+                  </styled.div>
+                </div>
+                <div
+                  data-focus-guard={true}
+                  style={
+                    Object {
+                      "height": "0px",
+                      "left": "1px",
+                      "overflow": "hidden",
+                      "padding": 0,
+                      "position": "fixed",
+                      "top": "1px",
+                      "width": "1px",
+                    }
+                  }
+                  tabIndex={0}
+                />
+              </FocusLock>
+            </Transition>
+          </InnerPopper>
+        </Popper>
+      </Portal>
+    </Portal>
+  </Manager>
+</Dropdown>
+`;
+
 exports[`<Dropdown /> only renders trigger on mount 1`] = `
 <DocumentFragment>
   .c0 {
@@ -1081,602 +3829,5 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
       Trigger
     </button>
   </div>
-</DocumentFragment>
-`;
-
-exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
-<DocumentFragment>
-  .c0 {
-  -webkit-align-self: flex-start;
-  -ms-flex-item-align: start;
-  align-self: flex-start;
-  display: inline-block;
-  outline: none;
-}
-
-.c1 {
-  font-family: inherit;
-  display: inline-block;
-  text-align: center;
-  cursor: pointer;
-  text-transform: capitalize;
-  font-weight: bold;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border-radius: 4px;
-  pointer-events: auto;
-  opacity: 1;
-  color: white;
-  height: 36px;
-  padding: 0 18px;
-  font-size: 12px;
-  width: auto;
-  background: #2DAAF2;
-  border: 1px solid #2DAAF2;
-  -webkit-transition: 175ms;
-  transition: 175ms;
-}
-
-.c1:hover {
-  background: #45b4f3;
-  border-color: #45b4f3;
-}
-
-.c1:active {
-  background: #51b9f4;
-  border-color: #51b9f4;
-}
-
-<div
-    class="re-dropdown-trigger c0"
-    tabindex="-1"
-  >
-    <button
-      aria-expanded="true"
-      aria-haspopup="true"
-      class="re-button re-button-primary c1"
-      role="button"
-      style="cursor: pointer;"
-      tabindex="0"
-    >
-      Trigger
-    </button>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="1"
-  />
-  .c0 {
-  z-index: 10;
-  background: white;
-  border-radius: 4px;
-  border: 1px solid #e4edf5;
-  outline: none;
-  box-shadow: 0 0 3px 0 rgba(178,194,212,0.3);
-  width: 150px;
-  opacity: 0.75;
-  -webkit-transform: scale(0.75);
-  -ms-transform: scale(0.75);
-  transform: scale(0.75);
-  -webkit-transform-origin: 0 0;
-  -ms-transform-origin: 0 0;
-  transform-origin: 0 0;
-  -webkit-animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
-  animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
-}
-
-.c1 {
-  padding: 0.75rem 1rem 0;
-}
-
-.c2 {
-  padding: 0 0 0.25rem;
-  border-bottom: 2px solid #DEE0E4;
-}
-
-.c3 {
-  padding: 1rem;
-}
-
-.c4 {
-  display: block;
-  width: calc(100% + 2rem);
-  opacity: 1;
-  pointer-events: initial;
-  -webkit-user-select: initial;
-  -moz-user-select: initial;
-  -ms-user-select: initial;
-  user-select: initial;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-  margin: 0 calc(-1rem);
-  padding: 0.25rem 1rem;
-  -webkit-transition: 125ms background;
-  transition: 125ms background;
-  outline: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: 0;
-  font: inherit;
-  text-align: left;
-}
-
-.c4 + .c6 {
-  margin-top: 1rem;
-}
-
-.c4:hover,
-.c4:focus {
-  color: inherit;
-  background: #F1F4F6;
-}
-
-.c5 {
-  background: #F1F4F6;
-  padding: 0.75rem 1rem;
-  border-radius: 0 0 4px 4px;
-}
-
-<div
-    data-focus-lock-disabled="false"
-  >
-    <div
-      class="re-dropdown-menu c0"
-      data-testid="dropdown-menu"
-      style="position: absolute; top: 0px; left: 0px; opacity: 0; pointer-events: none;"
-      tabindex="0"
-      width="150"
-    >
-      <header
-        class="re-dropdown-header c1"
-      >
-        <div
-          class="re-dropdown-header-inner c2"
-        >
-          Header
-        </div>
-      </header>
-      <div
-        class="re-box re-dropdown-body c3"
-      >
-        <div
-          class="re-box re-dropdown-item c4"
-          data-testid="item-one"
-          role="button"
-          tabindex="0"
-        >
-          One
-        </div>
-        <div
-          class="re-box re-dropdown-item c4"
-          data-testid="item-two"
-          role="button"
-          tabindex="0"
-        >
-          Two
-        </div>
-      </div>
-      <footer
-        class="re-box re-dropdown-footer c5"
-      >
-        Footer
-      </footer>
-    </div>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />
-</DocumentFragment>
-`;
-
-exports[`<Dropdown /> opens menu with focus when trigger is clicked 2`] = `
-<DocumentFragment>
-  .c0 {
-  -webkit-align-self: flex-start;
-  -ms-flex-item-align: start;
-  align-self: flex-start;
-  display: inline-block;
-  outline: none;
-}
-
-.c1 {
-  font-family: inherit;
-  display: inline-block;
-  text-align: center;
-  cursor: pointer;
-  text-transform: capitalize;
-  font-weight: bold;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border-radius: 4px;
-  pointer-events: auto;
-  opacity: 1;
-  color: white;
-  height: 36px;
-  padding: 0 18px;
-  font-size: 12px;
-  width: auto;
-  background: #2DAAF2;
-  border: 1px solid #2DAAF2;
-  -webkit-transition: 175ms;
-  transition: 175ms;
-}
-
-.c1:hover {
-  background: #45b4f3;
-  border-color: #45b4f3;
-}
-
-.c1:active {
-  background: #51b9f4;
-  border-color: #51b9f4;
-}
-
-<div
-    class="re-dropdown-trigger c0"
-    tabindex="-1"
-  >
-    <button
-      aria-expanded="true"
-      aria-haspopup="true"
-      class="re-button re-button-primary c1"
-      role="button"
-      style="cursor: pointer;"
-      tabindex="0"
-    >
-      Trigger
-    </button>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="1"
-  />
-  .c0 {
-  z-index: 10;
-  background: white;
-  border-radius: 4px;
-  border: 1px solid #e4edf5;
-  outline: none;
-  box-shadow: 0 0 3px 0 rgba(178,194,212,0.3);
-  width: 150px;
-  opacity: 0.75;
-  -webkit-transform: scale(0.75);
-  -ms-transform: scale(0.75);
-  transform: scale(0.75);
-  -webkit-transform-origin: 0 0;
-  -ms-transform-origin: 0 0;
-  transform-origin: 0 0;
-  -webkit-animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
-  animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
-}
-
-.c1 {
-  padding: 0.75rem 1rem 0;
-}
-
-.c2 {
-  padding: 0 0 0.25rem;
-  border-bottom: 2px solid #DEE0E4;
-}
-
-.c3 {
-  padding: 1rem;
-}
-
-.c4 {
-  display: block;
-  width: calc(100% + 2rem);
-  opacity: 1;
-  pointer-events: initial;
-  -webkit-user-select: initial;
-  -moz-user-select: initial;
-  -ms-user-select: initial;
-  user-select: initial;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-  margin: 0 calc(-1rem);
-  padding: 0.25rem 1rem;
-  -webkit-transition: 125ms background;
-  transition: 125ms background;
-  outline: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: 0;
-  font: inherit;
-  text-align: left;
-}
-
-.c4 + .c6 {
-  margin-top: 1rem;
-}
-
-.c4:hover,
-.c4:focus {
-  color: inherit;
-  background: #F1F4F6;
-}
-
-.c5 {
-  background: #F1F4F6;
-  padding: 0.75rem 1rem;
-  border-radius: 0 0 4px 4px;
-}
-
-<div
-    data-focus-lock-disabled="false"
-  >
-    <div
-      class="re-dropdown-menu c0"
-      data-testid="dropdown-menu"
-      style="position: absolute; top: 0px; left: 0px; opacity: 0; pointer-events: none;"
-      tabindex="0"
-      width="150"
-    >
-      <header
-        class="re-dropdown-header c1"
-      >
-        <div
-          class="re-dropdown-header-inner c2"
-        >
-          Header
-        </div>
-      </header>
-      <div
-        class="re-box re-dropdown-body c3"
-      >
-        <div
-          class="re-box re-dropdown-item c4"
-          data-testid="item-one"
-          role="button"
-          tabindex="0"
-        >
-          One
-        </div>
-        <div
-          class="re-box re-dropdown-item c4"
-          data-testid="item-two"
-          role="button"
-          tabindex="0"
-        >
-          Two
-        </div>
-      </div>
-      <footer
-        class="re-box re-dropdown-footer c5"
-      >
-        Footer
-      </footer>
-    </div>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />
-</DocumentFragment>
-`;
-
-exports[`<Dropdown /> opens menu with focus when trigger is clicked 3`] = `
-<DocumentFragment>
-  .c0 {
-  -webkit-align-self: flex-start;
-  -ms-flex-item-align: start;
-  align-self: flex-start;
-  display: inline-block;
-  outline: none;
-}
-
-.c1 {
-  font-family: inherit;
-  display: inline-block;
-  text-align: center;
-  cursor: pointer;
-  text-transform: capitalize;
-  font-weight: bold;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border-radius: 4px;
-  pointer-events: auto;
-  opacity: 1;
-  color: white;
-  height: 36px;
-  padding: 0 18px;
-  font-size: 12px;
-  width: auto;
-  background: #2DAAF2;
-  border: 1px solid #2DAAF2;
-  -webkit-transition: 175ms;
-  transition: 175ms;
-}
-
-.c1:hover {
-  background: #45b4f3;
-  border-color: #45b4f3;
-}
-
-.c1:active {
-  background: #51b9f4;
-  border-color: #51b9f4;
-}
-
-<div
-    class="re-dropdown-trigger c0"
-    tabindex="-1"
-  >
-    <button
-      aria-expanded="true"
-      aria-haspopup="true"
-      class="re-button re-button-primary c1"
-      role="button"
-      style="cursor: pointer;"
-      tabindex="0"
-    >
-      Trigger
-    </button>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="1"
-  />
-  .c0 {
-  z-index: 10;
-  background: white;
-  border-radius: 4px;
-  border: 1px solid #e4edf5;
-  outline: none;
-  box-shadow: 0 0 3px 0 rgba(178,194,212,0.3);
-  width: 150px;
-  opacity: 0.75;
-  -webkit-transform: scale(0.75);
-  -ms-transform: scale(0.75);
-  transform: scale(0.75);
-  -webkit-transform-origin: 0 0;
-  -ms-transform-origin: 0 0;
-  transform-origin: 0 0;
-  -webkit-animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
-  animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
-}
-
-.c1 {
-  padding: 0.75rem 1rem 0;
-}
-
-.c2 {
-  padding: 0 0 0.25rem;
-  border-bottom: 2px solid #DEE0E4;
-}
-
-.c3 {
-  padding: 1rem;
-}
-
-.c4 {
-  display: block;
-  width: calc(100% + 2rem);
-  opacity: 1;
-  pointer-events: initial;
-  -webkit-user-select: initial;
-  -moz-user-select: initial;
-  -ms-user-select: initial;
-  user-select: initial;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-  margin: 0 calc(-1rem);
-  padding: 0.25rem 1rem;
-  -webkit-transition: 125ms background;
-  transition: 125ms background;
-  outline: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: 0;
-  font: inherit;
-  text-align: left;
-}
-
-.c4 + .c6 {
-  margin-top: 1rem;
-}
-
-.c4:hover,
-.c4:focus {
-  color: inherit;
-  background: #F1F4F6;
-}
-
-.c5 {
-  background: #F1F4F6;
-  padding: 0.75rem 1rem;
-  border-radius: 0 0 4px 4px;
-}
-
-<div
-    data-focus-lock-disabled="false"
-  >
-    <div
-      class="re-dropdown-menu c0"
-      data-testid="dropdown-menu"
-      style="position: absolute; top: 0px; left: 0px; opacity: 0; pointer-events: none;"
-      tabindex="0"
-      width="150"
-    >
-      <header
-        class="re-dropdown-header c1"
-      >
-        <div
-          class="re-dropdown-header-inner c2"
-        >
-          Header
-        </div>
-      </header>
-      <div
-        class="re-box re-dropdown-body c3"
-      >
-        <div
-          class="re-box re-dropdown-item c4"
-          data-testid="item-one"
-          role="button"
-          tabindex="0"
-        >
-          One
-        </div>
-        <div
-          class="re-box re-dropdown-item c4"
-          data-testid="item-two"
-          role="button"
-          tabindex="0"
-        >
-          Two
-        </div>
-      </div>
-      <footer
-        class="re-box re-dropdown-footer c5"
-      >
-        Footer
-      </footer>
-    </div>
-  </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />
 </DocumentFragment>
 `;

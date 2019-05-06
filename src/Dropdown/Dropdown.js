@@ -70,7 +70,7 @@ export default function Dropdown({
   const handleTrigger = e => {
     // Allow all clicks and, for non-button elements, Enter and Space to toggle Dropdown
     // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role#Required_JavaScript_Features
-    if (e.type === 'click' || (e.which === 13 || e.which === 32)) {
+    if (e.type === 'click' || (e.type === 'keypress' && (e.which === 13 || e.which === 32))) {
       e.stopPropagation();
       e.preventDefault();
       toggle();
