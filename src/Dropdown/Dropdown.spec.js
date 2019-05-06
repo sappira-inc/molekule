@@ -1,5 +1,7 @@
 import React from 'react';
+import { shallow, mount } from 'enzyme';
 import { renderWithTheme, fireEvent, wait, waitForDomChange } from '../../test/utils';
+import defaultTheme from '../theme';
 import Dropdown from './Dropdown';
 import Button from '../Button';
 
@@ -53,9 +55,10 @@ describe('<Dropdown />', () => {
       expect(renderUtils.queryByText('Header')).not.toBeInTheDocument();
     });
 
-  const openDropdown = async () => {
+  const openDropdown = async (eventCallback) => {
     const trigger = renderUtils.getByText('Trigger');
-    fireEvent.click(trigger, { stopPropagation: () => null });
+    const callback = eventCallback || triggerEvents[0];
+    callback(trigger);
     return assertDropdownOpen();
   };
 
@@ -67,10 +70,26 @@ describe('<Dropdown />', () => {
     expect(renderUtils.asFragment()).toMatchSnapshot();
   });
 
-  test('opens menu with focus when trigger is clicked', async () => {
-    await openDropdown();
-    expect(renderUtils.asFragment()).toMatchSnapshot();
-    expect(renderUtils.getByTestId('dropdown-menu') === document.activeElement).toBeTruthy();
+  const stopPropagation = jest.fn()
+  const clickTrigger = trigger => {
+    fireEvent.click(trigger, { stopPropagation });
+  };
+  const keyDownTrigger = (key = 'Enter') => (trigger) => {
+    fireEvent.keyDown(trigger, { key, stopPropagation });
+  };
+
+  const triggerEvents = [
+    clickTrigger,
+    keyDownTrigger(),
+    keyDownTrigger('Space')
+  ];
+
+  triggerEvents.forEach( event => {
+    test('opens menu with focus when trigger is clicked', async () => {
+      await openDropdown(event);
+      expect(renderUtils.asFragment()).toMatchSnapshot();
+      expect(renderUtils.getByTestId('dropdown-menu') === document.activeElement).toBeTruthy();
+    });
   });
 
   test('closes when escape is pressed', async () => {
@@ -79,22 +98,31 @@ describe('<Dropdown />', () => {
     await assertDropdownClosed();
   });
 
-  test('closes when menu loses focus', async () => {
-    // Swallowing an annoying warning with act that's okay to ignore: https://github.com/facebook/react/issues/14769
-    const ogError = console.error;
-    console.error = _ => _;
+  // use enzyme since can't trigger blur via dom
+  test('closes on blur event', done => {
+  const stopPropagation = jest.fn();
+  const wrapper = mount(<Dropdown theme={defaultTheme} trigger={<div>Trigger</div>}>
+          <Dropdown.Header>Test</Dropdown.Header>
+          <Dropdown.Body>Body</Dropdown.Body>
+          <Dropdown.Footer>Footer</Dropdown.Footer>
+    </Dropdown>);
 
-    await openDropdown();
 
-    // Some issues with fireEvent.focus: https://github.com/kentcdodds/react-testing-library/issues/276#issuecomment-473392827
-    renderUtils.wrapper.focus();
-    renderUtils.getByTestId('dropdown-menu').blur();
+  // open on trigger
+  const trigger = (wrapper.find('[role="button"]'));
+  trigger.simulate('click', { type: 'click', stopPropagation });
+  expect(wrapper).toMatchSnapshot('is open');
+  expect(wrapper.find('footer')).toHaveLength(1);
 
-    await waitForDomChange();
-    await assertDropdownClosed();
+  // blur dropdown menu
+  const menu = wrapper.find('.laCjkz');
+  menu.simulate('blur', { type: 'blur', stopPropagation });
 
-    console.error = ogError;
-  });
+  wrapper.update();
+  expect(wrapper).toMatchSnapshot('is closed');
+  expect(wrapper.find('footer')).toHaveLength(0);
+  done();
+})
 
   test('arrow keys navigate to focusable elements', async () => {
     await openDropdown();

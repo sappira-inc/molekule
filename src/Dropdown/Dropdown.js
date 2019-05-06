@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { get } from 'lodash';
 import FocusTrap from 'react-focus-lock';
 import { Transition } from 'react-transition-group';
 import { Manager, Reference, Popper } from 'react-popper';
@@ -52,29 +53,42 @@ export default function Dropdown({
 }) {
   const popperRef = useRef();
   const menuRef = useRef();
-  const [isOpen, setOpen] = useState(false);
 
-  const open = () => setOpen(true);
-  const close = () => setOpen(false);
+  const [isOpen, setOpen] = useState(false);
+  const [isBlurable, setBlurable] = useState(false);
+
+  const open = () => {
+    setBlurable(true);
+    setOpen(true);
+  }
+  const close = () => {
+    setBlurable(false);
+    setOpen(false);
+  }
   const toggle = () => (isOpen ? close() : open());
 
+
   const handleTrigger = e => {
-    // Allow all clicks and, for non-button elements, Enter and Space to toggle Dropdown
-    // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role#Required_JavaScript_Features
-    if (e.type === 'click' || (e.type === 'keypress' && (e.which === 13 || e.which === 32))) {
-      e.stopPropagation();
-      toggle();
-    }
+    e.stopPropagation();
+    toggle();
+  }
+
+  const handleClick = e => {
+    handleTrigger(e);
   };
 
   // Wait for next tick after open to prevent page jump when focusing
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => {
-        menuRef.current.focus();
+        if (menuRef.current) menuRef.current.focus();
       });
     }
   }, [isOpen]);
+
+  useKeyPress(['Enter', 'Space'], e => {
+    handleTrigger(e);
+  });
 
   useKeyPress('Escape', () => {
     if (isOpen) {
@@ -85,18 +99,21 @@ export default function Dropdown({
   useKeyPress(ARROW_KEYS, event => {
     if (isOpen && !!menuRef.current) {
       event.preventDefault();
+      event.stopPropagation();
       const focusArgs = [menuRef.current, document.activeElement];
       const nextFocusable =
         event.key === 'ArrowUp' ? findPreviousFocusableElement(...focusArgs) : findNextFocusableElement(...focusArgs);
 
       if (nextFocusable) {
+        setBlurable(false);
         nextFocusable.focus();
+        setBlurable(true);
       }
     }
   });
 
-  const handleMenuBlur = () => {
-    if (autoclose) {
+  const handleMenuBlur = e => {
+    if (autoclose && isBlurable) {
       const nextActiveElement = document.activeElement;
       if (menuRef.current && !menuRef.current.contains(nextActiveElement)) {
         close();
@@ -117,8 +134,7 @@ export default function Dropdown({
                 tabIndex: trigger.tabIndex || 0,
                 'aria-haspopup': true,
                 'aria-expanded': isOpen,
-                onClick: handleTrigger,
-                onKeyPress: handleTrigger,
+                onClick: handleClick,
                 style: {
                   cursor: 'pointer',
                   ...(trigger.style || {}),
@@ -255,7 +271,7 @@ const DropdownHeaderInner = createComponent({
   name: 'DropdownHeaderInner',
   style: css`
     padding: 0 0 0.25rem;
-    border-bottom: 2px solid ${p => p.theme.colors.grayLight};
+    border-bottom: 2px solid ${p => get(p, 'theme.colors.grayLight', 'gray')};
   `,
 });
 
@@ -354,7 +370,7 @@ Dropdown.Footer = createComponent({
     as: 'footer',
   }),
   style: ({ theme }) => css`
-    background: ${theme.colors.grayLightest};
+    background: ${({theme}) => get(theme, 'colors.grayLightest', 'gray')};
     padding: 0.75rem 1rem;
     border-radius: 0 0 ${themeGet('radius')}px ${themeGet('radius')}px;
   `,
