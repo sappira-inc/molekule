@@ -68,13 +68,13 @@ export default function Dropdown({
   const toggle = () => (isOpen ? close() : open());
 
   const handleTrigger = e => {
-    e.stopPropagation();
-    e.preventDefault();
-    toggle();
-  }
-
-  const handleClick = e => {
-    handleTrigger(e);
+    // Allow all clicks and, for non-button elements, Enter and Space to toggle Dropdown
+    // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role#Required_JavaScript_Features
+    if (e.type === 'click' || (e.which === 13 || e.which === 32)) {
+      e.stopPropagation();
+      e.preventDefault();
+      toggle();
+    }
   };
 
   // Wait for next tick after open to prevent page jump when focusing
@@ -86,10 +86,6 @@ export default function Dropdown({
     }
   }, [isOpen]);
 
-  const handleKeyPress = e => {
-    if (e.which === 13 || e.which === 32) handleTrigger(e);
-  };
-
   useKeyPress('Escape', () => {
     if (isOpen) {
       close();
@@ -97,7 +93,7 @@ export default function Dropdown({
   });
 
   useKeyPress(ARROW_KEYS, event => {
-    if (isOpen && !!menuRef.current) {
+    if (isOpen && menuRef.current) {
       event.preventDefault();
       event.stopPropagation();
       const focusArgs = [menuRef.current, document.activeElement];
@@ -134,8 +130,8 @@ export default function Dropdown({
                 tabIndex: trigger.tabIndex || 0,
                 'aria-haspopup': true,
                 'aria-expanded': isOpen,
-                onClick: handleClick,
-                onKeyPress: handleKeyPress,
+                onClick: handleTrigger,
+                onKeyPress: handleTrigger,
                 style: {
                   cursor: 'pointer',
                   ...(trigger.style || {}),

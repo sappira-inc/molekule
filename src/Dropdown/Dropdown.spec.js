@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { renderWithTheme, fireEvent, wait, waitForDomChange } from '../../test/utils';
 import defaultTheme from '../theme';
 import Dropdown from './Dropdown';
