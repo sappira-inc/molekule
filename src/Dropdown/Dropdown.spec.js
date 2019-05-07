@@ -115,18 +115,21 @@ describe('<Dropdown />', () => {
     await assertDropdownClosed();
   });
 
-  // use enzyme since can't trigger blur via dom
-  test('closes on blur event', async () => {
-    const wrapper = await mountAndOpenDropdown();
-    assertMountedDropdownOpen(wrapper);
+  test('closes when menu loses focus', async () => {
+    // Swallowing an annoying warning with act that's okay to ignore: https://github.com/facebook/react/issues/14769
+    const ogError = console.error;
+    console.error = _ => _;
 
-    // blur dropdown menu
-    const menu = wrapper.find('.laCjkz');
-    menu.simulate('blur', { type: 'blur', stopPropagation, preventDefault });
+    await openDropdown();
 
-    wrapper.update();
-    expect(wrapper).toMatchSnapshot('is closed');
-    expect(wrapper.find('footer')).toHaveLength(0);
+    // Some issues with fireEvent.focus: https://github.com/kentcdodds/react-testing-library/issues/276#issuecomment-473392827
+    renderUtils.wrapper.focus();
+    renderUtils.getByTestId('dropdown-menu').blur();
+
+    await waitForDomChange();
+    await assertDropdownClosed();
+
+    console.error = ogError;
   })
 
   test('arrow keys navigate to focusable elements', async () => {
