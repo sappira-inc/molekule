@@ -1,8 +1,6 @@
 import React from 'react';
-import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import { renderWithTheme, fireEvent, wait, waitForDomChange } from '../../test/utils';
-import defaultTheme from '../theme';
 import Dropdown from './Dropdown';
 import Button from '../Button';
 
@@ -58,17 +56,11 @@ describe('<Dropdown />', () => {
     wait(() => {
       expect(renderUtils.queryByText('Header')).not.toBeInTheDocument();
     });
- 
-  const assertMountedDropdownOpen = wrapper => {
-    expect(wrapper).toMatchSnapshot('is open');
-    expect(wrapper.find('footer')).toHaveLength(1);
-  }
 
-  const openDropdown = async (eventCallback) => {
+  const openDropdown = async () => {
     const trigger = renderUtils.getByText('Trigger');
-    const callback = eventCallback || clickTrigger;
     act(() => {
-      callback(trigger);
+      fireEvent.click(trigger, { stopPropagation: () => null });
     });
     return assertDropdownOpen();
   };
@@ -81,40 +73,10 @@ describe('<Dropdown />', () => {
     expect(renderUtils.asFragment()).toMatchSnapshot();
   });
 
-  const stopPropagation = jest.fn()
-  const preventDefault = jest.fn()
-  const clickTrigger = trigger => {
-    fireEvent.click(trigger, { stopPropagation, preventDefault });
-  };
-
-  const baseTrigger = { stopPropagation, preventDefault };
-  const triggerEvents = {
-    'click': { type: 'click', ...baseTrigger },
-    'enter': { type: 'keypress', which: '32', ...baseTrigger },
-    'space': { type: 'keypress', which: '13', ...baseTrigger },
-  };
-
-  const mountAndOpenDropdown = (triggerEvent = triggerEvents.click) => {
-    const wrapper = mount(<Dropdown theme={defaultTheme} trigger={<div>Trigger</div>}>
-          <Dropdown.Header>Test</Dropdown.Header>
-          <Dropdown.Body>Body</Dropdown.Body>
-          <Dropdown.Footer>Footer</Dropdown.Footer>
-    </Dropdown>);
-
-    // open on trigger
-    const trigger = (wrapper.find('[role="button"]'));
-    act(() => {
-      trigger.simulate(triggerEvent.type, triggerEvent);
-    });
-    return wrapper;
-  };
-
-  // use enzyme since can't trigger keypress
-  Object.keys(triggerEvents).forEach( async eventKey => {
-    test(`menu opens with focus via ${eventKey} trigger`, async () => {
-       const wrapper = await mountAndOpenDropdown();
-       assertMountedDropdownOpen(wrapper);
-    });
+  test('opens menu with focus when trigger is clicked', async () => {
+    await openDropdown();
+    expect(renderUtils.asFragment()).toMatchSnapshot();
+    expect(renderUtils.getByTestId('dropdown-menu') === document.activeElement).toBeTruthy();
   });
 
   test('closes when escape is pressed', async () => {
@@ -135,16 +97,16 @@ describe('<Dropdown />', () => {
     // Some issues with fireEvent.focus: https://github.com/kentcdodds/react-testing-library/issues/276#issuecomment-473392827
     act(() => {
       renderUtils.wrapper.focus();
-    })
+    });
     act(() => {
       renderUtils.getByTestId('dropdown-menu').blur();
-    })
+    });
 
-    await waitForDomChange();
+    //await waitForDomChange();
     await assertDropdownClosed();
 
     console.error = ogError;
-  })
+  });
 
   test('arrow keys navigate to focusable elements', async () => {
     await openDropdown();
@@ -155,18 +117,18 @@ describe('<Dropdown />', () => {
     // First focusable element in tree should be selected on first arrow down
     act(() => {
       fireEvent.keyDown(document.body, { key: 'ArrowDown' });
-    })
+    });
     expect(isFocused(itemOne)).toBeTruthy();
 
     // Arrow up on first item should bring us to last item
     act(() => {
       fireEvent.keyDown(document.body, { key: 'ArrowUp' });
-    })
+    });
     expect(isFocused(itemTwo)).toBeTruthy();
 
     act(() => {
       fireEvent.keyDown(document.body, { key: 'ArrowUp' });
-    })
+    });
     expect(isFocused(itemOne)).toBeTruthy();
   });
 });
