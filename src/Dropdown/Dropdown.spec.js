@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { act } from 'react-dom/test-utils';
 import { renderWithTheme, fireEvent, wait, waitForDomChange } from '../../test/utils';
 import defaultTheme from '../theme';
 import Dropdown from './Dropdown';
@@ -26,19 +27,22 @@ describe('<Dropdown />', () => {
   const renderDropdown = () => {
     const wrapper = document.createElement('div');
     wrapper.setAttribute('tabindex', 1);
-    const utils = renderWithTheme(
-      <Dropdown portalNode={wrapper} trigger={<Button>Trigger</Button>}>
-        <Dropdown.Header>Header</Dropdown.Header>
-        <Dropdown.Body>
-          <Dropdown.Item data-testid="item-one">One</Dropdown.Item>
-          <Dropdown.Item data-testid="item-two">Two</Dropdown.Item>
-        </Dropdown.Body>
-        <Dropdown.Footer>Footer</Dropdown.Footer>
-      </Dropdown>,
-      {
-        container: document.body.appendChild(wrapper),
-      }
-    );
+    let utils;
+    act(() => {
+      utils = renderWithTheme(
+        <Dropdown portalNode={wrapper} trigger={<Button>Trigger</Button>}>
+          <Dropdown.Header>Header</Dropdown.Header>
+          <Dropdown.Body>
+            <Dropdown.Item data-testid="item-one">One</Dropdown.Item>
+            <Dropdown.Item data-testid="item-two">Two</Dropdown.Item>
+          </Dropdown.Body>
+          <Dropdown.Footer>Footer</Dropdown.Footer>
+        </Dropdown>,
+        {
+          container: document.body.appendChild(wrapper),
+        }
+      );
+    });
     return {
       wrapper,
       ...utils,
@@ -63,7 +67,9 @@ describe('<Dropdown />', () => {
   const openDropdown = async (eventCallback) => {
     const trigger = renderUtils.getByText('Trigger');
     const callback = eventCallback || clickTrigger;
-    callback(trigger);
+    act(() => {
+      callback(trigger);
+    });
     return assertDropdownOpen();
   };
 
@@ -97,7 +103,9 @@ describe('<Dropdown />', () => {
 
     // open on trigger
     const trigger = (wrapper.find('[role="button"]'));
-    trigger.simulate(triggerEvent.type, triggerEvent);
+    act(() => {
+      trigger.simulate(triggerEvent.type, triggerEvent);
+    });
     return wrapper;
   };
 
@@ -111,7 +119,9 @@ describe('<Dropdown />', () => {
 
   test('closes when escape is pressed', async () => {
     await openDropdown();
-    fireEvent.keyDown(document.body, { key: 'Escape' });
+    act(() => {
+      fireEvent.keyDown(document.body, { key: 'Escape' });
+    });
     await assertDropdownClosed();
   });
 
@@ -123,8 +133,12 @@ describe('<Dropdown />', () => {
     await openDropdown();
 
     // Some issues with fireEvent.focus: https://github.com/kentcdodds/react-testing-library/issues/276#issuecomment-473392827
-    renderUtils.wrapper.focus();
-    renderUtils.getByTestId('dropdown-menu').blur();
+    act(() => {
+      renderUtils.wrapper.focus();
+    })
+    act(() => {
+      renderUtils.getByTestId('dropdown-menu').blur();
+    })
 
     await waitForDomChange();
     await assertDropdownClosed();
@@ -139,14 +153,20 @@ describe('<Dropdown />', () => {
     const isFocused = node => node === document.activeElement;
 
     // First focusable element in tree should be selected on first arrow down
-    fireEvent.keyDown(document.body, { key: 'ArrowDown' });
+    act(() => {
+      fireEvent.keyDown(document.body, { key: 'ArrowDown' });
+    })
     expect(isFocused(itemOne)).toBeTruthy();
 
     // Arrow up on first item should bring us to last item
-    fireEvent.keyDown(document.body, { key: 'ArrowUp' });
+    act(() => {
+      fireEvent.keyDown(document.body, { key: 'ArrowUp' });
+    })
     expect(isFocused(itemTwo)).toBeTruthy();
 
-    fireEvent.keyDown(document.body, { key: 'ArrowUp' });
+    act(() => {
+      fireEvent.keyDown(document.body, { key: 'ArrowUp' });
+    })
     expect(isFocused(itemOne)).toBeTruthy();
   });
 });
