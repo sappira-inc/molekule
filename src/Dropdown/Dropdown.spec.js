@@ -84,8 +84,8 @@ describe('<Dropdown />', () => {
   const baseTrigger = { stopPropagation, preventDefault };
   const triggerEvents = {
     'click': { type: 'click', ...baseTrigger },
-    'enter': { type: 'keypress', which: '32', ...baseTrigger },
-    'space': { type: 'keypress', which: '13', ...baseTrigger },
+    'space': { type: 'keypress', key: 'Space', which: 32, ...baseTrigger },
+    'enter': { type: 'keypress', key: 'Enter', which: 13, ...baseTrigger },
   };
 
   const mountAndOpenDropdown = (triggerEvent = triggerEvents.click) => {
@@ -98,13 +98,15 @@ describe('<Dropdown />', () => {
     // open on trigger
     const trigger = (wrapper.find('[role="button"]'));
     trigger.simulate(triggerEvent.type, triggerEvent);
+    wrapper.update();
     return wrapper;
   };
 
   // use enzyme since can't trigger keypress
   Object.keys(triggerEvents).forEach( async eventKey => {
+    const event = triggerEvents[eventKey];
     test(`menu opens with focus via ${eventKey} trigger`, async () => {
-       const wrapper = await mountAndOpenDropdown();
+       const wrapper = await mountAndOpenDropdown(event);
        assertMountedDropdownOpen(wrapper);
     });
   });
