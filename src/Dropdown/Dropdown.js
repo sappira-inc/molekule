@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { get } from 'lodash';
 import FocusTrap from 'react-focus-lock';
 import { Transition } from 'react-transition-group';
 import { Manager, Reference, Popper } from 'react-popper';
@@ -268,7 +267,7 @@ const DropdownHeaderInner = createComponent({
   name: 'DropdownHeaderInner',
   style: css`
     padding: 0 0 0.25rem;
-    border-bottom: 2px solid ${p => get(p, 'theme.colors.grayLight', 'gray')};
+    border-bottom: 2px solid ${p => p.theme.colors.grayLight};
   `,
 });
 
@@ -367,7 +366,7 @@ Dropdown.Footer = createComponent({
     as: 'footer',
   }),
   style: ({ theme }) => css`
-    background: ${({theme}) => get(theme, 'colors.grayLightest', 'gray')};
+    background: ${theme.colors.grayLightest};
     padding: 0.75rem 1rem;
     border-radius: 0 0 ${themeGet('radius')}px ${themeGet('radius')}px;
   `,
