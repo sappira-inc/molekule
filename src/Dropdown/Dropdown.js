@@ -37,6 +37,12 @@ const Trigger = createComponent({
   `,
 });
 
+let isBlurable = false;
+
+const setBlurable = value => {
+  isBlurable = value;
+}
+
 export default function Dropdown({
   autoclose,
   placement,
@@ -54,7 +60,6 @@ export default function Dropdown({
   const menuRef = useRef();
 
   const [isOpen, setOpen] = useState(false);
-  const [isBlurable, setBlurable] = useState(false);
 
   const open = () => {
     setBlurable(true);
@@ -70,8 +75,8 @@ export default function Dropdown({
     // Allow all clicks and, for non-button elements, Enter and Space to toggle Dropdown
     // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role#Required_JavaScript_Features
     if (e.type === 'click' || (e.type === 'keypress' && (e.which === 13 || e.which === 32))) {
-      e.stopPropagation();
       e.preventDefault();
+      e.stopPropagation();
       toggle();
     }
   };
