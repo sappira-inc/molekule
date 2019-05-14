@@ -58,6 +58,7 @@ export default function Dropdown({
 }) {
   const popperRef = useRef();
   const menuRef = useRef();
+  const triggerRef = useRef();
 
   const [isOpen, setOpen] = useState(false);
 
@@ -92,6 +93,7 @@ export default function Dropdown({
 
   useKeyPress('Escape', () => {
     if (isOpen) {
+      triggerRef.current.focus();
       close();
     }
   });
@@ -127,8 +129,8 @@ export default function Dropdown({
     <DropdownContext.Provider value={{ close }}>
       <Manager>
         <Reference>
-          {({ ref: triggerRef }) => (
-            <Trigger style={styles.Trigger} ref={triggerRef} tabIndex={-1}>
+          {({ ref: passedTriggerRef }) => (
+            <Trigger style={styles.Trigger} ref={passedTriggerRef} tabIndex={-1}>
               {React.cloneElement(trigger, {
                 role: trigger.role || 'button',
                 tabIndex: trigger.tabIndex || 0,
@@ -136,6 +138,7 @@ export default function Dropdown({
                 'aria-expanded': isOpen,
                 onClick: handleTrigger,
                 onKeyPress: handleTrigger,
+                ref: triggerRef,
                 style: {
                   cursor: 'pointer',
                   ...(trigger.style || {}),
@@ -168,7 +171,7 @@ export default function Dropdown({
               {({ ref, style }) => (
                 <Transition in={isOpen} timeout={0} appear>
                   {state => (
-                    <FocusTrap returnFocus autoFocus={false}>
+                    <FocusTrap autoFocus={false}>
                       <DropdownMenu
                         ref={menuInner => {
                           menuRef.current = menuInner;
