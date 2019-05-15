@@ -80,8 +80,7 @@ describe('<Dropdown />', () => {
     await assertDropdownClosed();
   });
 
-  // TODO: enable broken test
-  xtest('closes when menu loses focus', async () => {
+  test('closes when menu loses focus', async () => {
     // Swallowing an annoying warning with act that's okay to ignore: https://github.com/facebook/react/issues/14769
     const ogError = console.error;
     console.error = _ => _;
@@ -90,9 +89,7 @@ describe('<Dropdown />', () => {
 
     // Some issues with fireEvent.focus: https://github.com/kentcdodds/react-testing-library/issues/276#issuecomment-473392827
     renderUtils.wrapper.focus();
-    renderUtils.getByTestId('dropdown-menu').blur();
 
-    await waitForDomChange();
     await assertDropdownClosed();
 
     console.error = ogError;
