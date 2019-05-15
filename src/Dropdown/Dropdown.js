@@ -37,12 +37,6 @@ const Trigger = createComponent({
   `,
 });
 
-let isBlurable = false;
-
-const setBlurable = value => {
-  isBlurable = value;
-}
-
 export default function Dropdown({
   autoclose,
   placement,
@@ -63,11 +57,9 @@ export default function Dropdown({
   const [isOpen, setOpen] = useState(false);
 
   const open = () => {
-    setBlurable(true);
     setOpen(true);
   }
   const close = () => {
-    setBlurable(false);
     setOpen(false);
   }
   const toggle = () => (isOpen ? close() : open());
@@ -107,19 +99,14 @@ export default function Dropdown({
         event.key === 'ArrowUp' ? findPreviousFocusableElement(...focusArgs) : findNextFocusableElement(...focusArgs);
 
       if (nextFocusable) {
-        setBlurable(false);
         nextFocusable.focus();
-        setBlurable(true);
       }
     }
   });
 
   const handleMenuBlur = e => {
-    if (autoclose && isBlurable) {
-      const nextActiveElement = document.activeElement;
-      if (menuRef.current && !menuRef.current.contains(nextActiveElement)) {
-        close();
-      }
+    if (autoclose && menuRef.current && !menuRef.current.contains(e.relatedTarget)) {
+      close();
     }
   };
 
