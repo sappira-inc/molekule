@@ -56,12 +56,8 @@ export default function Dropdown({
 
   const [isOpen, setOpen] = useState(false);
 
-  const open = () => {
-    setOpen(true);
-  }
-  const close = () => {
-    setOpen(false);
-  }
+  const open = () => setOpen(true);
+  const close = () => setOpen(false);
   const toggle = () => (isOpen ? close() : open());
 
   const handleTrigger = e => {
