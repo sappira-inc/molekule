@@ -81,7 +81,7 @@ export default function Dropdown({
 
   useKeyPress('Escape', () => {
     if (isOpen) {
-      triggerRef.current.focus();
+      if (triggerRef.current) triggerRef.current.focus();
       close();
     }
   });
@@ -89,7 +89,6 @@ export default function Dropdown({
   useKeyPress(ARROW_KEYS, event => {
     if (isOpen && menuRef.current) {
       event.preventDefault();
-      event.stopPropagation();
       const focusArgs = [menuRef.current, document.activeElement];
       const nextFocusable =
         event.key === 'ArrowUp' ? findPreviousFocusableElement(...focusArgs) : findNextFocusableElement(...focusArgs);
