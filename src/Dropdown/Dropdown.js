@@ -195,7 +195,7 @@ Dropdown.propTypes = {
   zIndex: PropTypes.number,
   transitionDuration: PropTypes.number,
   transitionTimingFunction: PropTypes.string,
-  portalNode: PropTypes.instanceOf(Element),
+  portalNode: PropTypes.element,
 };
 
 Dropdown.defaultProps = {
