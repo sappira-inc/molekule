@@ -58,14 +58,14 @@ class Checkbox extends React.Component {
     iconOff: PropTypes.string,
     iconSize: PropTypes.number,
     fontSize: PropTypes.number,
-    color: PropTypes.string,
     horizontal: PropTypes.bool,
     disabled: PropTypes.bool,
     styles: PropTypes.shape(),
+    colorOn: PropTypes.string,
+    colorOff: PropTypes.string,
   };
 
   static defaultProps = {
-    color: 'primary',
     iconOn: 'checkbox-marked',
     iconOff: 'checkbox-blank-outline',
     valueTrue: true,

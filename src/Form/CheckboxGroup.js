@@ -9,7 +9,6 @@ import { createEasyInput } from './EasyInput';
 class CheckboxGroup extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
-    color: PropTypes.string,
     horizontal: PropTypes.bool,
     value: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
     choices: PropTypes.arrayOf(
@@ -20,13 +19,15 @@ class CheckboxGroup extends Component {
       })
     ).isRequired,
     onChange: PropTypes.func,
+    colorOn: PropTypes.string,
+    colorOff: PropTypes.string,
   };
 
   static defaultProps = {
-    defaultValue: [],
-    color: 'primary',
     horizontal: false,
     onChange() {},
+    colorOn: 'primary',
+    colorOff: 'grayMid',
   };
 
   state = {
@@ -60,7 +61,7 @@ class CheckboxGroup extends Component {
   };
 
   render() {
-    const { name, color, choices, error, horizontal } = this.props;
+    const { name, choices, error, horizontal, colorOn, colorOff } = this.props;
     const { selected } = this.state;
 
     return (
@@ -77,7 +78,8 @@ class CheckboxGroup extends Component {
                   id={key}
                   name={key}
                   label={choice.label}
-                  color={color}
+                  colorOn={colorOn}
+                  colorOff={colorOff}
                   horizontal={horizontal}
                   value={selected && selected.includes(value) ? value : null}
                   valueTrue={value}
