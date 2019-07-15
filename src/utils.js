@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const themeGet = (lookup, fallback) => ({ theme } = {}) => get(theme, lookup, fallback);
 
 export const getComponentVariant = (theme, componentName, variant) => {
-  const config = themeGet(`variants.${componentName}.${variant}`, theme.variants[componentName][variant])({
+  const config = themeGet(`variants.${componentName}.${variant}`)({
     theme,
   });
 
@@ -12,10 +12,12 @@ export const getComponentVariant = (theme, componentName, variant) => {
   return config;
 };
 
-export const getComponentStyle = componentName => themeGet(`components.${componentName}.style`);
+const getComponentStyle = componentName => themeGet(`components.${componentName}.style`, {});
 
-export const getComponentVariantStyles = (componentName, variant) =>
-  themeGet(`components.${componentName}.variants.${variant}.style`);
+const getComponentVariantStyles = (componentName, variant) =>
+  themeGet(`components.${componentName}.variants.${variant}.style`, {});
+
+const getVariantStyles = (componentName, variant) => themeGet(`variants.${componentName}.${variant}.style`, {});
 
 const getComponentClassName = ({ className, theme: { classPrefix }, variant }, name) =>
   `${className || ''} ${classPrefix}-${name} ${variant ? `${classPrefix}-${name}-${variant}` : ''}`.trim();
@@ -36,10 +38,11 @@ export const createComponent = ({ name, tag = 'div', as, style, props: getBasePr
       className: getComponentClassName(finalProps, kebabCase(name)),
     };
   })`
-    ${style}
-    ${getComponentStyle(name)}
-    ${p => getComponentVariantStyles(name, p.variant)}
-    ${({ styles = {} }) => styles[name] || {}}
+  ${style}
+  ${getComponentStyle(name)}
+  ${p => getVariantStyles(name, p.variant)}
+  ${p => getComponentVariantStyles(name, p.variant)}
+  ${({ styles = {} }) => styles[name] || {}}
 `;
 };
 
