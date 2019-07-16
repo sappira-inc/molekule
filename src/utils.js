@@ -12,7 +12,7 @@ export const getComponentVariant = (theme, componentName, variant) => {
   return config;
 };
 
-const getComponentStyle = componentName => themeGet(`components.${componentName}.style`, {});
+const getComponentStyle = componentName => themeGet(`styles.${componentName}`, {});
 
 const getVariantStyles = (componentName, variant) => themeGet(`variants.${componentName}.${variant}.style`, {});
 
