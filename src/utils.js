@@ -14,9 +14,6 @@ export const getComponentVariant = (theme, componentName, variant) => {
 
 const getComponentStyle = componentName => themeGet(`components.${componentName}.style`, {});
 
-const getComponentVariantStyles = (componentName, variant) =>
-  themeGet(`components.${componentName}.variants.${variant}.style`, {});
-
 const getVariantStyles = (componentName, variant) => themeGet(`variants.${componentName}.${variant}.style`, {});
 
 const getComponentClassName = ({ className, theme: { classPrefix }, variant }, name) =>
@@ -41,7 +38,6 @@ export const createComponent = ({ name, tag = 'div', as, style, props: getBasePr
   ${style}
   ${getComponentStyle(name)}
   ${p => getVariantStyles(name, p.variant)}
-  ${p => getComponentVariantStyles(name, p.variant)}
   ${({ styles = {} }) => styles[name] || {}}
 `;
 };
