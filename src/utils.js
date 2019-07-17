@@ -12,9 +12,9 @@ export const getComponentVariant = (theme, componentName, variant) => {
   return config;
 };
 
-const getComponentStyle = componentName => themeGet(`styles.${componentName}`, {});
+export const getComponentStyle = componentName => themeGet(`styles.${componentName}`, {});
 
-const getVariantStyles = (componentName, variant) => themeGet(`variants.${componentName}.${variant}.style`, {});
+export const getVariantStyles = (componentName, variant) => themeGet(`variants.${componentName}.${variant}.style`, {});
 
 const getComponentClassName = ({ className, theme: { classPrefix }, variant }, name) =>
   `${className || ''} ${classPrefix}-${name} ${variant ? `${classPrefix}-${name}-${variant}` : ''}`.trim();

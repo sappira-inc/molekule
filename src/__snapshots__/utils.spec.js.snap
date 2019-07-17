@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#utils #getComponentStyle should return top-level component style from theme 1`] = `
+"
+      background-color: tomato;
+    "
+`;
+
+exports[`#utils #getComponentVariant should return primary variant from theme 1`] = `
+Object {
+  "style": "
+          background-color: blue;
+        ",
+}
+`;
+
+exports[`#utils #getComponentVariant should throw error if variant not found 1`] = `[Error: Molekule: "foobar" variant not found in theme...]`;
+
+exports[`#utils #getVariantStyles should return variant style for component from theme 1`] = `
+"
+          background-color: blue;
+        "
+`;
+
+exports[`#utils #themeGet should fallback when theme config not found 1`] = `
+Object {
+  "primary": Object {
+    "style": "background-color: green",
+  },
+}
+`;
+
+exports[`#utils #themeGet should return theme config 1`] = `
+Object {
+  "primary": Object {
+    "style": "
+          background-color: blue;
+        ",
+  },
+}
+`;
