@@ -191,7 +191,7 @@ Dropdown.propTypes = {
   offset: PropTypes.string,
   boundariesElement: PropTypes.string,
   positionFixed: PropTypes.bool,
-  width: PropTypes.number,
+  width: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
   zIndex: PropTypes.number,
   transitionDuration: PropTypes.number,
   transitionTimingFunction: PropTypes.string,
@@ -204,7 +204,7 @@ Dropdown.defaultProps = {
   offset: '0, 10',
   positionFixed: false,
   boundariesElement: 'viewport',
-  width: 150,
+  width: 'auto',
   zIndex: 10,
   transitionDuration: 225,
   transitionTimingFunction: 'cubic-bezier(0.25, 0.1, 0.17, 1.2)',
@@ -233,7 +233,7 @@ const DropdownMenu = createComponent({
     border: 1px solid #e4edf5;
     outline: none;
     box-shadow: 0 0 3px 0 rgba(178, 194, 212, 0.3);
-    width: ${width}px;
+    width: ${typeof width === 'string' ? width : `${width}px`};
     opacity: 0.75;
     transform: scale(0.75);
     transform-origin: ${PLACEMENT_TRANSITION_ORIGINS[placement]};
