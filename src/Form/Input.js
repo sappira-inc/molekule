@@ -241,6 +241,8 @@ class Input extends Component {
       ...rest
     } = this.props;
 
+    const { focused } = this.state;
+
     const isFloating = (floating && value && value.length > 0) || (floating && this.state.value);
 
     const inputProps = {
@@ -259,7 +261,13 @@ class Input extends Component {
     };
 
     const Label = label ? (
-      <StyledLabel htmlFor={id} styles={rest.styles} size={size} isFloatable={floating} isFloating={isFloating}>
+      <StyledLabel
+        htmlFor={id}
+        styles={rest.styles}
+        size={size}
+        isFloatable={floating}
+        isFloating={isFloating}
+        isFocused={focused}>
         {label}
       </StyledLabel>
     ) : null;
@@ -276,7 +284,7 @@ class Input extends Component {
 
         {autogrow && <AutogrowShadow ref={this.handleAutogrowRef} />}
 
-        {!this.state.focused && error ? <FormError styles={rest.styles}>{error}</FormError> : null}
+        {!focused && error ? <FormError styles={rest.styles}>{error}</FormError> : null}
       </Field>
     );
   }
