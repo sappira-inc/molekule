@@ -246,20 +246,20 @@ class Input extends Component {
       ...rest
     } = this.props;
 
-    const { focused } = this.state;
+    const { focused, height, value: stateValue } = this.state;
 
-    const isFloating = (floating && value && value.length > 0) || (floating && this.state.value);
+    const isFloating = (floating && value && value.length > 0) || (floating && stateValue);
 
     const inputProps = {
       ...rest,
       id,
       ref: this.ref,
       size,
-      value: this.state.value,
+      value: stateValue,
       onChange: this.onChange,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
-      style: multiline ? { ...style, height: this.state.height } : style,
+      style: multiline ? { ...style, height } : style,
       placeholder,
       isFloatable: floating,
       isFloating,
