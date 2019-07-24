@@ -18,7 +18,7 @@ jest.mock('popper.js', () => {
   };
 });
 
-describe.only('<Dropdown />', () => {
+describe('<Dropdown />', () => {
   let renderUtils;
 
   const renderDropdown = (props = {}) => {
