@@ -18,14 +18,14 @@ jest.mock('popper.js', () => {
   };
 });
 
-describe('<Dropdown />', () => {
+describe.only('<Dropdown />', () => {
   let renderUtils;
 
-  const renderDropdown = () => {
+  const renderDropdown = (props = {}) => {
     const wrapper = document.createElement('div');
     wrapper.setAttribute('tabindex', 1);
     const utils = renderWithTheme(
-      <Dropdown portalNode={wrapper} trigger={<Button>Trigger</Button>}>
+      <Dropdown {...props} portalNode={wrapper} trigger={<Button>Trigger</Button>}>
         <Dropdown.Header>Header</Dropdown.Header>
         <Dropdown.Body>
           <Dropdown.Item data-testid="item-one">One</Dropdown.Item>
@@ -43,20 +43,20 @@ describe('<Dropdown />', () => {
     };
   };
 
-  const assertDropdownOpen = () =>
+  const assertDropdownOpen = (utils = renderUtils) =>
     wait(() => {
-      expect(renderUtils.queryByText('Header')).toBeInTheDocument();
+      expect(utils.queryByText('Header')).toBeInTheDocument();
     });
 
-  const assertDropdownClosed = () =>
+  const assertDropdownClosed = (utils = renderUtils) =>
     wait(() => {
-      expect(renderUtils.queryByText('Header')).not.toBeInTheDocument();
+      expect(utils.queryByText('Header')).not.toBeInTheDocument();
     });
 
-  const openDropdown = async () => {
-    const trigger = renderUtils.getByText('Trigger');
+  const openDropdown = async (utils = renderUtils) => {
+    const trigger = utils.getByText('Trigger');
     fireEvent.click(trigger, { stopPropagation: () => null });
-    return assertDropdownOpen();
+    return assertDropdownOpen(utils);
   };
 
   beforeEach(() => {
@@ -111,5 +111,25 @@ describe('<Dropdown />', () => {
 
     fireEvent.keyDown(document.body, { key: 'ArrowUp' });
     expect(isFocused(itemOne)).toBeTruthy();
+  });
+
+  describe('prop: width', () => {
+    test('wdith defaults to auto', async () => {
+      const utils = renderDropdown();
+      await openDropdown(utils);
+      expect(utils.getByTestId('dropdown-menu')).toHaveStyleRule('width', 'auto');
+    });
+
+    test('supports string widths', async () => {
+      const utils = renderDropdown({ width: '2rem' });
+      await openDropdown(utils);
+      expect(utils.getByTestId('dropdown-menu')).toHaveStyleRule('width', '2rem');
+    });
+
+    test('supports number widths', async () => {
+      const utils = renderDropdown({ width: 200 });
+      await openDropdown(utils);
+      expect(utils.getByTestId('dropdown-menu')).toHaveStyleRule('width', '200px');
+    });
   });
 });

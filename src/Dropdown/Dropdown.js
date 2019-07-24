@@ -191,11 +191,11 @@ Dropdown.propTypes = {
   offset: PropTypes.string,
   boundariesElement: PropTypes.string,
   positionFixed: PropTypes.bool,
-  width: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   zIndex: PropTypes.number,
   transitionDuration: PropTypes.number,
   transitionTimingFunction: PropTypes.string,
-  portalNode: PropTypes.element,
+  portalNode: PropTypes.instanceOf(typeof Element !== 'undefined' ? Element : Object),
 };
 
 Dropdown.defaultProps = {
