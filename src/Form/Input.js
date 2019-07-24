@@ -17,13 +17,13 @@ const InputContainer = createComponent({
 const StyledInput = createComponent({
   name: 'Input',
   tag: 'input',
-  style: ({ isFloating, size, theme, borderRadius = theme.radius }) => css`
+  style: ({ isFloating, size, theme, borderRadius = theme.radius, error }) => css`
     border: 1px solid ${theme.colors.grayLight};
     height: ${theme.heights[size]}px;
     display: block;
     outline: none;
     width: 100%;
-    padding: 8px;
+    padding: 6px 8px 7px 8px;
     border-radius: ${borderRadius}px;
     transition: 250ms all;
     -webkit-appearance: none;
@@ -46,7 +46,12 @@ const StyledInput = createComponent({
 
     ${isFloating &&
       css`
-        padding-bottom: 0;
+        padding-top: 23px;
+      `};
+
+    ${error &&
+      css`
+        border-color: ${theme.colors.red};
       `};
   `,
 });
@@ -258,6 +263,7 @@ class Input extends Component {
       placeholder,
       isFloatable: floating,
       isFloating,
+      error,
     };
 
     const Label = label ? (
@@ -267,7 +273,8 @@ class Input extends Component {
         size={size}
         isFloatable={floating}
         isFloating={isFloating}
-        isFocused={focused}>
+        isFocused={focused}
+        error={error}>
         {label}
       </StyledLabel>
     ) : null;
