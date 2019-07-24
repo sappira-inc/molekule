@@ -17,7 +17,7 @@ const InputContainer = createComponent({
 const StyledInput = createComponent({
   name: 'Input',
   tag: 'input',
-  style: ({ isFloating, size, theme, borderRadius = theme.radius, error }) => css`
+  style: ({ isFloating, size, theme, borderRadius = theme.radius }) => css`
     border: 1px solid ${theme.colors.grayLight};
     height: ${theme.heights[size]}px;
     display: block;
@@ -46,12 +46,7 @@ const StyledInput = createComponent({
 
     ${isFloating &&
       css`
-        padding-top: 23px;
-      `};
-
-    ${error &&
-      css`
-        border-color: ${theme.colors.red};
+        padding-bottom: 0px;
       `};
   `,
 });
