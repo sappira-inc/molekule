@@ -4,6 +4,7 @@ import { css } from 'styled-components';
 import Field from './Field';
 import StyledLabel from './Label';
 import FormError from './FormError';
+import Icon from '../Icon';
 import { createEasyInput } from './EasyInput';
 import { createComponent } from '../utils';
 
@@ -17,7 +18,7 @@ const InputContainer = createComponent({
 const StyledInput = createComponent({
   name: 'Input',
   tag: 'input',
-  style: ({ isFloating, size, theme, borderRadius = theme.radius }) => css`
+  style: ({ isFloating, size, theme, borderRadius = theme.radius, hasIcon }) => css`
     border: 1px solid ${theme.colors.grayLight};
     height: ${theme.heights[size]}px;
     display: block;
@@ -47,6 +48,11 @@ const StyledInput = createComponent({
     ${isFloating &&
       css`
         padding-bottom: 0px;
+      `};
+
+    ${hasIcon &&
+      css`
+        padding-left: 28px;
       `};
   `,
 });
@@ -95,6 +101,9 @@ class Input extends Component {
     size: PropTypes.string,
     floating: PropTypes.bool,
     forwardedRef: PropTypes.oneOfType([PropTypes.shape(), PropTypes.func]),
+    icon: PropTypes.string,
+    iconColor: PropTypes.string,
+    iconSize: PropTypes.number,
   };
 
   static defaultProps = {
@@ -112,6 +121,8 @@ class Input extends Component {
     onBlur() {},
     onChange() {},
     floating: false,
+    iconColor: 'greyDark',
+    iconSize: 18,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -238,6 +249,9 @@ class Input extends Component {
       placeholder,
       transformOnBlur,
       size,
+      icon,
+      iconSize,
+      iconColor,
       ...rest
     } = this.props;
 
@@ -261,6 +275,17 @@ class Input extends Component {
       error,
     };
 
+    const StyledIcon = createComponent({
+      name: 'InputIcon',
+      as: Icon,
+      style: css`
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+      `,
+    });
+
     const Label = label ? (
       <StyledLabel
         htmlFor={id}
@@ -281,7 +306,9 @@ class Input extends Component {
         <InputContainer styles={rest.styles}>
           {floating && Label}
 
-          {multiline ? <StyledTextArea {...inputProps} /> : <StyledInput {...inputProps} />}
+          {icon && <StyledIcon size={iconSize} color={iconColor} name={icon} />}
+
+          {multiline ? <StyledTextArea {...inputProps} /> : <StyledInput hasIcon={icon} {...inputProps} />}
         </InputContainer>
 
         {autogrow && <AutogrowShadow ref={this.handleAutogrowRef} />}
