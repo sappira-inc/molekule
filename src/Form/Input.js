@@ -308,7 +308,7 @@ class Input extends Component {
 
           {icon && <StyledIcon size={iconSize} color={iconColor} name={icon} />}
 
-          {multiline ? <StyledTextArea {...inputProps} /> : <StyledInput hasIcon={icon} {...inputProps} />}
+          {multiline ? <StyledTextArea {...inputProps} /> : <StyledInput hasIcon={!!icon} {...inputProps} />}
         </InputContainer>
 
         {autogrow && <AutogrowShadow ref={this.handleAutogrowRef} />}
