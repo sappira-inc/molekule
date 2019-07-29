@@ -24,7 +24,7 @@ const StyledInput = createComponent({
     display: block;
     outline: none;
     width: 100%;
-    padding: 6px 8px 7px 8px;
+    padding: 8px;
     border-radius: ${borderRadius}px;
     transition: 250ms all;
     -webkit-appearance: none;
@@ -69,6 +69,17 @@ const AutogrowShadow = createComponent({
   props: () => ({
     tabIndex: -1,
   }),
+});
+
+const StyledIcon = createComponent({
+  name: 'InputIcon',
+  as: Icon,
+  style: css`
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+  `,
 });
 
 const validateValueProp = (props, propName, componentName) => {
@@ -274,17 +285,6 @@ class Input extends Component {
       isFloating,
       error,
     };
-
-    const StyledIcon = createComponent({
-      name: 'InputIcon',
-      as: Icon,
-      style: css`
-        position: absolute;
-        left: 8px;
-        top: 50%;
-        transform: translateY(-50%);
-      `,
-    });
 
     const Label = label ? (
       <StyledLabel
