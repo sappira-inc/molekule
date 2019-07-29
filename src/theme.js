@@ -8,23 +8,27 @@ export default (overrides = {}) => {
       primary: '#2DAAF2',
       primaryLight: '#9FB8FC',
 
-      grayDark: '#43526D',
+      grayDarkest: '#494D55',
+      grayDarker: '#767980',
+      grayDark: '#A4A6AA',
       grayMid: '#8E97A7',
-      gray: '#8E97A7',
-      grayLight: '#DEE0E4',
+      gray: '#D1D2D5',
+      grayLight: '#E8E9EA',
       grayLightest: '#F1F4F6',
 
-      redDark: '#B22327',
+      redLightest: '#FFD7D8',
+      redLight: '#FE7B7E',
       red: '#FD575D',
-      redLight: ' #FFCECF',
+      redDark: '#F23338',
 
       blueDark: '#006DC1',
       blue: '#0747A5',
       blueLight: '#C8E8FF',
 
-      greenDark: '#196C1C',
-      green: '#00D684',
-      greenLight: '#B4F7DE',
+      greenDark: '#00AC74',
+      green: '#21B986',
+      greenLight: '#42C79B',
+      greenLightest: '#DDF5ED',
 
       orangeDark: '#BB520B',
       orange: '#FFAA70',
@@ -47,18 +51,88 @@ export default (overrides = {}) => {
     fontSize: 12,
   };
 
+  const greyButton = {
+    backgroundColor: colors.white,
+    fontColor: colors.grayDarkest,
+    style: `
+      border-color: ${colors.gray};
+
+      &[disabled] {
+        background: ${colors.white};
+        color: ${colors.gray};
+      }
+
+      &:hover {
+        background: ${colors.white};
+        color: ${colors.grayDarkest};
+        border-color: ${colors.grayDark};
+      }
+
+      &:active {
+        background: ${colors.grayLight};
+        border-color: ${colors.grayLight};
+      }
+    `,
+  };
+
   const buttonVariants = {
     primary: {
       backgroundColor: colors.primary,
       fontColor: 'white',
     },
+    secondary: {
+      backgroundColor: colors.white,
+      fontColor: colors.primary,
+      style: `
+        border-color: ${colors.primary};
+        &:hover {
+          border-color: ${colors.primary};
+          background: ${colors.primary};
+          color: white;
+        }
+
+        &:active {
+          background: ${colors.primaryDark};
+          border-color: ${colors.primaryDark};
+          color: white;
+        }
+      `,
+    },
     success: {
       backgroundColor: colors.green,
       fontColor: 'white',
+      style: `
+        &:hover {
+          border-color: ${colors.greenLight};
+          background: ${colors.greenLight};
+        }
+        &:active {
+          border-color: ${colors.greenDark};
+          background: ${colors.greenDark};
+        }
+        &[disabled] {
+          border-color: ${colors.greenLightest};
+          background: ${colors.greenLightest};
+        }
+      `,
     },
     danger: {
       backgroundColor: colors.red,
       fontColor: 'white',
+      style: `
+        &:hover {
+          border-color: ${colors.redLight};
+          background: ${colors.redLight};
+        }
+        &:active {
+          border-color: ${colors.redDark};
+          background: ${colors.redDark};
+        }
+        &[disabled] {
+          border-color: ${colors.redLightest};
+          background: ${colors.redLightest};
+        }
+      `,
     },
     warning: {
       backgroundColor: colors.orange,
@@ -68,10 +142,8 @@ export default (overrides = {}) => {
       backgroundColor: colors.blue,
       fontColor: 'white',
     },
-    gray: {
-      backgroundColor: colors.grayLight,
-      fontColor: colors.grayDark,
-    },
+    grey: greyButton,
+    gray: greyButton,
   };
 
   const badgeVariants = {
@@ -105,10 +177,10 @@ export default (overrides = {}) => {
 
   const heights = {
     xs: 28,
-    sm: 32,
-    md: 36,
+    sm: 24,
+    md: 32,
     lg: 40,
-    xl: 44,
+    xl: 48,
   };
 
   const fontSizes = {
@@ -141,7 +213,7 @@ export default (overrides = {}) => {
     grid,
     heights,
     radii,
-    radius: 4,
+    radius: 8,
     shadow,
     shadowHover,
     typography,

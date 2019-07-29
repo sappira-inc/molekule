@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { css, keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { space } from 'styled-system';
-import { lighten } from 'polished';
 import { getComponentVariant, createComponent } from '../utils';
 import Flex from '../Flex';
+import Icon from '../Icon';
 
 const spinKeyframes = keyframes`
   from {
@@ -71,26 +71,31 @@ const StyledButton = createComponent({
       appearance: none;
       border-radius: ${borderRadius}px;
       pointer-events: ${disabled ? 'none' : 'auto'};
-      opacity: ${disabled ? 0.65 : 1};
       color: ${outline ? backgroundColor : fontColor};
       height: ${height}px;
       padding: 0 ${height * 0.5}px;
       font-size: ${fontSize}px;
       width: ${block ? '100%' : 'auto'};
       background: ${outline || transparent ? 'transparent' : backgroundColor};
-      border: ${transparent ? 'none' : `1px solid ${backgroundColor}`};
+      border-color: ${transparent ? 'none' : backgroundColor};
+      border: ${transparent ? 'none' : '1px solid'};
       transition: 175ms;
 
       ${loading && loadingCss({ height, fontColor, outline, backgroundColor })};
 
       &:hover {
-        background: ${outline ? 'transparent' : lighten(0.05, backgroundColor)};
-        border-color: ${lighten(0.05, backgroundColor)};
+        background: ${outline ? 'transparent !important' : theme.colors.primaryLight};
+        border-color: ${theme.colors.primaryLight};
       }
 
       &:active {
-        background: ${outline ? 'transparent' : lighten(0.075, backgroundColor)};
-        border-color: ${lighten(0.075, backgroundColor)};
+        background: ${outline ? 'transparent !important' : theme.colors.primaryDark};
+        border-color: ${theme.colors.primaryDark};
+      }
+
+      &[disabled] {
+        background: ${theme.colors.primaryLightest};
+        border-color: ${theme.colors.primaryLightest};
       }
 
       ${space};
@@ -98,7 +103,24 @@ const StyledButton = createComponent({
   },
 });
 
-const Button = React.forwardRef((props, ref) => <StyledButton {...props} ref={ref} />);
+const ButtonIcon = styled(Icon)`
+  font-size: ${p => p.theme.heights[p.sizing] * 0.54}px;
+  margin-right: 6px;
+  margin-top: 2px;
+`;
+
+const Button = React.forwardRef((props, ref) => (
+  <StyledButton {...props} ref={ref}>
+    {props.icon ?
+      <Flex alignItems="center">
+        <ButtonIcon name={props.icon} sizing={props.size} />
+        {props.children}
+      </Flex>
+      :
+      props.children
+    }
+  </StyledButton>
+));
 
 Button.propTypes = {
   variant: PropTypes.string,
@@ -108,6 +130,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   loading: PropTypes.bool,
   transparent: PropTypes.bool,
+  icon: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -118,6 +141,7 @@ Button.defaultProps = {
   disabled: false,
   loading: false,
   transparent: false,
+  icon: '',
 };
 
 const verticalCss = ({ sizes, vertical }) => {
