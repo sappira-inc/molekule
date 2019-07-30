@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchInput /> snapshot 1`] = `
+<DocumentFragment>
+  .c1 {
+  position: relative;
+  -webkit-transition: 175ms;
+  transition: 175ms;
+}
+
+.c1 + .c0 {
+  margin-top: 1rem;
+}
+
+.c2 {
+  display: block;
+  -webkit-transition: 250ms;
+  transition: 250ms;
+  font-weight: 500;
+  margin: 0 0 4px 4px;
+  z-index: 10;
+  font-size: 12px;
+}
+
+.c3 {
+  position: relative;
+}
+
+.c6 {
+  border: 1px solid #DEE0E4;
+  height: 36px;
+  display: block;
+  outline: none;
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  -webkit-transition: 250ms all;
+  transition: 250ms all;
+  -webkit-appearance: none;
+  font-family: inherit;
+  font-size: 12px;
+  padding-left: 28px;
+}
+
+.c6:hover,
+.c6:focus,
+.c6:active {
+  border-color: #8E97A7;
+}
+
+.c6::-webkit-input-placeholder {
+  color: #8E97A7;
+}
+
+.c6::-moz-placeholder {
+  color: #8E97A7;
+}
+
+.c6:-ms-input-placeholder {
+  color: #8E97A7;
+}
+
+.c6::placeholder {
+  color: #8E97A7;
+}
+
+.c6[disabled] {
+  opacity: 0.65;
+}
+
+.c4 {
+  color: greyDark;
+  font-size: 18px;
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.c5 {
+  color: #43526D;
+  background-color: #DEE0E4;
+  height: px;
+  border-color: #F1F4F6;
+  font-size: px;
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+.c5:hover,
+.c5:active,
+.c5:focus {
+  border-color: #DEE0E4;
+}
+
+<div
+    class="c0 re-field c1"
+  >
+    <label
+      class="re-label c2"
+    >
+      Search
+    </label>
+    <div
+      class="re-input-container c3"
+    >
+      <i
+        class="mdi mdi-magnify re-icon re-input-icon c4"
+        color="greyDark"
+        name="magnify"
+        size="18"
+      />
+      <input
+        class="re-search-input c5 sc-iwsKbI re-search-input c5 re-input c6"
+        placeholder="Search"
+        rows="3"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
