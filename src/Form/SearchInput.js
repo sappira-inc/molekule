@@ -3,26 +3,6 @@ import { css } from 'styled-components';
 import { createComponent } from '../utils';
 import { createEasyInput } from './EasyInput';
 import Input from './Input';
-import Icon from '../Icon';
-
-const SearchContainer = createComponent({
-  name: 'SearchContainer',
-  style: css`
-    position: relative;
-  `,
-});
-
-const CloseIcon = createComponent({
-  name: 'CloseIcon',
-  as: Icon,
-  style: css`
-    position: absolute;
-    right: 8px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-  `,
-});
 
 const Search = createComponent({
   name: 'SearchInput',
@@ -55,15 +35,15 @@ function SearchInput({ forwardedRef, value: propValue, onChange, ...inputProps }
     }
   };
 
-  const handleClear = () => {
-    handleChange('search', '');
-  };
-
   return (
-    <SearchContainer>
-      <Search forwardedRef={inputRef} icon="magnify" onChange={handleChange} value={currentValue} {...inputProps} />
-      {propValue && <CloseIcon name="close-circle" color="greyDarker" size={18} onClick={handleClear} />}
-    </SearchContainer>
+    <Search
+      forwardedRef={inputRef}
+      icon="magnify"
+      onChange={handleChange}
+      value={currentValue}
+      isClearable
+      {...inputProps}
+    />
   );
 }
 

@@ -82,6 +82,19 @@ const StyledIcon = createComponent({
   `,
 });
 
+const CloseIcon = createComponent({
+  name: 'CloseIcon',
+  as: Icon,
+  style: ({ theme }) => css`
+    color: ${theme.colors.grayDark};
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  `,
+});
+
 const validateValueProp = (props, propName, componentName) => {
   if (props.type === 'number' && typeof props[propName] !== 'number') {
     return new Error(`Invalid prop ${propName} supplied to ${componentName} with type="number", expected Number`);
@@ -243,6 +256,11 @@ class Input extends Component {
     this.ref.current.blur();
   }
 
+  handleClear = () => {
+    this.setState({ value: '' });
+    this.props.onChange(this.inputRef.current.name, '');
+  };
+
   render() {
     const {
       style,
@@ -263,6 +281,7 @@ class Input extends Component {
       icon,
       iconSize,
       iconColor,
+      isClearable,
       ...rest
     } = this.props;
 
@@ -309,6 +328,10 @@ class Input extends Component {
           {icon && <StyledIcon size={iconSize} color={iconColor} name={icon} />}
 
           {multiline ? <StyledTextArea {...inputProps} /> : <StyledInput hasIcon={!!icon} {...inputProps} />}
+
+          {isClearable && stateValue && (
+            <CloseIcon name="close-circle" color="greyDarker" size={18} onClick={this.handleClear} />
+          )}
         </InputContainer>
 
         {autogrow && <AutogrowShadow ref={this.handleAutogrowRef} />}
