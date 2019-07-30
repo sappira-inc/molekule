@@ -73,9 +73,17 @@ Form input component. Different sizes are available.
   <Input disabled placeholder="Example" label="Example" />
 </Playground>
 
-### Clearable Input
+### Input with Icons
 <Playground>
-  <Input isClearable placeholder="Example" label="Example" />
+  <Input
+    placeholder="Example"
+    label="Example"
+    leftIcon="cards-spade"
+    onLeftIconClick={()=> alert('Left icon clicked!')}
+    rightIcon="close-circle"
+    rightIconColor="primary"
+    onRightIconClick={()=> alert("Right icon clicked!")}
+  />
 </Playground>
 
 ### Overridable Styles

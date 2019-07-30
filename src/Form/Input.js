@@ -18,7 +18,7 @@ const InputContainer = createComponent({
 const StyledInput = createComponent({
   name: 'Input',
   tag: 'input',
-  style: ({ isFloating, size, theme, borderRadius = theme.radius, hasIcon }) => css`
+  style: ({ isFloating, size, theme, borderRadius = theme.radius, hasLeftIcon, hasRightIcon }) => css`
     border: 1px solid ${theme.colors.grayLight};
     height: ${theme.heights[size]}px;
     display: block;
@@ -50,9 +50,14 @@ const StyledInput = createComponent({
         padding-bottom: 0px;
       `};
 
-    ${hasIcon &&
+    ${hasLeftIcon &&
       css`
         padding-left: 28px;
+      `};
+
+    ${hasRightIcon &&
+      css`
+        padding-right: 28px;
       `};
   `,
 });
@@ -71,8 +76,8 @@ const AutogrowShadow = createComponent({
   }),
 });
 
-const StyledIcon = createComponent({
-  name: 'InputIcon',
+const LeftIcon = createComponent({
+  name: 'LeftIcon',
   as: Icon,
   style: css`
     position: absolute;
@@ -82,11 +87,10 @@ const StyledIcon = createComponent({
   `,
 });
 
-const CloseIcon = createComponent({
-  name: 'CloseIcon',
+const RightIcon = createComponent({
+  name: 'LeftIcon',
   as: Icon,
-  style: ({ theme }) => css`
-    color: ${theme.colors.grayDark};
+  style: css`
     position: absolute;
     right: 8px;
     top: 50%;
@@ -278,10 +282,14 @@ class Input extends Component {
       placeholder,
       transformOnBlur,
       size,
-      icon,
-      iconSize,
-      iconColor,
-      isClearable,
+      leftIcon,
+      leftIconSize,
+      leftIconColor,
+      onLeftIconClick,
+      rightIcon,
+      rightIconSize,
+      rightIconColor,
+      onRightIconClick,
       ...rest
     } = this.props;
 
@@ -325,12 +333,16 @@ class Input extends Component {
         <InputContainer styles={rest.styles}>
           {floating && Label}
 
-          {icon && <StyledIcon size={iconSize} color={iconColor} name={icon} />}
+          {leftIcon && <LeftIcon name={leftIcon} size={leftIconSize} color={leftIconColor} onClick={onLeftIconClick} />}
 
-          {multiline ? <StyledTextArea {...inputProps} /> : <StyledInput hasIcon={!!icon} {...inputProps} />}
+          {rightIcon && (
+            <RightIcon name={rightIcon} size={rightIconSize} color={rightIconColor} onClick={onRightIconClick} />
+          )}
 
-          {isClearable && stateValue && (
-            <CloseIcon name="close-circle" color="greyDarker" size={18} onClick={this.handleClear} />
+          {multiline ? (
+            <StyledTextArea {...inputProps} />
+          ) : (
+            <StyledInput hasLeftIcon={!!leftIcon} hasRightIcon={!!rightIcon} {...inputProps} />
           )}
         </InputContainer>
 

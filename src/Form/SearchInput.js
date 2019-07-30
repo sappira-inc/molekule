@@ -37,13 +37,18 @@ function SearchInput({ forwardedRef, value: propValue, onChange, ...inputProps }
     }
   };
 
+  const clearValue = () => {
+    handleChange('search', '');
+  };
+
   return (
     <Search
       forwardedRef={inputRef}
-      icon="magnify"
+      leftIcon="magnify"
+      rightIcon={currentValue && 'close-circle'}
+      onRightIconClick={clearValue}
       onChange={handleChange}
       value={currentValue}
-      isClearable
       {...inputProps}
     />
   );
