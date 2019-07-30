@@ -8,17 +8,19 @@ const Search = createComponent({
   name: 'SearchInput',
   as: Input,
   style: ({ theme, size }) => css`
-    color: ${theme.colors.greyDarkest};
-    background-color: ${theme.colors.greyLighter};
-    caret-color: ${theme.colors.black};
-    border-color: ${theme.colors.greyLighter};
+    color: ${theme.colors.grayDark};
+    background-color: ${theme.colors.grayLight};
+    height: ${theme.heights[size]}px;
+    caret-color: ${theme.colors.greyDark};
+    border-color: ${theme.colors.grayLightest};
     font-size: ${theme.fontSizes[size]}px;
     padding-left: 28px;
+    padding-right: 28px;
 
     &:hover,
     &:active,
     &:focus {
-      border-color: ${theme.colors.greyLighter};
+      border-color: ${theme.colors.grayLight};
     }
   `,
 });
@@ -46,9 +48,5 @@ function SearchInput({ forwardedRef, value: propValue, onChange, ...inputProps }
     />
   );
 }
-
-SearchInput.propTypes = {
-  ...Input.propTypes,
-};
 
 export default createEasyInput(SearchInput);
