@@ -7,6 +7,7 @@ import { Playground, PropsTable } from 'docz'
 import Input from './Input'
 import PhoneInput from './PhoneInput';
 import DateInput from './DateInput';
+import SearchInput from './SearchInput';
 import Button from '../Button'
 import Formbot from './Formbot';
 
@@ -30,8 +31,8 @@ Form input component. Different sizes are available.
             validations={{ value: (value) => {
               if (value !== 'secretpassword') {
                 throw new Error('Try typing "secretpassword"')
-               }
-             }}}>
+              }
+            }}}>
             {({ values, errors, onChange, onSubmit }) => (
               <form onSubmit={onSubmit}>
                 <Input label="Input with Formbot" name="value" value={values.value} error={errors.value} onChange={onChange}/>
@@ -49,57 +50,71 @@ Form input component. Different sizes are available.
 
 ### Default Input
 <Playground>
-   <Input placeholder="Example" label="Example" />
+  <Input placeholder="Example" label="Example" />
 </Playground>
 
 ### Multiline Input
 <Playground>
-   <Input multiline placeholder="Example" label="Example" value="I already have a value! If provided a value, I become controlled, so I won't update when you type here..." />
+  <Input multiline placeholder="Example" label="Example" value="I already have a value! If provided a value, I become controlled, so I won't update when you type here..." />
 </Playground>
 
 ### Autogrow Multiline Input
 <Playground>
-   <Input multiline autogrow placeholder="Example" label="Example" />
+  <Input multiline autogrow placeholder="Example" label="Example" />
 </Playground>
 
 ### Floating Input
 <Playground>
-   <Input floating placeholder="Example" label="Example" />
+  <Input floating placeholder="Example" label="Example" />
 </Playground>
 
 ### Disabled Input
 <Playground>
-   <Input disabled placeholder="Example" label="Example" />
+  <Input disabled placeholder="Example" label="Example" />
+</Playground>
+
+### Clearable Input
+<Playground>
+  <Input isClearable placeholder="Example" label="Example" />
 </Playground>
 
 ### Overridable Styles
 <Playground>
-   <Input placeholder="Example" label="Example" styles={{
-     Input: {
-       background: 'beige'
-     }
-   }} />
+  <Input placeholder="Example" label="Example" styles={{
+    Input: {
+      background: 'beige'
+    }
+  }} />
 
-   <Input floating placeholder="Example" label="Example" styles={{
-     Input: {
-       background: 'beige'
-     }
-   }} />
+  <Input floating placeholder="Example" label="Example" styles={{
+    Input: {
+      background: 'beige'
+    }
+  }} />
 </Playground>
 
 ### Sizes
 <Playground>
-   <Input size="xs" placeholder="Example" label="Example" />
-   <Input size="sm" placeholder="Example" label="Example" />
-   <Input size="md" placeholder="Example" label="Example" />
-   <Input size="lg" placeholder="Example" label="Example" />
-   <Input size="xl" placeholder="Example" label="Example" />
+  <Input size="xs" placeholder="Example" label="Example" />
+  <Input size="sm" placeholder="Example" label="Example" />
+  <Input size="md" placeholder="Example" label="Example" />
+  <Input size="lg" placeholder="Example" label="Example" />
+  <Input size="xl" placeholder="Example" label="Example" />
 </Playground>
 
 ## Formatted Inputs
 
 ### Phone Input
-<PhoneInput placeholder="Example" label="Phone Number" value="4088675309" />
+<Playground>
+  <PhoneInput placeholder="Example" label="Phone Number" value="4088675309" />
+</Playground>
 
 ### Date Input
-<DateInput placeholder="Date of Birth" label="Date of Birth" initialValue="04/01/2001" value="2001-04-01" />
+<Playground>
+  <DateInput placeholder="Date of Birth" label="Date of Birth" initialValue="04/01/2001" value="2001-04-01" />
+</Playground>
+
+### Search Input
+<Playground>
+  <SearchInput placeholder="Search" label="Search" />
+</Playground>
