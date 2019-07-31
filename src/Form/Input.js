@@ -241,7 +241,7 @@ class Input extends Component {
       ...rest
     } = this.props;
 
-    const isFloating = (floating && value && value.length > 0) || (floating && this.state.value);
+    const isFloating = (floating && value && value.length > 0) || (floating && this.state.value !== undefined);
 
     const inputProps = {
       ...rest,
