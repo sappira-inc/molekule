@@ -69,8 +69,8 @@ exports[`<SearchInput /> snapshot 1`] = `
 }
 
 .c4 {
-  color: inherit;
-  font-size: inherit;
+  color: #43526D;
+  font-size: 18px;
   position: absolute;
   left: 8px;
   top: 50%;
@@ -83,6 +83,7 @@ exports[`<SearchInput /> snapshot 1`] = `
   color: #43526D;
   background-color: #DEE0E4;
   height: px;
+  caret-color: #43526D;
   border-color: #F1F4F6;
   font-size: px;
   padding-left: 28px;
@@ -108,7 +109,9 @@ exports[`<SearchInput /> snapshot 1`] = `
     >
       <i
         class="mdi mdi-magnify re-icon re-left-icon c4"
+        color="greyDarkest"
         name="magnify"
+        size="18"
       />
       <input
         class="re-search-input c5 sc-iwsKbI re-search-input c5 re-input c6"
