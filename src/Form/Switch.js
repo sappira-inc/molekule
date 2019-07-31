@@ -31,7 +31,7 @@ const SwitchThumb = styled.span`
     right: 0;
     bottom: 0;
     transition: 0.3s;
-    background-color: ${on ? backgroundColor : theme.colors.greyMid};
+    background-color: ${on ? backgroundColor : theme.colors.grey};
 
     &:before {
       border-radius: 100%;

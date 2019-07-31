@@ -43,11 +43,11 @@ const StyledInput = createComponent({
     &:hover,
     &:focus,
     &:active {
-      border-color: ${theme.colors.greyMid};
+      border-color: ${theme.colors.grey};
     }
 
     ::placeholder {
-      color: ${theme.colors.greyMid};
+      color: ${theme.colors.grey};
     }
 
     &[disabled] {
@@ -329,6 +329,14 @@ class Input extends Component {
       isFloatable: floating,
       isFloating,
       error,
+      leftIcon,
+      leftIconSize,
+      leftIconColor,
+      onLeftIconClick,
+      rightIcon,
+      rightIconSize,
+      rightIconColor,
+      onRightIconClick,
     };
 
     const Label = label ? (

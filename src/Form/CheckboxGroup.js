@@ -27,7 +27,7 @@ class CheckboxGroup extends Component {
     horizontal: false,
     onChange() {},
     colorOn: 'primary',
-    colorOff: 'greyMid',
+    colorOff: 'grey',
   };
 
   state = {
