@@ -18,8 +18,17 @@ const InputContainer = createComponent({
 const StyledInput = createComponent({
   name: 'Input',
   tag: 'input',
-  style: ({ isFloating, size, theme, borderRadius = theme.radius, hasLeftIcon, hasRightIcon }) => css`
-    border: 1px solid ${theme.colors.grayLight};
+  style: ({
+    isFloating,
+    size,
+    theme,
+    borderRadius = theme.radius,
+    hasLeftIcon,
+    leftIconSize,
+    hasRightIcon,
+    rightIconSize,
+  }) => css`
+    border: 1px solid ${theme.colors.greyLight};
     height: ${theme.heights[size]}px;
     display: block;
     outline: none;
@@ -52,12 +61,12 @@ const StyledInput = createComponent({
 
     ${hasLeftIcon &&
       css`
-        padding-left: 28px;
+        padding-left: ${leftIconSize + 10}px;
       `};
 
     ${hasRightIcon &&
       css`
-        padding-right: 28px;
+        padding-right: ${rightIconSize + 10}px;
       `};
   `,
 });
