@@ -34,11 +34,11 @@ const StyledInput = createComponent({
     &:hover,
     &:focus,
     &:active {
-      border-color: ${theme.colors.grayMid};
+      border-color: ${theme.colors.greyMid};
     }
 
     ::placeholder {
-      color: ${theme.colors.grayMid};
+      color: ${theme.colors.greyMid};
     }
 
     &[disabled] {
@@ -149,7 +149,7 @@ class Input extends Component {
     onBlur() {},
     onChange() {},
     floating: false,
-    iconColor: 'greyDark',
+    iconColor: 'greyDarkest',
     iconSize: 18,
   };
 

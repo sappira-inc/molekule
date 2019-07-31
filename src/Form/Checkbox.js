@@ -71,7 +71,7 @@ class Checkbox extends React.Component {
     valueTrue: true,
     valueFalse: false,
     colorOn: 'primary',
-    colorOff: 'grayMid',
+    colorOff: 'greyMid',
     iconSize: 18,
     horizontal: false,
     onChange() {},

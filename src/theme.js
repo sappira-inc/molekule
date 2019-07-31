@@ -8,11 +8,11 @@ export default (overrides = {}) => {
       primary: '#2DAAF2',
       primaryLight: '#9FB8FC',
 
-      grayDark: '#43526D',
-      grayMid: '#8E97A7',
-      gray: '#8E97A7',
-      grayLight: '#DEE0E4',
-      grayLightest: '#F1F4F6',
+      greyDarkest: '#43526D',
+      greyDark: '#8E97A7',
+      grey: '#8E97A7',
+      greyLight: '#DEE0E4',
+      greyLightest: '#F1F4F6',
 
       redDark: '#B22327',
       red: '#FD575D',
@@ -68,9 +68,9 @@ export default (overrides = {}) => {
       backgroundColor: colors.blue,
       fontColor: 'white',
     },
-    gray: {
-      backgroundColor: colors.grayLight,
-      fontColor: colors.grayDark,
+    grey: {
+      backgroundColor: colors.greyLight,
+      fontColor: colors.greyDarkest,
     },
   };
 
@@ -95,9 +95,9 @@ export default (overrides = {}) => {
       backgroundColor: colors.blueLight,
       fontColor: colors.blueDark,
     },
-    gray: {
-      backgroundColor: colors.grayLight,
-      fontColor: colors.grayDark,
+    grey: {
+      backgroundColor: colors.greyLight,
+      fontColor: colors.greyDarkest,
     },
   };
 

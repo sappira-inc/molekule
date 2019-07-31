@@ -8,11 +8,11 @@ const Search = createComponent({
   name: 'SearchInput',
   as: Input,
   style: ({ theme, size }) => css`
-    color: ${theme.colors.grayDark};
-    background-color: ${theme.colors.grayLight};
+    color: ${theme.colors.greyDarkest};
+    background-color: ${theme.colors.greyLight};
     height: ${theme.heights[size]}px;
-    caret-color: ${theme.colors.greyDark};
-    border-color: ${theme.colors.grayLightest};
+    caret-color: ${theme.colors.greyDarkest};
+    border-color: ${theme.colors.greyLightest};
     font-size: ${theme.fontSizes[size]}px;
     padding-left: 28px;
     padding-right: 28px;
@@ -20,7 +20,7 @@ const Search = createComponent({
     &:hover,
     &:active,
     &:focus {
-      border-color: ${theme.colors.grayLight};
+      border-color: ${theme.colors.greyLight};
     }
   `,
 });
