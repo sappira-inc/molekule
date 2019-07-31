@@ -138,9 +138,14 @@ class Input extends Component {
     size: PropTypes.string,
     floating: PropTypes.bool,
     forwardedRef: PropTypes.oneOfType([PropTypes.shape(), PropTypes.func]),
-    icon: PropTypes.string,
-    iconColor: PropTypes.string,
-    iconSize: PropTypes.number,
+    leftIcon: PropTypes.string,
+    leftIconSize: PropTypes.number,
+    leftIconColor: PropTypes.string,
+    onLeftIconClick: PropTypes.func,
+    rightIcon: PropTypes.string,
+    rightIconSize: PropTypes.number,
+    rightIconColor: PropTypes.string,
+    onRightIconClick: PropTypes.func,
   };
 
   static defaultProps = {
@@ -158,8 +163,12 @@ class Input extends Component {
     onBlur() {},
     onChange() {},
     floating: false,
-    iconColor: 'greyDarkest',
-    iconSize: 18,
+    leftIconSize: 18,
+    leftIconColor: 'greyDarkest',
+    onLeftIconClick() {},
+    rightIconSize: 18,
+    rightIconColor: 'greyDarkest',
+    onRightIconClick() {},
   };
 
   static getDerivedStateFromProps(props, state) {
