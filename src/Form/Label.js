@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import { createComponent } from '../utils';
+import { createComponent, getOneSizeSmaller } from '../utils';
 
 const Label = createComponent({
   name: 'Label',
@@ -9,7 +9,7 @@ const Label = createComponent({
     transition: 250ms;
     font-weight: 500;
     margin: 0 0 4px 4px;
-    font-size: ${p => p.theme.fontSizes[p.size]}px;
+    font-size: ${theme.fontSizes[size]}px;
 
     ${isFloatable &&
       css`
@@ -18,7 +18,7 @@ const Label = createComponent({
         left: 8px;
         opacity: ${isFloating ? 1 : 0};
         margin: 0;
-        font-size: ${theme.fontSizes[size] * 0.8}px;
+        font-size: ${getOneSizeSmaller(theme.fontSizes, size)}px;
       `};
   `,
 });

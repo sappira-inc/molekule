@@ -104,19 +104,21 @@ export default (overrides = {}) => {
   const alertVariants = badgeVariants;
 
   const heights = {
-    xs: 28,
+    xs: 24,
     sm: 32,
-    md: 36,
-    lg: 40,
-    xl: 44,
+    md: 40,
+    lg: 48,
+    xl: 56,
   };
 
   const fontSizes = {
     xs: 8,
-    sm: 10,
-    md: 12,
-    lg: 14,
-    xl: 16,
+    sm: 12,
+    md: 14,
+    lg: 16,
+    xl: 18,
+    xxl: 20,
+    xxxl: 30,
   };
 
   const breakpoints = [480, 768, 1024, 1440];
@@ -141,7 +143,7 @@ export default (overrides = {}) => {
     grid,
     heights,
     radii,
-    radius: 4,
+    radius: 8,
     shadow,
     shadowHover,
     typography,

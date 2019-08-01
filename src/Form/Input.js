@@ -163,10 +163,10 @@ class Input extends Component {
     onBlur() {},
     onChange() {},
     floating: false,
-    leftIconSize: 18,
+    leftIconSize: 16,
     leftIconColor: 'greyDarkest',
     onLeftIconClick() {},
-    rightIconSize: 18,
+    rightIconSize: 16,
     rightIconColor: 'greyDarkest',
     onRightIconClick() {},
   };

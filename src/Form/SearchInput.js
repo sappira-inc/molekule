@@ -7,13 +7,12 @@ import Input from './Input';
 const Search = createComponent({
   name: 'SearchInput',
   as: Input,
-  style: ({ theme, size }) => css`
+  style: ({ theme }) => css`
+    font-size: ${theme.fontSizes.md}px;
     color: ${theme.colors.greyDarkest};
     background-color: ${theme.colors.greyLight};
-    height: ${theme.heights[size]}px;
     caret-color: ${theme.colors.greyDarkest};
     border-color: ${theme.colors.greyLightest};
-    font-size: ${theme.fontSizes[size]}px;
 
     &:hover,
     &:active,
@@ -47,6 +46,7 @@ function SearchInput({ forwardedRef, value: propValue, onChange, ...inputProps }
       onRightIconClick={clearValue}
       onChange={handleChange}
       value={currentValue}
+      size="sm"
       {...inputProps}
     />
   );

@@ -90,3 +90,6 @@ export const getNextCursorPosition = (cursorPos, oldValue, newValue) => {
 
   return Math.max(nextPosition, 0);
 };
+
+export const getOneSizeSmaller = (collection, size) =>
+  Object.values(collection)[Object.keys(collection).indexOf(size) - 1] || collection[size];
