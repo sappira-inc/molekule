@@ -331,12 +331,8 @@ class Input extends Component {
       error,
       leftIcon,
       leftIconSize,
-      leftIconColor,
-      onLeftIconClick,
       rightIcon,
       rightIconSize,
-      rightIconColor,
-      onRightIconClick,
     };
 
     const Label = label ? (
