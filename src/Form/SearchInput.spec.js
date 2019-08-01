@@ -1,7 +1,6 @@
 import React from 'react';
-import { renderWithTheme } from '../../test/utils';
+import { renderWithTheme, fireEvent } from '../../test/utils';
 import SearchInput from './SearchInput';
-import ThemeProvider from '../ThemeProvider';
 
 describe('<SearchInput />', () => {
   const renderInput = props => {
@@ -9,6 +8,7 @@ describe('<SearchInput />', () => {
     return {
       ...utils,
       input: utils.getByPlaceholderText('Search'),
+      closeIcon: utils.queryByTestId('right-icon'),
     };
   };
 
@@ -24,13 +24,19 @@ describe('<SearchInput />', () => {
     expect(input.value).toEqual('Search item');
   });
 
-  test('updates internally when value prop changes', () => {
-    const { input, rerender } = renderInput({ value: 'Searching' });
-    rerender(
-      <ThemeProvider>
-        <SearchInput placeholder="Search" />
-      </ThemeProvider>
-    );
-    expect(input.value).toEqual('Searching');
+  test('onChange gets called when supplied', () => {
+    const handleChange = jest.fn();
+    const { input } = renderInput({ onChange: handleChange });
+
+    fireEvent.change(input, { target: { value: 'a' } });
+    expect(handleChange).toHaveBeenCalledTimes(1);
+    expect(input.value).toBe('a');
+  });
+
+  test('value is cleared', async () => {
+    const { input, closeIcon } = renderInput({ value: 'Example' });
+
+    fireEvent.click(closeIcon);
+    expect(input.value).toBe('');
   });
 });

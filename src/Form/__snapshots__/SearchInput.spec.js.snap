@@ -110,6 +110,7 @@ exports[`<SearchInput /> snapshot 1`] = `
       <i
         class="mdi mdi-magnify re-icon re-left-icon c4"
         color="greyDarkest"
+        data-testid="left-icon"
         name="magnify"
         size="18"
       />

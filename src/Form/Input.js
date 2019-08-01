@@ -329,9 +329,9 @@ class Input extends Component {
       isFloatable: floating,
       isFloating,
       error,
-      leftIcon,
+      hasLeftIcon: !!leftIcon,
       leftIconSize,
-      rightIcon,
+      hasRightIcon: !!rightIcon,
       rightIconSize,
     };
 
@@ -355,17 +355,27 @@ class Input extends Component {
         <InputContainer styles={rest.styles}>
           {floating && Label}
 
-          {leftIcon && <LeftIcon name={leftIcon} size={leftIconSize} color={leftIconColor} onClick={onLeftIconClick} />}
+          {leftIcon && (
+            <LeftIcon
+              data-testid="left-icon"
+              name={leftIcon}
+              size={leftIconSize}
+              color={leftIconColor}
+              onClick={onLeftIconClick}
+            />
+          )}
 
           {rightIcon && (
-            <RightIcon name={rightIcon} size={rightIconSize} color={rightIconColor} onClick={onRightIconClick} />
+            <RightIcon
+              data-testid="right-icon"
+              name={rightIcon}
+              size={rightIconSize}
+              color={rightIconColor}
+              onClick={onRightIconClick}
+            />
           )}
 
-          {multiline ? (
-            <StyledTextArea {...inputProps} />
-          ) : (
-            <StyledInput hasLeftIcon={!!leftIcon} hasRightIcon={!!rightIcon} {...inputProps} />
-          )}
+          {multiline ? <StyledTextArea {...inputProps} /> : <StyledInput {...inputProps} />}
         </InputContainer>
 
         {autogrow && <AutogrowShadow ref={this.handleAutogrowRef} />}
