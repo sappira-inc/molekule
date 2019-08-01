@@ -38,7 +38,7 @@ exports[`<SearchInput /> snapshot 1`] = `
   -webkit-appearance: none;
   font-family: inherit;
   font-size: 12px;
-  padding-left: 28px;
+  padding-left: 30px;
 }
 
 .c6:hover,
@@ -85,8 +85,6 @@ exports[`<SearchInput /> snapshot 1`] = `
   caret-color: #43526D;
   border-color: #F1F4F6;
   font-size: px;
-  padding-left: 28px;
-  padding-right: 28px;
 }
 
 .c5:hover,

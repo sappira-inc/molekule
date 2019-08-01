@@ -14,8 +14,6 @@ const Search = createComponent({
     caret-color: ${theme.colors.greyDarkest};
     border-color: ${theme.colors.greyLightest};
     font-size: ${theme.fontSizes[size]}px;
-    padding-left: 28px;
-    padding-right: 28px;
 
     &:hover,
     &:active,

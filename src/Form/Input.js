@@ -61,12 +61,12 @@ const StyledInput = createComponent({
 
     ${hasLeftIcon &&
       css`
-        padding-left: ${leftIconSize + 10}px;
+        padding-left: ${leftIconSize + 12}px;
       `};
 
     ${hasRightIcon &&
       css`
-        padding-right: ${rightIconSize + 10}px;
+        padding-right: ${rightIconSize + 32}px;
       `};
   `,
 });
