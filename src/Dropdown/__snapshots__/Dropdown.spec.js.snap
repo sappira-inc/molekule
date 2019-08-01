@@ -22,13 +22,13 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border-radius: 4px;
+  border-radius: 8px;
   pointer-events: auto;
   opacity: 1;
   color: white;
-  height: 36px;
-  padding: 0 18px;
-  font-size: 12px;
+  height: 40px;
+  padding: 0 20px;
+  font-size: 14px;
   width: auto;
   background: #2DAAF2;
   border: 1px solid #2DAAF2;
@@ -86,13 +86,13 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border-radius: 4px;
+  border-radius: 8px;
   pointer-events: auto;
   opacity: 1;
   color: white;
-  height: 36px;
-  padding: 0 18px;
-  font-size: 12px;
+  height: 40px;
+  padding: 0 20px;
+  font-size: 14px;
   width: auto;
   background: #2DAAF2;
   border: 1px solid #2DAAF2;
@@ -138,7 +138,7 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   .c0 {
   z-index: 10;
   background: white;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px solid #e4edf5;
   outline: none;
   box-shadow: 0 0 3px 0 rgba(178,194,212,0.3);
@@ -206,7 +206,7 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
 .c5 {
   background: #F1F4F6;
   padding: 0.75rem 1rem;
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 8px 8px;
 }
 
 <div

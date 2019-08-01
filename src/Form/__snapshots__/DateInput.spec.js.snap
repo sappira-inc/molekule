@@ -18,17 +18,17 @@ exports[`<DateInput /> snapshot 1`] = `
 
 .c3 {
   border: 1px solid #DEE0E4;
-  height: 36px;
+  height: 40px;
   display: block;
   outline: none;
   width: 100%;
-  padding: 8px;
-  border-radius: 4px;
+  padding: 8px 24px 8px 8px;
+  border-radius: 8px;
   -webkit-transition: 250ms all;
   transition: 250ms all;
   -webkit-appearance: none;
   font-family: inherit;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .c3:hover,
