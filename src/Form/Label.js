@@ -9,7 +9,6 @@ const Label = createComponent({
     transition: 250ms;
     font-weight: 500;
     margin: 0 0 4px 4px;
-    z-index: 10;
     font-size: ${p => p.theme.fontSizes[p.size]}px;
 
     ${isFloatable &&
