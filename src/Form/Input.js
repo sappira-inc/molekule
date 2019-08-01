@@ -33,7 +33,7 @@ const StyledInput = createComponent({
     display: block;
     outline: none;
     width: 100%;
-    padding: 8px;
+    padding: 8px 24px 8px 8px;
     border-radius: ${borderRadius}px;
     transition: 250ms all;
     -webkit-appearance: none;
