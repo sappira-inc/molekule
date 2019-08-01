@@ -278,11 +278,6 @@ class Input extends Component {
     this.ref.current.blur();
   }
 
-  handleClear = () => {
-    this.setState({ value: '' });
-    this.props.onChange(this.inputRef.current.name, '');
-  };
-
   render() {
     const {
       style,
