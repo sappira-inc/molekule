@@ -41,11 +41,17 @@ Buttons may contain an icon by passing an icon prop.
 Button groups provide an easy way to horizontally layout a row of buttons.
 
 <Playground>
-  <Button.Group>
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button outline>Three</Button>
-  </Button.Group>
+  <Flex justifyContent="space-around">
+    <Button.Group>
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button outline>Three</Button>
+    </Button.Group>
+    <Button.Group>
+      <Button icon="alert" />
+      <Button outline icon="alert-circle" />
+    </Button.Group>
+  </Flex>
 </Playground>
 
 ### Vertical Layout
