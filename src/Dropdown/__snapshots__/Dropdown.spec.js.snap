@@ -22,28 +22,33 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border-radius: 4px;
+  border-radius: 8px;
   pointer-events: auto;
-  opacity: 1;
   color: white;
-  height: 36px;
-  padding: 0 18px;
-  font-size: 12px;
+  height: 32px;
+  padding: 0 16px;
+  font-size: 14px;
   width: auto;
-  background: #2DAAF2;
-  border: 1px solid #2DAAF2;
+  background: #226EFF;
+  border-color: #226EFF;
+  border-width: 1px;
   -webkit-transition: 175ms;
   transition: 175ms;
 }
 
 .c1:hover {
-  background: #45b4f3;
-  border-color: #45b4f3;
+  background: #4D89FF;
+  border-color: #4D89FF;
 }
 
 .c1:active {
-  background: #51b9f4;
-  border-color: #51b9f4;
+  background: #0958F3;
+  border-color: #0958F3;
+}
+
+.c1[disabled] {
+  background: #CADCFF;
+  border-color: #CADCFF;
 }
 
 <div
@@ -86,28 +91,33 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border-radius: 4px;
+  border-radius: 8px;
   pointer-events: auto;
-  opacity: 1;
   color: white;
-  height: 36px;
-  padding: 0 18px;
-  font-size: 12px;
+  height: 32px;
+  padding: 0 16px;
+  font-size: 14px;
   width: auto;
-  background: #2DAAF2;
-  border: 1px solid #2DAAF2;
+  background: #226EFF;
+  border-color: #226EFF;
+  border-width: 1px;
   -webkit-transition: 175ms;
   transition: 175ms;
 }
 
 .c1:hover {
-  background: #45b4f3;
-  border-color: #45b4f3;
+  background: #4D89FF;
+  border-color: #4D89FF;
 }
 
 .c1:active {
-  background: #51b9f4;
-  border-color: #51b9f4;
+  background: #0958F3;
+  border-color: #0958F3;
+}
+
+.c1[disabled] {
+  background: #CADCFF;
+  border-color: #CADCFF;
 }
 
 <div
@@ -138,7 +148,7 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   .c0 {
   z-index: 10;
   background: white;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px solid #e4edf5;
   outline: none;
   box-shadow: 0 0 3px 0 rgba(178,194,212,0.3);
@@ -160,7 +170,7 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
 
 .c2 {
   padding: 0 0 0.25rem;
-  border-bottom: 2px solid #DEE0E4;
+  border-bottom: 2px solid;
 }
 
 .c3 {
@@ -200,13 +210,11 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
 .c4:hover,
 .c4:focus {
   color: inherit;
-  background: #F1F4F6;
 }
 
 .c5 {
-  background: #F1F4F6;
   padding: 0.75rem 1rem;
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 8px 8px;
 }
 
 <div

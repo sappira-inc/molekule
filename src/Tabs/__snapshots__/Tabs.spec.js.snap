@@ -67,12 +67,12 @@ exports[`<Tabs /> renders 1`] = `
   display: block;
   color: #212b36;
   padding: 12px 8px;
-  border-bottom: 4px solid #2DAAF2;
+  border-bottom: 4px solid #226EFF;
 }
 
 .c4::hover {
   color: #212b36;
-  border-color: #2DAAF2;
+  border-color: #226EFF;
 }
 
 .c5 {
