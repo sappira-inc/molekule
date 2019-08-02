@@ -73,8 +73,9 @@ const ModalContent = createComponent({
   `,
 });
 
-function Modal({ children, title, animationDuration, showClose, onClose, open, ...props }) {
+function Modal({ children, title, animationDuration, showClose, onClose, open, blur, blurTarget, ...props }) {
   const [isOpen, setOpen] = useState(open);
+  const [blurNode, setBlurNode] = useState();
 
   const handleClose = () => {
     setOpen(false);
@@ -89,6 +90,10 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, .
     handleClose();
   };
 
+  const toggleBlur = () => {
+    blurNode.style.filter = open ? 'blur(1px)' : null;
+  };
+
   useKeyPress('Escape', () => {
     if (!isOpen || !props.closeOnEscape) return;
     handleClose();
@@ -98,7 +103,29 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, .
     if (open !== isOpen) {
       setOpen(open);
     }
+
+    if (blur && blurNode) {
+      toggleBlur();
+    }
   }, [open]);
+
+  useEffect(() => {
+    if (blur) {
+      const target = document.getElementById(blurTarget);
+
+      if (target) {
+        setBlurNode(target);
+        target.style.transitionDuration = '750ms';
+        target.style.overflow = 'auto';
+
+        return () => {
+          target.style.transitionDuration = null;
+          target.style.filter = null;
+          target.style.overflow = null;
+        };
+      }
+    }
+  }, []);
 
   return (
     <ModalContext.Provider value={{ handleClose }}>
@@ -131,6 +158,8 @@ Modal.propTypes = {
   animationOut: PropTypes.string,
   animationDuration: PropTypes.number,
   onClose: PropTypes.func,
+  blur: PropTypes.bool,
+  blurTarget: PropTypes.string,
 };
 
 Modal.defaultProps = {
@@ -144,6 +173,8 @@ Modal.defaultProps = {
   animationOut: 'zoomOut',
   animationDuration: 175,
   onClose: () => {},
+  blur: false,
+  blurTarget: 'root',
 };
 
 Modal.Title = createComponent({
