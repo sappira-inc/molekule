@@ -77,20 +77,20 @@ const StyledButton = createComponent({
       font-size: ${fontSize}px;
       width: ${block ? '100%' : 'auto'};
       background: ${outline || transparent ? 'transparent' : backgroundColor};
-      border-color: ${transparent ? 'none' : backgroundColor};
-      border: ${transparent ? 'none' : '1px solid'};
+      border-color: ${transparent ? 'transparent' : backgroundColor};
+      border-width: 1px;
       transition: 175ms;
 
       ${loading && loadingCss({ height, fontColor, outline, backgroundColor })};
 
       &:hover {
-        background: ${outline ? 'transparent !important' : theme.colors.primaryLight};
-        border-color: ${theme.colors.primaryLight};
+        background: ${outline || transparent ? 'transparent !important' : theme.colors.primaryLight};
+        border-color: ${transparent ? 'transparent !important' : theme.colors.primaryLight};
       }
 
       &:active {
-        background: ${outline ? 'transparent !important' : theme.colors.primaryDark};
-        border-color: ${theme.colors.primaryDark};
+        background: ${outline || transparent ? 'transparent !important' : theme.colors.primaryDark};
+        border-color: ${transparent ? 'transparent !important' : theme.colors.primaryDark};
       }
 
       &[disabled] {
@@ -111,14 +111,14 @@ const ButtonIcon = styled(Icon)`
 
 const Button = React.forwardRef((props, ref) => (
   <StyledButton {...props} ref={ref}>
-    {props.icon ?
+    {props.icon ? (
       <Flex alignItems="center">
         <ButtonIcon name={props.icon} sizing={props.size} />
         {props.children}
       </Flex>
-      :
+    ) : (
       props.children
-    }
+    )}
   </StyledButton>
 ));
 
@@ -169,8 +169,21 @@ Button.Group = createComponent({
       grid: { sizes },
     },
   }) => css`
-    & > *:not(:first-child) {
-      margin-left: 1rem;
+    & > button {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    & > button:first-child {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    & > button:last-child {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    & > :not(:first-child):not(:last-child) {
+      border-radius: 0;
     }
 
     ${vertical && verticalCss({ sizes, vertical })};

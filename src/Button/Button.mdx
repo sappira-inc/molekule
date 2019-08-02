@@ -5,6 +5,8 @@ menu: Core
 
 import { Playground, PropsTable } from 'docz';
 import Button from './Button';
+import Flex from '../Flex';
+import Box from '../Box';
 
 # Button
 
@@ -17,10 +19,21 @@ Custom button styles for actions in forms, dialogs, and more with support for mu
 ## Basic usage
 
 <Playground>
-  <Button.Group>
+  <Flex justifyContent="space-around">
     <Button>Primary Button</Button>
     <Button outline>Outline Button</Button>
-  </Button.Group>
+    <Button outline transparent>Transparent Button</Button>
+  </Flex>
+</Playground>
+
+## With Icon
+
+Buttons may contain an icon by passing an icon prop.
+<Playground>
+  <Flex justifyContent="space-around">
+    <Button icon="alert">Primary Button</Button>
+    <Button variant="success" icon="alert-circle">Primary Button</Button>
+  </Flex>
 </Playground>
 
 ## Groups
@@ -56,12 +69,13 @@ Buttons can come in several different shapes and colors
 Use the `variant` prop for predefined button variants. More colors may be added to `theme.colors` if the defaults are not enough or need to be overridden.
 
 <Playground>
-  <Button.Group>
-    <Button variant="success">I'm Successful</Button>
-    <Button variant="danger">I'm Dangerous</Button>
-    <Button variant="warning">I'm Cautious</Button>
-    <Button variant="info">I'm Informational</Button>
-  </Button.Group>
+   <Flex justifyContent="space-around">
+    <Button variant="primary">Primary</Button>
+    <Button variant="success">Successful</Button>
+    <Button variant="danger">Dangerous</Button>
+    <Button variant="warning">Cautious</Button>
+    <Button variant="grey">Informational</Button>
+  </Flex>
 </Playground>
 
 ### Sizes
@@ -69,11 +83,12 @@ Use the `variant` prop for predefined button variants. More colors may be added 
 Use the `size` prop to change the size of your button.
 
 <Playground>
-  <Button.Group>
+  <Flex justifyContent="space-around">
     <Button size="sm">I'm small</Button>
     <Button>I'm normal</Button>
     <Button size="lg">I'm Large</Button>
-  </Button.Group>
+    <Button size="xl">I'm X-Large</Button>
+  </Flex>
 </Playground>
 
 ## States
@@ -91,8 +106,8 @@ Add the `disabled` prop for disabled button state style.
 Add the `loading` prop for loading button state style.
 
 <Playground>
-  <Button.Group>
+  <Flex justifyContent="space-around">
     <Button loading>I'm loading</Button>
     <Button loading outline>I'm loading</Button>
-  </Button.Group>
+  </Flex>
 </Playground>

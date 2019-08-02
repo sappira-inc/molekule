@@ -1,22 +1,37 @@
-import React, { Component } from 'react';
-import { createGlobalStyle } from 'styled-components';
+import React from 'react';
+import { createGlobalStyle, css } from 'styled-components';
 import { ThemeProvider } from '../src';
 
-const GlobalStyle = createGlobalStyle `
-  * {
-    box-sizing: border-box;
-  }
-`
+const GlobalStyle = createGlobalStyle`
+  ${({ theme }) => css`
+    ${theme.fonts.map(
+      font => css`
+                @font-face {f
+                  font-family: "${font.name}";
+                  font-weight: ${font.weight || 400};
+                  font-style: normal;
+                  src: url(${font.url}) format("${font.format || 'woff2'}");
+                }
+              `
+    )}
 
-class App extends Component {
-  render() {
-    return (
-      <>
-        <GlobalStyle />
-        <ThemeProvider>{this.props.children}</ThemeProvider>
-      </>
-    );
-  }
-}
+    * {
+      font-family: "${theme.typography.bodyFontFamily}", sans-serif !important;
+    }
 
-export default App;
+    h1 {
+      font-family: "${theme.typography.headerFontFamily}", serif !important;
+      font-size: 38px;
+      color: ${theme.colors.black};
+    }
+  `}
+`;
+
+export default ({ children }) => (
+  <ThemeProvider>
+    <>
+      <GlobalStyle />
+      {children}
+    </>
+  </ThemeProvider>
+);

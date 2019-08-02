@@ -4,43 +4,47 @@ export default (overrides = {}) => {
 
   const colors = Object.assign(
     {
-      primaryDark: '#002BA0',
-      primary: '#2DAAF2',
-      primaryLight: '#9FB8FC',
+      default: '#333333',
+      black: '#1B202B',
+      white: '#FFFFFF',
 
-      grayDarkest: '#494D55',
-      grayDarker: '#767980',
-      grayDark: '#A4A6AA',
-      grayMid: '#8E97A7',
-      gray: '#D1D2D5',
-      grayLight: '#E8E9EA',
-      grayLightest: '#F1F4F6',
+      greyLightest: '#F8F8F9',
+      greyLighter: '#F4F4F4',
+      greyLight: '#E8E9EA',
+      grey: '#D1D2D5',
+      greyDark: '#A4A6AA',
+      greyDarker: '#767980',
+      greyDarkest: '#494D55',
+
+      primaryLightest: '#CADCFF',
+      primaryLight: '#4D89FF',
+      primary: '#226EFF',
+      primaryDark: '#0958F3',
+
+      secondaryLightest: '#DDF5ED',
+      secondaryLight: '#42C79B',
+      secondary: '#21B986',
+      secondaryDark: '#00AC74',
 
       redLightest: '#FFD7D8',
       redLight: '#FE7B7E',
       red: '#FD575D',
       redDark: '#F23338',
 
-      blueDark: '#006DC1',
-      blue: '#0747A5',
-      blueLight: '#C8E8FF',
+      purpleLightest: '#EBDCFC',
+      purpleLight: '#BB8AF6',
+      purple: '#A262F0',
+      purpleDark: '#8B3FE7',
 
-      greenDark: '#00AC74',
-      green: '#21B986',
-      greenLight: '#42C79B',
-      greenLightest: '#DDF5ED',
+      orangeLightest: '#FFE6D4',
+      orangeLight: '#FFAA70',
+      orange: '#FF954D',
+      orangeDark: '#EE7523',
 
-      orangeDark: '#BB520B',
-      orange: '#FFAA70',
-      orangeLight: '#FFD8BD',
-
-      yellowDark: '#F1BC0B',
+      yellowLightest: '#FFF6D6',
+      yellowLight: '#FFE075',
       yellow: '#FED23D',
-      yellowLight: '#FFEDB1',
-
-      purpleDark: '#8530FD',
-      purple: '#9D58FE',
-      purpleLight: '#DFC8FF',
+      yellowDark: '#F1BC0B',
     },
     overrides.colors
   );
@@ -49,34 +53,16 @@ export default (overrides = {}) => {
 
   const typography = {
     fontSize: 12,
-  };
-
-  const greyButton = {
-    backgroundColor: colors.white,
-    fontColor: colors.grayDarkest,
-    style: `
-      border-color: ${colors.gray};
-
-      &[disabled] {
-        background: ${colors.white};
-        color: ${colors.gray};
-      }
-
-      &:hover {
-        background: ${colors.white};
-        color: ${colors.grayDarkest};
-        border-color: ${colors.grayDark};
-      }
-
-      &:active {
-        background: ${colors.grayLight};
-        border-color: ${colors.grayLight};
-      }
-    `,
+    bodyFontFamily: 'Avenir',
+    headerFontFamily: 'Tiempos',
   };
 
   const buttonVariants = {
     primary: {
+      backgroundColor: colors.primary,
+      fontColor: 'white',
+    },
+    info: {
       backgroundColor: colors.primary,
       fontColor: 'white',
     },
@@ -99,20 +85,20 @@ export default (overrides = {}) => {
       `,
     },
     success: {
-      backgroundColor: colors.green,
+      backgroundColor: colors.secondary,
       fontColor: 'white',
       style: `
         &:hover {
-          border-color: ${colors.greenLight};
-          background: ${colors.greenLight};
+          border-color: ${colors.secondaryLight};
+          background: ${colors.secondaryLight};
         }
         &:active {
-          border-color: ${colors.greenDark};
-          background: ${colors.greenDark};
+          border-color: ${colors.secondaryDark};
+          background: ${colors.secondaryDark};
         }
         &[disabled] {
-          border-color: ${colors.greenLightest};
-          background: ${colors.greenLightest};
+          border-color: ${colors.secondaryLightest};
+          background: ${colors.secondaryLightest};
         }
       `,
     },
@@ -137,13 +123,44 @@ export default (overrides = {}) => {
     warning: {
       backgroundColor: colors.orange,
       fontColor: 'white',
+      style: `
+        &:hover {
+          border-color: ${colors.orangeLight};
+          background: ${colors.orangeLight};
+        }
+        &:active {
+          border-color: ${colors.orangeDark};
+          background: ${colors.orangeDark};
+        }
+        &[disabled] {
+          border-color: ${colors.orangeLightest};
+          background: ${colors.orangeLightest};
+        }
+    `,
     },
-    info: {
-      backgroundColor: colors.blue,
-      fontColor: 'white',
+    grey: {
+      backgroundColor: colors.white,
+      fontColor: colors.greyDarkest,
+      style: `
+        border-color: ${colors.grey};
+  
+        &[disabled] {
+          background: ${colors.white};
+          color: ${colors.grey};
+        }
+  
+        &:hover {
+          background: ${colors.white};
+          color: ${colors.greyDarkest};
+          border-color: ${colors.greyDark};
+        }
+  
+        &:active {
+          background: ${colors.greyLight};
+          border-color: ${colors.greyLight};
+        }
+      `,
     },
-    grey: greyButton,
-    gray: greyButton,
   };
 
   const badgeVariants = {
@@ -167,9 +184,9 @@ export default (overrides = {}) => {
       backgroundColor: colors.blueLight,
       fontColor: colors.blueDark,
     },
-    gray: {
-      backgroundColor: colors.grayLight,
-      fontColor: colors.grayDark,
+    grey: {
+      backgroundColor: colors.greyLight,
+      fontColor: colors.greyDark,
     },
   };
 
@@ -186,8 +203,8 @@ export default (overrides = {}) => {
   const fontSizes = {
     xs: 8,
     sm: 10,
-    md: 12,
-    lg: 14,
+    md: 14,
+    lg: 16,
     xl: 16,
   };
 
@@ -205,11 +222,21 @@ export default (overrides = {}) => {
     },
   };
 
+  const fonts = [
+    {
+      name: 'Tiempos',
+      url: '//cdn.heydoctor.co/fonts/TiemposHeadlineWeb-Semibold.woff2',
+      format: 'woff2',
+      weight: 500,
+    },
+  ];
+
   return {
     breakpoints,
     classPrefix: 're',
     colors,
     fontSizes,
+    fonts,
     grid,
     heights,
     radii,
