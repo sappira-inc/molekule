@@ -169,8 +169,8 @@ export default (overrides = {}) => {
       fontColor: colors.primaryDark,
     },
     success: {
-      backgroundColor: colors.greenLight,
-      fontColor: colors.greenDark,
+      backgroundColor: colors.secondary,
+      fontColor: colors.secondaryLighter,
     },
     danger: {
       backgroundColor: colors.redLight,
@@ -193,8 +193,8 @@ export default (overrides = {}) => {
   const alertVariants = badgeVariants;
 
   const heights = {
-    xs: 28,
-    sm: 24,
+    xs: 24,
+    sm: 28,
     md: 32,
     lg: 40,
     xl: 48,
@@ -202,10 +202,18 @@ export default (overrides = {}) => {
 
   const fontSizes = {
     xs: 8,
-    sm: 10,
+    sm: 12,
     md: 14,
     lg: 16,
     xl: 16,
+  };
+
+  const buttonIconSizes = {
+    xs: 12,
+    sm: 14,
+    md: 16,
+    lg: 24,
+    xl: 24,
   };
 
   const breakpoints = [480, 768, 1024, 1440];
@@ -233,6 +241,7 @@ export default (overrides = {}) => {
 
   return {
     breakpoints,
+    buttonIconSizes,
     classPrefix: 're',
     colors,
     fontSizes,

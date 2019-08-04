@@ -104,21 +104,23 @@ const StyledButton = createComponent({
 });
 
 const ButtonIcon = styled(Icon)`
-  font-size: ${p => p.theme.heights[p.sizing] * 0.54}px;
-  margin-right: 6px;
-  margin-top: 2px;
+  ${p => css`
+    margin-right: ${p.hasText ? '6px' : 0};
+    margin-top: 2px;
+    font-size: ${p.theme.buttonIconSizes[p.sizing]};
+  `}
 `;
 
 const Button = React.forwardRef((props, ref) => (
   <StyledButton {...props} ref={ref}>
     {props.icon ? (
       <Flex alignItems="center">
-        <ButtonIcon name={props.icon} sizing={props.size} />
+        <ButtonIcon name={props.icon} sizing={props.size} hasText={!!props.children} />
         {props.children}
       </Flex>
     ) : (
-      props.children
-    )}
+        props.children
+      )}
   </StyledButton>
 ));
 
@@ -144,7 +146,7 @@ Button.defaultProps = {
   icon: '',
 };
 
-const verticalCss = ({ sizes, vertical }) => {
+const verticalCss = ({ sizes, vertical, borderRadius }) => {
   const maybeNumber = parseInt(vertical, 10);
   const fallback = sizes[vertical] || sizes.sm;
   const breakpoint = Number.isInteger(maybeNumber) ? `${maybeNumber}px` : `${fallback}px`;
@@ -152,6 +154,12 @@ const verticalCss = ({ sizes, vertical }) => {
   return css`
     @media (max-width: ${breakpoint}) {
       flex-direction: column;
+
+      &&& {
+        & > button {
+          border-radius: ${borderRadius}px;
+        }
+      }
 
       & > *:not(:first-child) {
         margin: 1rem 0 0;
@@ -166,27 +174,27 @@ Button.Group = createComponent({
   style: ({
     vertical = false,
     theme: {
+      radius,
       grid: { sizes },
     },
+    borderRadius = radius || 2,
   }) => css`
     & > button {
       padding-left: 20px;
       padding-right: 20px;
     }
     & > button:first-child {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
+      border-radius: ${borderRadius}px 0 0 ${borderRadius}px;
     }
     & > button:last-child {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
+      border-radius: 0 ${borderRadius}px ${borderRadius}px 0;
     }
 
     & > :not(:first-child):not(:last-child) {
       border-radius: 0;
     }
 
-    ${vertical && verticalCss({ sizes, vertical })};
+    ${vertical && verticalCss({ sizes, vertical, borderRadius })};
   `,
 });
 
