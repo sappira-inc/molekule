@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
       font => css`
                 @font-face {f
                   font-family: "${font.name}";
-                  font-weight: ${font.weight || 400};
+                  font-weight: ${font.weight || 500};
                   font-style: normal;
                   src: url(${font.url}) format("${font.format || 'woff2'}");
                 }
