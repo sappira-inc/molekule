@@ -53,7 +53,7 @@ export default class ModalDropdownDemo extends React.Component {
 
           <Modal.Footer>
             <Button.Group justifyContent="flex-end">
-              <Button variant="gray" onClick={this.onCancel}>
+              <Button variant="grey" onClick={this.onCancel}>
                 Cancel
               </Button>
             </Button.Group>

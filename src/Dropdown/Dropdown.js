@@ -257,7 +257,7 @@ const DropdownHeaderInner = createComponent({
   name: 'DropdownHeaderInner',
   style: css`
     padding: 0 0 0.25rem;
-    border-bottom: 2px solid ${p => p.theme.colors.grayLight};
+    border-bottom: 2px solid ${p => p.theme.colors.greyLight};
   `,
 });
 
@@ -331,7 +331,7 @@ const StyledDropdownItem = createComponent({
     &:hover,
     &:focus {
       color: inherit;
-      background: ${theme.colors.grayLightest};
+      background: ${theme.colors.greyLightest};
     }
   `,
 });
@@ -356,7 +356,7 @@ Dropdown.Footer = createComponent({
     as: 'footer',
   }),
   style: ({ theme }) => css`
-    background: ${theme.colors.grayLightest};
+    background: ${theme.colors.greyLightest};
     padding: 0.75rem 1rem;
     border-radius: 0 0 ${themeGet('radius')}px ${themeGet('radius')}px;
   `,

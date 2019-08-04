@@ -18,7 +18,7 @@ const StyledInput = createComponent({
   name: 'Input',
   tag: 'input',
   style: ({ isFloating, size, theme, borderRadius = theme.radius }) => css`
-    border: 1px solid ${theme.colors.grayLight};
+    border: 1px solid ${theme.colors.greyLight};
     height: ${theme.heights[size]}px;
     display: block;
     outline: none;
@@ -33,11 +33,11 @@ const StyledInput = createComponent({
     &:hover,
     &:focus,
     &:active {
-      border-color: ${theme.colors.grayMid};
+      border-color: ${theme.colors.greyMid};
     }
 
     ::placeholder {
-      color: ${theme.colors.grayMid};
+      color: ${theme.colors.greyMid};
     }
 
     &[disabled] {

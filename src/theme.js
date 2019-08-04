@@ -165,27 +165,27 @@ export default (overrides = {}) => {
 
   const badgeVariants = {
     primary: {
-      backgroundColor: colors.primaryLight,
+      backgroundColor: colors.primaryLightest,
       fontColor: colors.primaryDark,
     },
     success: {
-      backgroundColor: colors.secondary,
-      fontColor: colors.secondaryLighter,
+      backgroundColor: colors.secondaryLightest,
+      fontColor: colors.secondary,
     },
     danger: {
-      backgroundColor: colors.redLight,
+      backgroundColor: colors.redLightest,
       fontColor: colors.redDark,
     },
     warning: {
-      backgroundColor: colors.orangeLight,
+      backgroundColor: colors.orangeLightest,
       fontColor: colors.orangeDark,
     },
     info: {
-      backgroundColor: colors.blueLight,
-      fontColor: colors.blueDark,
+      backgroundColor: colors.primaryLightest,
+      fontColor: colors.primaryDark,
     },
     grey: {
-      backgroundColor: colors.greyLight,
+      backgroundColor: colors.greyLightest,
       fontColor: colors.greyDark,
     },
   };

@@ -80,6 +80,7 @@ const StyledButton = createComponent({
       border-color: ${transparent ? 'transparent' : backgroundColor};
       border-width: 1px;
       transition: 175ms;
+      white-space: nowrap;
 
       ${loading && loadingCss({ height, fontColor, outline, backgroundColor })};
 
