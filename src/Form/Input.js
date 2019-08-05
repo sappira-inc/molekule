@@ -88,23 +88,32 @@ const AutogrowShadow = createComponent({
 const LeftIcon = createComponent({
   name: 'LeftIcon',
   as: Icon,
-  style: css`
+  style: ({ onClick }) => css`
     position: absolute;
     left: 8px;
     top: 50%;
     transform: translateY(-50%);
+
+    ${onClick &&
+      css`
+        cursor: pointer;
+      `}
   `,
 });
 
 const RightIcon = createComponent({
-  name: 'LeftIcon',
+  name: 'RightIcon',
   as: Icon,
-  style: css`
+  style: ({ onClick }) => css`
     position: absolute;
     right: 8px;
     top: 50%;
     transform: translateY(-50%);
-    cursor: pointer;
+
+    ${onClick &&
+      css`
+        cursor: pointer;
+      `}
   `,
 });
 
@@ -165,10 +174,10 @@ class Input extends Component {
     floating: false,
     leftIconSize: 16,
     leftIconColor: 'greyDarkest',
-    onLeftIconClick() {},
+    onLeftIconClick: null,
     rightIconSize: 16,
     rightIconColor: 'greyDarkest',
-    onRightIconClick() {},
+    onRightIconClick: null,
   };
 
   static getDerivedStateFromProps(props, state) {
