@@ -46,7 +46,6 @@ function SearchInput({ forwardedRef, value: propValue, onChange, ...inputProps }
       onRightIconClick={clearValue}
       onChange={handleChange}
       value={currentValue}
-      size="sm"
       {...inputProps}
     />
   );
