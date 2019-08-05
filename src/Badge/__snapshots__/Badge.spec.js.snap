@@ -8,6 +8,8 @@ exports[`Badge 1`] = `
   font-family: inherit;
   font-weight: bold;
   border-radius: 14px;
+  background: #CADCFF;
+  color: #0958F3;
 }
 
 <span

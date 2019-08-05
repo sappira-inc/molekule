@@ -34,6 +34,7 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
   border-width: 1px;
   -webkit-transition: 175ms;
   transition: 175ms;
+  white-space: nowrap;
 }
 
 .c1:hover {
@@ -103,6 +104,7 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   border-width: 1px;
   -webkit-transition: 175ms;
   transition: 175ms;
+  white-space: nowrap;
 }
 
 .c1:hover {
@@ -170,7 +172,7 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
 
 .c2 {
   padding: 0 0 0.25rem;
-  border-bottom: 2px solid;
+  border-bottom: 2px solid #E8E9EA;
 }
 
 .c3 {
@@ -210,9 +212,11 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
 .c4:hover,
 .c4:focus {
   color: inherit;
+  background: #F8F8F9;
 }
 
 .c5 {
+  background: #F8F8F9;
   padding: 0.75rem 1rem;
   border-radius: 0 0 8px 8px;
 }

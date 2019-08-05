@@ -11,7 +11,7 @@ exports[`Card 1`] = `
 
 .c1 {
   padding: 1rem;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid #E8E9EA;
 }
 
 .c2 {
@@ -20,7 +20,7 @@ exports[`Card 1`] = `
 
 .c3 {
   padding: 1rem;
-  border-top: 1px solid;
+  border-top: 1px solid #E8E9EA;
 }
 
 <div
