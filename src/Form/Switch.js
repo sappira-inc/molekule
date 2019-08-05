@@ -51,7 +51,7 @@ const SwitchThumb = styled.span`
   `};
 `;
 
-class Switch extends React.Component {
+export class Switch extends React.Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     value: PropTypes.bool,
