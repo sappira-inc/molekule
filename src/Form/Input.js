@@ -127,7 +127,7 @@ const validateValueProp = (props, propName, componentName) => {
   return null;
 };
 
-class Input extends Component {
+export class Input extends Component {
   static propTypes = {
     value: validateValueProp,
     type: PropTypes.string,
