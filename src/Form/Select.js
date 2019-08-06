@@ -121,6 +121,7 @@ class Select extends Component {
         <SelectContainer value={value} size={size}>
           <SelectInput
             {...props}
+            size={size}
             ref={this.ref}
             name={name}
             value={value}

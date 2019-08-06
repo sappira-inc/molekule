@@ -4,7 +4,7 @@ import { createComponent, getOneSizeSmaller } from '../utils';
 const Label = createComponent({
   name: 'Label',
   tag: 'label',
-  style: ({ isFloatable, isFloating, size, theme }) => css`
+  style: ({ isFloatable, isFloating, isFocused, size, theme }) => css`
     display: block;
     transition: 250ms;
     font-weight: 500;
@@ -20,6 +20,11 @@ const Label = createComponent({
         margin: 0;
         font-size: ${getOneSizeSmaller(theme.fontSizes, size)}px;
       `};
+
+    ${isFocused &&
+      css`
+        color: ${theme.colors.primary};
+      `}
   `,
 });
 

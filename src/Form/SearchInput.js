@@ -22,7 +22,7 @@ const Search = createComponent({
   `,
 });
 
-function SearchInput({ forwardedRef, value: propValue, onChange, ...inputProps }) {
+function SearchInput({ forwardedRef, value: propValue, onChange, name: inputName, ...inputProps }) {
   const [currentValue, setValue] = useState(propValue);
   const inputRef = forwardedRef || useRef();
 
@@ -35,7 +35,7 @@ function SearchInput({ forwardedRef, value: propValue, onChange, ...inputProps }
   };
 
   const clearValue = () => {
-    handleChange('search', '');
+    handleChange(inputName, '');
   };
 
   return (

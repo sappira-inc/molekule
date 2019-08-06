@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import Field from './Field';
 import StyledLabel from './Label';
 import FormError from './FormError';
@@ -39,11 +39,15 @@ const StyledInput = createComponent({
     -webkit-appearance: none;
     font-family: inherit;
     font-size: ${theme.fontSizes[size]}px;
+    color: ${theme.colors.greyDarkest};
 
     &:hover,
-    &:focus,
     &:active {
-      border-color: ${theme.colors.grey};
+      border-color: ${theme.colors.greyDark};
+    }
+
+    &:focus {
+      border-color: ${theme.colors.primary};
     }
 
     ::placeholder {
@@ -56,6 +60,7 @@ const StyledInput = createComponent({
 
     ${isFloating &&
       css`
+        padding-top: ${theme.fontSizes[size]}px;
         padding-bottom: 0px;
       `};
 
@@ -85,12 +90,9 @@ const AutogrowShadow = createComponent({
   }),
 });
 
-const LeftIcon = createComponent({
-  name: 'LeftIcon',
-  as: Icon,
-  style: ({ onClick }) => css`
+const StyledIcon = styled(Icon)`
+  ${({ onClick }) => css`
     position: absolute;
-    left: 8px;
     top: 50%;
     transform: translateY(-50%);
 
@@ -98,22 +100,22 @@ const LeftIcon = createComponent({
       css`
         cursor: pointer;
       `}
+  `}
+`;
+
+const LeftIcon = createComponent({
+  name: 'LeftIcon',
+  as: StyledIcon,
+  style: css`
+    left: 8px;
   `,
 });
 
 const RightIcon = createComponent({
   name: 'RightIcon',
-  as: Icon,
-  style: ({ onClick }) => css`
-    position: absolute;
+  as: StyledIcon,
+  style: css`
     right: 8px;
-    top: 50%;
-    transform: translateY(-50%);
-
-    ${onClick &&
-      css`
-        cursor: pointer;
-      `}
   `,
 });
 
