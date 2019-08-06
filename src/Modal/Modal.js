@@ -60,6 +60,7 @@ const ModalContent = createComponent({
     background-clip: padding-box;
     box-shadow: 0 8px 30px rgba(0, 29, 54, 0.1);
     border-radius: ${themeGet('radius')}px;
+    padding: 16px;
 
     ${transitionState === 'entering' &&
       css`
@@ -167,8 +168,8 @@ Modal.defaultProps = {
   showClose: true,
   closeOnBackdropClick: true,
   closeOnEscape: true,
-  minWidth: 250,
-  maxWidth: 768,
+  minWidth: 350,
+  maxWidth: 350,
   animationIn: 'zoomIn',
   animationOut: 'zoomOut',
   animationDuration: 175,
@@ -190,7 +191,7 @@ const ModalHeader = createComponent({
   name: 'ModalHeader',
   style: css`
     font-size: 1.5rem;
-    padding: 1rem 1.25rem 0;
+    padding-bottom: 16px;
     border-top-left-radius: ${themeGet('radius')}px;
     border-top-right-radius: ${themeGet('radius')}px;
   `,
@@ -200,7 +201,7 @@ const ModalHeaderInner = createComponent({
   name: 'ModalHeaderInner',
   style: ({ theme }) => css`
     border-bottom: 2px solid ${theme.colors.grayLight};
-    padding-bottom: 0.25rem;
+    padding-bottom: 8px;
   `,
 });
 
@@ -228,14 +229,13 @@ Modal.Header = ({ title, children, showClose = true }) => {
 Modal.Body = createComponent({
   name: 'ModalBody',
   style: css`
-    padding: 1.25rem;
+    padding-bottom: 24px;
   `,
 });
 
 Modal.Footer = createComponent({
   name: 'ModalFooter',
   style: ({ theme }) => css`
-    padding: 1rem 1.25rem;
     background: ${theme.colors.grayLightest};
     border-bottom-left-radius: ${themeGet('radius')}px;
     border-bottom-right-radius: ${themeGet('radius')}px;
