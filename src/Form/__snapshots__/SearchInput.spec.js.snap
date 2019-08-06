@@ -18,7 +18,7 @@ exports[`<SearchInput /> snapshot 1`] = `
   transition: 250ms;
   font-weight: 500;
   margin: 0 0 4px 4px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .c3 {
@@ -27,7 +27,7 @@ exports[`<SearchInput /> snapshot 1`] = `
 
 .c6 {
   border: 1px solid #DEE0E4;
-  height: 32px;
+  height: 40px;
   display: block;
   outline: none;
   width: 100%;
@@ -37,7 +37,7 @@ exports[`<SearchInput /> snapshot 1`] = `
   transition: 250ms all;
   -webkit-appearance: none;
   font-family: inherit;
-  font-size: 12px;
+  font-size: 14px;
   padding-left: 28px;
 }
 

@@ -1,4 +1,4 @@
-import { getComponentStyle, getVariantStyles, getComponentVariant, themeGet } from './utils';
+import { getComponentStyle, getVariantStyles, getComponentVariant, themeGet, getOneSizeSmaller } from './utils';
 
 const MOCK_THEME = {
   variants: {
@@ -14,6 +14,11 @@ const MOCK_THEME = {
     Element: `
       background-color: tomato;
     `,
+  },
+  fontSizes: {
+    xs: 8,
+    sm: 12,
+    md: 14,
   },
 };
 
@@ -53,6 +58,16 @@ describe('#utils', () => {
   describe('#getVariantStyles', () => {
     it('should return variant style for component from theme', () => {
       expect(getVariantStyles('Element', 'primary')({ theme: MOCK_THEME })).toMatchSnapshot();
+    });
+  });
+
+  describe('#getOneSizeSmaller', () => {
+    it('should return size just before requested for component', () => {
+      expect(getOneSizeSmaller(MOCK_THEME.fontSizes, 'md')).toBe(12);
+    });
+
+    it('should return size requested if no smaller size', () => {
+      expect(getOneSizeSmaller(MOCK_THEME.fontSizes, 'xs')).toBe(8);
     });
   });
 });
