@@ -73,12 +73,15 @@ export default class Formbot extends React.Component {
   }
 
   setValues(values = {}) {
-    this.setState({
-      values: {
-        ...this.state.values,
-        ...values,
+    this.setState(
+      {
+        values: {
+          ...this.state.values,
+          ...values,
+        },
       },
-    });
+      this.validateAllFields
+    );
   }
 
   updateField(field, updates = {}) {
@@ -173,7 +176,9 @@ export default class Formbot extends React.Component {
 
   validateAllFields() {
     return Promise.all(
-      this.validatableFields.map(field => this.updateField(field, {}).then(() => this.validateField(field)))
+      this.validatableFields.map(field =>
+        this.updateField(field, { validated: false }).then(() => this.validateField(field))
+      )
     );
   }
 

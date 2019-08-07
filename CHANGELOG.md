@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.1.2"></a>
+## [4.1.2](https://github.com/sappira-inc/molekule/compare/v4.1.1...v4.1.2) (2019-08-01)
+
+
+### Bug Fixes
+
+* **Input:** Display floating input label if value is not undefined ([#50](https://github.com/sappira-inc/molekule/issues/50)) ([259cd6f](https://github.com/sappira-inc/molekule/commit/259cd6f))
+
+
+
+<a name="4.1.1"></a>
+## [4.1.1](https://github.com/sappira-inc/molekule/compare/v4.1.0...v4.1.1) (2019-07-26)
+
+
+### Bug Fixes
+
+* **Formbot:** Validate fields when setting state directly ([#48](https://github.com/sappira-inc/molekule/issues/48)) ([944fdd1](https://github.com/sappira-inc/molekule/commit/944fdd1))
+
+
+
+<a name="4.1.0"></a>
+# [4.1.0](https://github.com/sappira-inc/molekule/compare/v4.0.0...v4.1.0) (2019-07-24)
+
+
+### Features
+
+* **Dropdown:** Add support for string widths ([#47](https://github.com/sappira-inc/molekule/issues/47)) ([a907cce](https://github.com/sappira-inc/molekule/commit/a907cce))
+
+
+
 <a name="4.0.0"></a>
 # [4.0.0](https://github.com/sappira-inc/molekule/compare/v3.5.7...v4.0.0) (2019-07-18)
 

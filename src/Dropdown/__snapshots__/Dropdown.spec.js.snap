@@ -154,7 +154,7 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   border: 1px solid #e4edf5;
   outline: none;
   box-shadow: 0 0 3px 0 rgba(178,194,212,0.3);
-  width: 150px;
+  width: auto;
   opacity: 0.75;
   -webkit-transform: scale(0.75);
   -ms-transform: scale(0.75);
@@ -229,7 +229,7 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
       data-testid="dropdown-menu"
       style="position: absolute; top: 0px; left: 0px; opacity: 0; pointer-events: none;"
       tabindex="0"
-      width="150"
+      width="auto"
     >
       <header
         class="re-dropdown-header c1"
