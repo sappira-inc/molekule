@@ -1,18 +1,18 @@
 import React, { useRef, useState } from 'react';
 import { css } from 'styled-components';
-import { createComponent } from '../utils';
+import { createComponent, getOneSizeSmaller } from '../utils';
 import { createEasyInput } from './EasyInput';
-import Input from './Input';
+import { Input } from './Input';
 
 const Search = createComponent({
   name: 'SearchInput',
   as: Input,
-  style: ({ theme }) => css`
-    font-size: ${theme.fontSizes.md}px;
+  style: ({ theme, size }) => css`
     color: ${theme.colors.greyDarkest};
     background-color: ${theme.colors.greyLight};
     caret-color: ${theme.colors.greyDarkest};
     border-color: ${theme.colors.greyLightest};
+    height: ${getOneSizeSmaller(theme.inputHeights, size)}px;
 
     &:hover,
     &:active,
@@ -50,5 +50,13 @@ function SearchInput({ forwardedRef, value: propValue, onChange, name: inputName
     />
   );
 }
+
+SearchInput.propTypes = {
+  ...Input.propTypes,
+};
+
+SearchInput.defaultProps = {
+  ...Input.defaultProps,
+};
 
 export default createEasyInput(SearchInput);

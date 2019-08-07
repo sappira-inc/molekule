@@ -29,7 +29,7 @@ const StyledInput = createComponent({
     rightIconSize,
   }) => css`
     border: 1px solid ${theme.colors.greyLight};
-    height: ${theme.heights[size]}px;
+    height: ${theme.inputHeights[size]}px;
     display: block;
     outline: none;
     width: 100%;
