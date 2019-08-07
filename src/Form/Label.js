@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import { createComponent, getOneSizeSmaller } from '../utils';
+import { createComponent, getOneSizeSmaller, getOneSizeLarger } from '../utils';
 
 const Label = createComponent({
   name: 'Label',
@@ -14,11 +14,12 @@ const Label = createComponent({
     ${isFloatable &&
       css`
         position: absolute;
-        top: 2px;
+        top: 6px;
         left: 8px;
         opacity: ${isFloating ? 1 : 0};
         margin: 0;
         font-size: ${getOneSizeSmaller(theme.fontSizes, size)}px;
+        line-height: ${getOneSizeLarger(theme.fontSizes, size)}px;
       `};
 
     ${isFocused &&

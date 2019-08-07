@@ -27,7 +27,7 @@ exports[`<SearchInput /> snapshot 1`] = `
 
 .c6 {
   border: 1px solid #DEE0E4;
-  height: 40px;
+  height: 48px;
   display: block;
   outline: none;
   width: 100%;
@@ -38,13 +38,17 @@ exports[`<SearchInput /> snapshot 1`] = `
   -webkit-appearance: none;
   font-family: inherit;
   font-size: 14px;
+  color: #43526D;
   padding-left: 28px;
 }
 
 .c6:hover,
-.c6:focus,
 .c6:active {
   border-color: #8E97A7;
+}
+
+.c6:focus {
+  border-color: #2DAAF2;
 }
 
 .c6::-webkit-input-placeholder {
@@ -71,11 +75,11 @@ exports[`<SearchInput /> snapshot 1`] = `
   color: #43526D;
   font-size: 16px;
   position: absolute;
-  left: 8px;
   top: 50%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+  left: 8px;
 }
 
 .c5 {
@@ -111,7 +115,7 @@ exports[`<SearchInput /> snapshot 1`] = `
         size="16"
       />
       <input
-        class="re-search-input c5 sc-iwsKbI re-search-input c5 re-input c6"
+        class="re-search-input c5 sc-gZMcBi re-search-input c5 re-input c6"
         placeholder="Search"
         rows="3"
         type="text"

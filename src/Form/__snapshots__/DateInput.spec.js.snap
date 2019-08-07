@@ -18,7 +18,7 @@ exports[`<DateInput /> snapshot 1`] = `
 
 .c3 {
   border: 1px solid #DEE0E4;
-  height: 40px;
+  height: 48px;
   display: block;
   outline: none;
   width: 100%;
@@ -29,12 +29,16 @@ exports[`<DateInput /> snapshot 1`] = `
   -webkit-appearance: none;
   font-family: inherit;
   font-size: 14px;
+  color: #43526D;
 }
 
 .c3:hover,
-.c3:focus,
 .c3:active {
   border-color: #8E97A7;
+}
+
+.c3:focus {
+  border-color: #2DAAF2;
 }
 
 .c3::-webkit-input-placeholder {

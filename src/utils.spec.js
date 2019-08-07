@@ -1,4 +1,4 @@
-import { getComponentStyle, getVariantStyles, getComponentVariant, themeGet, getOneSizeSmaller } from './utils';
+import { getComponentStyle, getVariantStyles, getComponentVariant, themeGet, getOneSizeSmaller, getOneSizeLarger } from './utils';
 
 const MOCK_THEME = {
   variants: {
@@ -16,9 +16,9 @@ const MOCK_THEME = {
     `,
   },
   fontSizes: {
-    xs: 8,
-    sm: 12,
-    md: 14,
+    sm: 8,
+    md: 12,
+    lg: 14,
   },
 };
 
@@ -62,12 +62,22 @@ describe('#utils', () => {
   });
 
   describe('#getOneSizeSmaller', () => {
-    it('should return size just before requested for component', () => {
-      expect(getOneSizeSmaller(MOCK_THEME.fontSizes, 'md')).toBe(12);
+    it('should return size just one step smaller than requested for component', () => {
+      expect(getOneSizeSmaller(MOCK_THEME.fontSizes, 'md')).toBe(MOCK_THEME.fontSizes.sm);
     });
 
     it('should return size requested if no smaller size', () => {
-      expect(getOneSizeSmaller(MOCK_THEME.fontSizes, 'xs')).toBe(8);
+      expect(getOneSizeSmaller(MOCK_THEME.fontSizes, 'sm')).toBe(MOCK_THEME.fontSizes.sm);
+    });
+  });
+
+  describe('#getOneSizeLarger', () => {
+    it('should return size just one step larger than requested for component', () => {
+      expect(getOneSizeLarger(MOCK_THEME.fontSizes, 'md')).toBe(MOCK_THEME.fontSizes.lg);
+    });
+
+    it('should return size requested if no larger size', () => {
+      expect(getOneSizeLarger(MOCK_THEME.fontSizes, 'lg')).toBe(MOCK_THEME.fontSizes.lg);
     });
   });
 });
