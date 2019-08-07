@@ -176,7 +176,7 @@ Modal.defaultProps = {
   animationOut: 'zoomOut',
   animationDuration: 175,
   onClose: () => {},
-  blur: false,
+  blur: true,
   blurTarget: '#root',
 };
 
