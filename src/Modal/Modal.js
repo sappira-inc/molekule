@@ -82,6 +82,7 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, b
   const handleClose = () => {
     setOpen(false);
     onClose();
+    toggleBlur();
   };
 
   const handleContentClick = event => event.stopPropagation();
@@ -93,7 +94,9 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, b
   };
 
   const toggleBlur = () => {
-    blurNode.style.filter = open ? 'blur(1px)' : null;
+    if (blur && blurNode) {
+      blurNode.style.filter = open ? 'blur(1px)' : null;
+    }
   };
 
   useKeyPress('Escape', () => {
@@ -106,14 +109,12 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, b
       setOpen(open);
     }
 
-    if (blur && blurNode) {
-      toggleBlur();
-    }
+    toggleBlur();
   }, [open]);
 
   useEffect(() => {
     if (blur) {
-      const target = document.getElementById(blurTarget);
+      const target = document.querySelector(blurTarget);
 
       if (target) {
         setBlurNode(target);
@@ -127,7 +128,7 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, b
         };
       }
     }
-  }, []);
+  }, [blur, blurTarget]);
 
   return (
     <ModalContext.Provider value={{ handleClose }}>
@@ -176,7 +177,7 @@ Modal.defaultProps = {
   animationDuration: 175,
   onClose: () => {},
   blur: false,
-  blurTarget: 'root',
+  blurTarget: '#root',
 };
 
 Modal.Title = createComponent({
@@ -238,8 +239,7 @@ Modal.Body = createComponent({
 
 Modal.Footer = createComponent({
   name: 'ModalFooter',
-  style: ({ theme }) => css`
-    background: ${theme.colors.grayLightest};
+  style: css`
     border-bottom-left-radius: ${themeGet('radius')}px;
     border-bottom-right-radius: ${themeGet('radius')}px;
   `,
