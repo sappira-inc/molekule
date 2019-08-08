@@ -1,5 +1,5 @@
 export default {
-  base: process.env.NODE_ENV === 'production' ? '/molekule' : '',
+  base: '',
   title: 'Molekule',
   dest: './dist',
   description: 'React UI Framework based on styled-components and styled-system',
