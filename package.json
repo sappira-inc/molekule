@@ -22,6 +22,8 @@
     "docs:build": "rimraf dist && yarn docz build",
     "docs:deploy": "npm run docs:build && gh-pages -d dist",
     "prepublishOnly": "npm-run-all build",
+    "preview": "yalc publish",
+    "preview:update": "yalc update",
     "rollup": "rollup -c",
     "test": "jest",
     "lint": "eslint src",
