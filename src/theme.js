@@ -233,7 +233,7 @@ export default (overrides = {}) => {
   const fonts = [
     {
       name: 'Tiempos',
-      url: '//cdn.heydoctor.co/fonts/TiemposHeadlineWeb-Semibold.woff2',
+      url: '//cdn.heydoctor.com/fonts/TiemposHeadlineWeb-Semibold.woff2',
       format: 'woff2',
       weight: 500,
     },
