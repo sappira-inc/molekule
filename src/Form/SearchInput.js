@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { css } from 'styled-components';
-import { createComponent, getOneSizeSmaller } from '../utils';
+import { createComponent } from '../utils';
 import { createEasyInput } from './EasyInput';
 import { Input } from './Input';
 
@@ -12,7 +12,7 @@ const Search = createComponent({
     background-color: ${theme.colors.greyLight};
     caret-color: ${theme.colors.greyDarkest};
     border-color: ${theme.colors.greyLightest};
-    height: ${getOneSizeSmaller(theme.inputHeights, size)}px;
+    height: calc(${theme.inputHeights[size]}px * 0.8);
 
     &:hover,
     &:active,

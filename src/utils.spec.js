@@ -1,4 +1,4 @@
-import { getComponentStyle, getVariantStyles, getComponentVariant, themeGet, getOneSizeSmaller, getOneSizeLarger } from './utils';
+import { getComponentStyle, getVariantStyles, getComponentVariant, themeGet } from './utils';
 
 const MOCK_THEME = {
   variants: {
@@ -58,26 +58,6 @@ describe('#utils', () => {
   describe('#getVariantStyles', () => {
     it('should return variant style for component from theme', () => {
       expect(getVariantStyles('Element', 'primary')({ theme: MOCK_THEME })).toMatchSnapshot();
-    });
-  });
-
-  describe('#getOneSizeSmaller', () => {
-    it('should return size just one step smaller than requested for component', () => {
-      expect(getOneSizeSmaller(MOCK_THEME.fontSizes, 'md')).toBe(MOCK_THEME.fontSizes.sm);
-    });
-
-    it('should return size requested if no smaller size', () => {
-      expect(getOneSizeSmaller(MOCK_THEME.fontSizes, 'sm')).toBe(MOCK_THEME.fontSizes.sm);
-    });
-  });
-
-  describe('#getOneSizeLarger', () => {
-    it('should return size just one step larger than requested for component', () => {
-      expect(getOneSizeLarger(MOCK_THEME.fontSizes, 'md')).toBe(MOCK_THEME.fontSizes.lg);
-    });
-
-    it('should return size requested if no larger size', () => {
-      expect(getOneSizeLarger(MOCK_THEME.fontSizes, 'lg')).toBe(MOCK_THEME.fontSizes.lg);
     });
   });
 });

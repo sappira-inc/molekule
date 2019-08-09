@@ -6,7 +6,7 @@ import StyledLabel from './Label';
 import FormError from './FormError';
 import Icon from '../Icon';
 import { createEasyInput } from './EasyInput';
-import { createComponent, getOneSizeLarger } from '../utils';
+import { createComponent } from '../utils';
 
 const InputContainer = createComponent({
   name: 'InputContainer',
@@ -60,8 +60,8 @@ const StyledInput = createComponent({
 
     ${isFloating &&
       css`
-        line-height: ${getOneSizeLarger(theme.fontSizes, size)}px;
-        padding-top: ${getOneSizeLarger(theme.fontSizes, size)}px;
+        line-height: calc(${theme.fontSizes[size]}px * 1.2);
+        padding-top: calc(${theme.fontSizes[size]}px * 1.2);
         padding-bottom: 0px;
       `};
 
