@@ -26,8 +26,8 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
   pointer-events: auto;
   opacity: 1;
   color: white;
-  height: 48px;
-  padding: 0 24px;
+  height: 32px;
+  padding: 0 16px;
   font-size: 14px;
   width: auto;
   background: #2DAAF2;
@@ -90,8 +90,8 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   pointer-events: auto;
   opacity: 1;
   color: white;
-  height: 48px;
-  padding: 0 24px;
+  height: 32px;
+  padding: 0 16px;
   font-size: 14px;
   width: auto;
   background: #2DAAF2;

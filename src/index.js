@@ -21,7 +21,6 @@ export FormError from './Form/FormError';
 export FormGroup from './Form/FormGroup';
 export Icon from './Icon';
 export Input from './Form/Input';
-export SearchInput from './Form/SearchInput';
 export Label from './Form/Label';
 export Linkify from './Linkify';
 export Modal from './Modal';
