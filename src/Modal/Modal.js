@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { keyframes, css } from 'styled-components';
 import * as animations from 'react-animations';
@@ -77,7 +77,7 @@ const ModalContent = createComponent({
 
 function Modal({ children, title, animationDuration, showClose, onClose, open, blur, blurTarget, ...props }) {
   const [isOpen, setOpen] = useState(open);
-  const [blurNode, setBlurNode] = useState();
+  const blurNode = useRef();
 
   const handleClose = () => {
     setOpen(false);
@@ -94,8 +94,8 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, b
   };
 
   const toggleBlur = () => {
-    if (blur && blurNode) {
-      blurNode.style.filter = open ? 'blur(1px)' : null;
+    if (blur && blurNode.current) {
+      blurNode.current.style.filter = open ? 'blur(1px)' : null;
     }
   };
 
@@ -117,14 +117,16 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, b
       const target = document.querySelector(blurTarget);
 
       if (target) {
-        setBlurNode(target);
-        target.style.transitionDuration = '750ms';
-        target.style.overflow = 'auto';
+        blurNode.current = target;
+
+        blurNode.current.style.transitionDuration = '750ms';
+        blurNode.current.style.overflow = 'auto';
+        blurNode.current.style.zIndex = 0;
 
         return () => {
-          target.style.transitionDuration = null;
-          target.style.filter = null;
-          target.style.overflow = null;
+          blurNode.current.style.transitionDuration = null;
+          blurNode.current.style.filter = null;
+          blurNode.current.style.overflow = null;
         };
       }
     }
