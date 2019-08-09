@@ -6,13 +6,13 @@ const GlobalStyle = createGlobalStyle`
   ${({ theme }) => css`
     ${theme.fonts.map(
       font => css`
-                @font-face {f
-                  font-family: "${font.name}";
-                  font-weight: ${font.weight || 500};
-                  font-style: normal;
-                  src: url(${font.url}) format("${font.format || 'woff2'}");
-                }
-              `
+        @font-face {
+          font-family: "${font.name}";
+          font-weight: ${font.weight || 500};
+          font-style: normal;
+          src: url(${font.url}) format("${font.format || 'woff2'}");
+        }
+      `
     )}
 
     * {
