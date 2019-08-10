@@ -8,7 +8,7 @@ import { Context } from './Formbot';
  */
 const PureInput = React.memo(({ Component, ...props }) => <Component {...props} />);
 
-function EasyInput({ name, Component, ...props }) {
+function EasyInput({ name, Component, renderError = true, ...props }) {
   const state = useContext(Context);
 
   if (!state) {
@@ -25,7 +25,7 @@ function EasyInput({ name, Component, ...props }) {
     <PureInput
       name={name}
       value={value !== undefined ? value : defaultValue}
-      error={state.errors[name]}
+      error={renderError ? state.errors[name] : undefined}
       onChange={state.onChange}
       onBlur={state.onBlur}
       onFocus={state.onFocus}
@@ -36,6 +36,6 @@ function EasyInput({ name, Component, ...props }) {
 }
 
 export const createEasyInput = Component =>
-  forwardRef((props, ref) => <EasyInput Component={Component} forwardedRef={ref} {...props} />);
+  forwardRef((props, ref) => <EasyInput Component={Component} forwardedRef={ref} {...props} />); // eslint-disable-line
 
 export default EasyInput;
