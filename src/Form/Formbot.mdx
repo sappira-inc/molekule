@@ -50,7 +50,6 @@ Quickly build a form using a Formbot and pre-configured form components. Formbot
 ```jsx
 <Formbot
   validationSchema={{
-    async: true, // required for async validation
     state: yup.string().required(),
     zip: yup
       .string()
@@ -59,7 +58,7 @@ Quickly build a form using a Formbot and pre-configured form components. Formbot
       .test('valid', 'Zip does not match selected state!', async function(value) {
         const {
           options: {
-            context: { values },
+            context: { values }, // Formbot context
           },
         } = this;
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { omit } from 'lodash';
 
 export const Context = React.createContext(null);
 
@@ -53,7 +52,7 @@ export default class Formbot extends React.Component {
   get validatableFields() {
     const { validationSchema, validations } = this.props;
 
-    return Object.keys(omit(validationSchema, ['async']) || validations || {});
+    return Object.keys(validationSchema || validations || {});
   }
 
   get validatable() {
@@ -136,7 +135,7 @@ export default class Formbot extends React.Component {
       const { validationSchema, validations } = this.props;
 
       const hasSchema = !!validationSchema;
-      const isAsyncValidation = hasSchema && validationSchema.async;
+
       const validation = (validationSchema || validations || {})[field];
       const validationOpts = { context: this.getContext() };
 
@@ -149,16 +148,12 @@ export default class Formbot extends React.Component {
       let errorMsg;
 
       try {
-        if (hasSchema) {
-          if (typeof validation.validate === 'function' && isAsyncValidation) {
-            validation.validate(fieldValue, validationOpts).catch(e => {
-              this.setErrors({ [field]: e.message }, resolve);
-            });
+        if (hasSchema && typeof validation.validate === 'function') {
+          validation.validate(fieldValue, validationOpts).catch(e => {
+            this.setErrors({ [field]: e.message }, resolve);
+          });
 
-            return;
-          }
-
-          validation.validateSync(fieldValue, validationOpts);
+          return;
         } else if (typeof validation === 'function') {
           validation(fieldValue);
         } else {
