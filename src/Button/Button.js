@@ -46,6 +46,8 @@ const StyledButton = createComponent({
   name: 'Button',
   tag: 'button',
   style: ({
+    hasText,
+    icon,
     variant,
     size,
     theme,
@@ -58,7 +60,15 @@ const StyledButton = createComponent({
     fontSize = theme.fontSizes[size],
     borderRadius = theme.radius || 2,
   }) => {
-    const { textColor, borderColor, backgroundColor, fontColor, hover, active, disabled: disabledState } = getComponentVariant(theme, 'Button', variant);
+    const {
+      textColor,
+      borderColor,
+      backgroundColor,
+      fontColor,
+      hover,
+      active,
+      disabled: disabledState,
+    } = getComponentVariant(theme, 'Button', variant);
 
     return css`
       font-family: inherit;
@@ -84,6 +94,12 @@ const StyledButton = createComponent({
       white-space: nowrap;
       outline: none;
       user-select: none;
+
+      ${icon &&
+        hasText &&
+        css`
+          padding-left: 8px;
+        `}
 
       ${loading && loadingCss({ height, fontColor, backgroundColor, borderColor, outline })};
 
@@ -141,24 +157,28 @@ const StyledButton = createComponent({
 
 const ButtonIcon = styled(Icon)`
   ${p => css`
-    margin-right: ${p.hasText ? '6px' : 0};
+    margin-right: ${p.hasText ? '4px' : 0};
     margin-top: 2px;
-    font-size: ${p.theme.buttonIconSizes[p.sizing]};
+    font-size: ${p.theme.buttonIconSizes[p.sizing]}px;
   `}
 `;
 
-const Button = React.forwardRef((props, ref) => (
-  <StyledButton {...props} ref={ref}>
-    {props.icon ? (
-      <Flex alignItems="center">
-        <ButtonIcon name={props.icon} sizing={props.size} hasText={!!props.children} />
-        {props.children}
-      </Flex>
-    ) : (
-        props.children
-      )}
-  </StyledButton>
-));
+const Button = React.forwardRef((props, ref) => {
+  const hasText = !!props.children;
+
+  return (
+    <StyledButton {...props} ref={ref} hasText={hasText}>
+      {props.icon ? (
+        <Flex alignItems="center">
+          <ButtonIcon name={props.icon} sizing={props.size} hasText={hasText} />
+          {props.children}
+        </Flex>
+      ) : (
+          props.children
+        )}
+    </StyledButton>
+  )
+});
 
 Button.propTypes = {
   variant: PropTypes.string,
