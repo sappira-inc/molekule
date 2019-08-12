@@ -6,6 +6,7 @@ import { Manager, Reference, Popper } from 'react-popper';
 import { css, keyframes } from 'styled-components';
 import Box from '../Box';
 import Portal from '../Portal';
+import Icon from '../Icon';
 import { useKeyPress } from '../hooks';
 import { createComponent, themeGet, findNextFocusableElement, findPreviousFocusableElement } from '../utils';
 
@@ -249,16 +250,12 @@ const DropdownMenu = createComponent({
 const DropdownHeader = createComponent({
   name: 'DropdownHeader',
   tag: 'header',
-  style: css`
-    padding: 0.75rem 1rem 0;
-  `,
 });
 
 const DropdownHeaderInner = createComponent({
   name: 'DropdownHeaderInner',
   style: css`
-    padding: 0 0 0.25rem;
-    border-bottom: 2px solid ${p => p.theme.colors.greyLight};
+    padding: 16px 0 0 8px;
   `,
 });
 
@@ -267,9 +264,10 @@ Dropdown.Title = createComponent({
   tag: 'span',
   style: css`
     display: block;
-    font-weight: bold;
-    font-size: 1rem;
+    font-weight: 700;
+    font-size: 16px;
     margin: 0;
+    color: ${p => p.theme.colors.greyDark};
   `,
 });
 
@@ -285,8 +283,17 @@ Dropdown.Header = ({ title, children }) => (
 Dropdown.Body = createComponent({
   name: 'DropdownBody',
   as: Box,
-  style: css`
-    padding: 1rem;
+});
+
+Dropdown.Section = createComponent({
+  name: 'DropdownSection',
+  as: 'div',
+  style: ({ theme }) => css`
+    padding: 16px 0 8px 8px;
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid ${theme.colors.greyLight};
+    }
   `,
 });
 
@@ -295,8 +302,8 @@ Dropdown.SectionTitle = createComponent({
   tag: 'span',
   style: ({ theme }) => css`
     display: block;
-    font-weight: 600;
-    color: ${theme.colors.primary};
+    font-weight: 700;
+    color: ${theme.colors.greyDark};
   `,
 });
 
@@ -307,37 +314,58 @@ const StyledDropdownItem = createComponent({
     role: 'button',
   }),
   as: Box,
-  style: ({ disabled, theme }) => css`
+  style: ({ disabled, theme, icon, iconSize }) => css`
     display: block;
-    width: calc(100% + 2rem);
+    width: calc(100% - 8px);
     opacity: ${disabled ? 0.3 : 1};
     pointer-events: ${disabled ? 'none' : 'initial'};
     user-select: ${disabled ? 'none' : 'initial'};
     text-decoration: none;
-    color: inherit;
+    color: ${theme.colors.greyDarkest};
     cursor: pointer;
-    margin: 0 calc(-1rem);
-    padding: 0.25rem 1rem;
+    margin: 0;
+    padding: 8px;
     transition: 125ms background;
     outline: none;
     appearance: none;
     border: 0;
+    border-radius: ${theme.radius}px;
     font: inherit;
+    font-size: 14px;
     text-align: left;
-
-    & + ${Dropdown.SectionTitle} {
-      margin-top: 1rem;
-    }
+    position: relative;
 
     &:hover,
     &:focus {
       color: inherit;
       background: ${theme.colors.greyLightest};
     }
+
+    ${icon &&
+      css`
+        padding-left: ${iconSize + 16}px;
+      `}
   `,
 });
 
-Dropdown.Item = function DropdownItem({ closeOnClick = true, onClick, ...props }) {
+const StyledIcon = createComponent({
+  name: 'DropdownIcon',
+  as: Icon,
+  style: css`
+    position: absolute;
+    left: 8px;
+  `,
+});
+
+Dropdown.Item = function DropdownItem({
+  closeOnClick = true,
+  onClick,
+  children,
+  icon,
+  iconSize = 16,
+  iconColor = 'greyDarkest',
+  ...props
+}) {
   const { close } = useContext(DropdownContext);
   const handleClick = () => {
     if (closeOnClick) {
@@ -347,7 +375,12 @@ Dropdown.Item = function DropdownItem({ closeOnClick = true, onClick, ...props }
       onClick();
     }
   };
-  return <StyledDropdownItem onClick={handleClick} {...props} />;
+  return (
+    <StyledDropdownItem onClick={handleClick} icon={icon} iconSize={iconSize} {...props}>
+      {icon && <StyledIcon name={icon} size={iconSize} color={iconColor} />}
+      {children}
+    </StyledDropdownItem>
+  );
 };
 
 Dropdown.Footer = createComponent({
@@ -357,8 +390,8 @@ Dropdown.Footer = createComponent({
     as: 'footer',
   }),
   style: ({ theme }) => css`
-    background: ${theme.colors.greyLightest};
-    padding: 0.75rem 1rem;
+    padding: 16px;
     border-radius: 0 0 ${themeGet('radius')}px ${themeGet('radius')}px;
+    border-top: 1px solid ${theme.colors.greyLight};
   `,
 });
