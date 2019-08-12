@@ -21,14 +21,13 @@ Custom button styles for actions in forms, dialogs, and more with support for mu
 <Playground>
   <Flex justifyContent="space-around">
     <Button>Primary Button</Button>
-    <Button variant="secondary">Secondary Button</Button>
-    <Button variant="grey">Grey Button</Button>
-    <Button variant="success">Success Button</Button>
-    <Button variant="danger">Danger Button</Button>
+    <Button outline>Primary Button</Button>
   </Flex>
 </Playground>
 
 ## Text
+
+Use the `text` prop to use a Text Button.
 
 <Playground>
   <Flex justifyContent="space-around">
@@ -58,11 +57,11 @@ Button groups provide an easy way to horizontally layout a row of buttons.
     <Button.Group>
       <Button>One</Button>
       <Button>Two</Button>
-      <Button variant="secondary">Three</Button>
+      <Button outline>Three</Button>
     </Button.Group>
     <Button.Group>
       <Button icon="alert" />
-      <Button variant="secondary" icon="alert-circle" />
+      <Button outline icon="alert-circle" />
     </Button.Group>
   </Flex>
 </Playground>
@@ -75,7 +74,7 @@ Use the `vertical` prop to pass a predefined or custom breakpoint size.
   <Button.Group vertical="md">
     <Button>One</Button>
     <Button>Two</Button>
-    <Button variant="secondary">Three</Button>
+    <Button outline>Three</Button>
   </Button.Group>
 </Playground>
 
@@ -134,6 +133,6 @@ Add the `loading` prop for loading button state style.
 <Playground>
   <Flex justifyContent="space-around">
     <Button loading>I'm loading</Button>
-    <Button loading variant="secondary">I'm loading</Button>
+    <Button loading outline>I'm loading</Button>
   </Flex>
 </Playground>

@@ -15,7 +15,7 @@ const spinKeyframes = keyframes`
     transform: rotate(360deg);
 }`;
 
-const loadingCss = ({ height, borderColor, fontColor }) => css`
+const loadingCss = ({ height, borderColor, fontColor, backgroundColor, outline }) => css`
   color: transparent !important;
   pointer-events: none;
   position: relative;
@@ -25,7 +25,7 @@ const loadingCss = ({ height, borderColor, fontColor }) => css`
   &::after {
     display: block;
     content: '';
-    border-color: ${borderColor || fontColor};
+    border-color: ${outline ? backgroundColor : borderColor || fontColor};
     animation: ${spinKeyframes} 820ms infinite linear;
     border-width: 2px;
     border-style: solid;
@@ -53,6 +53,7 @@ const StyledButton = createComponent({
     disabled = false,
     loading = false,
     text = false,
+    outline,
     height = theme.heights[size],
     fontSize = theme.fontSizes[size],
     borderRadius = theme.radius || 2,
@@ -70,13 +71,13 @@ const StyledButton = createComponent({
       appearance: none;
       border-radius: ${borderRadius}px;
       pointer-events: ${disabled ? 'none' : 'auto'};
-      color: ${fontColor};
+      color: ${outline ? backgroundColor : fontColor};
       height: ${height}px;
       padding: 0 ${height * 0.5}px;
       font-size: ${fontSize}px;
       width: ${block ? '100%' : 'auto'};
-      background: ${backgroundColor};
-      border-color: ${borderColor || backgroundColor};
+      background: ${outline ? 'transparent' : backgroundColor};
+      border-color: ${outline ? backgroundColor : borderColor || backgroundColor};
       border-style: solid;
       border-width: 1px;
       transition: 175ms;
@@ -84,7 +85,7 @@ const StyledButton = createComponent({
       outline: none;
       user-select: none;
 
-      ${loading && loadingCss({ height, fontColor, backgroundColor, borderColor })};
+      ${loading && loadingCss({ height, fontColor, backgroundColor, borderColor, outline })};
 
       &:hover {
         background-color: ${backgroundColor};
