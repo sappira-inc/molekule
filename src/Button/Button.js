@@ -27,7 +27,7 @@ const loadingCss = ({ height, borderColor, fontColor }) => css`
     content: '';
     border-color: ${borderColor || fontColor};
     animation: ${spinKeyframes} 820ms infinite linear;
-    border-width: ${height * 0.05}px;
+    border-width: 2px;
     border-style: solid;
     border-radius: 100%;
     border-right-color: transparent;
