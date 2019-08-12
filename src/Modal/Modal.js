@@ -119,12 +119,9 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, b
       if (target) {
         blurNode.current = target;
 
-        blurNode.current.style.transitionDuration = '750ms';
         blurNode.current.style.overflow = 'auto';
-        blurNode.current.style.zIndex = 0;
 
         return () => {
-          blurNode.current.style.transitionDuration = null;
           blurNode.current.style.filter = null;
           blurNode.current.style.overflow = null;
         };
