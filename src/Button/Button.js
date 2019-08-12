@@ -83,7 +83,7 @@ const StyledButton = createComponent({
       pointer-events: ${disabled ? 'none' : 'auto'};
       color: ${outline ? backgroundColor : fontColor};
       height: ${height}px;
-      padding: 0 ${height * 0.5}px;
+      padding: 0 16px;
       font-size: ${fontSize}px;
       width: ${block ? '100%' : 'auto'};
       background: ${outline ? 'transparent' : backgroundColor};
