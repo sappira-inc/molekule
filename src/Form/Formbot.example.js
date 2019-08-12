@@ -86,7 +86,7 @@ export default class FormbotExample extends React.Component {
           <Fieldset legend="A Group of Inputs">
             <Input name="name" placeholder="Name (should autofocus)" label="Name" ref={this.nameRef} />
 
-            <Input name="email" placeholder="Email" label="Email" renderError={false} />
+            <Input name="email" placeholder="Email" label="Email" shouldRenderError={false} />
             <FormError name="email">
               {error => <span style={{ color: 'navy' }}>Hi, I am a custom error: {error}</span>}
             </FormError>

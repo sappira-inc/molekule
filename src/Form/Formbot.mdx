@@ -3,15 +3,15 @@ menu: Forms
 name: Formbot
 ---
 
-import { Playground, PropsTable } from 'docz'
+import { Playground, PropsTable } from 'docz';
 import * as yup from 'yup';
-import FormExample from './Formbot.example'
-import Formbot from './Formbot'
+import FormExample from './Formbot.example';
+import Formbot from './Formbot';
 import Form from './Form';
 import Field from './Field';
-import Button from '../Button'
-import FormGroup from './FormGroup'
-import Input from './Input'
+import Button from '../Button';
+import FormGroup from './FormGroup';
+import Input from './Input';
 
 # Formbot
 
@@ -24,6 +24,7 @@ Quickly build a form using a Formbot and pre-configured form components. Formbot
 ## Examples
 
 ### Formbot
+
 <Playground>
   <Formbot
     validationSchema={{
@@ -40,11 +41,46 @@ Quickly build a form using a Formbot and pre-configured form components. Formbot
         </Button>
       </Field>
     </Form>
+
   </Formbot>
 </Playground>
 
+### Async Validation
+
+```jsx
+<Formbot
+  validationSchema={{
+    async: true, // required for async validation
+    state: yup.string().required(),
+    zip: yup
+      .string()
+      .min(5)
+      .required()
+      .test('valid', 'Zip does not match selected state!', async function(value) {
+        const {
+          options: {
+            context: { values },
+          },
+        } = this;
+
+        const stateFromZip = await getStateFromZip(value);
+
+        return stateFromZip === values.state;
+      }),
+  }}>
+  <Form>
+    <Input name="state" label="State" />
+    <Input name="zip" label="Zip" />
+
+    <Field>
+      <Button type="submit">Update</Button>
+    </Field>
+  </Form>
+</Formbot>
+```
+
 ### Entire Form
+
 <Playground>
   <FormExample />
 </Playground>
-

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { omit } from 'lodash';
 
 export const Context = React.createContext(null);
 
@@ -26,7 +27,7 @@ export default class Formbot extends React.Component {
   static propTypes = {
     initialValues: PropTypes.shape(),
     validations: PropTypes.shape(),
-    validationSchema: PropTypes.oneOfType([PropTypes.shape(), PropTypes.func]),
+    validationSchema: PropTypes.shape(),
     onFocus: PropTypes.func,
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
@@ -51,9 +52,8 @@ export default class Formbot extends React.Component {
 
   get validatableFields() {
     const { validationSchema, validations } = this.props;
-    const schema = typeof validationSchema === 'function' ? validationSchema(this.getContext()) : validationSchema;
 
-    return Object.keys(schema || validations || {});
+    return Object.keys(omit(validationSchema, ['async']) || validations || {});
   }
 
   get validatable() {
@@ -87,6 +87,17 @@ export default class Formbot extends React.Component {
     );
   }
 
+  setErrors = (errors = {}, cb) =>
+    this.setState(
+      state => ({
+        errors: {
+          ...state.errors,
+          ...errors,
+        },
+      }),
+      cb
+    );
+
   updateField(field, updates = {}) {
     return new Promise(resolve => {
       const fieldState = this.state.fields[field] || {};
@@ -114,18 +125,6 @@ export default class Formbot extends React.Component {
     });
   };
 
-  setStateErrors = (field, error, cb) =>
-    this.setState(
-      state => ({
-        ...state,
-        errors: {
-          ...state.errors,
-          [field]: error,
-        },
-      }),
-      cb
-    );
-
   validateField(field) {
     return new Promise(resolve => {
       const fieldState = this.state.fields[field] || {};
@@ -136,9 +135,9 @@ export default class Formbot extends React.Component {
 
       const { validationSchema, validations } = this.props;
 
-      const fromSchema = !!validationSchema;
-      const schema = typeof validationSchema === 'function' ? validationSchema(this.getContext()) : validationSchema;
-      const validation = (schema || validations || {})[field];
+      const hasSchema = !!validationSchema;
+      const isAsyncValidation = hasSchema && validationSchema.async;
+      const validation = (validationSchema || validations || {})[field];
 
       if (!validation) {
         resolve();
@@ -149,10 +148,10 @@ export default class Formbot extends React.Component {
       let errorMsg;
 
       try {
-        if (fromSchema) {
-          if (typeof validationSchema === 'function') {
-            validation.validate(fieldValue).catch(e => {
-              this.setStateErrors(field, e.message, resolve);
+        if (hasSchema) {
+          if (typeof validation.validate === 'function' && isAsyncValidation) {
+            validation.validate(fieldValue, { context: this.getContext() }).catch(e => {
+              this.setErrors({ [field]: e.message }, resolve);
             });
 
             return;
@@ -173,14 +172,10 @@ export default class Formbot extends React.Component {
           });
         }
       } catch (err) {
-        if (fromSchema) {
-          errorMsg = err.errors.length ? err.errors[0] : undefined;
-        } else {
-          errorMsg = err.message;
-        }
+        errorMsg = err.message;
       } finally {
         this.updateField(field, { validated: true }).then(() => {
-          this.setStateErrors(field, errorMsg, resolve);
+          this.setErrors({ [field]: errorMsg }, resolve);
         });
       }
     });
