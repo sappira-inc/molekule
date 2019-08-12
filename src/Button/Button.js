@@ -15,7 +15,7 @@ const spinKeyframes = keyframes`
     transform: rotate(360deg);
 }`;
 
-const loadingCss = ({ height, fontColor, outline, backgroundColor }) => css`
+const loadingCss = ({ height, borderColor, fontColor }) => css`
   color: transparent !important;
   pointer-events: none;
   position: relative;
@@ -25,7 +25,7 @@ const loadingCss = ({ height, fontColor, outline, backgroundColor }) => css`
   &::after {
     display: block;
     content: '';
-    border-color: ${outline ? backgroundColor : fontColor};
+    border-color: ${borderColor || fontColor};
     animation: ${spinKeyframes} 820ms infinite linear;
     border-width: ${height * 0.05}px;
     border-style: solid;
@@ -49,16 +49,15 @@ const StyledButton = createComponent({
     variant,
     size,
     theme,
-    outline = false,
     block = false,
     disabled = false,
     loading = false,
-    transparent = false,
+    text = false,
     height = theme.heights[size],
     fontSize = theme.fontSizes[size],
     borderRadius = theme.radius || 2,
   }) => {
-    const { backgroundColor, fontColor } = getComponentVariant(theme, 'Button', variant);
+    const { textColor, borderColor, backgroundColor, fontColor, hover, active, disabled: disabledState } = getComponentVariant(theme, 'Button', variant);
 
     return css`
       font-family: inherit;
@@ -71,33 +70,68 @@ const StyledButton = createComponent({
       appearance: none;
       border-radius: ${borderRadius}px;
       pointer-events: ${disabled ? 'none' : 'auto'};
-      color: ${outline ? backgroundColor : fontColor};
+      color: ${fontColor};
       height: ${height}px;
       padding: 0 ${height * 0.5}px;
       font-size: ${fontSize}px;
       width: ${block ? '100%' : 'auto'};
-      background: ${outline || transparent ? 'transparent' : backgroundColor};
-      border-color: ${transparent ? 'transparent' : backgroundColor};
+      background: ${backgroundColor};
+      border-color: ${borderColor || backgroundColor};
+      border-style: solid;
       border-width: 1px;
       transition: 175ms;
       white-space: nowrap;
+      outline: none;
+      user-select: none;
 
-      ${loading && loadingCss({ height, fontColor, outline, backgroundColor })};
+      ${loading && loadingCss({ height, fontColor, backgroundColor, borderColor })};
 
       &:hover {
-        background: ${outline || transparent ? 'transparent !important' : theme.colors.primaryLight};
-        border-color: ${transparent ? 'transparent !important' : theme.colors.primaryLight};
+        background-color: ${backgroundColor};
+        border-color: ${borderColor || backgroundColor};
+        color: ${fontColor};
+
+        ${hover &&
+          css`
+            background-color: ${hover.backgroundColor || backgroundColor};
+            border-color: ${hover.borderColor || hover.backgroundColor || backgroundColor};
+            color: ${hover.fontColor || fontColor};
+          `}
       }
 
       &:active {
-        background: ${outline || transparent ? 'transparent !important' : theme.colors.primaryDark};
-        border-color: ${transparent ? 'transparent !important' : theme.colors.primaryDark};
+        background: ${backgroundColor};
+        border-color: ${borderColor || backgroundColor};
+        color: ${fontColor};
+
+        ${active &&
+          css`
+            background-color: ${active.backgroundColor || backgroundColor};
+            border-color: ${active.borderColor || active.backgroundColor || backgroundColor};
+            color: ${active.fontColor || fontColor};
+          `}
       }
 
       &[disabled] {
-        background: ${theme.colors.primaryLightest};
-        border-color: ${theme.colors.primaryLightest};
+        pointer-events: none;
+        background: ${backgroundColor};
+        border-color: ${borderColor || backgroundColor};
+        color: ${fontColor};
+
+        ${disabledState &&
+          css`
+            background-color: ${disabledState.backgroundColor || backgroundColor};
+            border-color: ${disabledState.borderColor || disabledState.backgroundColor || backgroundColor};
+            color: ${disabledState.fontColor || fontColor};
+          `}
       }
+
+      ${text &&
+        css`
+          background-color: transparent !important;
+          border-color: transparent !important;
+          color: ${textColor || backgroundColor} !important;
+        `}
 
       ${space};
     `;

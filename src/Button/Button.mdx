@@ -21,8 +21,21 @@ Custom button styles for actions in forms, dialogs, and more with support for mu
 <Playground>
   <Flex justifyContent="space-around">
     <Button>Primary Button</Button>
-    <Button outline>Outline Button</Button>
-    <Button outline transparent>Transparent Button</Button>
+    <Button variant="secondary">Secondary Button</Button>
+    <Button variant="grey">Grey Button</Button>
+    <Button variant="success">Success Button</Button>
+    <Button variant="danger">Danger Button</Button>
+  </Flex>
+</Playground>
+
+## Text
+
+<Playground>
+  <Flex justifyContent="space-around">
+    <Button text>Primary Text Button</Button>
+    <Button text variant="grey">Grey Text Button</Button>
+    <Button text variant="success">Success Text Button</Button>
+    <Button text variant="danger">Danger Text Button</Button>
   </Flex>
 </Playground>
 
@@ -32,7 +45,7 @@ Buttons may contain an icon by passing an icon prop.
 <Playground>
   <Flex justifyContent="space-around">
     <Button icon="alert">Primary Button</Button>
-    <Button variant="success" icon="alert-circle">Primary Button</Button>
+    <Button variant="success" icon="alert-circle">Success Button</Button>
   </Flex>
 </Playground>
 
@@ -45,11 +58,11 @@ Button groups provide an easy way to horizontally layout a row of buttons.
     <Button.Group>
       <Button>One</Button>
       <Button>Two</Button>
-      <Button outline>Three</Button>
+      <Button variant="secondary">Three</Button>
     </Button.Group>
     <Button.Group>
       <Button icon="alert" />
-      <Button outline icon="alert-circle" />
+      <Button variant="secondary" icon="alert-circle" />
     </Button.Group>
   </Flex>
 </Playground>
@@ -105,7 +118,13 @@ Use the `size` prop to change the size of your button.
 Add the `disabled` prop for disabled button state style.
 
 <Playground>
-  <Button disabled>I'm disabled</Button>
+  <Flex justifyContent="space-around">
+    <Button disabled>I'm Disabled</Button>
+    <Button variant="secondary" disabled>I'm Disabled</Button>
+    <Button variant="grey" disabled>I'm Disabled</Button>
+    <Button variant="success" disabled>I'm Disabled</Button>
+    <Button variant="danger" disabled>I'm Disabled</Button>
+  </Flex>
 </Playground>
 
 ### Loading

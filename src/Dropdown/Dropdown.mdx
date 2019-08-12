@@ -26,7 +26,7 @@ Easily display contextual overlays using custom trigger elements. Dropdown's pos
       const [placement, setPlacement] = useState('top');
       return (
         <>
-          <Button.Group>
+          <Flex justifyContent="space-between">
             <RadioGroup
               label={<strong>Placement</strong>}
               value={placement}
@@ -36,47 +36,51 @@ Easily display contextual overlays using custom trigger elements. Dropdown's pos
               }))}
               onChange={(_, val) => setPlacement(val)}
             />
-            <Dropdown
-              placement={placement}
-              width={250}
-              trigger={<Button variant="success">Open Dropdown</Button>}
-            >
-              <Dropdown.Header title="Dropdown" />
+            <Flex mr={3}>
+              <Dropdown
+                placement={placement}
+                width={250}
+                trigger={<Button variant="success">Open Dropdown</Button>}
+              >
+                <Dropdown.Header title="Dropdown" />
 
-              <Dropdown.Body>
-                <Dropdown.SectionTitle>Section One</Dropdown.SectionTitle>
-                <Dropdown.Item closeOnClick={false}>I don't close when clicked</Dropdown.Item>
-                <Dropdown.Item as="button">Item Two</Dropdown.Item>
+                <Dropdown.Body>
+                  <Dropdown.SectionTitle>Section One</Dropdown.SectionTitle>
+                  <Dropdown.Item closeOnClick={false}>I don't close when clicked</Dropdown.Item>
+                  <Dropdown.Item as="button">Item Two</Dropdown.Item>
 
-                <Dropdown.SectionTitle>Section Two</Dropdown.SectionTitle>
-                <Dropdown.Item as="a" onClick={close} href="http://google.com" target="_blank">Item One</Dropdown.Item>
-                <Dropdown.Item disabled>Item Two</Dropdown.Item>
-              </Dropdown.Body>
+                  <Dropdown.SectionTitle>Section Two</Dropdown.SectionTitle>
+                  <Dropdown.Item as="a" onClick={close} href="http://google.com" target="_blank">Item One</Dropdown.Item>
+                  <Dropdown.Item disabled>Item Two</Dropdown.Item>
+                </Dropdown.Body>
 
-              <Dropdown.Footer>Footer</Dropdown.Footer>
-            </Dropdown>
+                <Dropdown.Footer>Footer</Dropdown.Footer>
+              </Dropdown>
+            </Flex>
 
-            <Dropdown
-              width={250}
-              trigger={<Button>Open Other Dropdown</Button>}
-            >
+            <Flex mr={3}>
+              <Dropdown
+                width={250}
+                trigger={<Button>Open Other Dropdown</Button>}
+              >
 
-              <Dropdown.Header title="Dropdown" />
+                <Dropdown.Header title="Dropdown" />
 
-              <Dropdown.Body>
-                <Dropdown.SectionTitle>Section One</Dropdown.SectionTitle>
-                <Dropdown.Item>Item One</Dropdown.Item>
-                <Dropdown.Item>Item Two</Dropdown.Item>
+                <Dropdown.Body>
+                  <Dropdown.SectionTitle>Section One</Dropdown.SectionTitle>
+                  <Dropdown.Item>Item One</Dropdown.Item>
+                  <Dropdown.Item>Item Two</Dropdown.Item>
 
-                <Dropdown.SectionTitle>Section Two</Dropdown.SectionTitle>
-                <Dropdown.Item>Item One</Dropdown.Item>
-                <Dropdown.Item disabled>Item Two</Dropdown.Item>
-              </Dropdown.Body>
+                  <Dropdown.SectionTitle>Section Two</Dropdown.SectionTitle>
+                  <Dropdown.Item>Item One</Dropdown.Item>
+                  <Dropdown.Item disabled>Item Two</Dropdown.Item>
+                </Dropdown.Body>
 
-              <Dropdown.Footer>Footer</Dropdown.Footer>
-            </Dropdown>
+                <Dropdown.Footer>Footer</Dropdown.Footer>
+              </Dropdown>
+            </Flex>
 
-            <div>
+            <Flex mr={3}>
               <Dropdown
                 width={250}
                 placement="top"
@@ -92,7 +96,7 @@ Easily display contextual overlays using custom trigger elements. Dropdown's pos
 
                 <Dropdown.Footer>Footer</Dropdown.Footer>
               </Dropdown>
-            </div>
+            </Flex>
 
             <Flex flex={1}>
               <Dropdown
@@ -113,7 +117,7 @@ Easily display contextual overlays using custom trigger elements. Dropdown's pos
                 <Dropdown.Footer>Footer</Dropdown.Footer>
               </Dropdown>
             </Flex>
-          </Button.Group>
+          </Flex>
         </>
       );
     }

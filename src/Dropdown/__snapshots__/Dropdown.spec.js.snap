@@ -24,32 +24,51 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
   appearance: none;
   border-radius: 8px;
   pointer-events: auto;
-  color: white;
+  color: #FFFFFF;
   height: 32px;
   padding: 0 16px;
   font-size: 14px;
   width: auto;
   background: #226EFF;
   border-color: #226EFF;
+  border-style: solid;
   border-width: 1px;
   -webkit-transition: 175ms;
   transition: 175ms;
   white-space: nowrap;
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .c1:hover {
-  background: #4D89FF;
+  background-color: #226EFF;
+  border-color: #226EFF;
+  color: #FFFFFF;
+  background-color: #4D89FF;
   border-color: #4D89FF;
+  color: #FFFFFF;
 }
 
 .c1:active {
-  background: #0958F3;
+  background: #226EFF;
+  border-color: #226EFF;
+  color: #FFFFFF;
+  background-color: #0958F3;
   border-color: #0958F3;
+  color: #FFFFFF;
 }
 
 .c1[disabled] {
-  background: #CADCFF;
+  pointer-events: none;
+  background: #226EFF;
+  border-color: #226EFF;
+  color: #FFFFFF;
+  background-color: #CADCFF;
   border-color: #CADCFF;
+  color: #FFFFFF;
 }
 
 <div
@@ -94,32 +113,51 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   appearance: none;
   border-radius: 8px;
   pointer-events: auto;
-  color: white;
+  color: #FFFFFF;
   height: 32px;
   padding: 0 16px;
   font-size: 14px;
   width: auto;
   background: #226EFF;
   border-color: #226EFF;
+  border-style: solid;
   border-width: 1px;
   -webkit-transition: 175ms;
   transition: 175ms;
   white-space: nowrap;
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .c1:hover {
-  background: #4D89FF;
+  background-color: #226EFF;
+  border-color: #226EFF;
+  color: #FFFFFF;
+  background-color: #4D89FF;
   border-color: #4D89FF;
+  color: #FFFFFF;
 }
 
 .c1:active {
-  background: #0958F3;
+  background: #226EFF;
+  border-color: #226EFF;
+  color: #FFFFFF;
+  background-color: #0958F3;
   border-color: #0958F3;
+  color: #FFFFFF;
 }
 
 .c1[disabled] {
-  background: #CADCFF;
+  pointer-events: none;
+  background: #226EFF;
+  border-color: #226EFF;
+  color: #FFFFFF;
+  background-color: #CADCFF;
   border-color: #CADCFF;
+  color: #FFFFFF;
 }
 
 <div

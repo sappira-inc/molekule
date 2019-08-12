@@ -60,106 +60,89 @@ export default (overrides = {}) => {
   const buttonVariants = {
     primary: {
       backgroundColor: colors.primary,
-      fontColor: 'white',
-    },
-    info: {
-      backgroundColor: colors.primary,
-      fontColor: 'white',
+      fontColor: colors.white,
+      hover: {
+        backgroundColor: colors.primaryLight,
+      },
+      active: {
+        backgroundColor: colors.primaryDark,
+      },
+      disabled: {
+        backgroundColor: colors.primaryLightest,
+      },
     },
     secondary: {
       backgroundColor: colors.white,
       fontColor: colors.primary,
-      style: `
-        border-color: ${colors.primary};
-        &:hover {
-          border-color: ${colors.primary};
-          background: ${colors.primary};
-          color: white;
-        }
-
-        &:active {
-          background: ${colors.primaryDark};
-          border-color: ${colors.primaryDark};
-          color: white;
-        }
-      `,
-    },
-    success: {
-      backgroundColor: colors.secondary,
-      fontColor: 'white',
-      style: `
-        &:hover {
-          border-color: ${colors.secondaryLight};
-          background: ${colors.secondaryLight};
-        }
-        &:active {
-          border-color: ${colors.secondaryDark};
-          background: ${colors.secondaryDark};
-        }
-        &[disabled] {
-          border-color: ${colors.secondaryLightest};
-          background: ${colors.secondaryLightest};
-        }
-      `,
-    },
-    danger: {
-      backgroundColor: colors.red,
-      fontColor: 'white',
-      style: `
-        &:hover {
-          border-color: ${colors.redLight};
-          background: ${colors.redLight};
-        }
-        &:active {
-          border-color: ${colors.redDark};
-          background: ${colors.redDark};
-        }
-        &[disabled] {
-          border-color: ${colors.redLightest};
-          background: ${colors.redLightest};
-        }
-      `,
-    },
-    warning: {
-      backgroundColor: colors.orange,
-      fontColor: 'white',
-      style: `
-        &:hover {
-          border-color: ${colors.orangeLight};
-          background: ${colors.orangeLight};
-        }
-        &:active {
-          border-color: ${colors.orangeDark};
-          background: ${colors.orangeDark};
-        }
-        &[disabled] {
-          border-color: ${colors.orangeLightest};
-          background: ${colors.orangeLightest};
-        }
-    `,
+      borderColor: colors.primary,
+      textColor: colors.primary,
+      hover: {
+        backgroundColor: colors.primary,
+        fontColor: colors.white,
+      },
+      active: {
+        backgroundColor: colors.primaryDark,
+        fontColor: colors.white,
+      },
+      disabled: {
+        fontColor: colors.primaryLightest,
+        borderColor: colors.primaryLightest,
+      },
     },
     grey: {
       backgroundColor: colors.white,
       fontColor: colors.greyDarkest,
-      style: `
-        border-color: ${colors.grey};
-  
-        &[disabled] {
-          background: ${colors.white};
-          color: ${colors.grey};
-        }
-  
-        &:hover {
-          background: ${colors.white};
-          color: ${colors.greyDarkest};
-          border-color: ${colors.greyDark};
-        }
-  
-        &:active {
-          background: ${colors.greyLight};
-          border-color: ${colors.greyLight};
-        }
-      `,
+      borderColor: colors.grey,
+      textColor: colors.greyDarkest,
+      hover: {
+        borderColor: colors.greyDark,
+      },
+      active: {
+        backgroundColor: colors.greyLight,
+      },
+      disabled: {
+        fontColor: colors.grey,
+        borderColor: colors.grey,
+      },
+    },
+    success: {
+      backgroundColor: colors.secondary,
+      fontColor: colors.white,
+      hover: {
+        backgroundColor: colors.secondaryLight,
+      },
+      active: {
+        backgroundColor: colors.secondaryDark,
+      },
+      disabled: {
+        backgroundColor: colors.secondaryLightest,
+      },
+    },
+    warning: {
+      backgroundColor: colors.orange,
+      fontColor: colors.white,
+      hover: {
+        backgroundColor: colors.orangeLight,
+      },
+      active: {
+        backgroundColor: colors.orangeDark,
+      },
+      disabled: {
+        backgroundColor: colors.orangeLightest,
+      },
+    },
+    danger: {
+      backgroundColor: colors.red,
+      fontColor: colors.white,
+      hover: {
+        backgroundColor: colors.redLight,
+      },
+      active: {
+        backgroundColor: colors.redDark,
+      },
+      disabled: {
+        backgroundColor: colors.redLightest,
+      },
     },
   };
 
