@@ -49,10 +49,10 @@ const StyledButton = createComponent({
     variant,
     size,
     theme,
-    block = false,
-    disabled = false,
-    loading = false,
-    text = false,
+    block,
+    disabled,
+    loading,
+    text,
     outline,
     height = theme.heights[size],
     fontSize = theme.fontSizes[size],
@@ -167,8 +167,8 @@ Button.propTypes = {
   block: PropTypes.bool,
   disabled: PropTypes.bool,
   loading: PropTypes.bool,
-  transparent: PropTypes.bool,
   icon: PropTypes.string,
+  text: PropTypes.bool,
 };
 
 Button.defaultProps = {
@@ -178,8 +178,8 @@ Button.defaultProps = {
   block: false,
   disabled: false,
   loading: false,
-  transparent: false,
   icon: '',
+  text: false,
 };
 
 const verticalCss = ({ sizes, vertical, borderRadius }) => {
