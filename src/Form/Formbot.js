@@ -138,6 +138,7 @@ export default class Formbot extends React.Component {
       const hasSchema = !!validationSchema;
       const isAsyncValidation = hasSchema && validationSchema.async;
       const validation = (validationSchema || validations || {})[field];
+      const validationOpts = { context: this.getContext() };
 
       if (!validation) {
         resolve();
@@ -150,14 +151,14 @@ export default class Formbot extends React.Component {
       try {
         if (hasSchema) {
           if (typeof validation.validate === 'function' && isAsyncValidation) {
-            validation.validate(fieldValue, { context: this.getContext() }).catch(e => {
+            validation.validate(fieldValue, validationOpts).catch(e => {
               this.setErrors({ [field]: e.message }, resolve);
             });
 
             return;
           }
 
-          validation.validateSync(fieldValue);
+          validation.validateSync(fieldValue, validationOpts);
         } else if (typeof validation === 'function') {
           validation(fieldValue);
         } else {
