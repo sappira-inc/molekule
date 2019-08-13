@@ -18,7 +18,7 @@ We use [Yalc](https://github.com/whitecolor/yalc) to preview changes made to Mol
 
 1. Install Yalc: `yarn global add yalc`.
 1. Run `yarn preview` (which runs `yalc push && nodemon -x 'yalc push --changed'`) to publish the changes to your local `~/.yalc` directory, and re-publish when changes are detected.
-1. Run `yalc link molekule` in the consuming application, and start (or restart) that application to preview the changes locally.
+1. Run `yalc add molekule` in the consuming application, and start (or restart) that application to preview the changes locally.
 1. Once you're satisfied with your changes, run: `yalc remove molekule` to remove the local version from the consuming application, and `yarn install --check-files` to restore the package.
 
 ## Releasing
