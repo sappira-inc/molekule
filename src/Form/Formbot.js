@@ -210,9 +210,7 @@ export default class Formbot extends React.Component {
       () => {
         this.updateField(field, { validated: false })
           .then(() => this.validateField(field))
-          .then(() => {
-            this.props.onChange(field, value, this.state.values);
-          })
+          .then(() => this.props.onChange(field, value, this.state.values))
       }
     );
   };
