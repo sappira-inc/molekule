@@ -147,14 +147,22 @@ export default class Formbot extends React.Component {
       const fieldValue = this.state.values[field];
       let errorMsg;
 
-      try {
-        if (hasSchema && typeof validation.validate === 'function') {
-          validation.validate(fieldValue, validationOpts).catch(e => {
-            this.setErrors({ [field]: e.message }, resolve);
-          });
+      if (hasSchema && typeof validation.validate === 'function') {
+        validation.validate(fieldValue, validationOpts)
+          .catch(e => {
+            errorMsg = e.message;
+          })
+          .finally(() => {
+            this.updateField(field, { validated: true }).then(() => {
+              this.setErrors({ [field]: errorMsg }, resolve);
+            });
+          })
 
-          return;
-        } else if (typeof validation === 'function') {
+        return;
+      }
+
+      try {
+        if (typeof validation === 'function') {
           validation(fieldValue);
         } else {
           Object.keys(validation).forEach(method => {
@@ -200,10 +208,11 @@ export default class Formbot extends React.Component {
         },
       },
       () => {
-        this.props.onChange(field, value, this.state.values);
-        this.updateField(field, { validated: false }).then(() => {
-          this.validateField(field);
-        });
+        this.updateField(field, { validated: false })
+          .then(() => this.validateField(field))
+          .then(() => {
+            this.props.onChange(field, value, this.state.values);
+          })
       }
     );
   };
