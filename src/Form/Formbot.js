@@ -75,15 +75,17 @@ export default class Formbot extends React.Component {
   }
 
   setValues = (values = {}) =>
-    this.setState(
-      state => ({
-        values: {
-          ...state.values,
-          ...values,
-        },
-      }),
-      this.validateAllFields
-    );
+    new Promise(resolve => {
+      this.setState(
+        state => ({
+          values: {
+            ...state.values,
+            ...values,
+          },
+        }),
+        () => this.validateAllFields().then(resolve)
+      );
+    });
 
   setErrors = (errors = {}, cb) =>
     this.setState(
