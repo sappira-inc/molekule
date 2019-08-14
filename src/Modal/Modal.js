@@ -82,7 +82,6 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, b
   const handleClose = () => {
     setOpen(false);
     onClose();
-    toggleBlur();
   };
 
   const handleContentClick = event => event.stopPropagation();
@@ -91,12 +90,6 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, b
     if (!props.closeOnBackdropClick) return;
 
     handleClose();
-  };
-
-  const toggleBlur = () => {
-    if (blur && blurNode.current) {
-      blurNode.current.style.filter = open ? 'blur(1px)' : null;
-    }
   };
 
   useKeyPress('Escape', () => {
@@ -108,9 +101,16 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, b
     if (open !== isOpen) {
       setOpen(open);
     }
-
-    toggleBlur();
   }, [open]);
+
+  useEffect(() => {
+    if (blur && blurNode.current) {
+      const isBackgroundBlurred = !!blurNode.current.style.filter;
+      if (isOpen !== isBackgroundBlurred) {
+        blurNode.current.style.filter = isOpen ? 'blur(1px)' : null;
+      }
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (blur) {
