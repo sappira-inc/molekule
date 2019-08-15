@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css, keyframes } from 'styled-components';
+import { css, keyframes } from 'styled-components';
 import { space } from 'styled-system';
 import { getComponentVariant, createComponent } from '../utils';
 import Flex from '../Flex';
-import Icon from '../Icon';
 
 const spinKeyframes = keyframes`
   from {
@@ -99,6 +98,10 @@ const StyledButton = createComponent({
         hasText &&
         css`
           padding-left: 8px;
+
+          i {
+            padding-right: 4px;
+          }
         `}
 
       ${loading && loadingCss({ height, fontColor, backgroundColor, borderColor, outline })};
@@ -155,21 +158,13 @@ const StyledButton = createComponent({
   },
 });
 
-const ButtonIcon = styled(Icon)`
-  ${p => css`
-    margin-right: ${p.hasText ? '4px' : 0};
-    margin-top: 2px;
-    font-size: ${p.theme.buttonIconSizes[p.sizing]}px;
-  `}
-`;
-
 const Button = React.forwardRef((props, ref) => {
   const hasText = !!props.children;
 
   return (
     <StyledButton {...props} ref={ref} hasText={hasText}>
       <Flex alignItems="center">
-        {props.icon && <ButtonIcon name={props.icon} sizing={props.size} hasText={hasText} />}
+        {props.icon}
         {props.children}
       </Flex>
     </StyledButton>
@@ -183,7 +178,7 @@ Button.propTypes = {
   block: PropTypes.bool,
   disabled: PropTypes.bool,
   loading: PropTypes.bool,
-  icon: PropTypes.string,
+  icon: PropTypes.element,
   text: PropTypes.bool,
 };
 
@@ -194,7 +189,6 @@ Button.defaultProps = {
   block: false,
   disabled: false,
   loading: false,
-  icon: '',
   text: false,
 };
 

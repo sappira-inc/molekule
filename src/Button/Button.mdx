@@ -7,6 +7,7 @@ import { Playground, PropsTable } from 'docz';
 import Button from './Button';
 import Flex from '../Flex';
 import Box from '../Box';
+import Icon from '../Icon';
 
 # Button
 
@@ -43,8 +44,8 @@ Use the `text` prop to use a Text Button.
 Buttons may contain an icon by passing an icon prop.
 <Playground>
   <Flex justifyContent="space-around">
-    <Button icon="alert">Primary Button</Button>
-    <Button variant="success" icon="alert-circle">Success Button</Button>
+    <Button icon={<Icon name="alert-circle" />} >Primary Button</Button>
+    <Button variant="success" icon={<Icon name="alert-circle" />}>Success Button</Button>
   </Flex>
 </Playground>
 
@@ -60,8 +61,8 @@ Button groups provide an easy way to horizontally layout a row of buttons.
       <Button outline>Three</Button>
     </Button.Group>
     <Button.Group>
-      <Button icon="alert" />
-      <Button outline icon="alert-circle" />
+      <Button icon={<Icon name="alert-circle" />} />
+      <Button outline icon={<Icon name="alert-circle" />} />
     </Button.Group>
   </Flex>
 </Playground>
