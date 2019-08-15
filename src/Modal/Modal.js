@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { keyframes, css } from 'styled-components';
 import * as animations from 'react-animations';
@@ -75,9 +75,8 @@ const ModalContent = createComponent({
   `,
 });
 
-function Modal({ children, title, animationDuration, showClose, onClose, open, blur, blurTarget, ...props }) {
+function Modal({ children, title, animationDuration, showClose, onClose, open, ...props }) {
   const [isOpen, setOpen] = useState(open);
-  const blurNode = useRef();
 
   const handleClose = () => {
     setOpen(false);
@@ -102,32 +101,6 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, b
       setOpen(open);
     }
   }, [open]);
-
-  useEffect(() => {
-    if (blur && blurNode.current) {
-      const isBackgroundBlurred = !!blurNode.current.style.filter;
-      if (isOpen !== isBackgroundBlurred) {
-        blurNode.current.style.filter = isOpen ? 'blur(1px)' : null;
-      }
-    }
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (blur) {
-      const target = document.querySelector(blurTarget);
-
-      if (target) {
-        blurNode.current = target;
-
-        blurNode.current.style.overflow = 'auto';
-
-        return () => {
-          blurNode.current.style.filter = null;
-          blurNode.current.style.overflow = null;
-        };
-      }
-    }
-  }, [blur, blurTarget]);
 
   return (
     <ModalContext.Provider value={{ handleClose }}>
@@ -160,8 +133,6 @@ Modal.propTypes = {
   animationOut: PropTypes.string,
   animationDuration: PropTypes.number,
   onClose: PropTypes.func,
-  blur: PropTypes.bool,
-  blurTarget: PropTypes.string,
 };
 
 Modal.defaultProps = {
@@ -175,8 +146,6 @@ Modal.defaultProps = {
   animationOut: 'zoomOut',
   animationDuration: 175,
   onClose: () => {},
-  blur: true,
-  blurTarget: '#root',
 };
 
 Modal.Title = createComponent({
