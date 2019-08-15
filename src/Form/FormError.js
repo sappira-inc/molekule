@@ -20,7 +20,7 @@ const FormError = ({ name, children }) => {
   const context = useContext(FormbotContext);
   const hasNameOnly = !!name && typeof children !== 'function';
   const hasRenderProp = !!name && typeof children === 'function';
-  const error = get(context.errors, name);
+  const error = get(context, ['errors', name]);
 
   if (hasNameOnly && error) return <FormErrorContainer>{error}</FormErrorContainer>;
 
