@@ -204,10 +204,11 @@ const verticalCss = ({ sizes, vertical, borderRadius }) => {
       &&& {
         & > button {
           border-radius: ${borderRadius}px;
+          margin-right: 0;
         }
       }
 
-      & > *:not(:first-child) {
+      & > button:not(:first-child) {
         margin: 1rem 0 0;
       }
     }
@@ -224,21 +225,28 @@ Button.Group = createComponent({
       grid: { sizes },
     },
     borderRadius = radius || 2,
+    connected = false,
   }) => css`
-    & > button {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-    & > button:first-child {
-      border-radius: ${borderRadius}px 0 0 ${borderRadius}px;
-    }
-    & > button:last-child {
-      border-radius: 0 ${borderRadius}px ${borderRadius}px 0;
+    & > button:not(:first-child) {
+      margin-left: 1rem;
     }
 
-    & > :not(:first-child):not(:last-child) {
-      border-radius: 0;
-    }
+    ${connected &&
+      css`
+        & > button:not(:first-child) {
+          margin-left: 0;
+        }
+        & > button:first-child {
+          border-radius: ${borderRadius}px 0 0 ${borderRadius}px;
+        }
+        & > button:last-child {
+          border-radius: 0 ${borderRadius}px ${borderRadius}px 0;
+        }
+
+        & > :not(:first-child):not(:last-child) {
+          border-radius: 0;
+        }
+      `}
 
     ${vertical && verticalCss({ sizes, vertical, borderRadius })};
   `,

@@ -20,10 +20,10 @@ Custom button styles for actions in forms, dialogs, and more with support for mu
 ## Basic usage
 
 <Playground>
-  <Flex justifyContent="space-around">
+  <Button.Group justifyContent="space-around">
     <Button>Primary Button</Button>
     <Button outline>Outline Button</Button>
-  </Flex>
+  </Button.Group>
 </Playground>
 
 ## Text
@@ -31,22 +31,22 @@ Custom button styles for actions in forms, dialogs, and more with support for mu
 Use the `text` prop to use a Text Button.
 
 <Playground>
-  <Flex justifyContent="space-around">
+  <Button.Group justifyContent="space-around">
     <Button text>Primary Text Button</Button>
     <Button text variant="grey">Grey Text Button</Button>
     <Button text variant="success">Success Text Button</Button>
     <Button text variant="danger">Danger Text Button</Button>
-  </Flex>
+  </Button.Group>
 </Playground>
 
 ## With Icon
 
 Buttons may contain an icon by passing an icon prop.
 <Playground>
-  <Flex justifyContent="space-around">
-    <Button icon={<Icon name="alert-circle" />} >Primary Button</Button>
+  <Button.Group justifyContent="space-around">
+    <Button icon={<Icon name="alert" />} >Primary Button</Button>
     <Button variant="success" icon={<Icon name="alert-circle" />}>Success Button</Button>
-  </Flex>
+  </Button.Group>
 </Playground>
 
 ## Groups
@@ -54,17 +54,29 @@ Buttons may contain an icon by passing an icon prop.
 Button groups provide an easy way to horizontally layout a row of buttons.
 
 <Playground>
-  <Flex justifyContent="space-around">
+  <Button.Group justifyContent="space-around">
     <Button.Group>
       <Button>One</Button>
       <Button>Two</Button>
-      <Button outline>Three</Button>
+      <Button variant="secondary">Three</Button>
     </Button.Group>
     <Button.Group>
-      <Button icon={<Icon name="alert-circle" />} />
-      <Button outline icon={<Icon name="alert-circle" />} />
+      <Button icon={<Icon name="alert" />} />
+      <Button variant="secondary" icon={<Icon name="alert-circle" />} />
     </Button.Group>
-  </Flex>
+  </Button.Group>
+</Playground>
+
+### Connected
+
+Use the `connected` prop to connect button group.
+
+<Playground>
+    <Button.Group connected justifyContent="center">
+      <Button>This</Button>
+      <Button>That</Button>
+      <Button variant="secondary">Another</Button>
+    </Button.Group>
 </Playground>
 
 ### Vertical Layout
@@ -75,7 +87,7 @@ Use the `vertical` prop to pass a predefined or custom breakpoint size.
   <Button.Group vertical="md">
     <Button>One</Button>
     <Button>Two</Button>
-    <Button outline>Three</Button>
+    <Button variant="secondary">Three</Button>
   </Button.Group>
 </Playground>
 
@@ -88,14 +100,14 @@ Buttons can come in several different shapes and colors
 Use the `variant` prop for predefined button variants. More colors may be added to `theme.colors` if the defaults are not enough or need to be overridden.
 
 <Playground>
-   <Flex justifyContent="space-around">
+   <Button.Group justifyContent="space-around">
     <Button variant="primary">Primary</Button>
     <Button variant="secondary">Secondary</Button>
     <Button variant="success">Successful</Button>
     <Button variant="danger">Dangerous</Button>
     <Button variant="warning">Cautious</Button>
     <Button variant="grey">Informational</Button>
-  </Flex>
+  </Button.Group>
 </Playground>
 
 ### Sizes
@@ -103,13 +115,13 @@ Use the `variant` prop for predefined button variants. More colors may be added 
 Use the `size` prop to change the size of your button.
 
 <Playground>
-  <Flex justifyContent="space-around">
+  <Button.Group justifyContent="space-around">
     <Button size="xs">I'm X-Small</Button>
     <Button size="sm">I'm Small</Button>
     <Button>I'm Normal</Button>
     <Button size="lg">I'm Large</Button>
     <Button size="xl">I'm X-Large</Button>
-  </Flex>
+  </Button.Group>
 </Playground>
 
 ## States
@@ -119,13 +131,13 @@ Use the `size` prop to change the size of your button.
 Add the `disabled` prop for disabled button state style.
 
 <Playground>
-  <Flex justifyContent="space-around">
+  <Button.Group justifyContent="space-around">
     <Button disabled>I'm Disabled</Button>
     <Button variant="secondary" disabled>I'm Disabled</Button>
     <Button variant="grey" disabled>I'm Disabled</Button>
     <Button variant="success" disabled>I'm Disabled</Button>
     <Button variant="danger" disabled>I'm Disabled</Button>
-  </Flex>
+  </Button.Group>
 </Playground>
 
 ### Loading
@@ -133,8 +145,8 @@ Add the `disabled` prop for disabled button state style.
 Add the `loading` prop for loading button state style.
 
 <Playground>
-  <Flex justifyContent="space-around">
+  <Button.Group justifyContent="space-around">
     <Button loading>I'm loading</Button>
     <Button loading outline>I'm loading</Button>
-  </Flex>
+  </Button.Group>
 </Playground>
