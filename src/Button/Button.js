@@ -168,16 +168,12 @@ const Button = React.forwardRef((props, ref) => {
 
   return (
     <StyledButton {...props} ref={ref} hasText={hasText}>
-      {props.icon ? (
-        <Flex alignItems="center">
-          <ButtonIcon name={props.icon} sizing={props.size} hasText={hasText} />
-          {props.children}
-        </Flex>
-      ) : (
-          props.children
-        )}
+      <Flex alignItems="center">
+        {props.icon && <ButtonIcon name={props.icon} sizing={props.size} hasText={hasText} />}
+        {props.children}
+      </Flex>
     </StyledButton>
-  )
+  );
 });
 
 Button.propTypes = {
