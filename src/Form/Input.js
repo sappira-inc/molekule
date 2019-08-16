@@ -241,7 +241,6 @@ export class Input extends Component {
 
   renderIcon = (icon, position) => {
     const iconProps = {
-      size: this.props.size,
       style: {
         position: 'absolute',
         top: '50%',
