@@ -11,10 +11,11 @@ const Icon = createComponent({
   style: ({ theme, size, color, disabled }) => {
     const colorFromTheme = theme.colors[color];
     const resolvedColor = colorFromTheme || color;
+    const resolvedSize = typeof size === 'string' ? theme.fontSizes[size] : size;
 
     return css`
       color: ${resolvedColor || 'inherit'};
-      font-size: ${size ? `${size}px` : 'inherit'};
+      font-size: ${size ? `${resolvedSize}px` : 'inherit'};
 
       ${disabled &&
         css`
@@ -27,7 +28,7 @@ const Icon = createComponent({
 
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
-  size: PropTypes.number,
+  size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   color: PropTypes.string,
   onClick: PropTypes.func,
 };
