@@ -25,25 +25,25 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
   border-radius: 4px;
   pointer-events: auto;
   opacity: 1;
-  color: white;
+  color: #FFFFFF;
   height: 36px;
   padding: 0 18px;
   font-size: 12px;
   width: auto;
-  background: #2DAAF2;
-  border: 1px solid #2DAAF2;
+  background: #226EFF;
+  border: 1px solid #226EFF;
   -webkit-transition: 175ms;
   transition: 175ms;
 }
 
 .c1:hover {
-  background: #45b4f3;
-  border-color: #45b4f3;
+  background: #3c7fff;
+  border-color: #3c7fff;
 }
 
 .c1:active {
-  background: #51b9f4;
-  border-color: #51b9f4;
+  background: #4887ff;
+  border-color: #4887ff;
 }
 
 <div
@@ -89,25 +89,25 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   border-radius: 4px;
   pointer-events: auto;
   opacity: 1;
-  color: white;
+  color: #FFFFFF;
   height: 36px;
   padding: 0 18px;
   font-size: 12px;
   width: auto;
-  background: #2DAAF2;
-  border: 1px solid #2DAAF2;
+  background: #226EFF;
+  border: 1px solid #226EFF;
   -webkit-transition: 175ms;
   transition: 175ms;
 }
 
 .c1:hover {
-  background: #45b4f3;
-  border-color: #45b4f3;
+  background: #3c7fff;
+  border-color: #3c7fff;
 }
 
 .c1:active {
-  background: #51b9f4;
-  border-color: #51b9f4;
+  background: #4887ff;
+  border-color: #4887ff;
 }
 
 <div
@@ -139,7 +139,7 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   z-index: 10;
   background: white;
   border-radius: 4px;
-  border: 1px solid #e4edf5;
+  border: 1px solid #F4F4F4;
   outline: none;
   box-shadow: 0 0 3px 0 rgba(178,194,212,0.3);
   width: auto;
@@ -160,7 +160,7 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
 
 .c2 {
   padding: 0 0 0.25rem;
-  border-bottom: 2px solid #DEE0E4;
+  border-bottom: 2px solid #E8E9EA;
 }
 
 .c3 {
@@ -200,11 +200,11 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
 .c4:hover,
 .c4:focus {
   color: inherit;
-  background: #F1F4F6;
+  background: #F8F8F9;
 }
 
 .c5 {
-  background: #F1F4F6;
+  background: #F8F8F9;
   padding: 0.75rem 1rem;
   border-radius: 0 0 4px 4px;
 }

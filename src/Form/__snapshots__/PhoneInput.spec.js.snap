@@ -17,7 +17,7 @@ exports[`<PhoneInput /> snapshot 1`] = `
 }
 
 .c3 {
-  border: 1px solid #DEE0E4;
+  border: 1px solid #E8E9EA;
   height: 36px;
   display: block;
   outline: none;
@@ -34,23 +34,23 @@ exports[`<PhoneInput /> snapshot 1`] = `
 .c3:hover,
 .c3:focus,
 .c3:active {
-  border-color: #8E97A7;
+  border-color: #A4A6AA;
 }
 
 .c3::-webkit-input-placeholder {
-  color: #8E97A7;
+  color: #A4A6AA;
 }
 
 .c3::-moz-placeholder {
-  color: #8E97A7;
+  color: #A4A6AA;
 }
 
 .c3:-ms-input-placeholder {
-  color: #8E97A7;
+  color: #A4A6AA;
 }
 
 .c3::placeholder {
-  color: #8E97A7;
+  color: #A4A6AA;
 }
 
 .c3[disabled] {
