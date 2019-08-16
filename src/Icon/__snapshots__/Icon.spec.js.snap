@@ -4,12 +4,13 @@ exports[`<Icon /> renders 1`] = `
 <DocumentFragment>
   .c0 {
   color: inherit;
-  font-size: inherit;
+  font-size: 16px;
 }
 
 <i
     class="mdi mdi-message re-icon c0"
     name="message"
+    size="16"
   />
 </DocumentFragment>
 `;
@@ -18,12 +19,13 @@ exports[`<Icon /> renders with passed class name 1`] = `
 <DocumentFragment>
   .c0 {
   color: inherit;
-  font-size: inherit;
+  font-size: 16px;
 }
 
 <i
     class="bagels mdi mdi-message re-icon c0"
     name="message"
+    size="16"
   />
 </DocumentFragment>
 `;
