@@ -30,7 +30,7 @@ Card.Header = createComponent({
   as: Box,
   style: ({ theme }) => css`
     padding: 1rem;
-    border-bottom: 1px solid ${theme.colors.grayLight};
+    border-bottom: 1px solid ${theme.colors.greyLight};
   `,
 });
 
@@ -47,7 +47,7 @@ Card.Footer = createComponent({
   as: Box,
   style: ({ theme }) => css`
     padding: 1rem;
-    border-top: 1px solid ${theme.colors.grayLight};
+    border-top: 1px solid ${theme.colors.greyLight};
   `,
 });
 

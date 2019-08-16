@@ -10,154 +10,179 @@ Molekule comes with a default theme. You can override any of these configuration
 
 ```js
 {
-  "breakpoints": [
+  breakpoints: [
     480,
     768,
     1024,
     1440
   ],
-  "classPrefix": "re",
-  "colors": {
-    "primaryDark": "#002BA0",
-    "primary": "#2DAAF2",
-    "primaryLight": "#9FB8FC",
-    "grayDark": "#43526D",
-    "grayMid": "#8E97A7",
-    "gray": "#8E97A7",
-    "grayLight": "#DEE0E4",
-    "grayLightest": "#F1F4F6",
-    "redDark": "#B22327",
-    "red": "#FD575D",
-    "redLight": " #FFCECF",
-    "blueDark": "#006DC1",
-    "blue": "#0747A5",
-    "blueLight": "#C8E8FF",
-    "greenDark": "#196C1C",
-    "green": "#00D684",
-    "greenLight": "#B4F7DE",
-    "orangeDark": "#BB520B",
-    "orange": "#FFAA70",
-    "orangeLight": "#FFD8BD",
-    "yellowDark": "#F1BC0B",
-    "yellow": "#FED23D",
-    "yellowLight": "#FFEDB1",
-    "purpleDark": "#8530FD",
-    "purple": "#9D58FE",
-    "purpleLight": "#DFC8FF"
+  classPrefix: 're',
+  colors: {
+      default: '#494D55',
+      black: '#1B202B',
+      white: '#FFFFFF',
+
+      greyLightest: '#F8F8F9',
+      greyLighter: '#F4F4F4',
+      greyLight: '#E8E9EA',
+      grey: '#D1D2D5',
+      greyDark: '#A4A6AA',
+      greyDarker: '#767980',
+      greyDarkest: '#494D55',
+
+      primaryLightest: '#CADCFF',
+      primaryLight: '#4D89FF',
+      primary: '#226EFF',
+      primaryDark: '#0958F3',
+
+      secondaryLightest: '#DDF5ED',
+      secondaryLight: '#42C79B',
+      secondary: '#21B986',
+      secondaryDark: '#00AC74',
+
+      redLightest: '#FFD7D8',
+      redLight: '#FE7B7E',
+      red: '#FD575D',
+      redDark: '#F23338',
+
+      purpleLightest: '#EBDCFC',
+      purpleLight: '#BB8AF6',
+      purple: '#A262F0',
+      purpleDark: '#8B3FE7',
+
+      orangeLightest: '#FFE6D4',
+      orangeLight: '#FFAA70',
+      orange: '#FF954D',
+      orangeDark: '#EE7523',
+
+      yellowLightest: '#FFF6D6',
+      yellowLight: '#FFE075',
+      yellow: '#FED23D',
+      yellowDark: '#F1BC0B',
+
+      blueLightest: '#CADCFF',
+      blueLight: '#4D89FF',
+      blue: '#226EFF',
+      blueDark: '#0958F3',
+
+      greenLightest: '#DDF5ED',
+      greenLight: '#42C79B',
+      green: '#21B986',
+      greenDark: '#00AC74',
   },
-  "fontSizes": {
-    "xs": 8,
-    "sm": 10,
-    "md": 12,
-    "lg": 14,
-    "xl": 16
+  fontSizes: {
+    xs: 8,
+    sm: 10,
+    md: 12,
+    lg: 14,
+    xl: 16
   },
-  "grid": {
-    "containerMaxWidth": 1000,
-    "gutter": 16,
-    "columns": 12,
-    "sizes": {
-      "xs": 480,
-      "sm": 768,
-      "md": 1024,
-      "lg": 1440
+  grid: {
+    containerMaxWidth: 1000,
+    gutter: 16,
+    columns: 12,
+    sizes: {
+      xs: 480,
+      sm: 768,
+      md: 1024,
+      lg: 1440
     }
   },
-  "heights": {
-    "xs": 28,
-    "sm": 32,
-    "md": 36,
-    "lg": 40,
-    "xl": 44
+  heights: {
+    xs: 28,
+    sm: 32,
+    md: 36,
+    lg: 40,
+    xl: 44
   },
-  "radii": [
+  radii: [
     0,
     2,
     4
   ],
-  "radius": 4,
-  "shadow": "0 3px 6px hsla(0,0%,60%,.1), 0 3px 6px hsla(0,0%,60%,.15), 0 -1px 2px hsla(0,0%,60%,.02)",
-  "shadowHover": "0 6px 9px hsla(0,0%,60%,.2), 0 6px 9px hsla(0,0%,60%,.2), 0 -1px 2px hsla(0,0%,60%,.08)",
-  "typography": {
-    "fontSize": 12
+  radius: 8,
+  shadow: '0 3px 6px hsla(0,0%,60%,.1), 0 3px 6px hsla(0,0%,60%,.15), 0 -1px 2px hsla(0,0%,60%,.02)',
+  shadowHover: '0 6px 9px hsla(0,0%,60%,.2), 0 6px 9px hsla(0,0%,60%,.2), 0 -1px 2px hsla(0,0%,60%,.08)',
+  typography: {
+    fontSize: 12
   },
-  "variants": {
-    "Alert": {
-      "primary": {
-        "backgroundColor": "#9FB8FC",
-        "fontColor": "#002BA0"
+  variants: {
+    Alert: {
+      primary: {
+        backgroundColor: '#CADCFF',
+        fontColor: '#0958F3'
       },
-      "success": {
-        "backgroundColor": "#B4F7DE",
-        "fontColor": "#196C1C"
+      success: {
+        backgroundColor: '#DDF5ED',
+        fontColor: '#00AC74'
       },
-      "danger": {
-        "backgroundColor": " #FFCECF",
-        "fontColor": "#B22327"
+      danger: {
+        backgroundColor: ' #FFD7D8',
+        fontColor: '#F23338'
       },
-      "warning": {
-        "backgroundColor": "#FFD8BD",
-        "fontColor": "#BB520B"
+      warning: {
+        backgroundColor: '#FFE6D4',
+        fontColor: '#EE7523'
       },
-      "info": {
-        "backgroundColor": "#C8E8FF",
-        "fontColor": "#006DC1"
+      info: {
+        backgroundColor: '#CADCFF',
+        fontColor: '#0958F3'
       },
-      "gray": {
-        "backgroundColor": "#DEE0E4",
-        "fontColor": "#43526D"
+      grey: {
+        backgroundColor: '#E8E9EA',
+        fontColor: '#767980'
       }
     },
-    "Badge": {
-      "primary": {
-        "backgroundColor": "#9FB8FC",
-        "fontColor": "#002BA0"
+    Badge: {
+      primary: {
+        backgroundColor: '#CADCFF',
+        fontColor: '#0958F3'
       },
-      "success": {
-        "backgroundColor": "#B4F7DE",
-        "fontColor": "#196C1C"
+      success: {
+        backgroundColor: '#DDF5ED',
+        fontColor: '#00AC74'
       },
-      "danger": {
-        "backgroundColor": " #FFCECF",
-        "fontColor": "#B22327"
+      danger: {
+        backgroundColor: ' #FFD7D8',
+        fontColor: '#F23338'
       },
-      "warning": {
-        "backgroundColor": "#FFD8BD",
-        "fontColor": "#BB520B"
+      warning: {
+        backgroundColor: '#FFE6D4',
+        fontColor: '#EE7523'
       },
-      "info": {
-        "backgroundColor": "#C8E8FF",
-        "fontColor": "#006DC1"
+      info: {
+        backgroundColor: '#CADCFF',
+        fontColor: '#0958F3'
       },
-      "gray": {
-        "backgroundColor": "#DEE0E4",
-        "fontColor": "#43526D"
+      grey: {
+        backgroundColor: '#E8E9EA',
+        fontColor: '#767980'
       }
     },
-    "Button": {
-      "primary": {
-        "backgroundColor": "#2DAAF2",
-        "fontColor": "white"
+    Button: {
+      primary: {
+        backgroundColor: '#226EFF',
+        fontColor: '#FFFFFF'
       },
-      "success": {
-        "backgroundColor": "#00D684",
-        "fontColor": "white"
+      success: {
+        backgroundColor: '#21B986',
+        fontColor: '#FFFFFF'
       },
-      "danger": {
-        "backgroundColor": "#FD575D",
-        "fontColor": "white"
+      danger: {
+        backgroundColor: '#FD575D',
+        fontColor: '#FFFFFF'
       },
-      "warning": {
-        "backgroundColor": "#FFAA70",
-        "fontColor": "white"
+      warning: {
+        backgroundColor: '#FF954D',
+        fontColor: '#FFFFFF'
       },
-      "info": {
-        "backgroundColor": "#0747A5",
-        "fontColor": "white"
+      info: {
+        backgroundColor: '#226EFF',
+        fontColor: '#FFFFFF'
       },
-      "gray": {
-        "backgroundColor": "#DEE0E4",
-        "fontColor": "#43526D"
+      grey: {
+        backgroundColor: '#E8E9EA',
+        fontColor: '#494D55'
       }
     }
   }

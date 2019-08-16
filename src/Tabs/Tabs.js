@@ -14,7 +14,7 @@ const TabsProvider = createComponent({
 const TabList = createComponent({
   name: 'TabList',
   tag: 'ul',
-  style: ({ vertical }) => css`
+  style: ({ vertical, theme }) => css`
     display: flex;
     margin: 0;
     padding: 0;
@@ -23,7 +23,7 @@ const TabList = createComponent({
 
     ${!vertical &&
       css`
-        border-bottom: 1px solid #dfe3e8;
+        border-bottom: 1px solid ${theme.colors.greyLighter};
       `};
   `,
 });
@@ -69,13 +69,13 @@ const TabTitle = createComponent({
   tag: 'span',
   style: ({ active, vertical, theme }) => css`
     display: block;
-    color: ${active ? '#212b36' : '#637381'};
+    color: ${active ? theme.colors.greyDarkest : theme.colors.greyDark};
     padding: ${vertical ? '8px 12px 8px 8px' : '12px 8px'};
     border-${vertical ? 'left' : 'bottom'}: 4px solid ${active ? theme.colors.primary : 'transparent'};
 
     &::hover {
       color: #212b36;
-      border-color: ${active ? theme.colors.primary : '#d9dee3'};
+      border-color: ${active ? theme.colors.primary : theme.colors.greyLight};
     }
   `,
 });
