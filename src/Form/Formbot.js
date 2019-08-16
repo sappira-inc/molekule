@@ -25,8 +25,8 @@ const VALIDATIONS = {
 export default class Formbot extends React.Component {
   static propTypes = {
     initialValues: PropTypes.shape(),
-    validations: PropTypes.object,
-    validationSchema: PropTypes.object,
+    validations: PropTypes.shape(),
+    validationSchema: PropTypes.shape(),
     onFocus: PropTypes.func,
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
@@ -50,7 +50,9 @@ export default class Formbot extends React.Component {
   };
 
   get validatableFields() {
-    return Object.keys(this.props.validationSchema || this.props.validations || {});
+    const { validationSchema, validations } = this.props;
+
+    return Object.keys(validationSchema || validations || {});
   }
 
   get validatable() {
@@ -72,36 +74,45 @@ export default class Formbot extends React.Component {
     }));
   }
 
-  setValues(values = {}) {
-    this.setState(
-      {
-        values: {
-          ...this.state.values,
-          ...values,
-        },
-      },
-      this.validateAllFields
-    );
-  }
-
-  updateField(field, updates = {}) {
-    return new Promise(resolve => {
-      const fieldState = this.state.fields[field] || {};
-
+  setValues = (values = {}) =>
+    new Promise(resolve => {
       this.setState(
-        {
+        state => ({
+          values: {
+            ...state.values,
+            ...values,
+          },
+        }),
+        () => this.validateAllFields().then(resolve)
+      );
+    });
+
+  setErrors = (errors = {}, cb) =>
+    this.setState(
+      state => ({
+        errors: {
+          ...state.errors,
+          ...errors,
+        },
+      }),
+      cb
+    );
+
+  updateField = (field, updates = {}) =>
+    new Promise(resolve => {
+      this.setState(
+        state => ({
           fields: {
-            ...this.state.fields,
+            ...state.fields,
             [field]: {
-              ...fieldState,
+              ...state.fields[field],
               ...updates,
             },
           },
-        },
+        }),
         resolve
       );
     });
-  }
 
   reset = () => {
     this.setState({
@@ -109,12 +120,6 @@ export default class Formbot extends React.Component {
       fields: {},
       errors: {},
     });
-  };
-
-  makeValidation = (validation, value) => {
-    if (!validation.validator(value)) {
-      throw new Error(validation.message || 'This field is required');
-    }
   };
 
   validateField(field) {
@@ -125,8 +130,12 @@ export default class Formbot extends React.Component {
         return;
       }
 
-      const fromSchema = !!this.props.validationSchema;
-      const validation = (fromSchema ? this.props.validationSchema : this.props.validations)[field];
+      const { validationSchema, validations } = this.props;
+
+      const hasSchema = !!validationSchema;
+
+      const validation = (validationSchema || validations || {})[field];
+      const validationOpts = { context: this.getContext() };
 
       if (!validation) {
         resolve();
@@ -136,10 +145,23 @@ export default class Formbot extends React.Component {
       const fieldValue = this.state.values[field];
       let errorMsg;
 
+      if (hasSchema && typeof validation.validate === 'function') {
+        validation
+          .validate(fieldValue, validationOpts)
+          .catch(e => {
+            errorMsg = e.message;
+          })
+          .finally(() => {
+            this.updateField(field, { validated: true }).then(() => {
+              this.setErrors({ [field]: errorMsg }, resolve);
+            });
+          });
+
+        return;
+      }
+
       try {
-        if (fromSchema) {
-          validation.validateSync(fieldValue, { values: this.state.values });
-        } else if (typeof validation === 'function') {
+        if (typeof validation === 'function') {
           validation(fieldValue);
         } else {
           Object.keys(validation).forEach(method => {
@@ -153,22 +175,10 @@ export default class Formbot extends React.Component {
           });
         }
       } catch (err) {
-        if (fromSchema) {
-          errorMsg = err.errors.length ? err.errors[0] : undefined;
-        } else {
-          errorMsg = err.message;
-        }
+        errorMsg = err.message;
       } finally {
         this.updateField(field, { validated: true }).then(() => {
-          this.setState(
-            {
-              errors: {
-                ...this.state.errors,
-                [field]: errorMsg,
-              },
-            },
-            resolve
-          );
+          this.setErrors({ [field]: errorMsg }, resolve);
         });
       }
     });
@@ -190,17 +200,16 @@ export default class Formbot extends React.Component {
 
   onChange = (field, value) => {
     this.setState(
-      {
+      state => ({
         values: {
-          ...this.state.values,
+          ...state.values,
           [field]: value,
         },
-      },
+      }),
       () => {
-        this.props.onChange(field, value, this.state.values);
-        this.updateField(field, { validated: false }).then(() => {
-          this.validateField(field);
-        });
+        this.updateField(field, { validated: false })
+          .then(() => this.validateField(field))
+          .then(() => this.props.onChange(field, value, this.state.values));
       }
     );
   };
@@ -235,16 +244,16 @@ export default class Formbot extends React.Component {
       onBlur: this.onBlur,
       onSubmit: this.onSubmit,
       reset: this.reset,
-    }
+    };
   }
 
   render() {
-    const { children, ...props } = this.props;
+    const { children } = this.props;
 
     return (
       <Context.Provider value={this.getContext()}>
         {typeof children === 'function' ? children(this.getContext()) : children}
       </Context.Provider>
-    )
+    );
   }
 }

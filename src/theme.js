@@ -4,39 +4,57 @@ export default (overrides = {}) => {
 
   const colors = Object.assign(
     {
-      primaryDark: '#002BA0',
-      primary: '#2DAAF2',
-      primaryLight: '#9FB8FC',
+      default: '#494D55',
+      black: '#1B202B',
+      white: '#FFFFFF',
 
-      greyDarkest: '#43526D',
-      greyDark: '#8E97A7',
-      grey: '#8E97A7',
-      greyLight: '#DEE0E4',
-      greyLightest: '#F1F4F6',
+      greyLightest: '#F8F8F9',
+      greyLighter: '#F4F4F4',
+      greyLight: '#E8E9EA',
+      grey: '#D1D2D5',
+      greyDark: '#A4A6AA',
+      greyDarker: '#767980',
+      greyDarkest: '#494D55',
 
-      redDark: '#B22327',
+      primaryLightest: '#CADCFF',
+      primaryLight: '#4D89FF',
+      primary: '#226EFF',
+      primaryDark: '#0958F3',
+
+      secondaryLightest: '#DDF5ED',
+      secondaryLight: '#42C79B',
+      secondary: '#21B986',
+      secondaryDark: '#00AC74',
+
+      redLightest: '#FFD7D8',
+      redLight: '#FE7B7E',
       red: '#FD575D',
-      redLight: ' #FFCECF',
+      redDark: '#F23338',
 
-      blueDark: '#006DC1',
-      blue: '#0747A5',
-      blueLight: '#C8E8FF',
+      purpleLightest: '#EBDCFC',
+      purpleLight: '#BB8AF6',
+      purple: '#A262F0',
+      purpleDark: '#8B3FE7',
 
-      greenDark: '#196C1C',
-      green: '#00D684',
-      greenLight: '#B4F7DE',
+      orangeLightest: '#FFE6D4',
+      orangeLight: '#FFAA70',
+      orange: '#FF954D',
+      orangeDark: '#EE7523',
 
-      orangeDark: '#BB520B',
-      orange: '#FFAA70',
-      orangeLight: '#FFD8BD',
-
-      yellowDark: '#F1BC0B',
+      yellowLightest: '#FFF6D6',
+      yellowLight: '#FFE075',
       yellow: '#FED23D',
-      yellowLight: '#FFEDB1',
+      yellowDark: '#F1BC0B',
 
-      purpleDark: '#8530FD',
-      purple: '#9D58FE',
-      purpleLight: '#DFC8FF',
+      blueLightest: '#CADCFF',
+      blueLight: '#4D89FF',
+      blue: '#226EFF',
+      blueDark: '#0958F3',
+
+      greenLightest: '#DDF5ED',
+      greenLight: '#42C79B',
+      green: '#21B986',
+      greenDark: '#00AC74',
     },
     overrides.colors
   );
@@ -50,23 +68,23 @@ export default (overrides = {}) => {
   const buttonVariants = {
     primary: {
       backgroundColor: colors.primary,
-      fontColor: 'white',
+      fontColor: colors.white,
     },
     success: {
       backgroundColor: colors.green,
-      fontColor: 'white',
+      fontColor: colors.white,
     },
     danger: {
       backgroundColor: colors.red,
-      fontColor: 'white',
+      fontColor: colors.white,
     },
     warning: {
       backgroundColor: colors.orange,
-      fontColor: 'white',
+      fontColor: colors.white,
     },
     info: {
       backgroundColor: colors.blue,
-      fontColor: 'white',
+      fontColor: colors.white,
     },
     grey: {
       backgroundColor: colors.greyLight,
@@ -76,28 +94,28 @@ export default (overrides = {}) => {
 
   const badgeVariants = {
     primary: {
-      backgroundColor: colors.primaryLight,
+      backgroundColor: colors.primaryLightest,
       fontColor: colors.primaryDark,
     },
     success: {
-      backgroundColor: colors.greenLight,
+      backgroundColor: colors.greenLightest,
       fontColor: colors.greenDark,
     },
     danger: {
-      backgroundColor: colors.redLight,
+      backgroundColor: colors.redLightest,
       fontColor: colors.redDark,
     },
     warning: {
-      backgroundColor: colors.orangeLight,
+      backgroundColor: colors.orangeLightest,
       fontColor: colors.orangeDark,
     },
     info: {
-      backgroundColor: colors.blueLight,
+      backgroundColor: colors.blueLightest,
       fontColor: colors.blueDark,
     },
     grey: {
       backgroundColor: colors.greyLight,
-      fontColor: colors.greyDarkest,
+      fontColor: colors.greyDarker,
     },
   };
 
