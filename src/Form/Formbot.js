@@ -146,16 +146,15 @@ export default class Formbot extends React.Component {
       let errorMsg;
 
       if (hasSchema && typeof validation.validate === 'function') {
-        validation
-          .validate(fieldValue, validationOpts)
-          .catch(e => {
-            errorMsg = e.message;
-          })
-          .finally(() => {
-            this.updateField(field, { validated: true }).then(() => {
-              this.setErrors({ [field]: errorMsg }, resolve);
-            });
+        try {
+          validation.validate(fieldValue, validationOpts);
+        } catch(e) {
+          errorMsg = e.message;
+        } finally {
+          this.updateField(field, { validated: true }).then(() => {
+            this.setErrors({ [field]: errorMsg }, resolve);
           });
+        }
 
         return;
       }
