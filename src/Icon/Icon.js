@@ -29,6 +29,11 @@ Icon.propTypes = {
   name: PropTypes.string.isRequired,
   size: PropTypes.number,
   color: PropTypes.string,
+  onClick: PropTypes.func,
+};
+
+Icon.defaultProps = {
+  size: 16,
 };
 
 Icon.iconPrefix = 'mdi';

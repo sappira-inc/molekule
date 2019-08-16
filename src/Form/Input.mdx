@@ -9,6 +9,7 @@ import PhoneInput from './PhoneInput';
 import DateInput from './DateInput';
 import Button from '../Button'
 import Formbot from './Formbot';
+import Icon from '../Icon'
 
 # Input
 
@@ -77,11 +78,8 @@ Form input component. Different sizes are available.
   <Input
     placeholder="Example"
     label="Example"
-    leftIcon="cards-spade"
-    onLeftIconClick={()=> alert('Left icon clicked!')}
-    rightIcon="close-circle"
-    rightIconColor="primary"
-    onRightIconClick={()=> alert("Right icon clicked!")}
+    leftIcon={<Icon name="cards-spade" onClick={()=> alert('Left icon clicked!')} />}
+    rightIcon={<Icon name="close-circle" color="primary" onClick={()=> alert("Right icon clicked!")} />}
   />
 </Playground>
 

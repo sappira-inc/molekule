@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import { css } from 'styled-components';
 import Field from './Field';
 import StyledLabel from './Label';
 import FormError from './FormError';
-import Icon from '../Icon';
 import { createEasyInput } from './EasyInput';
 import { createComponent } from '../utils';
 
@@ -18,16 +17,7 @@ const InputContainer = createComponent({
 const StyledInput = createComponent({
   name: 'Input',
   tag: 'input',
-  style: ({
-    isFloating,
-    size,
-    theme,
-    borderRadius = theme.radius,
-    hasLeftIcon,
-    leftIconSize,
-    hasRightIcon,
-    rightIconSize,
-  }) => css`
+  style: ({ isFloating, size, theme, borderRadius = theme.radius, leftIcon, rightIcon }) => css`
     border: 1px solid ${theme.colors.greyLight};
     height: ${theme.inputHeights[size]}px;
     display: block;
@@ -65,14 +55,14 @@ const StyledInput = createComponent({
         padding-bottom: 0px;
       `};
 
-    ${hasLeftIcon &&
+    ${leftIcon &&
       css`
-        padding-left: ${leftIconSize + 12}px;
+        padding-left: ${leftIcon.props.size + 12}px;
       `};
 
-    ${hasRightIcon &&
+    ${rightIcon &&
       css`
-        padding-right: ${rightIconSize + 32}px;
+        padding-right: ${rightIcon.props.size + 32}px;
       `};
   `,
 });
@@ -89,35 +79,6 @@ const AutogrowShadow = createComponent({
   props: () => ({
     tabIndex: -1,
   }),
-});
-
-const StyledIcon = styled(Icon)`
-  ${({ onClick }) => css`
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-
-    ${onClick &&
-      css`
-        cursor: pointer;
-      `}
-  `}
-`;
-
-const LeftIcon = createComponent({
-  name: 'LeftIcon',
-  as: StyledIcon,
-  style: css`
-    left: 8px;
-  `,
-});
-
-const RightIcon = createComponent({
-  name: 'RightIcon',
-  as: StyledIcon,
-  style: css`
-    right: 8px;
-  `,
 });
 
 const validateValueProp = (props, propName, componentName) => {
@@ -150,14 +111,8 @@ export class Input extends Component {
     size: PropTypes.string,
     floating: PropTypes.bool,
     forwardedRef: PropTypes.oneOfType([PropTypes.shape(), PropTypes.func]),
-    leftIcon: PropTypes.string,
-    leftIconSize: PropTypes.number,
-    leftIconColor: PropTypes.string,
-    onLeftIconClick: PropTypes.func,
-    rightIcon: PropTypes.string,
-    rightIconSize: PropTypes.number,
-    rightIconColor: PropTypes.string,
-    onRightIconClick: PropTypes.func,
+    leftIcon: PropTypes.element,
+    rightIcon: PropTypes.element,
   };
 
   static defaultProps = {
@@ -175,12 +130,6 @@ export class Input extends Component {
     onBlur() {},
     onChange() {},
     floating: false,
-    leftIconSize: 16,
-    leftIconColor: 'greyDarkest',
-    onLeftIconClick: null,
-    rightIconSize: 16,
-    rightIconColor: 'greyDarkest',
-    onRightIconClick: null,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -290,6 +239,20 @@ export class Input extends Component {
     this.ref.current.blur();
   }
 
+  renderIcon = (icon, position) => {
+    const iconProps = {
+      style: {
+        position: 'absolute',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        [position]: '8px',
+        cursor: icon.props.onClick ? 'pointer' : 'inherit',
+      },
+    };
+
+    return React.cloneElement(icon, iconProps);
+  };
+
   render() {
     const {
       style,
@@ -308,13 +271,7 @@ export class Input extends Component {
       transformOnBlur,
       size,
       leftIcon,
-      leftIconSize,
-      leftIconColor,
-      onLeftIconClick,
       rightIcon,
-      rightIconSize,
-      rightIconColor,
-      onRightIconClick,
       ...rest
     } = this.props;
 
@@ -336,10 +293,8 @@ export class Input extends Component {
       isFloatable: floating,
       isFloating,
       error,
-      hasLeftIcon: !!leftIcon,
-      leftIconSize,
-      hasRightIcon: !!rightIcon,
-      rightIconSize,
+      leftIcon,
+      rightIcon,
     };
 
     const Label = label ? (
@@ -362,25 +317,9 @@ export class Input extends Component {
         <InputContainer styles={rest.styles}>
           {floating && Label}
 
-          {leftIcon && (
-            <LeftIcon
-              data-testid="left-icon"
-              name={leftIcon}
-              size={leftIconSize}
-              color={leftIconColor}
-              onClick={onLeftIconClick}
-            />
-          )}
+          {leftIcon && this.renderIcon(leftIcon, 'left')}
 
-          {rightIcon && (
-            <RightIcon
-              data-testid="right-icon"
-              name={rightIcon}
-              size={rightIconSize}
-              color={rightIconColor}
-              onClick={onRightIconClick}
-            />
-          )}
+          {rightIcon && this.renderIcon(rightIcon, 'right')}
 
           {multiline ? <StyledTextArea {...inputProps} /> : <StyledInput {...inputProps} />}
         </InputContainer>
