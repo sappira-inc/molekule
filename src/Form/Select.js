@@ -14,7 +14,7 @@ const SelectContainer = createComponent({
   as: Flex,
   style: ({ size, theme, value, borderRadius = theme.radius }) => css`
     background: white;
-    border: 1px solid ${theme.colors.grayLight};
+    border: 1px solid ${theme.colors.greyLight};
     height: ${theme.heights[size]}px;
     outline: none;
     width: 100%;
@@ -28,9 +28,9 @@ const SelectContainer = createComponent({
 
     ${!value &&
       css`
-        color: ${p => p.theme.colors.grayMid};
+        color: ${p => p.theme.colors.greyDark};
         select {
-          color: ${p => p.theme.colors.grayMid};
+          color: ${p => p.theme.colors.greyDark};
         }
       `};
   `,

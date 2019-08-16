@@ -172,7 +172,7 @@ const ModalHeader = createComponent({
 const ModalHeaderInner = createComponent({
   name: 'ModalHeaderInner',
   style: ({ theme }) => css`
-    border-bottom: 2px solid ${theme.colors.grayLight};
+    border-bottom: 2px solid ${theme.colors.greyLight};
     padding-bottom: 8px;
   `,
 });
@@ -189,7 +189,7 @@ Modal.Header = ({ title, children, showClose = true }) => {
 
           {showClose && (
             <Box ml="auto">
-              <Icon name="close" color="grayMid" style={{ cursor: 'pointer' }} size={16} onClick={handleClose} />
+              <Icon name="close" color="greyDark" style={{ cursor: 'pointer' }} size={16} onClick={handleClose} />
             </Box>
           )}
         </Flex>
@@ -207,7 +207,9 @@ Modal.Body = createComponent({
 
 Modal.Footer = createComponent({
   name: 'ModalFooter',
-  style: css`
+  style: ({ theme }) => css`
+    padding: 1rem 1.25rem;
+    background: ${theme.colors.greyLightest};
     border-bottom-left-radius: ${themeGet('radius')}px;
     border-bottom-right-radius: ${themeGet('radius')}px;
   `,
