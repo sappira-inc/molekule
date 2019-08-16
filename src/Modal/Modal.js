@@ -29,7 +29,7 @@ const Backdrop = createComponent({
     position: fixed;
     overflow-y: auto;
     overflow-x: hidden;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.4);
     justify-content: center;
 
     ${transitionState === 'exited' &&
