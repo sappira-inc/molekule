@@ -265,7 +265,6 @@ export class Input extends Component {
       autofocus,
       id,
       error,
-      value,
       floating,
       placeholder,
       transformOnBlur,
@@ -275,16 +274,16 @@ export class Input extends Component {
       ...rest
     } = this.props;
 
-    const { focused, height, value: stateValue } = this.state;
+    const { focused, height, value } = this.state;
 
-    const isFloating = (floating && value != undefined && `${value}`.trim()) || (floating && `${stateValue}`.trim());
+    const isFloating = floating && value !== undefined && `${value}`.trim();
 
     const inputProps = {
       ...rest,
       id,
       ref: this.ref,
       size,
-      value: stateValue,
+      value,
       onChange: this.onChange,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
