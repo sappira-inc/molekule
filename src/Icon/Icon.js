@@ -32,10 +32,6 @@ Icon.propTypes = {
   onClick: PropTypes.func,
 };
 
-Icon.defaultProps = {
-  size: 16,
-};
-
 Icon.iconPrefix = 'mdi';
 Icon.getClassName = name => `${Icon.iconPrefix} ${Icon.iconPrefix}-${name}`;
 
