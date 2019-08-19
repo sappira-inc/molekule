@@ -18,7 +18,7 @@ exports[`<PhoneInput /> snapshot 1`] = `
 
 .c3 {
   border: 1px solid #E8E9EA;
-  height: 36px;
+  height: 32px;
   display: block;
   outline: none;
   width: 100%;

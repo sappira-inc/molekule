@@ -33,19 +33,11 @@ const StyledInput = createComponent({
     &:hover,
     &:focus,
     &:active {
-<<<<<<< HEAD
-      border-color: ${theme.colors.greyMid};
-    }
-
-    ::placeholder {
-      color: ${theme.colors.greyMid};
-=======
       border-color: ${theme.colors.greyDark};
     }
 
     ::placeholder {
       color: ${theme.colors.greyDark};
->>>>>>> origin/v5
     }
 
     &[disabled] {

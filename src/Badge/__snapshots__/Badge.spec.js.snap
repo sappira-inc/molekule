@@ -7,7 +7,7 @@ exports[`Badge 1`] = `
   font-size: 14px;
   font-family: inherit;
   font-weight: bold;
-  border-radius: 12px;
+  border-radius: 14px;
   background: #CADCFF;
   color: #0958F3;
 }

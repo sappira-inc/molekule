@@ -10,6 +10,17 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
   outline: none;
 }
 
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
 .c1 {
   font-family: inherit;
   display: inline-block;
@@ -24,14 +35,15 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
   appearance: none;
   border-radius: 8px;
   pointer-events: auto;
-  opacity: 1;
   color: #FFFFFF;
-  height: 36px;
-  padding: 0 18px;
-  font-size: 12px;
+  height: 32px;
+  padding: 0 16px;
+  font-size: 14px;
   width: auto;
   background: #226EFF;
-  border: 1px solid #226EFF;
+  border-color: #226EFF;
+  border-style: solid;
+  border-width: 1px;
   -webkit-transition: 175ms;
   transition: 175ms;
   white-space: nowrap;
@@ -43,13 +55,31 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
 }
 
 .c1:hover {
-  background: #3c7fff;
-  border-color: #3c7fff;
+  background-color: #226EFF;
+  border-color: #226EFF;
+  color: #FFFFFF;
+  background-color: #4D89FF;
+  border-color: #4D89FF;
+  color: #FFFFFF;
 }
 
 .c1:active {
-  background: #4887ff;
-  border-color: #4887ff;
+  background: #226EFF;
+  border-color: #226EFF;
+  color: #FFFFFF;
+  background-color: #0958F3;
+  border-color: #0958F3;
+  color: #FFFFFF;
+}
+
+.c1[disabled] {
+  pointer-events: none;
+  background: #226EFF;
+  border-color: #226EFF;
+  color: #FFFFFF;
+  background-color: #CADCFF;
+  border-color: #CADCFF;
+  color: #FFFFFF;
 }
 
 <div
@@ -64,7 +94,11 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
       style="cursor: pointer;"
       tabindex="0"
     >
-      Trigger
+      <div
+        class="re-box re-flex c2"
+      >
+        Trigger
+      </div>
     </button>
   </div>
 </DocumentFragment>
@@ -80,6 +114,17 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   outline: none;
 }
 
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
 .c1 {
   font-family: inherit;
   display: inline-block;
@@ -94,14 +139,15 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   appearance: none;
   border-radius: 8px;
   pointer-events: auto;
-  opacity: 1;
   color: #FFFFFF;
-  height: 36px;
-  padding: 0 18px;
-  font-size: 12px;
+  height: 32px;
+  padding: 0 16px;
+  font-size: 14px;
   width: auto;
   background: #226EFF;
-  border: 1px solid #226EFF;
+  border-color: #226EFF;
+  border-style: solid;
+  border-width: 1px;
   -webkit-transition: 175ms;
   transition: 175ms;
   white-space: nowrap;
@@ -113,13 +159,31 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
 }
 
 .c1:hover {
-  background: #3c7fff;
-  border-color: #3c7fff;
+  background-color: #226EFF;
+  border-color: #226EFF;
+  color: #FFFFFF;
+  background-color: #4D89FF;
+  border-color: #4D89FF;
+  color: #FFFFFF;
 }
 
 .c1:active {
-  background: #4887ff;
-  border-color: #4887ff;
+  background: #226EFF;
+  border-color: #226EFF;
+  color: #FFFFFF;
+  background-color: #0958F3;
+  border-color: #0958F3;
+  color: #FFFFFF;
+}
+
+.c1[disabled] {
+  pointer-events: none;
+  background: #226EFF;
+  border-color: #226EFF;
+  color: #FFFFFF;
+  background-color: #CADCFF;
+  border-color: #CADCFF;
+  color: #FFFFFF;
 }
 
 <div
@@ -134,7 +198,11 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
       style="cursor: pointer;"
       tabindex="0"
     >
-      Trigger
+      <div
+        class="re-box re-flex c2"
+      >
+        Trigger
+      </div>
     </button>
   </div>
   <div
@@ -150,7 +218,7 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   .c0 {
   z-index: 10;
   background: white;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px solid #F4F4F4;
   outline: none;
   box-shadow: 0 0 3px 0 rgba(178,194,212,0.3);
