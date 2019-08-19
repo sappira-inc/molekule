@@ -24,15 +24,14 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
   appearance: none;
   border-radius: 8px;
   pointer-events: auto;
+  opacity: 1;
   color: #FFFFFF;
-  height: 32px;
-  padding: 0 16px;
-  font-size: 14px;
+  height: 36px;
+  padding: 0 18px;
+  font-size: 12px;
   width: auto;
   background: #226EFF;
-  border-color: #226EFF;
-  border-style: solid;
-  border-width: 1px;
+  border: 1px solid #226EFF;
   -webkit-transition: 175ms;
   transition: 175ms;
   white-space: nowrap;
@@ -44,31 +43,13 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
 }
 
 .c1:hover {
-  background-color: #226EFF;
-  border-color: #226EFF;
-  color: #FFFFFF;
-  background-color: #4D89FF;
-  border-color: #4D89FF;
-  color: #FFFFFF;
+  background: #3c7fff;
+  border-color: #3c7fff;
 }
 
 .c1:active {
-  background: #226EFF;
-  border-color: #226EFF;
-  color: #FFFFFF;
-  background-color: #0958F3;
-  border-color: #0958F3;
-  color: #FFFFFF;
-}
-
-.c1[disabled] {
-  pointer-events: none;
-  background: #226EFF;
-  border-color: #226EFF;
-  color: #FFFFFF;
-  background-color: #CADCFF;
-  border-color: #CADCFF;
-  color: #FFFFFF;
+  background: #4887ff;
+  border-color: #4887ff;
 }
 
 <div
@@ -113,15 +94,14 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   appearance: none;
   border-radius: 8px;
   pointer-events: auto;
+  opacity: 1;
   color: #FFFFFF;
-  height: 32px;
-  padding: 0 16px;
-  font-size: 14px;
+  height: 36px;
+  padding: 0 18px;
+  font-size: 12px;
   width: auto;
   background: #226EFF;
-  border-color: #226EFF;
-  border-style: solid;
-  border-width: 1px;
+  border: 1px solid #226EFF;
   -webkit-transition: 175ms;
   transition: 175ms;
   white-space: nowrap;
@@ -133,31 +113,13 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
 }
 
 .c1:hover {
-  background-color: #226EFF;
-  border-color: #226EFF;
-  color: #FFFFFF;
-  background-color: #4D89FF;
-  border-color: #4D89FF;
-  color: #FFFFFF;
+  background: #3c7fff;
+  border-color: #3c7fff;
 }
 
 .c1:active {
-  background: #226EFF;
-  border-color: #226EFF;
-  color: #FFFFFF;
-  background-color: #0958F3;
-  border-color: #0958F3;
-  color: #FFFFFF;
-}
-
-.c1[disabled] {
-  pointer-events: none;
-  background: #226EFF;
-  border-color: #226EFF;
-  color: #FFFFFF;
-  background-color: #CADCFF;
-  border-color: #CADCFF;
-  color: #FFFFFF;
+  background: #4887ff;
+  border-color: #4887ff;
 }
 
 <div
@@ -188,8 +150,8 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   .c0 {
   z-index: 10;
   background: white;
-  border-radius: 8px;
-  border: 1px solid #e4edf5;
+  border-radius: 4px;
+  border: 1px solid #F4F4F4;
   outline: none;
   box-shadow: 0 0 3px 0 rgba(178,194,212,0.3);
   width: auto;

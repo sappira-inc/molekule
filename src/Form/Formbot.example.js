@@ -10,6 +10,7 @@ import RadioGroup from './RadioGroup';
 import Switch from './Switch';
 import PhoneInput from './PhoneInput';
 import DateInput from './DateInput';
+import FormError from './FormError';
 
 const selectValues = [{ id: 1, value: 'male', label: 'Male' }, { id: 1, value: 'female', label: 'Female' }];
 
@@ -84,7 +85,12 @@ export default class FormbotExample extends React.Component {
         <Form>
           <Fieldset legend="A Group of Inputs">
             <Input name="name" placeholder="Name (should autofocus)" label="Name" ref={this.nameRef} />
-            <Input name="email" placeholder="Email" label="Email" />
+
+            <Input name="email" placeholder="Email" label="Email" shouldRenderError={false} />
+            <FormError name="email">
+              {error => <span style={{ color: 'navy' }}>Hi, I am a custom error: {error}</span>}
+            </FormError>
+
             <PhoneInput name="phone" placeholder="Phone Number" label="Phone" />
             <DateInput name="dob" placeholder="MM/DD/YYYY" label="Date of Birth" />
             <Select name="gender" placeholder="Select a Gender" label="Gender" options={selectValues} />

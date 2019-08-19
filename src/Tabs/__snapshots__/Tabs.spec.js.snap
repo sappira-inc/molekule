@@ -23,7 +23,7 @@ exports[`<Tabs /> renders 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  border-bottom: 1px solid #dfe3e8;
+  border-bottom: 1px solid #F4F4F4;
 }
 
 .c2 {
@@ -65,7 +65,7 @@ exports[`<Tabs /> renders 1`] = `
 
 .c4 {
   display: block;
-  color: #212b36;
+  color: #494D55;
   padding: 12px 8px;
   border-bottom: 4px solid #226EFF;
 }
@@ -77,14 +77,14 @@ exports[`<Tabs /> renders 1`] = `
 
 .c5 {
   display: block;
-  color: #637381;
+  color: #A4A6AA;
   padding: 12px 8px;
   border-bottom: 4px solid transparent;
 }
 
 .c5::hover {
   color: #212b36;
-  border-color: #d9dee3;
+  border-color: #E8E9EA;
 }
 
 .c6 {

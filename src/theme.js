@@ -4,7 +4,7 @@ export default (overrides = {}) => {
 
   const colors = Object.assign(
     {
-      default: '#333333',
+      default: '#494D55',
       black: '#1B202B',
       white: '#FFFFFF',
 
@@ -45,6 +45,16 @@ export default (overrides = {}) => {
       yellowLight: '#FFE075',
       yellow: '#FED23D',
       yellowDark: '#F1BC0B',
+
+      blueLightest: '#CADCFF',
+      blueLight: '#4D89FF',
+      blue: '#226EFF',
+      blueDark: '#0958F3',
+
+      greenLightest: '#DDF5ED',
+      greenLight: '#42C79B',
+      green: '#21B986',
+      greenDark: '#00AC74',
     },
     overrides.colors
   );
@@ -144,6 +154,14 @@ export default (overrides = {}) => {
         backgroundColor: colors.redLightest,
       },
     },
+    info: {
+      backgroundColor: colors.blue,
+      fontColor: colors.white,
+    },
+    grey: {
+      backgroundColor: colors.greyLight,
+      fontColor: colors.greyDarkest,
+    },
   };
 
   const badgeVariants = {
@@ -152,8 +170,8 @@ export default (overrides = {}) => {
       fontColor: colors.primaryDark,
     },
     success: {
-      backgroundColor: colors.secondaryLightest,
-      fontColor: colors.secondary,
+      backgroundColor: colors.greenLightest,
+      fontColor: colors.greenDark,
     },
     danger: {
       backgroundColor: colors.redLightest,
@@ -164,12 +182,12 @@ export default (overrides = {}) => {
       fontColor: colors.orangeDark,
     },
     info: {
-      backgroundColor: colors.primaryLightest,
-      fontColor: colors.primaryDark,
+      backgroundColor: colors.blueLightest,
+      fontColor: colors.blueDark,
     },
     grey: {
-      backgroundColor: colors.greyLightest,
-      fontColor: colors.greyDark,
+      backgroundColor: colors.greyLight,
+      fontColor: colors.greyDarker,
     },
   };
 

@@ -28,9 +28,9 @@ const SelectContainer = createComponent({
 
     ${!value &&
       css`
-        color: ${p => p.theme.colors.greyMid};
+        color: ${p => p.theme.colors.greyDark};
         select {
-          color: ${p => p.theme.colors.greyMid};
+          color: ${p => p.theme.colors.greyDark};
         }
       `};
   `,

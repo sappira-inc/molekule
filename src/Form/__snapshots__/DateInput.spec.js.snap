@@ -18,7 +18,7 @@ exports[`<DateInput /> snapshot 1`] = `
 
 .c3 {
   border: 1px solid #E8E9EA;
-  height: 32px;
+  height: 36px;
   display: block;
   outline: none;
   width: 100%;
@@ -31,16 +31,26 @@ exports[`<DateInput /> snapshot 1`] = `
   font-size: 14px;
 }
 
-.c3[disabled] {
-  opacity: 0.65;
+.c3:hover,
+.c3:focus,
+.c3:active {
+  border-color: #A4A6AA;
 }
 
-.c3[disabled] {
-  opacity: 0.65;
+.c3::-webkit-input-placeholder {
+  color: #A4A6AA;
 }
 
-.c3[disabled] {
-  opacity: 0.65;
+.c3::-moz-placeholder {
+  color: #A4A6AA;
+}
+
+.c3:-ms-input-placeholder {
+  color: #A4A6AA;
+}
+
+.c3::placeholder {
+  color: #A4A6AA;
 }
 
 .c3[disabled] {

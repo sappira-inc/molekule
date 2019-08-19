@@ -230,7 +230,7 @@ const DropdownMenu = createComponent({
     z-index: ${zIndex};
     background: white;
     border-radius: ${theme.radius}px;
-    border: 1px solid #e4edf5;
+    border: 1px solid ${theme.colors.greyLighter};
     outline: none;
     box-shadow: 0 0 3px 0 rgba(178, 194, 212, 0.3);
     width: ${typeof width === 'string' ? width : `${width}px`};
