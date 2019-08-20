@@ -78,7 +78,6 @@ const StyledButton = createComponent({
       border-width: 1px;
       transition: 175ms;
       white-space: nowrap;
-      outline: none;
       user-select: none;
 
       ${icon &&
@@ -145,18 +144,14 @@ const StyledButton = createComponent({
   },
 });
 
-const Button = React.forwardRef((props, ref) => {
-  const hasText = !!props.children;
-
-  return (
-    <StyledButton {...props} ref={ref} hasText={hasText}>
-      <Flex alignItems="center">
-        {props.icon}
-        {props.children}
-      </Flex>
-    </StyledButton>
-  );
-});
+const Button = React.forwardRef((props, ref) => (
+  <StyledButton {...props} ref={ref} hasText={!!props.children}>
+    <Flex alignItems="center">
+      {props.icon}
+      {props.children}
+    </Flex>
+  </StyledButton>
+));
 
 Button.propTypes = {
   variant: PropTypes.string,
