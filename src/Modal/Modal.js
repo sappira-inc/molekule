@@ -59,8 +59,6 @@ const ModalContent = createComponent({
     background-clip: padding-box;
     box-shadow: 0 8px 30px rgba(0, 29, 54, 0.1);
     border-radius: ${themeGet('radius')}px;
-    padding: 16px;
-    font-size: 14px;
 
     ${transitionState === 'entering' &&
       css`
@@ -144,8 +142,6 @@ Modal.Title = createComponent({
   name: 'ModalTitle',
   tag: 'h2',
   style: css`
-    font-size: 16px;
-    font-weight: 700;
     margin: 0;
   `,
 });
@@ -153,9 +149,7 @@ Modal.Title = createComponent({
 const ModalHeader = createComponent({
   name: 'ModalHeader',
   style: css`
-    font-size: 16px;
-    font-weight: 700;
-    padding-bottom: 16px;
+    padding: 1rem 1.25rem 0;
     border-top-left-radius: ${themeGet('radius')}px;
     border-top-right-radius: ${themeGet('radius')}px;
   `,
@@ -165,7 +159,7 @@ const ModalHeaderInner = createComponent({
   name: 'ModalHeaderInner',
   style: ({ theme }) => css`
     border-bottom: 2px solid ${theme.colors.greyLight};
-    padding-bottom: 8px;
+    padding-bottom: 0.25rem;
   `,
 });
 
@@ -193,7 +187,7 @@ Modal.Header = ({ title, children, showClose = true }) => {
 Modal.Body = createComponent({
   name: 'ModalBody',
   style: css`
-    padding-bottom: 24px;
+    padding: 1.25rem;
   `,
 });
 
