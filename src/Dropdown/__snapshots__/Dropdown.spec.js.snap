@@ -47,7 +47,6 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
   -webkit-transition: 175ms;
   transition: 175ms;
   white-space: nowrap;
-  outline: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -151,7 +150,6 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   -webkit-transition: 175ms;
   transition: 175ms;
   white-space: nowrap;
-  outline: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
