@@ -19,16 +19,16 @@ const StyledInput = createComponent({
   tag: 'input',
   style: ({ isFloating, size, theme, borderRadius = theme.radius, leftIcon, rightIcon }) => css`
     border: 1px solid ${theme.colors.greyLight};
-    height: ${theme.inputHeights[size]}px;
+    height: 48px;
     display: block;
     outline: none;
     width: 100%;
-    padding: 8px 24px 8px 8px;
+    padding: 8px;
     border-radius: ${borderRadius}px;
     transition: 250ms all;
     -webkit-appearance: none;
     font-family: inherit;
-    font-size: ${theme.fontSizes[size]}px;
+    font-size: 16px;
     color: ${theme.colors.greyDarkest};
 
     &:hover,
@@ -304,7 +304,6 @@ export class Input extends Component {
       <StyledLabel
         htmlFor={id}
         styles={rest.styles}
-        size={size}
         isFloatable={floating}
         isFloating={isFloating}
         isFocused={focused}

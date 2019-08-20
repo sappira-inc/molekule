@@ -137,14 +137,6 @@ export default (overrides = {}) => {
     xl: 18,
   };
 
-  const inputHeights = {
-    xs: 32,
-    sm: 40,
-    md: 48,
-    lg: 56,
-    xl: 60,
-  };
-
   const breakpoints = [480, 768, 1024, 1440];
 
   const grid = {
@@ -166,7 +158,6 @@ export default (overrides = {}) => {
     fontSizes,
     grid,
     heights,
-    inputHeights,
     radii,
     radius: 8,
     shadow,
