@@ -26,13 +26,18 @@ const SelectContainer = createComponent({
     font-size: ${theme.fontSizes[size]}px;
     vertical-align: middle;
 
-    ${!value &&
-      css`
-        color: ${p => p.theme.colors.greyDark};
-        select {
-          color: ${p => p.theme.colors.greyDark};
-        }
-      `};
+    select {
+      color: ${theme.colors.greyDarker};
+
+      ${value &&
+        css`
+          color: ${theme.colors.greyDarkest};
+        `}
+
+      option {
+        color: ${theme.colors.greyDarkest};
+      }
+    }
   `,
 });
 
@@ -135,7 +140,7 @@ class Select extends Component {
             ))}
           </SelectInput>
           <IconContainer aria-hidden="true" mr={2} alignItems="center" justifyContent="center">
-            <Icon name="chevron-down" size={18} />
+            <Icon name="chevron-down" color="greyDarker" size={18} />
           </IconContainer>
         </SelectContainer>
         {error && <FormError>{error}</FormError>}
