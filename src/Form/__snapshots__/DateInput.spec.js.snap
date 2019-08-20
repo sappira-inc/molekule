@@ -22,7 +22,7 @@ exports[`<DateInput /> snapshot 1`] = `
   display: block;
   outline: none;
   width: 100%;
-  padding: 8px 24px 8px 8px;
+  padding: 8px;
   border-radius: 8px;
   -webkit-transition: 250ms all;
   transition: 250ms all;
@@ -58,7 +58,9 @@ exports[`<DateInput /> snapshot 1`] = `
 }
 
 .c3[disabled] {
-  opacity: 0.65;
+  background-color: #FFFFFF;
+  border-color: #E8E9EA;
+  color: #D1D2D5;
 }
 
 <div

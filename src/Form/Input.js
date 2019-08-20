@@ -5,7 +5,7 @@ import Field from './Field';
 import StyledLabel from './Label';
 import FormError from './FormError';
 import { createEasyInput } from './EasyInput';
-import { createComponent } from '../utils';
+import { themeGet, createComponent } from '../utils';
 
 const InputContainer = createComponent({
   name: 'InputContainer',
@@ -17,18 +17,18 @@ const InputContainer = createComponent({
 const StyledInput = createComponent({
   name: 'Input',
   tag: 'input',
-  style: ({ isFloating, size, theme, borderRadius = theme.radius, leftIcon, rightIcon }) => css`
+  style: ({ isFloating, theme, borderRadius = theme.radius, leftIcon, rightIcon }) => css`
     border: 1px solid ${theme.colors.greyLight};
-    height: ${theme.inputHeights[size]}px;
+    height: 48px;
     display: block;
     outline: none;
     width: 100%;
-    padding: 8px 24px 8px 8px;
+    padding: 8px;
     border-radius: ${borderRadius}px;
     transition: 250ms all;
     -webkit-appearance: none;
     font-family: inherit;
-    font-size: ${theme.fontSizes[size]}px;
+    font-size: ${themeGet('typography.fontSize')}px;
     color: ${theme.colors.greyDarkest};
 
     &:hover,
@@ -52,8 +52,8 @@ const StyledInput = createComponent({
 
     ${isFloating &&
       css`
-        line-height: calc(${theme.fontSizes[size]}px * 1.2);
-        padding-top: calc(${theme.fontSizes[size]}px * 1.2);
+        line-height: 14px;
+        padding-top: 14px;
         padding-bottom: 0px;
       `};
 
@@ -304,7 +304,6 @@ export class Input extends Component {
       <StyledLabel
         htmlFor={id}
         styles={rest.styles}
-        size={size}
         isFloatable={floating}
         isFloating={isFloating}
         isFocused={focused}

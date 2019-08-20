@@ -7,23 +7,23 @@ import Icon from '../Icon';
 import Flex from '../Flex';
 import Label from './Label';
 import { createEasyInput } from './EasyInput';
-import { createComponent } from '../utils';
+import { themeGet, createComponent } from '../utils';
 
 const SelectContainer = createComponent({
   name: 'SelectContainer',
   as: Flex,
-  style: ({ size, theme, value, borderRadius = theme.radius }) => css`
+  style: ({ theme, value }) => css`
     background: white;
     border: 1px solid ${theme.colors.greyLight};
-    height: ${theme.heights[size]}px;
+    height: 48px;
     outline: none;
     width: 100%;
     position: relative;
-    border-radius: ${borderRadius}px;
+    border-radius: ${theme.radius}px;
     transition: 250ms all;
     -webkit-appearance: none;
     font-family: inherit;
-    font-size: ${theme.fontSizes[size]}px;
+    font-size: ${themeGet('typography.fontSize')}px;
     vertical-align: middle;
 
     select {
@@ -52,13 +52,13 @@ const IconContainer = styled(Flex)`
 const SelectInput = createComponent({
   name: 'Select',
   tag: 'select',
-  style: ({ theme, size }) => css`
+  style: css`
     position: relative;
     z-index: 2;
     padding: 0 8px;
     outline: none;
     width: 100%;
-    font-size: ${theme.fontSizes[size]}px;
+    font-size: ${themeGet('typography.fontSize')}px;
     background: transparent;
     border: none;
     -webkit-appearance: none;
@@ -140,7 +140,7 @@ class Select extends Component {
             ))}
           </SelectInput>
           <IconContainer aria-hidden="true" mr={2} alignItems="center" justifyContent="center">
-            <Icon name="chevron-down" color="greyDarker" size={18} />
+            <Icon name="chevron-down" color="greyDarker" size={24} />
           </IconContainer>
         </SelectContainer>
         {error && <FormError>{error}</FormError>}
