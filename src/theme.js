@@ -250,6 +250,39 @@ export default (overrides = {}) => {
     shadow,
     shadowHover,
     typography,
+    sizes: {
+      Button: {
+        sm: {
+          fontSize: 14,
+          height: 32,
+        },
+        md: {
+          fontSize: 16,
+          height: 40,
+        },
+        lg: {
+          fontSize: 16,
+          height: 48,
+        },
+      },
+      Badge: {
+        sm: {
+          fontSize: 12,
+          paddingVertical: 4,
+          paddingHorizontal: 8,
+        },
+        md: {
+          fontSize: 14,
+          paddingVertical: 5,
+          paddingHorizontal: 10,
+        },
+        lg: {
+          fontSize: 16,
+          paddingVertical: 6,
+          paddingHorizontal: 12,
+        },
+      },
+    },
     variants: {
       Alert: alertVariants,
       Badge: badgeVariants,

@@ -36,9 +36,9 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
   border-radius: 8px;
   pointer-events: auto;
   color: #FFFFFF;
-  height: 32px;
+  height: 40px;
   padding: 0 16px;
-  font-size: 14px;
+  font-size: 16px;
   width: auto;
   background: #226EFF;
   border-color: #226EFF;
@@ -140,9 +140,9 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   border-radius: 8px;
   pointer-events: auto;
   color: #FFFFFF;
-  height: 32px;
+  height: 40px;
   padding: 0 16px;
-  font-size: 14px;
+  font-size: 16px;
   width: auto;
   background: #226EFF;
   border-color: #226EFF;
