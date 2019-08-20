@@ -45,7 +45,9 @@ const StyledInput = createComponent({
     }
 
     &[disabled] {
-      opacity: 0.65;
+      background-color: ${theme.colors.white};
+      border-color: ${theme.colors.greyLight};
+      color: ${theme.colors.grey};
     }
 
     ${isFloating &&
@@ -271,6 +273,7 @@ export class Input extends Component {
       size,
       leftIcon,
       rightIcon,
+      disabled,
       ...rest
     } = this.props;
 
@@ -294,6 +297,7 @@ export class Input extends Component {
       error,
       leftIcon,
       rightIcon,
+      disabled,
     };
 
     const Label = label ? (
@@ -304,6 +308,7 @@ export class Input extends Component {
         isFloatable={floating}
         isFloating={isFloating}
         isFocused={focused}
+        isDisabled={this.props.disabled}
         error={error}>
         {label}
       </StyledLabel>
