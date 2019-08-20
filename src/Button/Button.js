@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css, keyframes } from 'styled-components';
 import { space } from 'styled-system';
-import { getComponentVariant, createComponent } from '../utils';
+import { getComponentVariant, getComponentSize, createComponent } from '../utils';
 import Flex from '../Flex';
 
 const spinKeyframes = keyframes`
@@ -44,21 +44,7 @@ const loadingCss = ({ height, borderColor, fontColor, backgroundColor, outline }
 const StyledButton = createComponent({
   name: 'Button',
   tag: 'button',
-  style: ({
-    hasText,
-    icon,
-    variant,
-    size,
-    theme,
-    block,
-    disabled,
-    loading,
-    text,
-    outline,
-    height = theme.heights[size],
-    fontSize = theme.fontSizes[size],
-    borderRadius = theme.radius || 2,
-  }) => {
+  style: ({ hasText, icon, variant, size, theme, block, disabled, loading, text, outline, borderRadius }) => {
     const {
       textColor,
       borderColor,
@@ -68,6 +54,7 @@ const StyledButton = createComponent({
       active,
       disabled: disabledState,
     } = getComponentVariant(theme, 'Button', variant);
+    const { fontSize, height } = getComponentSize(theme, 'Button', size);
 
     return css`
       font-family: inherit;
@@ -78,7 +65,7 @@ const StyledButton = createComponent({
       font-weight: bold;
       text-decoration: none;
       appearance: none;
-      border-radius: ${borderRadius}px;
+      border-radius: ${borderRadius || theme.radius}px;
       pointer-events: ${disabled ? 'none' : 'auto'};
       color: ${outline ? backgroundColor : fontColor};
       height: ${height}px;

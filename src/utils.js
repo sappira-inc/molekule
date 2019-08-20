@@ -12,6 +12,9 @@ export const getComponentVariant = (theme, componentName, variant) => {
   return config;
 };
 
+export const getComponentSize = (theme, componentName, size) =>
+  themeGet(`sizes.${componentName}.${size}`, {})({ theme });
+
 export const getComponentStyle = componentName => themeGet(`styles.${componentName}`, {});
 
 export const getVariantStyles = (componentName, variant) => themeGet(`variants.${componentName}.${variant}.style`, {});

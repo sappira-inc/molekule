@@ -189,14 +189,6 @@ export default (overrides = {}) => {
 
   const alertVariants = badgeVariants;
 
-  const heights = {
-    xs: 24,
-    sm: 28,
-    md: 32,
-    lg: 40,
-    xl: 48,
-  };
-
   const fontSizes = {
     xs: 8,
     sm: 12,
@@ -244,12 +236,41 @@ export default (overrides = {}) => {
     fontSizes,
     fonts,
     grid,
-    heights,
     radii,
     radius: 8,
     shadow,
     shadowHover,
     typography,
+    sizes: {
+      Button: {
+        sm: {
+          fontSize: 14,
+          height: 32,
+        },
+        md: {
+          fontSize: 16,
+          height: 40,
+        },
+        lg: {
+          fontSize: 16,
+          height: 48,
+        },
+      },
+      Badge: {
+        sm: {
+          fontSize: 12,
+          padding: 4,
+        },
+        md: {
+          fontSize: 14,
+          padding: 5,
+        },
+        lg: {
+          fontSize: 16,
+          padding: 6,
+        },
+      },
+    },
     variants: {
       Alert: alertVariants,
       Badge: badgeVariants,
