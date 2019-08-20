@@ -83,8 +83,6 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, .
     onClose();
   };
 
-  const handleContentClick = event => event.stopPropagation();
-
   useEffect(() => {
     if (open !== isOpen) {
       setOpen(open);
@@ -103,7 +101,7 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, .
                 lockProps={{ style: { maxHeight: '100%' } }}
                 enabled={isOpen}
                 shards={[modal]}>
-                <ModalContent transitionState={state} onClick={handleContentClick} ref={modal} {...props}>
+                <ModalContent transitionState={state} ref={modal} {...props}>
                   {title && <Modal.Header title={title} showClose={showClose} />}
                   {children}
                 </ModalContent>
