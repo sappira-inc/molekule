@@ -259,15 +259,18 @@ export default (overrides = {}) => {
       Badge: {
         sm: {
           fontSize: 12,
-          padding: 4,
+          paddingVertical: 4,
+          paddingHorizontal: 8,
         },
         md: {
           fontSize: 14,
-          padding: 5,
+          paddingVertical: 5,
+          paddingHorizontal: 10,
         },
         lg: {
           fontSize: 16,
-          padding: 6,
+          paddingVertical: 6,
+          paddingHorizontal: 12,
         },
       },
     },

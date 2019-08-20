@@ -9,10 +9,10 @@ const StyledBadge = createComponent({
   tag: 'span',
   style: ({ variant, theme, size }) => {
     const { backgroundColor, fontColor } = getComponentVariant(theme, 'Badge', variant);
-    const { fontSize, padding } = getComponentSize(theme, 'Badge', size);
+    const { fontSize, paddingVertical, paddingHorizontal } = getComponentSize(theme, 'Badge', size);
 
     return css`
-      padding: ${padding}px ${padding * 2}px;
+      padding: ${paddingVertical}px ${paddingHorizontal}px;
       font-size: ${fontSize}px;
       font-family: inherit;
       font-weight: bold;
