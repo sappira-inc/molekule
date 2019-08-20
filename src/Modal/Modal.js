@@ -1,14 +1,13 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { keyframes, css } from 'styled-components';
 import * as animations from 'react-animations';
 import { Transition } from 'react-transition-group';
-import FocusLock from 'react-focus-lock';
+import { FocusOn } from 'react-focus-on';
 import Portal from '../Portal';
 import Flex from '../Flex';
 import Box from '../Box';
 import Icon from '../Icon';
-import { useKeyPress } from '../hooks';
 import { createComponent, themeGet } from '../utils';
 
 const ModalContext = createContext({});
@@ -77,6 +76,7 @@ const ModalContent = createComponent({
 
 function Modal({ children, title, animationDuration, showClose, onClose, open, ...props }) {
   const [isOpen, setOpen] = useState(open);
+  const modal = useRef();
 
   const handleClose = () => {
     setOpen(false);
@@ -84,17 +84,6 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, .
   };
 
   const handleContentClick = event => event.stopPropagation();
-
-  const handleBackdropClick = () => {
-    if (!props.closeOnBackdropClick) return;
-
-    handleClose();
-  };
-
-  useKeyPress('Escape', () => {
-    if (!isOpen || !props.closeOnEscape) return;
-    handleClose();
-  });
 
   useEffect(() => {
     if (open !== isOpen) {
@@ -107,13 +96,18 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, .
       <Portal>
         <Transition in={isOpen} timeout={animationDuration}>
           {state => (
-            <Backdrop transitionState={state} onClick={handleBackdropClick}>
-              <FocusLock lockProps={{ style: { maxHeight: '100%' } }} disabled={!isOpen}>
-                <ModalContent transitionState={state} onClick={handleContentClick} {...props}>
+            <Backdrop transitionState={state}>
+              <FocusOn
+                onClickOutside={handleClose}
+                onEscapeKey={handleClose}
+                lockProps={{ style: { maxHeight: '100%' } }}
+                enabled={isOpen}
+                shards={[modal]}>
+                <ModalContent transitionState={state} onClick={handleContentClick} ref={modal} {...props}>
                   {title && <Modal.Header title={title} showClose={showClose} />}
                   {children}
                 </ModalContent>
-              </FocusLock>
+              </FocusOn>
             </Backdrop>
           )}
         </Transition>
