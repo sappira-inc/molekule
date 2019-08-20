@@ -158,10 +158,6 @@ export default (overrides = {}) => {
       backgroundColor: colors.blue,
       fontColor: colors.white,
     },
-    grey: {
-      backgroundColor: colors.greyLight,
-      fontColor: colors.greyDarkest,
-    },
   };
 
   const badgeVariants = {
