@@ -41,18 +41,19 @@ Use the `text` prop to use a Text Button.
 
 ## With Icon
 
-Buttons may contain an icon by passing an icon prop.
+Buttons may contain a `leftIcon` or `rightIcon` prop. Additional props may be passed via `leftIconProps` or `rightIconProps`.
 <Playground>
   <Button.Group justifyContent="space-around">
-    <Button icon={<Icon name="alert" />} >Primary Button</Button>
-    <Button variant="success" icon={<Icon name="alert-circle" />}>Success Button</Button>
+    <Button leftIcon="alert">Primary Button</Button>
+    <Button rightIcon="alert">Primary Button</Button>
+    <Button variant="success" leftIcon="alert-circle">Success Button</Button>
+    <Button variant="success" rightIcon="alert-circle" rightIconProps={{ size: 24 }}>Success Button</Button>
   </Button.Group>
 </Playground>
 
 ## Groups
 
 Button groups provide an easy way to horizontally layout a row of buttons.
-
 <Playground>
   <Button.Group justifyContent="space-around">
     <Button.Group>
@@ -61,8 +62,8 @@ Button groups provide an easy way to horizontally layout a row of buttons.
       <Button variant="secondary">Three</Button>
     </Button.Group>
     <Button.Group>
-      <Button icon={<Icon name="alert" />} />
-      <Button variant="secondary" icon={<Icon name="alert-circle" />} />
+      <Button leftIcon="alert" />
+      <Button variant="secondary" leftIcon="alert-circle" />
     </Button.Group>
   </Button.Group>
 </Playground>

@@ -4,6 +4,7 @@ import { css, keyframes } from 'styled-components';
 import { space } from 'styled-system';
 import { getComponentVariant, getComponentSize, createComponent } from '../utils';
 import Flex from '../Flex';
+import Icon from '../Icon';
 
 const spinKeyframes = keyframes`
   from {
@@ -44,7 +45,20 @@ const loadingCss = ({ height, borderColor, fontColor, backgroundColor, outline }
 const StyledButton = createComponent({
   name: 'Button',
   tag: 'button',
-  style: ({ hasText, icon, variant, size, theme, block, disabled, loading, text, outline, borderRadius }) => {
+  style: ({
+    hasText,
+    leftIcon,
+    rightIcon,
+    variant,
+    size,
+    theme,
+    block,
+    disabled,
+    loading,
+    text,
+    outline,
+    borderRadius,
+  }) => {
     const {
       textColor,
       borderColor,
@@ -80,15 +94,21 @@ const StyledButton = createComponent({
       white-space: nowrap;
       user-select: none;
 
-      ${icon &&
+      ${leftIcon &&
         hasText &&
         css`
-          padding-left: 8px;
-
           i {
             padding-right: 4px;
           }
         `}
+
+        ${rightIcon &&
+          hasText &&
+          css`
+            i {
+              padding-left: 4px;
+            }
+          `}
 
       ${loading && loadingCss({ height, fontColor, backgroundColor, borderColor, outline })};
 
@@ -144,11 +164,14 @@ const StyledButton = createComponent({
   },
 });
 
-const Button = React.forwardRef((props, ref) => (
-  <StyledButton {...props} ref={ref} hasText={!!props.children}>
+const renderIcon = (icon, props) => <Icon name={icon} {...props} />;
+
+const Button = React.forwardRef(({ children, leftIcon, leftIconProps, rightIcon, rightIconProps, ...rest }, ref) => (
+  <StyledButton ref={ref} hasText={!!children} leftIcon={leftIcon} rightIcon={rightIcon} {...rest}>
     <Flex alignItems="center">
-      {props.icon}
-      {props.children}
+      {leftIcon && renderIcon(leftIcon, leftIconProps)}
+      {children}
+      {rightIcon && renderIcon(rightIcon, rightIconProps)}
     </Flex>
   </StyledButton>
 ));
@@ -160,8 +183,11 @@ Button.propTypes = {
   block: PropTypes.bool,
   disabled: PropTypes.bool,
   loading: PropTypes.bool,
-  icon: PropTypes.element,
   text: PropTypes.bool,
+  leftIcon: PropTypes.string,
+  leftIconProps: PropTypes.object,
+  rightIcon: PropTypes.string,
+  rightIconProps: PropTypes.object,
 };
 
 Button.defaultProps = {
@@ -172,6 +198,10 @@ Button.defaultProps = {
   disabled: false,
   loading: false,
   text: false,
+  leftIcon: false,
+  leftIconProps: {},
+  rightIcon: false,
+  rightIconProps: {},
 };
 
 const verticalCss = ({ sizes, vertical, borderRadius }) => {
