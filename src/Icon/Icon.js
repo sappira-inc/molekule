@@ -8,32 +8,33 @@ const Icon = createComponent({
   props: ({ name }) => ({
     className: Icon.getClassName(name),
   }),
-  style: ({ theme, size, color, disabled }) => {
+  style: ({ theme, size, color, disabled, onClick }) => {
     const colorFromTheme = theme.colors[color];
     const resolvedColor = colorFromTheme || color;
 
     return css`
       color: ${resolvedColor || 'inherit'};
-      font-size: ${size}px;
+      font-size: ${size ? `${size}px` : 'inherit'};
 
       ${disabled &&
         css`
           pointer-events: none;
           opacity: 0.65;
         `};
+
+      ${onClick &&
+        css`
+          cursor: pointer;
+        `}
     `;
   },
 });
 
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
-  size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  size: PropTypes.number,
   color: PropTypes.string,
   onClick: PropTypes.func,
-};
-
-Icon.defaultProps = {
-  size: 16,
 };
 
 Icon.iconPrefix = 'mdi';

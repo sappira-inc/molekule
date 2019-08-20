@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import Field from './Field';
 import StyledLabel from './Label';
 import FormError from './FormError';
 import { createEasyInput } from './EasyInput';
+import Icon from '../Icon';
 import { themeGet, createComponent } from '../utils';
 
 const InputContainer = createComponent({
@@ -17,7 +18,7 @@ const InputContainer = createComponent({
 const StyledInput = createComponent({
   name: 'Input',
   tag: 'input',
-  style: ({ isFloating, theme, borderRadius = theme.radius, leftIcon, rightIcon }) => css`
+  style: ({ isFloating, theme, borderRadius = theme.radius, leftIcon, rightIcon, leftIconProps, rightIconProps }) => css`
     border: 1px solid ${theme.colors.greyLight};
     height: 48px;
     display: block;
@@ -59,13 +60,35 @@ const StyledInput = createComponent({
 
     ${leftIcon &&
       css`
-        padding-left: ${leftIcon.props.size + 12}px;
+        padding-left: ${(leftIconProps && leftIconProps.size) || 16 + 12}px;
       `};
 
     ${rightIcon &&
       css`
-        padding-right: ${rightIcon.props.size + 32}px;
+        padding-right: ${(rightIconProps && rightIconProps.size) || 16 + 32}px;
       `};
+  `,
+});
+
+const StyledIcon = styled(Icon)`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+`;
+
+const LeftIcon = createComponent({
+  name: 'InputLeftIcon',
+  as: StyledIcon,
+  style: css`
+    left: 8px;
+  `,
+});
+
+const RightIcon = createComponent({
+  name: 'InputRightIcon',
+  as: StyledIcon,
+  style: css`
+    right: 8px;
   `,
 });
 
@@ -113,8 +136,10 @@ export class Input extends Component {
     size: PropTypes.string,
     floating: PropTypes.bool,
     forwardedRef: PropTypes.oneOfType([PropTypes.shape(), PropTypes.func]),
-    leftIcon: PropTypes.element,
-    rightIcon: PropTypes.element,
+    leftIcon: PropTypes.string,
+    leftIconProps: PropTypes.shape(),
+    rightIcon: PropTypes.string,
+    rightIconProps: PropTypes.shape(),
   };
 
   static defaultProps = {
@@ -241,20 +266,6 @@ export class Input extends Component {
     this.ref.current.blur();
   }
 
-  renderIcon = (icon, position) => {
-    const iconProps = {
-      style: {
-        position: 'absolute',
-        top: '50%',
-        transform: 'translateY(-50%)',
-        [position]: '8px',
-        cursor: icon.props.onClick ? 'pointer' : 'inherit',
-      },
-    };
-
-    return React.cloneElement(icon, iconProps);
-  };
-
   render() {
     const {
       style,
@@ -272,7 +283,9 @@ export class Input extends Component {
       transformOnBlur,
       size,
       leftIcon,
+      leftIconProps,
       rightIcon,
+      rightIconProps,
       disabled,
       ...rest
     } = this.props;
@@ -296,7 +309,9 @@ export class Input extends Component {
       isFloating,
       error,
       leftIcon,
+      leftIconProps,
       rightIcon,
+      rightIconProps,
       disabled,
     };
 
@@ -320,9 +335,9 @@ export class Input extends Component {
         <InputContainer styles={rest.styles}>
           {floating && Label}
 
-          {leftIcon && this.renderIcon(leftIcon, 'left')}
+          {leftIcon && <LeftIcon name={leftIcon} {...leftIconProps} />}
 
-          {rightIcon && this.renderIcon(rightIcon, 'right')}
+          {rightIcon && <RightIcon name={rightIcon} {...rightIconProps} />}
 
           {multiline ? <StyledTextArea {...inputProps} /> : <StyledInput {...inputProps} />}
         </InputContainer>

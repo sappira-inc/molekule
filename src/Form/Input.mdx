@@ -78,8 +78,12 @@ Form input component. Different sizes are available.
   <Input
     placeholder="Example"
     label="Example"
-    leftIcon={<Icon name="cards-spade" onClick={()=> alert('Left icon clicked!')} />}
-    rightIcon={<Icon name="close-circle" color="primary" onClick={()=> alert("Right icon clicked!")} />}
+    leftIcon="cards-spade"
+    rightIcon="close-circle"
+    rightIconProps={{
+      color: 'primary',
+      onClick: () => alert('Right icon clicked!'),
+    }}
   />
 </Playground>
 
