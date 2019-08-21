@@ -198,10 +198,6 @@ Button.defaultProps = {
   disabled: false,
   loading: false,
   text: false,
-  leftIcon: false,
-  leftIconProps: {},
-  rightIcon: false,
-  rightIconProps: {},
 };
 
 const verticalCss = ({ sizes, vertical, borderRadius }) => {
