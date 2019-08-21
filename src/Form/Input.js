@@ -60,12 +60,12 @@ const StyledInput = createComponent({
 
     ${leftIcon &&
       css`
-        padding-left: ${leftIconProps.size + 12}px;
+        padding-left: ${(leftIconProps.size || 16) + 12}px;
       `};
 
     ${rightIcon &&
       css`
-        padding-right: ${rightIconProps.size + 32}px;
+        padding-right: ${(rightIconProps.size || 16) + 32}px;
       `};
   `,
 });
@@ -157,12 +157,8 @@ export class Input extends Component {
     onBlur() {},
     onChange() {},
     floating: false,
-    leftIconProps: {
-      size: 16,
-    },
-    rightIconProps: {
-      size: 16,
-    },
+    leftIconProps: {},
+    rightIconProps: {},
   };
 
   static getDerivedStateFromProps(props, state) {
