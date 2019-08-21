@@ -144,11 +144,11 @@ export default class Formbot extends React.Component {
 
       const fieldValue = this.state.values[field];
 
-      function setFieldValidated(message) {
+      const setFieldValidated = message => {
         this.updateField(field, { validated: true }).then(() => {
           this.setErrors({ [field]: message }, resolve);
         });
-      }
+      };
 
       Promise.resolve()
         .then(() => {
