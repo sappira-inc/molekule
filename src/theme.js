@@ -205,14 +205,6 @@ export default (overrides = {}) => {
     xl: 16,
   };
 
-  const buttonIconSizes = {
-    xs: 12,
-    sm: 14,
-    md: 16,
-    lg: 24,
-    xl: 24,
-  };
-
   const breakpoints = [480, 768, 1024, 1440];
 
   const grid = {
@@ -238,7 +230,6 @@ export default (overrides = {}) => {
 
   return {
     breakpoints,
-    buttonIconSizes,
     classPrefix: 're',
     colors,
     fontSizes,
