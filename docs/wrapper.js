@@ -1,30 +1,23 @@
 import React from 'react';
-import { createGlobalStyle, css } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import { ThemeProvider } from '../src';
 
 const GlobalStyle = createGlobalStyle`
-  ${({ theme }) => css`
-    ${theme.fonts.map(
-      font => css`
-        @font-face {
-          font-family: "${font.name}";
-          font-weight: ${font.weight || 500};
-          font-style: normal;
-          src: url(${font.url}) format("${font.format || 'woff2'}");
-        }
-      `
-    )}
+    @font-face {
+      font-family: "Tiempos";
+      font-weight: 500;
+      font-style: normal;
+      src: url(//cdn.heydoctor.com/fonts/TiemposHeadlineWeb-Semibold.woff2) format('woff2');
+    }
 
     * {
-      font-family: "${theme.typography.bodyFontFamily}", sans-serif !important;
+      font-family: "Avenir", sans-serif !important;
     }
 
     h1 {
-      font-family: "${theme.typography.headerFontFamily}", serif !important;
+      font-family: "Tiempos", serif !important;
       font-size: 38px;
-      color: ${theme.colors.black};
     }
-  `}
 `;
 
 export default ({ children }) => (
