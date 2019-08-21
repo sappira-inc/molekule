@@ -22,22 +22,19 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
 }
 
 .c1 {
-  font-family: inherit;
   display: inline-block;
-  text-align: center;
   cursor: pointer;
   text-transform: capitalize;
-  font-weight: bold;
+  text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  font-family: inherit;
+  font-weight: bold;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   border-radius: 8px;
   pointer-events: auto;
-  height: 40px;
-  padding: 0 20px;
-  font-size: 16px;
   width: auto;
   border: 1px solid transparent;
   -webkit-transition: 175ms;
@@ -49,6 +46,9 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
   user-select: none;
   background-color: #226EFF;
   color: #FFFFFF;
+  font-size: 16px;
+  height: 40px;
+  padding: 0 16px;
 }
 
 .c1[disabled] {
@@ -112,22 +112,19 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
 }
 
 .c1 {
-  font-family: inherit;
   display: inline-block;
-  text-align: center;
   cursor: pointer;
   text-transform: capitalize;
-  font-weight: bold;
+  text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  font-family: inherit;
+  font-weight: bold;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   border-radius: 8px;
   pointer-events: auto;
-  height: 40px;
-  padding: 0 20px;
-  font-size: 16px;
   width: auto;
   border: 1px solid transparent;
   -webkit-transition: 175ms;
@@ -139,6 +136,9 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   user-select: none;
   background-color: #226EFF;
   color: #FFFFFF;
+  font-size: 16px;
+  height: 40px;
+  padding: 0 16px;
 }
 
 .c1[disabled] {
