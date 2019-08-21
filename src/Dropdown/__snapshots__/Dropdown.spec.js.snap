@@ -35,15 +35,11 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
   appearance: none;
   border-radius: 8px;
   pointer-events: auto;
-  color: #FFFFFF;
   height: 40px;
-  padding: 0 16px;
+  padding: 0 20px;
   font-size: 16px;
   width: auto;
-  background: #226EFF;
-  border-color: #226EFF;
-  border-style: solid;
-  border-width: 1px;
+  border: 1px solid transparent;
   -webkit-transition: 175ms;
   transition: 175ms;
   white-space: nowrap;
@@ -51,34 +47,25 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-.c1:hover {
   background-color: #226EFF;
-  border-color: #226EFF;
-  color: #FFFFFF;
-  background-color: #4D89FF;
-  border-color: #4D89FF;
-  color: #FFFFFF;
-}
-
-.c1:active {
-  background: #226EFF;
-  border-color: #226EFF;
-  color: #FFFFFF;
-  background-color: #0958F3;
-  border-color: #0958F3;
   color: #FFFFFF;
 }
 
 .c1[disabled] {
   pointer-events: none;
-  background: #226EFF;
-  border-color: #226EFF;
-  color: #FFFFFF;
+  opacity: 0.75;
+}
+
+.c1:hover {
+  background-color: #4D89FF;
+}
+
+.c1:active {
+  background-color: #0958F3;
+}
+
+.c1:disabled {
   background-color: #CADCFF;
-  border-color: #CADCFF;
-  color: #FFFFFF;
 }
 
 <div
@@ -138,15 +125,11 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   appearance: none;
   border-radius: 8px;
   pointer-events: auto;
-  color: #FFFFFF;
   height: 40px;
-  padding: 0 16px;
+  padding: 0 20px;
   font-size: 16px;
   width: auto;
-  background: #226EFF;
-  border-color: #226EFF;
-  border-style: solid;
-  border-width: 1px;
+  border: 1px solid transparent;
   -webkit-transition: 175ms;
   transition: 175ms;
   white-space: nowrap;
@@ -154,34 +137,25 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-.c1:hover {
   background-color: #226EFF;
-  border-color: #226EFF;
-  color: #FFFFFF;
-  background-color: #4D89FF;
-  border-color: #4D89FF;
-  color: #FFFFFF;
-}
-
-.c1:active {
-  background: #226EFF;
-  border-color: #226EFF;
-  color: #FFFFFF;
-  background-color: #0958F3;
-  border-color: #0958F3;
   color: #FFFFFF;
 }
 
 .c1[disabled] {
   pointer-events: none;
-  background: #226EFF;
-  border-color: #226EFF;
-  color: #FFFFFF;
+  opacity: 0.75;
+}
+
+.c1:hover {
+  background-color: #4D89FF;
+}
+
+.c1:active {
+  background-color: #0958F3;
+}
+
+.c1:disabled {
   background-color: #CADCFF;
-  border-color: #CADCFF;
-  color: #FFFFFF;
 }
 
 <div
