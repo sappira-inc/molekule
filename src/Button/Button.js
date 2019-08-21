@@ -15,7 +15,7 @@ const spinKeyframes = keyframes`
     transform: rotate(360deg);
 }`;
 
-const loadingCss = ({ height, borderColor, fontColor, backgroundColor, outline }) => css`
+const loadingCss = (height, color) => css`
   color: transparent !important;
   pointer-events: none;
   position: relative;
@@ -25,11 +25,9 @@ const loadingCss = ({ height, borderColor, fontColor, backgroundColor, outline }
   &::after {
     display: block;
     content: '';
-    border-color: ${outline ? backgroundColor : borderColor || fontColor};
     animation: ${spinKeyframes} 820ms infinite linear;
-    border-width: 2px;
-    border-style: solid;
     border-radius: 100%;
+    border: 2px solid ${color};
     border-right-color: transparent;
     border-top-color: transparent;
     left: 50%;
@@ -45,51 +43,23 @@ const loadingCss = ({ height, borderColor, fontColor, backgroundColor, outline }
 const StyledButton = createComponent({
   name: 'Button',
   tag: 'button',
-  style: ({
-    hasText,
-    leftIcon,
-    rightIcon,
-    variant,
-    size,
-    theme,
-    block,
-    disabled,
-    loading,
-    text,
-    outline,
-    borderRadius,
-  }) => {
-    const {
-      textColor,
-      borderColor,
-      backgroundColor,
-      fontColor,
-      hover,
-      active,
-      disabled: disabledState,
-    } = getComponentVariant(theme, 'Button', variant);
-    const { fontSize, height } = getComponentSize(theme, 'Button', size);
+  style: ({ hasText, leftIcon, rightIcon, variant, size, theme, block, disabled, loading, borderRadius }) => {
+    const variantStyles = getComponentVariant(theme, 'Button', variant);
+    const sizeStyles = getComponentSize(theme, 'Button', size);
 
     return css`
-      font-family: inherit;
       display: inline-block;
-      text-align: center;
       cursor: pointer;
       text-transform: capitalize;
-      font-weight: bold;
+      text-align: center;
       text-decoration: none;
+      font-family: inherit;
+      font-weight: bold;
       appearance: none;
       border-radius: ${borderRadius || theme.radius}px;
       pointer-events: ${disabled ? 'none' : 'auto'};
-      color: ${outline ? backgroundColor : fontColor};
-      height: ${height}px;
-      padding: 0 16px;
-      font-size: ${fontSize}px;
       width: ${block ? '100%' : 'auto'};
-      background: ${outline ? 'transparent' : backgroundColor};
-      border-color: ${outline ? backgroundColor : borderColor || backgroundColor};
-      border-style: solid;
-      border-width: 1px;
+      border: 1px solid transparent;
       transition: 175ms;
       white-space: nowrap;
       user-select: none;
@@ -110,55 +80,14 @@ const StyledButton = createComponent({
           }
         `}
 
-      ${loading && loadingCss({ height, fontColor, backgroundColor, borderColor, outline })};
-
-      &:hover {
-        background-color: ${backgroundColor};
-        border-color: ${borderColor || backgroundColor};
-        color: ${fontColor};
-
-        ${hover &&
-          css`
-            background-color: ${hover.backgroundColor || backgroundColor};
-            border-color: ${hover.borderColor || hover.backgroundColor || backgroundColor};
-            color: ${hover.fontColor || fontColor};
-          `}
-      }
-
-      &:active {
-        background: ${backgroundColor};
-        border-color: ${borderColor || backgroundColor};
-        color: ${fontColor};
-
-        ${active &&
-          css`
-            background-color: ${active.backgroundColor || backgroundColor};
-            border-color: ${active.borderColor || active.backgroundColor || backgroundColor};
-            color: ${active.fontColor || fontColor};
-          `}
-      }
-
       &[disabled] {
         pointer-events: none;
-        background: ${backgroundColor};
-        border-color: ${borderColor || backgroundColor};
-        color: ${fontColor};
-
-        ${disabledState &&
-          css`
-            background-color: ${disabledState.backgroundColor || backgroundColor};
-            border-color: ${disabledState.borderColor || disabledState.backgroundColor || backgroundColor};
-            color: ${disabledState.fontColor || fontColor};
-          `}
+        opacity: 0.75;
       }
 
-      ${text &&
-        css`
-          background-color: transparent !important;
-          border-color: transparent !important;
-          color: ${textColor || backgroundColor} !important;
-        `}
-
+      ${loading && loadingCss(sizeStyles.height, variantStyles.color)};
+      ${variantStyles}
+      ${sizeStyles};
       ${space};
     `;
   },
@@ -183,7 +112,6 @@ Button.propTypes = {
   block: PropTypes.bool,
   disabled: PropTypes.bool,
   loading: PropTypes.bool,
-  text: PropTypes.bool,
   leftIcon: PropTypes.string,
   leftIconProps: PropTypes.shape(),
   rightIcon: PropTypes.string,
@@ -197,7 +125,6 @@ Button.defaultProps = {
   block: false,
   disabled: false,
   loading: false,
-  text: false,
 };
 
 const verticalCss = ({ sizes, vertical, borderRadius }) => {

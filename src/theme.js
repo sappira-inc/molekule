@@ -70,120 +70,134 @@ export default (overrides = {}) => {
   const buttonVariants = {
     primary: {
       backgroundColor: colors.primary,
-      fontColor: colors.white,
-      hover: {
+      color: colors.white,
+      '&:hover': {
         backgroundColor: colors.primaryLight,
       },
-      active: {
+      '&:active': {
         backgroundColor: colors.primaryDark,
       },
-      disabled: {
+      '&:disabled': {
         backgroundColor: colors.primaryLightest,
+      },
+    },
+    primaryText: {
+      backgroundColor: 'transparent',
+      borderColor: 'transparent',
+      color: colors.primary,
+      '&:hover': {
+        color: colors.primaryDark,
       },
     },
     secondary: {
       backgroundColor: colors.white,
-      fontColor: colors.primary,
       borderColor: colors.primary,
-      textColor: colors.primary,
-      hover: {
+      color: colors.primary,
+      '&:hover': {
         backgroundColor: colors.primary,
-        fontColor: colors.white,
+        color: colors.white,
       },
-      active: {
+      '&:active': {
         backgroundColor: colors.primaryDark,
-        fontColor: colors.white,
+        color: colors.white,
       },
-      disabled: {
-        fontColor: colors.primaryLightest,
+      '&:disabled': {
         borderColor: colors.primaryLightest,
+        color: colors.primaryLightest,
       },
     },
     grey: {
       backgroundColor: colors.white,
-      fontColor: colors.greyDarkest,
       borderColor: colors.grey,
-      textColor: colors.greyDarkest,
-      hover: {
+      color: colors.greyDarkest,
+      '&:hover': {
         borderColor: colors.greyDark,
       },
-      active: {
+      '&:active': {
         backgroundColor: colors.greyLight,
       },
-      disabled: {
-        fontColor: colors.grey,
+      '&:disabled': {
         borderColor: colors.grey,
+        color: colors.grey,
+      },
+    },
+    greyText: {
+      backgroundColor: 'transparent',
+      borderColor: 'transparent',
+      color: colors.grey,
+      '&:hover': {
+        color: colors.greyDark,
       },
     },
     success: {
+      color: colors.white,
       backgroundColor: colors.secondary,
-      fontColor: colors.white,
-      hover: {
+      '&:hover': {
         backgroundColor: colors.secondaryLight,
       },
-      active: {
+      '&:active': {
         backgroundColor: colors.secondaryDark,
       },
-      disabled: {
+      '&:disabled': {
         backgroundColor: colors.secondaryLightest,
       },
     },
     warning: {
       backgroundColor: colors.orange,
-      fontColor: colors.white,
-      hover: {
+      color: colors.white,
+      '&:hover': {
         backgroundColor: colors.orangeLight,
       },
-      active: {
+      '&:active': {
         backgroundColor: colors.orangeDark,
       },
-      disabled: {
+      '&:disabled': {
         backgroundColor: colors.orangeLightest,
       },
     },
     danger: {
       backgroundColor: colors.red,
-      fontColor: colors.white,
-      hover: {
+      color: colors.white,
+      '&:hover': {
         backgroundColor: colors.redLight,
       },
-      active: {
+      '&:active': {
         backgroundColor: colors.redDark,
       },
-      disabled: {
+      '&:disabled': {
         backgroundColor: colors.redLightest,
       },
     },
     info: {
       backgroundColor: colors.blue,
-      fontColor: colors.white,
+      color: colors.white,
     },
   };
 
   const badgeVariants = {
     primary: {
       backgroundColor: colors.primaryLightest,
-      fontColor: colors.primaryDark,
+      color: colors.primaryDark,
     },
     success: {
       backgroundColor: colors.greenLightest,
-      fontColor: colors.greenDark,
+      color: colors.greenDark,
     },
     danger: {
       backgroundColor: colors.redLightest,
-      fontColor: colors.redDark,
+      color: colors.redDark,
     },
     warning: {
       backgroundColor: colors.orangeLightest,
-      fontColor: colors.orangeDark,
+      color: colors.orangeDark,
     },
     info: {
       backgroundColor: colors.blueLightest,
-      fontColor: colors.blueDark,
+      color: colors.blueDark,
     },
     grey: {
       backgroundColor: colors.greyLight,
-      fontColor: colors.greyDarker,
+      color: colors.greyDarker,
     },
   };
 
@@ -236,31 +250,34 @@ export default (overrides = {}) => {
         sm: {
           fontSize: 14,
           height: 32,
+          padding: '0 12px',
         },
         md: {
           fontSize: 16,
           height: 40,
+          padding: '0 16px',
         },
         lg: {
           fontSize: 16,
           height: 48,
+          padding: '0 20px',
         },
       },
       Badge: {
         sm: {
           fontSize: 12,
-          paddingVertical: 4,
-          paddingHorizontal: 8,
+          borderRadius: 12,
+          padding: '4px 8px',
         },
         md: {
           fontSize: 14,
-          paddingVertical: 5,
-          paddingHorizontal: 10,
+          borderRadius: 14,
+          padding: '5px 10px',
         },
         lg: {
           fontSize: 16,
-          paddingVertical: 6,
-          paddingHorizontal: 12,
+          borderRadius: 16,
+          padding: '6px 12px',
         },
       },
     },
