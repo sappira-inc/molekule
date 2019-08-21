@@ -60,12 +60,12 @@ const StyledInput = createComponent({
 
     ${leftIcon &&
       css`
-        padding-left: ${(leftIconProps && leftIconProps.size) || 16 + 12}px;
+        padding-left: ${leftIconProps.size + 12}px;
       `};
 
     ${rightIcon &&
       css`
-        padding-right: ${(rightIconProps && rightIconProps.size) || 16 + 32}px;
+        padding-right: ${rightIconProps.size + 32}px;
       `};
   `,
 });
@@ -157,6 +157,12 @@ export class Input extends Component {
     onBlur() {},
     onChange() {},
     floating: false,
+    leftIconProps: {
+      size: 16,
+    },
+    rightIconProps: {
+      size: 16,
+    },
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -335,9 +341,9 @@ export class Input extends Component {
         <InputContainer styles={rest.styles}>
           {floating && Label}
 
-          {leftIcon && <LeftIcon name={leftIcon} {...leftIconProps} />}
+          {leftIcon && <LeftIcon styles={rest.styles} name={leftIcon} {...leftIconProps} />}
 
-          {rightIcon && <RightIcon name={rightIcon} {...rightIconProps} />}
+          {rightIcon && <RightIcon styles={rest.styles} name={rightIcon} {...rightIconProps} />}
 
           {multiline ? <StyledTextArea {...inputProps} /> : <StyledInput {...inputProps} />}
         </InputContainer>
