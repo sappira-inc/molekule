@@ -85,6 +85,9 @@ export default (overrides = {}) => {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       color: colors.primary,
+      '&:hover': {
+        color: colors.primaryDark,
+      },
     },
     secondary: {
       backgroundColor: colors.white,
@@ -122,6 +125,9 @@ export default (overrides = {}) => {
       backgroundColor: 'transparent',
       borderColor: 'transparent',
       color: colors.grey,
+      '&:hover': {
+        color: colors.greyDark,
+      },
     },
     success: {
       color: colors.white,
