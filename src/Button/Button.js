@@ -102,13 +102,13 @@ const StyledButton = createComponent({
           }
         `}
 
-        ${rightIcon &&
-          hasText &&
-          css`
-            i {
-              padding-left: 4px;
-            }
-          `}
+      ${rightIcon &&
+        hasText &&
+        css`
+          i {
+            padding-left: 4px;
+          }
+        `}
 
       ${loading && loadingCss({ height, fontColor, backgroundColor, borderColor, outline })};
 
@@ -185,9 +185,9 @@ Button.propTypes = {
   loading: PropTypes.bool,
   text: PropTypes.bool,
   leftIcon: PropTypes.string,
-  leftIconProps: PropTypes.object,
+  leftIconProps: PropTypes.shape(),
   rightIcon: PropTypes.string,
-  rightIconProps: PropTypes.object,
+  rightIconProps: PropTypes.shape(),
 };
 
 Button.defaultProps = {
