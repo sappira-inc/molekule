@@ -123,7 +123,7 @@ export default class Formbot extends React.Component {
   };
 
   validateField(field) {
-    return new Promise(resolve => {
+    return new Promise(async resolve => {
       const fieldState = this.state.fields[field] || {};
       if (fieldState.validated) {
         resolve();
@@ -145,23 +145,10 @@ export default class Formbot extends React.Component {
       const fieldValue = this.state.values[field];
       let errorMsg;
 
-      if (hasSchema && typeof validation.validate === 'function') {
-        validation
-          .validate(fieldValue, validationOpts)
-          .catch(e => {
-            errorMsg = e.message;
-          })
-          .finally(() => {
-            this.updateField(field, { validated: true }).then(() => {
-              this.setErrors({ [field]: errorMsg }, resolve);
-            });
-          });
-
-        return;
-      }
-
       try {
-        if (typeof validation === 'function') {
+        if (hasSchema && typeof validation.validate === 'function') {
+          await validation.validate(fieldValue, validationOpts);
+        } else if (typeof validation === 'function') {
           validation(fieldValue);
         } else {
           Object.keys(validation).forEach(method => {
