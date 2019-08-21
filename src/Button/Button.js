@@ -45,22 +45,19 @@ const StyledButton = createComponent({
   tag: 'button',
   style: ({ hasText, leftIcon, rightIcon, variant, size, theme, block, disabled, loading, borderRadius }) => {
     const variantStyles = getComponentVariant(theme, 'Button', variant);
-    const { fontSize, height } = getComponentSize(theme, 'Button', size);
+    const sizeStyles = getComponentSize(theme, 'Button', size);
 
     return css`
-      font-family: inherit;
       display: inline-block;
-      text-align: center;
       cursor: pointer;
       text-transform: capitalize;
-      font-weight: bold;
+      text-align: center;
       text-decoration: none;
+      font-family: inherit;
+      font-weight: bold;
       appearance: none;
       border-radius: ${borderRadius || theme.radius}px;
       pointer-events: ${disabled ? 'none' : 'auto'};
-      height: ${height}px;
-      padding: 0 ${height / 2}px;
-      font-size: ${fontSize}px;
       width: ${block ? '100%' : 'auto'};
       border: 1px solid transparent;
       transition: 175ms;
@@ -88,8 +85,9 @@ const StyledButton = createComponent({
         opacity: 0.75;
       }
 
-      ${loading && loadingCss(height, variantStyles.color)};
+      ${loading && loadingCss(sizeStyles.height, variantStyles.color)};
       ${variantStyles}
+      ${sizeStyles};
       ${space};
     `;
   },
