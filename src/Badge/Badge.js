@@ -8,7 +8,7 @@ const StyledBadge = createComponent({
   name: 'Badge',
   tag: 'span',
   style: ({ variant, theme, size }) => {
-    const { backgroundColor, fontColor } = getComponentVariant(theme, 'Badge', variant);
+    const variantStyles = getComponentVariant(theme, 'Badge', variant);
     const { fontSize, paddingVertical, paddingHorizontal } = getComponentSize(theme, 'Badge', size);
 
     return css`
@@ -17,8 +17,8 @@ const StyledBadge = createComponent({
       font-family: inherit;
       font-weight: bold;
       border-radius: ${fontSize}px;
-      background: ${backgroundColor};
-      color: ${fontColor};
+
+      ${variantStyles}
       ${space};
     `;
   },
