@@ -69,8 +69,8 @@ export default (overrides = {}) => {
 
   const buttonVariants = {
     primary: {
-      color: colors.white,
       backgroundColor: colors.primary,
+      color: colors.white,
       '&:hover': {
         backgroundColor: colors.primaryLight,
       },
@@ -82,31 +82,31 @@ export default (overrides = {}) => {
       },
     },
     primaryText: {
-      color: colors.primary,
       backgroundColor: 'transparent',
       borderColor: 'transparent',
+      color: colors.primary,
     },
     secondary: {
-      color: colors.primary,
       backgroundColor: colors.white,
       borderColor: colors.primary,
+      color: colors.primary,
       '&:hover': {
-        color: colors.white,
         backgroundColor: colors.primary,
+        color: colors.white,
       },
       '&:active': {
-        color: colors.white,
         backgroundColor: colors.primaryDark,
+        color: colors.white,
       },
       '&:disabled': {
-        color: colors.primaryLightest,
         borderColor: colors.primaryLightest,
+        color: colors.primaryLightest,
       },
     },
     grey: {
-      color: colors.greyDarkest,
       backgroundColor: colors.white,
       borderColor: colors.grey,
+      color: colors.greyDarkest,
       '&:hover': {
         borderColor: colors.greyDark,
       },
@@ -114,14 +114,14 @@ export default (overrides = {}) => {
         backgroundColor: colors.greyLight,
       },
       '&:disabled': {
-        color: colors.grey,
         borderColor: colors.grey,
+        color: colors.grey,
       },
     },
     greyText: {
-      color: colors.grey,
       backgroundColor: 'transparent',
       borderColor: 'transparent',
+      color: colors.grey,
     },
     success: {
       color: colors.white,
@@ -137,8 +137,8 @@ export default (overrides = {}) => {
       },
     },
     warning: {
-      color: colors.white,
       backgroundColor: colors.orange,
+      color: colors.white,
       '&:hover': {
         backgroundColor: colors.orangeLight,
       },
@@ -150,8 +150,8 @@ export default (overrides = {}) => {
       },
     },
     danger: {
-      color: colors.white,
       backgroundColor: colors.red,
+      color: colors.white,
       '&:hover': {
         backgroundColor: colors.redLight,
       },
@@ -163,8 +163,8 @@ export default (overrides = {}) => {
       },
     },
     info: {
-      color: colors.white,
       backgroundColor: colors.blue,
+      color: colors.white,
     },
   };
 
