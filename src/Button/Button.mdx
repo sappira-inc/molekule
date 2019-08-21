@@ -22,20 +22,9 @@ Custom button styles for actions in forms, dialogs, and more with support for mu
 <Playground>
   <Button.Group justifyContent="space-around">
     <Button>Primary Button</Button>
-    <Button outline>Outline Button</Button>
-  </Button.Group>
-</Playground>
-
-## Text
-
-Use the `text` prop to use a Text Button.
-
-<Playground>
-  <Button.Group justifyContent="space-around">
-    <Button text>Primary Text Button</Button>
-    <Button text variant="grey">Grey Text Button</Button>
-    <Button text variant="success">Success Text Button</Button>
-    <Button text variant="danger">Danger Text Button</Button>
+    <Button variant="secondary">Secondary Button</Button>
+    <Button variant="grey">Secondary Button</Button>
+    <Button variant="primaryText">Text Button</Button>
   </Button.Group>
 </Playground>
 
@@ -45,8 +34,6 @@ Buttons may contain a `leftIcon` or `rightIcon` prop. Additional props may be pa
 <Playground>
   <Button.Group justifyContent="space-around">
     <Button leftIcon="alert">Primary Button</Button>
-    <Button rightIcon="alert">Primary Button</Button>
-    <Button variant="success" leftIcon="alert-circle">Success Button</Button>
     <Button variant="success" rightIcon="alert-circle" rightIconProps={{ size: 24 }}>Success Button</Button>
   </Button.Group>
 </Playground>

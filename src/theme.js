@@ -69,121 +69,129 @@ export default (overrides = {}) => {
 
   const buttonVariants = {
     primary: {
+      color: colors.white,
       backgroundColor: colors.primary,
-      fontColor: colors.white,
-      hover: {
+      '&:hover': {
         backgroundColor: colors.primaryLight,
       },
-      active: {
+      '&:active': {
         backgroundColor: colors.primaryDark,
       },
-      disabled: {
+      '&:disabled': {
         backgroundColor: colors.primaryLightest,
       },
     },
+    primaryText: {
+      color: colors.primary,
+      backgroundColor: 'transparent',
+      borderColor: 'transparent',
+    },
     secondary: {
+      color: colors.primary,
       backgroundColor: colors.white,
-      fontColor: colors.primary,
       borderColor: colors.primary,
-      textColor: colors.primary,
-      hover: {
+      '&:hover': {
+        color: colors.white,
         backgroundColor: colors.primary,
-        fontColor: colors.white,
       },
-      active: {
+      '&:active': {
+        color: colors.white,
         backgroundColor: colors.primaryDark,
-        fontColor: colors.white,
       },
-      disabled: {
-        fontColor: colors.primaryLightest,
+      '&:disabled': {
+        color: colors.primaryLightest,
         borderColor: colors.primaryLightest,
       },
     },
     grey: {
+      color: colors.greyDarkest,
       backgroundColor: colors.white,
-      fontColor: colors.greyDarkest,
       borderColor: colors.grey,
-      textColor: colors.greyDarkest,
-      hover: {
+      '&:hover': {
         borderColor: colors.greyDark,
       },
-      active: {
+      '&:active': {
         backgroundColor: colors.greyLight,
       },
-      disabled: {
-        fontColor: colors.grey,
+      '&:disabled': {
+        color: colors.grey,
         borderColor: colors.grey,
       },
     },
+    greyText: {
+      color: colors.grey,
+      backgroundColor: 'transparent',
+      borderColor: 'transparent',
+    },
     success: {
+      color: colors.white,
       backgroundColor: colors.secondary,
-      fontColor: colors.white,
-      hover: {
+      '&:hover': {
         backgroundColor: colors.secondaryLight,
       },
-      active: {
+      '&:active': {
         backgroundColor: colors.secondaryDark,
       },
-      disabled: {
+      '&:disabled': {
         backgroundColor: colors.secondaryLightest,
       },
     },
     warning: {
+      color: colors.white,
       backgroundColor: colors.orange,
-      fontColor: colors.white,
-      hover: {
+      '&:hover': {
         backgroundColor: colors.orangeLight,
       },
-      active: {
+      '&:active': {
         backgroundColor: colors.orangeDark,
       },
-      disabled: {
+      '&:disabled': {
         backgroundColor: colors.orangeLightest,
       },
     },
     danger: {
+      color: colors.white,
       backgroundColor: colors.red,
-      fontColor: colors.white,
-      hover: {
+      '&:hover': {
         backgroundColor: colors.redLight,
       },
-      active: {
+      '&:active': {
         backgroundColor: colors.redDark,
       },
-      disabled: {
+      '&:disabled': {
         backgroundColor: colors.redLightest,
       },
     },
     info: {
+      color: colors.white,
       backgroundColor: colors.blue,
-      fontColor: colors.white,
     },
   };
 
   const badgeVariants = {
     primary: {
       backgroundColor: colors.primaryLightest,
-      fontColor: colors.primaryDark,
+      color: colors.primaryDark,
     },
     success: {
       backgroundColor: colors.greenLightest,
-      fontColor: colors.greenDark,
+      color: colors.greenDark,
     },
     danger: {
       backgroundColor: colors.redLightest,
-      fontColor: colors.redDark,
+      color: colors.redDark,
     },
     warning: {
       backgroundColor: colors.orangeLightest,
-      fontColor: colors.orangeDark,
+      color: colors.orangeDark,
     },
     info: {
       backgroundColor: colors.blueLightest,
-      fontColor: colors.blueDark,
+      color: colors.blueDark,
     },
     grey: {
       backgroundColor: colors.greyLight,
-      fontColor: colors.greyDarker,
+      color: colors.greyDarker,
     },
   };
 
