@@ -31,6 +31,7 @@ const StyledInput = createComponent({
     font-family: inherit;
     font-size: ${themeGet('typography.fontSize')}px;
     color: ${theme.colors.greyDarkest};
+    box-sizing: border-box;
 
     &:hover,
     &:active {

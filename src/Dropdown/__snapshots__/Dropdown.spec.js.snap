@@ -10,40 +10,62 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
   outline: none;
 }
 
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
 .c1 {
-  font-family: inherit;
   display: inline-block;
-  text-align: center;
   cursor: pointer;
   text-transform: capitalize;
-  font-weight: bold;
+  text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  font-family: inherit;
+  font-weight: bold;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   border-radius: 8px;
   pointer-events: auto;
-  opacity: 1;
-  color: #FFFFFF;
-  height: 32px;
-  padding: 0 16px;
-  font-size: 14px;
   width: auto;
-  background: #226EFF;
-  border: 1px solid #226EFF;
+  border: 1px solid transparent;
   -webkit-transition: 175ms;
   transition: 175ms;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: #226EFF;
+  color: #FFFFFF;
+  font-size: 16px;
+  height: 40px;
+  padding: 0 16px;
+}
+
+.c1[disabled] {
+  pointer-events: none;
+  opacity: 0.75;
 }
 
 .c1:hover {
-  background: #3c7fff;
-  border-color: #3c7fff;
+  background-color: #4D89FF;
 }
 
 .c1:active {
-  background: #4887ff;
-  border-color: #4887ff;
+  background-color: #0958F3;
+}
+
+.c1:disabled {
+  background-color: #CADCFF;
 }
 
 <div
@@ -58,7 +80,11 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
       style="cursor: pointer;"
       tabindex="0"
     >
-      Trigger
+      <div
+        class="re-box re-flex c2"
+      >
+        Trigger
+      </div>
     </button>
   </div>
 </DocumentFragment>
@@ -74,40 +100,62 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   outline: none;
 }
 
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
 .c1 {
-  font-family: inherit;
   display: inline-block;
-  text-align: center;
   cursor: pointer;
   text-transform: capitalize;
-  font-weight: bold;
+  text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
+  font-family: inherit;
+  font-weight: bold;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   border-radius: 8px;
   pointer-events: auto;
-  opacity: 1;
-  color: #FFFFFF;
-  height: 32px;
-  padding: 0 16px;
-  font-size: 14px;
   width: auto;
-  background: #226EFF;
-  border: 1px solid #226EFF;
+  border: 1px solid transparent;
   -webkit-transition: 175ms;
   transition: 175ms;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: #226EFF;
+  color: #FFFFFF;
+  font-size: 16px;
+  height: 40px;
+  padding: 0 16px;
+}
+
+.c1[disabled] {
+  pointer-events: none;
+  opacity: 0.75;
 }
 
 .c1:hover {
-  background: #3c7fff;
-  border-color: #3c7fff;
+  background-color: #4D89FF;
 }
 
 .c1:active {
-  background: #4887ff;
-  border-color: #4887ff;
+  background-color: #0958F3;
+}
+
+.c1:disabled {
+  background-color: #CADCFF;
 }
 
 <div
@@ -122,7 +170,11 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
       style="cursor: pointer;"
       tabindex="0"
     >
-      Trigger
+      <div
+        class="re-box re-flex c2"
+      >
+        Trigger
+      </div>
     </button>
   </div>
   <div

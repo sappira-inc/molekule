@@ -3,13 +3,13 @@
 exports[`Badge 1`] = `
 <DocumentFragment>
   .c0 {
-  padding: 4.666666666666667px 9.333333333333334px;
-  font-size: 14px;
   font-family: inherit;
   font-weight: bold;
-  border-radius: 14px;
-  background: #CADCFF;
+  background-color: #CADCFF;
   color: #0958F3;
+  font-size: 14px;
+  border-radius: 14px;
+  padding: 5px 10px;
 }
 
 <span

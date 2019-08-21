@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css, keyframes } from 'styled-components';
 import { space } from 'styled-system';
-import { lighten } from 'polished';
-import { getComponentVariant, createComponent } from '../utils';
+import { getComponentVariant, getComponentSize, createComponent } from '../utils';
 import Flex from '../Flex';
+import Icon from '../Icon';
 
 const spinKeyframes = keyframes`
   from {
@@ -15,7 +15,7 @@ const spinKeyframes = keyframes`
     transform: rotate(360deg);
 }`;
 
-const loadingCss = ({ height, fontColor, outline, backgroundColor }) => css`
+const loadingCss = (height, color) => css`
   color: transparent !important;
   pointer-events: none;
   position: relative;
@@ -25,11 +25,9 @@ const loadingCss = ({ height, fontColor, outline, backgroundColor }) => css`
   &::after {
     display: block;
     content: '';
-    border-color: ${outline ? backgroundColor : fontColor};
     animation: ${spinKeyframes} 820ms infinite linear;
-    border-width: ${height * 0.05}px;
-    border-style: solid;
     border-radius: 100%;
+    border: 2px solid ${color};
     border-right-color: transparent;
     border-top-color: transparent;
     left: 50%;
@@ -45,60 +43,67 @@ const loadingCss = ({ height, fontColor, outline, backgroundColor }) => css`
 const StyledButton = createComponent({
   name: 'Button',
   tag: 'button',
-  style: ({
-    variant,
-    size,
-    theme,
-    outline = false,
-    block = false,
-    disabled = false,
-    loading = false,
-    transparent = false,
-    height = theme.heights[size],
-    fontSize = theme.fontSizes[size],
-    borderRadius = theme.radius || 2,
-  }) => {
-    const { backgroundColor, fontColor } = getComponentVariant(theme, 'Button', variant);
+  style: ({ hasText, leftIcon, rightIcon, variant, size, theme, block, disabled, loading, borderRadius }) => {
+    const variantStyles = getComponentVariant(theme, 'Button', variant);
+    const sizeStyles = getComponentSize(theme, 'Button', size);
 
     return css`
-      font-family: inherit;
       display: inline-block;
-      text-align: center;
       cursor: pointer;
       text-transform: capitalize;
-      font-weight: bold;
+      text-align: center;
       text-decoration: none;
+      font-family: inherit;
+      font-weight: bold;
       appearance: none;
-      border-radius: ${borderRadius}px;
+      border-radius: ${borderRadius || theme.radius}px;
       pointer-events: ${disabled ? 'none' : 'auto'};
-      opacity: ${disabled ? 0.65 : 1};
-      color: ${outline ? backgroundColor : fontColor};
-      height: ${height}px;
-      padding: 0 ${height * 0.5}px;
-      font-size: ${fontSize}px;
       width: ${block ? '100%' : 'auto'};
-      background: ${outline || transparent ? 'transparent' : backgroundColor};
-      border: ${transparent ? 'none' : `1px solid ${backgroundColor}`};
+      border: 1px solid transparent;
       transition: 175ms;
+      white-space: nowrap;
+      user-select: none;
 
-      ${loading && loadingCss({ height, fontColor, outline, backgroundColor })};
+      ${leftIcon &&
+        hasText &&
+        css`
+          i {
+            padding-right: 4px;
+          }
+        `}
 
-      &:hover {
-        background: ${outline ? 'transparent' : lighten(0.05, backgroundColor)};
-        border-color: ${lighten(0.05, backgroundColor)};
+      ${rightIcon &&
+        hasText &&
+        css`
+          i {
+            padding-left: 4px;
+          }
+        `}
+
+      &[disabled] {
+        pointer-events: none;
+        opacity: 0.75;
       }
 
-      &:active {
-        background: ${outline ? 'transparent' : lighten(0.075, backgroundColor)};
-        border-color: ${lighten(0.075, backgroundColor)};
-      }
-
+      ${loading && loadingCss(sizeStyles.height, variantStyles.color)};
+      ${variantStyles}
+      ${sizeStyles};
       ${space};
     `;
   },
 });
 
-const Button = React.forwardRef((props, ref) => <StyledButton {...props} ref={ref} />);
+const renderIcon = (icon, props) => <Icon name={icon} {...props} />;
+
+const Button = React.forwardRef(({ children, leftIcon, leftIconProps, rightIcon, rightIconProps, ...rest }, ref) => (
+  <StyledButton ref={ref} hasText={!!children} leftIcon={leftIcon} rightIcon={rightIcon} {...rest}>
+    <Flex alignItems="center">
+      {leftIcon && renderIcon(leftIcon, leftIconProps)}
+      {children}
+      {rightIcon && renderIcon(rightIcon, rightIconProps)}
+    </Flex>
+  </StyledButton>
+));
 
 Button.propTypes = {
   variant: PropTypes.string,
@@ -107,7 +112,10 @@ Button.propTypes = {
   block: PropTypes.bool,
   disabled: PropTypes.bool,
   loading: PropTypes.bool,
-  transparent: PropTypes.bool,
+  leftIcon: PropTypes.string,
+  leftIconProps: PropTypes.shape(),
+  rightIcon: PropTypes.string,
+  rightIconProps: PropTypes.shape(),
 };
 
 Button.defaultProps = {
@@ -117,10 +125,9 @@ Button.defaultProps = {
   block: false,
   disabled: false,
   loading: false,
-  transparent: false,
 };
 
-const verticalCss = ({ sizes, vertical }) => {
+const verticalCss = ({ sizes, vertical, borderRadius }) => {
   const maybeNumber = parseInt(vertical, 10);
   const fallback = sizes[vertical] || sizes.sm;
   const breakpoint = Number.isInteger(maybeNumber) ? `${maybeNumber}px` : `${fallback}px`;
@@ -129,7 +136,14 @@ const verticalCss = ({ sizes, vertical }) => {
     @media (max-width: ${breakpoint}) {
       flex-direction: column;
 
-      & > *:not(:first-child) {
+      &&& {
+        & > button {
+          border-radius: ${borderRadius}px;
+          margin-right: 0;
+        }
+      }
+
+      & > button:not(:first-child) {
         margin: 1rem 0 0;
       }
     }
@@ -142,14 +156,34 @@ Button.Group = createComponent({
   style: ({
     vertical = false,
     theme: {
+      radius,
       grid: { sizes },
     },
+    borderRadius = radius || 2,
+    connected = false,
   }) => css`
-    & > *:not(:first-child) {
+    & > button:not(:first-child) {
       margin-left: 1rem;
     }
 
-    ${vertical && verticalCss({ sizes, vertical })};
+    ${connected &&
+      css`
+        & > button:not(:first-child) {
+          margin-left: 0;
+        }
+        & > button:first-child {
+          border-radius: ${borderRadius}px 0 0 ${borderRadius}px;
+        }
+        & > button:last-child {
+          border-radius: 0 ${borderRadius}px ${borderRadius}px 0;
+        }
+
+        & > :not(:first-child):not(:last-child) {
+          border-radius: 0;
+        }
+      `}
+
+    ${vertical && verticalCss({ sizes, vertical, borderRadius })};
   `,
 });
 
