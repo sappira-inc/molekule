@@ -175,7 +175,7 @@ Modal.Header = ({ title, children, showClose = true }) => {
 
           {showClose && (
             <Box ml="auto">
-              <Icon name="close" color="greyDark" style={{ cursor: 'pointer' }} size={16} onClick={handleClose} />
+              <Icon name="close" color="greyDark" style={{ cursor: 'pointer' }} size={24} onClick={handleClose} />
             </Box>
           )}
         </Flex>
