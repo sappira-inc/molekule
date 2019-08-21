@@ -17,9 +17,10 @@ $ npm run docs
 We use [Yalc](https://github.com/whitecolor/yalc) to preview changes made to Molekule in consuming applications.
 
 1. Install Yalc: `yarn global add yalc`.
-1. Run `yarn preview` (which runs `yalc push && nodemon -x 'yalc push --changed'`) to publish the changes to your local `~/.yalc` directory, and re-publish when changes are detected.
-1. Run `yalc add molekule` in the consuming application, and start (or restart) that application to preview the changes locally.
-1. Once you're satisfied with your changes, run: `yalc remove molekule` to remove the local version from the consuming application, and `yarn install --check-files` to restore the package.
+1. Run `yarn preview` to publish the changes to your local `~/.yalc` directory, and re-publish when changes are detected.
+1. Run `yarn link molekule` or `yalc add molekule` in the consuming application. Both will replace the consuming application's node module with the yalc version, the latter will also update the consuming application's `package.json`.
+1. Start (or restart) the consuming application to preview the changes locally (including on subsequent changes).
+1. Once you're satisfied with your changes, run: `yalc remove molekule` in the consuming application to remove the yalc version, and `yarn install --check-files` to restore the package.
 
 ## Releasing
 
