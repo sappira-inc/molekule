@@ -30,6 +30,7 @@ exports[`<PhoneInput /> snapshot 1`] = `
   font-family: inherit;
   font-size: 12px;
   color: #494D55;
+  box-sizing: border-box;
 }
 
 .c3:hover,
