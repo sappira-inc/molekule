@@ -24,8 +24,8 @@ const Backdrop = createComponent({
     z-index: 1000;
     padding: 1rem;
     display: flex;
-    align-items: center;
     position: fixed;
+    align-items: center;
     overflow-y: auto;
     overflow-x: hidden;
     background: rgba(0, 0, 0, 0.4);
@@ -74,11 +74,16 @@ const ModalContent = createComponent({
 
 function Modal({ children, title, animationDuration, showClose, onClose, open, ...props }) {
   const [isOpen, setOpen] = useState(open);
-  const modal = useRef();
 
   const handleClose = () => {
     setOpen(false);
     onClose();
+  };
+
+  const handleBackdropClick = () => {
+    if (!props.closeOnBackdropClick) return;
+
+    handleClose();
   };
 
   useEffect(() => {
@@ -92,19 +97,14 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, .
       <Portal>
         <Transition in={isOpen} timeout={animationDuration}>
           {state => (
-            <Backdrop transitionState={state}>
-              <FocusOn
-                onClickOutside={handleClose}
-                onEscapeKey={handleClose}
-                lockProps={{ style: { maxHeight: '100%' } }}
-                enabled={isOpen}
-                shards={[modal]}>
-                <ModalContent transitionState={state} ref={modal} {...props}>
+            <FocusOn onEscapeKey={handleClose} enabled={isOpen}>
+              <Backdrop transitionState={state} onClick={handleBackdropClick}>
+                <ModalContent transitionState={state} {...props}>
                   {title && <Modal.Header title={title} showClose={showClose} />}
                   {children}
                 </ModalContent>
-              </FocusOn>
-            </Backdrop>
+              </Backdrop>
+            </FocusOn>
           )}
         </Transition>
       </Portal>
