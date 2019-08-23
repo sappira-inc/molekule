@@ -73,21 +73,12 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
 }
 
 .c1 {
-  padding: 0.75rem 1rem 0;
+  padding: 16px 0 0 8px;
 }
 
 .c2 {
-  padding: 0 0 0.25rem;
-  border-bottom: 2px solid #E8E9EA;
-}
-
-.c3 {
-  padding: 1rem;
-}
-
-.c4 {
   display: block;
-  width: calc(100% + 2rem);
+  width: calc(100% - 8px);
   opacity: 1;
   pointer-events: initial;
   -webkit-user-select: initial;
@@ -96,10 +87,10 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   user-select: initial;
   -webkit-text-decoration: none;
   text-decoration: none;
-  color: inherit;
+  color: #494D55;
   cursor: pointer;
-  margin: 0 calc(-1rem);
-  padding: 0.25rem 1rem;
+  margin: 0;
+  padding: 8px;
   -webkit-transition: 125ms background;
   transition: 125ms background;
   outline: none;
@@ -107,24 +98,23 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   -moz-appearance: none;
   appearance: none;
   border: 0;
+  border-radius: 8px;
   font: inherit;
+  font-size: 14px;
   text-align: left;
+  position: relative;
 }
 
-.c4 + .c6 {
-  margin-top: 1rem;
-}
-
-.c4:hover,
-.c4:focus {
+.c2:hover,
+.c2:focus {
   color: inherit;
   background: #F8F8F9;
 }
 
-.c5 {
-  background: #F8F8F9;
-  padding: 0.75rem 1rem;
+.c3 {
+  padding: 16px;
   border-radius: 0 0 8px 8px;
+  border-top: 1px solid #E8E9EA;
 }
 
 <div>
@@ -153,19 +143,19 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
         width="auto"
       >
         <header
-          class="re-dropdown-header c1"
+          class="re-dropdown-header "
         >
           <div
-            class="re-dropdown-header-inner c2"
+            class="re-dropdown-header-inner c1"
           >
             Header
           </div>
         </header>
         <div
-          class="re-box re-dropdown-body c3"
+          class="re-box re-dropdown-body "
         >
           <div
-            class="re-box re-dropdown-item c4"
+            class="re-box re-dropdown-item c2"
             data-testid="item-one"
             role="button"
             tabindex="0"
@@ -173,7 +163,7 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
             One
           </div>
           <div
-            class="re-box re-dropdown-item c4"
+            class="re-box re-dropdown-item c2"
             data-testid="item-two"
             role="button"
             tabindex="0"
@@ -182,7 +172,7 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
           </div>
         </div>
         <footer
-          class="re-box re-dropdown-footer c5"
+          class="re-box re-dropdown-footer c3"
         >
           Footer
         </footer>
