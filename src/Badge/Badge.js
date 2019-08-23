@@ -12,7 +12,9 @@ const StyledBadge = createComponent({
     const sizeStyles = getComponentSize(theme, 'Badge', size);
 
     return css`
-      font-family: inherit;
+      padding: 4px 8px;
+      font-size: ${theme.fontSizes[size]}px;
+      font-family: ${theme.typography.fontFamily || 'inherit'};
       font-weight: bold;
 
       ${variantStyles};
@@ -31,7 +33,7 @@ Badge.propTypes = {
 
 Badge.defaultProps = {
   variant: 'info',
-  size: 'md',
+  size: 'sm',
 };
 
 export default Badge;
