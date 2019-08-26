@@ -13,7 +13,7 @@ const StyledRadioGroup = createComponent({
   as: Box,
 });
 
-class RadioGroup extends Component {
+export class RadioGroup extends Component {
   static propTypes = {
     name: PropTypes.string,
     onChange: PropTypes.func,

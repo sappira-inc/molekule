@@ -75,45 +75,7 @@ const validateValueProp = (props, propName, componentName) => {
   return null;
 };
 
-class Input extends Component {
-  static propTypes = {
-    value: validateValueProp,
-    type: PropTypes.string,
-    disabled: PropTypes.bool,
-    placeholder: PropTypes.string,
-    multiline: PropTypes.bool,
-    label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-    onFocus: PropTypes.func,
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    minRows: PropTypes.number,
-    rows: PropTypes.number,
-    maxRows: PropTypes.number,
-    rowHeight: PropTypes.number,
-    lineHeight: PropTypes.number,
-    autogrow: PropTypes.bool,
-    size: PropTypes.string,
-    floating: PropTypes.bool,
-    forwardedRef: PropTypes.oneOfType([PropTypes.shape(), PropTypes.func]),
-  };
-
-  static defaultProps = {
-    type: 'text',
-    multiline: false,
-    minRows: 2,
-    rows: 3,
-    maxRows: 6,
-    rowHeight: 14,
-    lineHeight: 1.5,
-    autogrow: false,
-    disabled: false,
-    size: 'md',
-    onFocus() {},
-    onBlur() {},
-    onChange() {},
-    floating: false,
-  };
-
+export class Input extends Component {
   static getDerivedStateFromProps(props, state) {
     if (props.value !== undefined && props.value !== state.value) {
       return {
@@ -281,5 +243,43 @@ class Input extends Component {
     );
   }
 }
+
+Input.propTypes = {
+  value: validateValueProp,
+  type: PropTypes.string,
+  disabled: PropTypes.bool,
+  placeholder: PropTypes.string,
+  multiline: PropTypes.bool,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  onChange: PropTypes.func,
+  minRows: PropTypes.number,
+  rows: PropTypes.number,
+  maxRows: PropTypes.number,
+  rowHeight: PropTypes.number,
+  lineHeight: PropTypes.number,
+  autogrow: PropTypes.bool,
+  size: PropTypes.string,
+  floating: PropTypes.bool,
+  forwardedRef: PropTypes.oneOfType([PropTypes.shape(), PropTypes.func]),
+};
+
+Input.defaultProps = {
+  type: 'text',
+  multiline: false,
+  minRows: 2,
+  rows: 3,
+  maxRows: 6,
+  rowHeight: 14,
+  lineHeight: 1.5,
+  autogrow: false,
+  disabled: false,
+  size: 'md',
+  onFocus() {},
+  onBlur() {},
+  onChange() {},
+  floating: false,
+};
 
 export default createEasyInput(Input);

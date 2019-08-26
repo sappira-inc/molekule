@@ -1,20 +1,15 @@
 import React from 'react';
-import Box from '../Box';
+import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { createComponent } from '../utils';
 
 const Legend = createComponent({
   name: 'Legend',
   tag: 'legend',
-  style: ({
-    theme,
-    color = theme.colors.primary,
-  }) => css`
+  style: ({ theme, color = theme.colors.primary }) => css`
     font-weight: 700;
     margin-bottom: 1rem;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.25px;
+    font-size: 14px;
     color: ${color};
   `,
 });
@@ -37,5 +32,8 @@ const Fieldset = ({ legend, children }) => (
   </Container>
 );
 
-export default Fieldset;
+Fieldset.propTypes = {
+  legend: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+};
 
+export default Fieldset;

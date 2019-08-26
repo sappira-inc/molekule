@@ -1,9 +1,10 @@
+import React from 'react';
 import { css } from 'styled-components';
 import { flexWrap, flexDirection, alignSelf, alignItems, justifyContent } from 'styled-system';
 import Box from '../Box';
 import { createComponent } from '../utils';
 
-const Flex = createComponent({
+const BaseFlex = createComponent({
   name: 'Flex',
   as: Box,
   style: () => css`
@@ -16,6 +17,10 @@ const Flex = createComponent({
     ${justifyContent};
   `,
 });
+
+/** Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive flexbox utilities. For more complex implementations, custom CSS may be necessary.
+ */
+const Flex = props => <BaseFlex {...props} />;
 
 Flex.displayName = 'Flex';
 

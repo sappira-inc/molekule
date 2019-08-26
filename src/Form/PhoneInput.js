@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { AsYouType, isSupportedCountry, getCountryCallingCode, parseDigits } from 'libphonenumber-js/min';
 import examplePhoneNumbers from 'libphonenumber-js/examples.mobile.json';
-import Input from './Input';
+import { Input } from './Input';
 import { createEasyInput } from './EasyInput';
 import { getNextCursorPosition } from '../utils';
 
@@ -13,7 +13,7 @@ export const getRawMaxLength = (countryCode, value) => {
   return beginsWithCountryCode ? countryCallingCode.length + examplePhoneNumber.length : examplePhoneNumber.length;
 };
 
-function PhoneInput({ countryCode, forwardedRef, value: propValue, onKeyDown, onChange, ...inputProps }) {
+export function PhoneInput({ countryCode, forwardedRef, value: propValue, onKeyDown, onChange, ...inputProps }) {
   const countryCodeSupported = isSupportedCountry(countryCode);
   if (!countryCodeSupported) {
     throw new Error(`${countryCode} is not supported`);

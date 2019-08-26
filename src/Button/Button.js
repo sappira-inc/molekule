@@ -95,6 +95,7 @@ const StyledButton = createComponent({
 
 const renderIcon = (icon, props) => <Icon name={icon} {...props} />;
 
+/** JSDoc description from the component; visible in 4.0.8 but not in 4.0.9. */
 const Button = React.forwardRef(({ children, leftIcon, leftIconProps, rightIcon, rightIconProps, ...rest }, ref) => (
   <StyledButton ref={ref} hasText={!!children} leftIcon={leftIcon} rightIcon={rightIcon} {...rest}>
     <Flex alignItems="center">

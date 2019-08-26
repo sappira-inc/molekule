@@ -33,7 +33,9 @@ const Container = ({ gutter, children, ...rest }) => (
 );
 
 Container.propTypes = {
+  maxWidth: PropTypes.number,
   gutter: PropTypes.number,
+  fluid: PropTypes.bool,
 };
 
 export default Container;

@@ -84,7 +84,7 @@ export default class Accordion extends Component {
     /**
      * An array of AccordionItems
      */
-    items: PropTypes.arrayOf(PropTypes.shape(AccordionItemProps)),
+    items: PropTypes.arrayOf(PropTypes.shape(AccordionItemProps)).isRequired,
 
     /**
      * Only one accordion cell open at a time
@@ -94,7 +94,7 @@ export default class Accordion extends Component {
     /**
      * Style passed to content container box
      */
-    contentContainerStyle: PropTypes.object,
+    contentContainerStyle: PropTypes.shape(),
   };
 
   static Item = AccordionItem;

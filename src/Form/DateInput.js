@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import DateFormatter from 'cleave.js/src/shortcuts/DateFormatter';
-import Input from './Input';
+import { Input } from './Input';
 import { createEasyInput } from './EasyInput';
 import { getNextCursorPosition } from '../utils';
 
@@ -34,7 +34,7 @@ const formatDate = (pattern, delimiter, dateString = '') => {
   }, '');
 };
 
-function DateInput({
+export function DateInput({
   delimiter,
   pattern,
   forwardedRef,
@@ -101,6 +101,7 @@ DateInput.propTypes = {
 };
 
 DateInput.defaultProps = {
+  ...Input.defaultProps,
   pattern: ['m', 'd', 'Y'],
   delimiter: '/',
 };

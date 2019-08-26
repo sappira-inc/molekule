@@ -45,7 +45,7 @@ const StyledLabel = createComponent({
   `,
 });
 
-class Checkbox extends React.Component {
+export class Checkbox extends React.Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -68,11 +68,11 @@ class Checkbox extends React.Component {
   static defaultProps = {
     iconOn: 'checkbox-marked',
     iconOff: 'checkbox-blank-outline',
+    iconSize: 24,
     valueTrue: true,
     valueFalse: false,
     colorOn: 'primary',
     colorOff: 'greyDark',
-    iconSize: 18,
     horizontal: false,
     onChange() {},
     disabled: false,
@@ -144,7 +144,11 @@ class Checkbox extends React.Component {
         <Flex alignItems="center">
           <StyledIcon size={iconSize} color={checked ? colorOn : colorOff} name={checked ? iconOn : iconOff} />
 
-          {label && <StyledLabel fontSize={fontSize} style={styles.Label}>{label}</StyledLabel>}
+          {label && (
+            <StyledLabel fontSize={fontSize} style={styles.Label}>
+              {label}
+            </StyledLabel>
+          )}
         </Flex>
 
         {!this.state.focused && error ? <FormError>{error}</FormError> : null}

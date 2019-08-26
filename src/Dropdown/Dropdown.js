@@ -37,6 +37,7 @@ const Trigger = createComponent({
   `,
 });
 
+/** Easily display contextual overlays using custom trigger elements. Dropdowns positioning system uses [Popper.js](https://github.com/FezVrasta/popper.js). Refer to their documentation for placement and option overrides. */
 export default function Dropdown({
   autoclose,
   placement,
