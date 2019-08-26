@@ -12,9 +12,7 @@ const StyledBadge = createComponent({
     const sizeStyles = getComponentSize(theme, 'Badge', size);
 
     return css`
-      padding: 4px 8px;
-      font-size: ${theme.fontSizes[size]}px;
-      font-family: ${theme.typography.fontFamily || 'inherit'};
+      font-family: 'inherit';
       font-weight: bold;
 
       ${variantStyles};
