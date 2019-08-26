@@ -289,7 +289,9 @@ Dropdown.Section = createComponent({
   name: 'DropdownSection',
   as: 'div',
   style: ({ theme }) => css`
-    padding: 16px 0 8px 8px;
+    padding: 16px 8px 8px 8px;
+    display: flex;
+    flex-direction: column;
 
     &:not(:last-of-type) {
       border-bottom: 1px solid ${theme.colors.greyLight};
@@ -316,7 +318,7 @@ const StyledDropdownItem = createComponent({
   as: Box,
   style: ({ disabled, theme, icon, iconSize }) => css`
     display: block;
-    width: calc(100% - 8px);
+    flex: 1;
     opacity: ${disabled ? 0.3 : 1};
     pointer-events: ${disabled ? 'none' : 'initial'};
     user-select: ${disabled ? 'none' : 'initial'};
