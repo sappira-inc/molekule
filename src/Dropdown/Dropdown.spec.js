@@ -1,7 +1,6 @@
 import React from 'react';
-import { renderWithTheme, fireEvent, wait, waitForDomChange } from '../../test/utils';
+import { renderWithTheme, fireEvent, wait } from '../../test/utils';
 import Dropdown from './Dropdown';
-import Button from '../Button';
 
 jest.mock('popper.js', () => {
   const PopperJS = jest.requireActual('popper.js');
@@ -25,7 +24,7 @@ describe('<Dropdown />', () => {
     const wrapper = document.createElement('div');
     wrapper.setAttribute('tabindex', 1);
     const utils = renderWithTheme(
-      <Dropdown {...props} portalNode={wrapper} trigger={<Button>Trigger</Button>}>
+      <Dropdown {...props} portalNode={wrapper} trigger={<div>Trigger</div>}>
         <Dropdown.Header>Header</Dropdown.Header>
         <Dropdown.Body>
           <Dropdown.Item data-testid="item-one">One</Dropdown.Item>
@@ -81,18 +80,12 @@ describe('<Dropdown />', () => {
   });
 
   test('closes when menu loses focus', async () => {
-    // Swallowing an annoying warning with act that's okay to ignore: https://github.com/facebook/react/issues/14769
-    const ogError = console.error;
-    console.error = _ => _;
-
     await openDropdown();
 
     // Some issues with fireEvent.focus: https://github.com/kentcdodds/react-testing-library/issues/276#issuecomment-473392827
     renderUtils.wrapper.focus();
 
     await assertDropdownClosed();
-
-    console.error = ogError;
   });
 
   test('arrow keys navigate to focusable elements', async () => {
