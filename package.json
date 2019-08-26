@@ -19,15 +19,13 @@
     "watch": "yarn rollup --watch",
     "build": "npm-run-all clean rollup",
     "docs": "yarn docz dev",
-    "docs:build": "rimraf dist && yarn docz build",
-    "docs:deploy": "npm run docs:build && gh-pages -d dist",
+    "docs:build": "rimraf dist && build-storybook -o dist",
     "prepublishOnly": "npm-run-all build",
     "rollup": "rollup -c",
     "test": "jest",
     "lint": "eslint src",
     "release": "standard-version",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook -p 6006"
   },
   "dependencies": {
     "cleave.js": "~1.4.10",
