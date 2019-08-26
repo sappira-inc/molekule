@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { AsYouType, isSupportedCountry, getCountryCallingCode, parseDigits } from 'libphonenumber-js/min';
 import examplePhoneNumbers from 'libphonenumber-js/examples.mobile.json';
-import { Input } from './Input';
+import Input from './Input';
 import { createEasyInput } from './EasyInput';
 import { getNextCursorPosition } from '../utils';
 

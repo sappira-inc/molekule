@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import DateFormatter from 'cleave.js/src/shortcuts/DateFormatter';
-import { Input } from './Input';
+import Input from './Input';
 import { createEasyInput } from './EasyInput';
 import { getNextCursorPosition } from '../utils';
 
