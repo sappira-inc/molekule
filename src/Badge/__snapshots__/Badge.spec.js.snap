@@ -3,7 +3,7 @@
 exports[`Badge 1`] = `
 <DocumentFragment>
   .c0 {
-  font-family: 'inherit';
+  font-family: inherit;
   font-weight: bold;
   background-color: #CADCFF;
   color: #0958F3;
