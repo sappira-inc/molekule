@@ -73,7 +73,8 @@ const ModalContent = createComponent({
   `,
 });
 
-function Modal({ children, title, animationDuration, showClose, onClose, open, ...props }) {
+/** Modals are a great way to add dialogs to your site for lightboxes, user notifications, or completely custom content. */
+export function Modal({ children, title, animationDuration, showClose, onClose, open, ...props }) {
   const [isOpen, setOpen] = useState(open);
 
   const handleClose = () => {
