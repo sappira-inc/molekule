@@ -19,7 +19,7 @@
     "watch": "yarn rollup --watch",
     "build": "npm-run-all clean rollup",
     "docs": "yarn docz dev",
-    "docs:build": "rimraf dist && yarn docz build",
+    "docs:build": "rimraf dist && docz build",
     "docs:deploy": "npm run docs:build && gh-pages -d dist",
     "prepublishOnly": "npm-run-all build",
     "rollup": "rollup -c",
