@@ -325,7 +325,7 @@ export class Input extends Component {
         isFloatable={floating}
         isFloating={isFloating}
         isFocused={focused}
-        isDisabled={this.props.disabled}
+        isDisabled={disabled}
         error={error}>
         {label}
       </StyledLabel>
