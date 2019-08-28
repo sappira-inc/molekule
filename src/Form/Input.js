@@ -43,13 +43,17 @@ const StyledInput = createComponent({
     }
 
     ::placeholder {
-      color: ${theme.colors.grey};
+      color: ${theme.colors.greyDarker};
     }
 
     &[disabled] {
       background-color: ${theme.colors.white};
       border-color: ${theme.colors.greyLight};
       color: ${theme.colors.grey};
+
+      ::placeholder {
+        color: ${theme.colors.grey};
+      }
     }
 
     ${isFloating &&
