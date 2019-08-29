@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { keyframes, css } from 'styled-components';
 import * as animations from 'react-animations';
@@ -80,6 +80,8 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, .
     onClose();
   };
 
+  const handleContentClick = event => event.stopPropagation();
+
   const handleBackdropClick = () => {
     if (!props.closeOnBackdropClick) return;
 
@@ -99,7 +101,7 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, .
           {state => (
             <FocusOn onEscapeKey={handleClose} enabled={isOpen}>
               <Backdrop transitionState={state} onClick={handleBackdropClick}>
-                <ModalContent transitionState={state} {...props}>
+                <ModalContent transitionState={state} onClick={handleContentClick} {...props}>
                   {title && <Modal.Header title={title} showClose={showClose} />}
                   {children}
                 </ModalContent>
