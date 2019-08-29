@@ -265,14 +265,14 @@ export default (overrides = {}) => {
       },
       Badge: {
         sm: {
-          fontSize: 12,
-          borderRadius: 12,
+          fontSize: 10,
+          borderRadius: 10,
           padding: '4px 8px',
         },
         md: {
-          fontSize: 14,
-          borderRadius: 14,
-          padding: '5px 10px',
+          fontSize: 12,
+          borderRadius: 12,
+          padding: '4px 8px',
         },
         lg: {
           fontSize: 16,

@@ -31,7 +31,7 @@ Badge.propTypes = {
 
 Badge.defaultProps = {
   variant: 'info',
-  size: 'sm',
+  size: 'md',
 };
 
 export default Badge;
