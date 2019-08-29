@@ -8,7 +8,7 @@ const Icon = createComponent({
   props: ({ name }) => ({
     className: Icon.getClassName(name),
   }),
-  style: ({ theme, size, color, disabled }) => {
+  style: ({ theme, size, color, disabled, onClick }) => {
     const colorFromTheme = theme.colors[color];
     const resolvedColor = colorFromTheme || color;
 
@@ -21,6 +21,11 @@ const Icon = createComponent({
           pointer-events: none;
           opacity: 0.65;
         `};
+
+      ${onClick &&
+        css`
+          cursor: pointer;
+        `}
     `;
   },
 });
@@ -29,6 +34,7 @@ Icon.propTypes = {
   name: PropTypes.string.isRequired,
   size: PropTypes.number,
   color: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 Icon.iconPrefix = 'mdi';

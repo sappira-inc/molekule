@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import { keyframes, css } from 'styled-components';
 import * as animations from 'react-animations';
 import { Transition } from 'react-transition-group';
-import FocusLock from 'react-focus-lock';
+import { FocusOn } from 'react-focus-on';
 import Portal from '../Portal';
 import Flex from '../Flex';
 import Box from '../Box';
 import Icon from '../Icon';
-import { useKeyPress } from '../hooks';
 import { createComponent, themeGet } from '../utils';
 
 const ModalContext = createContext({});
@@ -25,11 +24,11 @@ const Backdrop = createComponent({
     z-index: 1000;
     padding: 1rem;
     display: flex;
-    align-items: center;
     position: fixed;
+    align-items: center;
     overflow-y: auto;
     overflow-x: hidden;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.4);
     justify-content: center;
 
     ${transitionState === 'exited' &&
@@ -89,11 +88,6 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, .
     handleClose();
   };
 
-  useKeyPress('Escape', () => {
-    if (!isOpen || !props.closeOnEscape) return;
-    handleClose();
-  });
-
   useEffect(() => {
     if (open !== isOpen) {
       setOpen(open);
@@ -105,14 +99,14 @@ function Modal({ children, title, animationDuration, showClose, onClose, open, .
       <Portal>
         <Transition in={isOpen} timeout={animationDuration}>
           {state => (
-            <Backdrop transitionState={state} onClick={handleBackdropClick}>
-              <FocusLock lockProps={{ style: { maxHeight: '100%' } }} disabled={!isOpen}>
+            <FocusOn onEscapeKey={handleClose} enabled={isOpen}>
+              <Backdrop transitionState={state} onClick={handleBackdropClick}>
                 <ModalContent transitionState={state} onClick={handleContentClick} {...props}>
                   {title && <Modal.Header title={title} showClose={showClose} />}
                   {children}
                 </ModalContent>
-              </FocusLock>
-            </Backdrop>
+              </Backdrop>
+            </FocusOn>
           )}
         </Transition>
       </Portal>
@@ -138,8 +132,8 @@ Modal.defaultProps = {
   showClose: true,
   closeOnBackdropClick: true,
   closeOnEscape: true,
-  minWidth: 250,
-  maxWidth: 768,
+  minWidth: 350,
+  maxWidth: 350,
   animationIn: 'zoomIn',
   animationOut: 'zoomOut',
   animationDuration: 175,
@@ -150,7 +144,6 @@ Modal.Title = createComponent({
   name: 'ModalTitle',
   tag: 'h2',
   style: css`
-    font-size: 1.25rem;
     margin: 0;
   `,
 });
@@ -158,7 +151,6 @@ Modal.Title = createComponent({
 const ModalHeader = createComponent({
   name: 'ModalHeader',
   style: css`
-    font-size: 1.5rem;
     padding: 1rem 1.25rem 0;
     border-top-left-radius: ${themeGet('radius')}px;
     border-top-right-radius: ${themeGet('radius')}px;
@@ -185,7 +177,7 @@ Modal.Header = ({ title, children, showClose = true }) => {
 
           {showClose && (
             <Box ml="auto">
-              <Icon name="close" color="greyDark" style={{ cursor: 'pointer' }} onClick={handleClose} />
+              <Icon name="close" color="greyDark" style={{ cursor: 'pointer' }} size={24} onClick={handleClose} />
             </Box>
           )}
         </Flex>

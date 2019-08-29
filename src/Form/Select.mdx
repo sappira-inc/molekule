@@ -23,19 +23,3 @@ Form select component. Different sizes are available.
     return <Select id="select" name="select" options={selectValues} label="Example" />
   }}
 </Playground>
-
-### Sizes
-<Playground>
-  {() => {
-    const selectValues = [{ id: 1, value: 'male', label: 'Male' }, { id: 1, value: 'female', label: 'Female' }];
-    return (
-      <React.Fragment>
-        <Select id="select" name="select" size="xs" options={selectValues} label="Example" />
-        <Select id="select" name="select" size="sm" options={selectValues} label="Example" />
-        <Select id="select" name="select" size="md" options={selectValues} label="Example" />
-        <Select id="select" name="select" size="lg" options={selectValues} label="Example" />
-        <Select id="select" name="select" size="xl" options={selectValues} label="Example" />
-      </React.Fragment>
-    )
-  }}
-</Playground>
