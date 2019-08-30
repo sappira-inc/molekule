@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.1.7"></a>
+## [4.1.7](https://github.com/sappira-inc/molekule/compare/v4.1.6...v4.1.7) (2019-08-21)
+
+
+### Bug Fixes
+
+* **FormBot:** Remove validation chaining for async validations ([#65](https://github.com/sappira-inc/molekule/issues/65)) ([fff8c25](https://github.com/sappira-inc/molekule/commit/fff8c25))
+
+
+
 <a name="4.1.6"></a>
 ## [4.1.6](https://github.com/heydoctor/molekule/compare/v4.1.5...v4.1.6) (2019-08-15)
 

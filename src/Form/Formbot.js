@@ -143,44 +143,39 @@ export default class Formbot extends React.Component {
       }
 
       const fieldValue = this.state.values[field];
-      let errorMsg;
 
-      if (hasSchema && typeof validation.validate === 'function') {
-        validation
-          .validate(fieldValue, validationOpts)
-          .catch(e => {
-            errorMsg = e.message;
-          })
-          .finally(() => {
-            this.updateField(field, { validated: true }).then(() => {
-              this.setErrors({ [field]: errorMsg }, resolve);
-            });
-          });
-
-        return;
-      }
-
-      try {
-        if (typeof validation === 'function') {
-          validation(fieldValue);
-        } else {
-          Object.keys(validation).forEach(method => {
-            const validator = VALIDATIONS[method];
-
-            if (!validator) {
-              throw new Error(`Formbot: "${method}" is not a built-in validator.`);
-            }
-
-            validator(fieldValue, validation[method]);
-          });
-        }
-      } catch (err) {
-        errorMsg = err.message;
-      } finally {
+      const setFieldValidated = message => {
         this.updateField(field, { validated: true }).then(() => {
-          this.setErrors({ [field]: errorMsg }, resolve);
+          this.setErrors({ [field]: message }, resolve);
         });
-      }
+      };
+
+      Promise.resolve()
+        .then(() => {
+          if (hasSchema && typeof validation.validate === 'function') {
+            return validation.validate(fieldValue, validationOpts);
+          } else if (typeof validation === 'function') {
+            validation(fieldValue);
+          } else {
+            Object.keys(validation).forEach(method => {
+              const validator = VALIDATIONS[method];
+
+              if (!validator) {
+                throw new Error(`Formbot: "${method}" is not a built-in validator.`);
+              }
+
+              validator(fieldValue, validation[method]);
+            });
+          }
+
+          return true;
+        })
+        .then(() => {
+          setFieldValidated();
+        })
+        .catch(err => {
+          setFieldValidated(err.message);
+        });
     });
   }
 
