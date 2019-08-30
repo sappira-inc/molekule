@@ -2,9 +2,9 @@ import React from 'react';
 import { configure, addDecorator,addParameters } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
 import { withKnobs } from '@storybook/addon-knobs';
-import { themes } from '@storybook/theming';
 import { createGlobalStyle } from 'styled-components';
 import { ThemeProvider } from '../src';
+import theme from './theme';
 
 const GlobalStyle = createGlobalStyle`
     @font-face {
@@ -26,11 +26,12 @@ const GlobalStyle = createGlobalStyle`
 
 addParameters({
   options: {
-    theme: themes.light,
+    theme,
     panelPosition: 'right'
   },
 });
-addDecorator(withKnobs)
+
+addDecorator(withKnobs);
 addDecorator(withA11y);
 addDecorator(story => (
   <ThemeProvider>
@@ -40,7 +41,6 @@ addDecorator(story => (
     </>
   </ThemeProvider>
 ));
-
 
 // automatically import all files ending in *.stories.js
 configure(
