@@ -18,7 +18,7 @@ exports[`<DateInput /> snapshot 1`] = `
 
 .c3 {
   border: 1px solid #E8E9EA;
-  height: 32px;
+  height: 48px;
   display: block;
   outline: none;
   width: 100%;
@@ -28,33 +28,56 @@ exports[`<DateInput /> snapshot 1`] = `
   transition: 250ms all;
   -webkit-appearance: none;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 12px;
+  color: #494D55;
+  box-sizing: border-box;
 }
 
 .c3:hover,
-.c3:focus,
 .c3:active {
   border-color: #A4A6AA;
 }
 
+.c3:focus {
+  border-color: #226EFF;
+}
+
 .c3::-webkit-input-placeholder {
-  color: #A4A6AA;
+  color: #767980;
 }
 
 .c3::-moz-placeholder {
-  color: #A4A6AA;
+  color: #767980;
 }
 
 .c3:-ms-input-placeholder {
-  color: #A4A6AA;
+  color: #767980;
 }
 
 .c3::placeholder {
-  color: #A4A6AA;
+  color: #767980;
 }
 
 .c3[disabled] {
-  opacity: 0.65;
+  background-color: #FFFFFF;
+  border-color: #E8E9EA;
+  color: #D1D2D5;
+}
+
+.c3[disabled]::-webkit-input-placeholder {
+  color: #D1D2D5;
+}
+
+.c3[disabled]::-moz-placeholder {
+  color: #D1D2D5;
+}
+
+.c3[disabled]:-ms-input-placeholder {
+  color: #D1D2D5;
+}
+
+.c3[disabled]::placeholder {
+  color: #D1D2D5;
 }
 
 <div

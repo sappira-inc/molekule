@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import FocusTrap from 'react-focus-lock';
+import { FocusOn } from 'react-focus-on';
 import { Transition } from 'react-transition-group';
 import { Manager, Reference, Popper } from 'react-popper';
 import { css, keyframes } from 'styled-components';
@@ -154,7 +154,7 @@ export default function Dropdown({
               {({ ref, style }) => (
                 <Transition in={isOpen} timeout={0} appear>
                   {state => (
-                    <FocusTrap autoFocus={false}>
+                    <FocusOn enabled={isOpen} autoFocus={false}>
                       <DropdownMenu
                         ref={menuInner => {
                           menuRef.current = menuInner;
@@ -172,7 +172,7 @@ export default function Dropdown({
                             })
                           : renderer}
                       </DropdownMenu>
-                    </FocusTrap>
+                    </FocusOn>
                   )}
                 </Transition>
               )}

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import Field from './Field';
 import StyledLabel from './Label';
 import FormError from './FormError';
 import { createEasyInput } from './EasyInput';
-import { createComponent } from '../utils';
+import Icon from '../Icon';
+import { themeGet, createComponent } from '../utils';
 
 const InputContainer = createComponent({
   name: 'InputContainer',
@@ -17,9 +18,17 @@ const InputContainer = createComponent({
 const StyledInput = createComponent({
   name: 'Input',
   tag: 'input',
-  style: ({ isFloating, size, theme, borderRadius = theme.radius }) => css`
+  style: ({
+    isFloating,
+    theme,
+    borderRadius = theme.radius,
+    leftIcon,
+    rightIcon,
+    leftIconProps,
+    rightIconProps,
+  }) => css`
     border: 1px solid ${theme.colors.greyLight};
-    height: ${theme.heights[size]}px;
+    height: 48px;
     display: block;
     outline: none;
     width: 100%;
@@ -28,26 +37,71 @@ const StyledInput = createComponent({
     transition: 250ms all;
     -webkit-appearance: none;
     font-family: inherit;
-    font-size: ${theme.fontSizes[size]}px;
+    font-size: ${themeGet('typography.fontSize')}px;
+    color: ${theme.colors.greyDarkest};
+    box-sizing: border-box;
 
     &:hover,
-    &:focus,
     &:active {
       border-color: ${theme.colors.greyDark};
     }
 
+    &:focus {
+      border-color: ${theme.colors.primary};
+    }
+
     ::placeholder {
-      color: ${theme.colors.greyDark};
+      color: ${theme.colors.greyDarker};
     }
 
     &[disabled] {
-      opacity: 0.65;
+      background-color: ${theme.colors.white};
+      border-color: ${theme.colors.greyLight};
+      color: ${theme.colors.grey};
+
+      ::placeholder {
+        color: ${theme.colors.grey};
+      }
     }
 
     ${isFloating &&
       css`
-        padding-bottom: 0;
+        line-height: 14px;
+        padding-top: 14px;
+        padding-bottom: 0px;
       `};
+
+    ${leftIcon &&
+      css`
+        padding-left: ${(leftIconProps.size || 16) + 12}px;
+      `};
+
+    ${rightIcon &&
+      css`
+        padding-right: ${(rightIconProps.size || 16) + 32}px;
+      `};
+  `,
+});
+
+const StyledIcon = styled(Icon)`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+`;
+
+const LeftIcon = createComponent({
+  name: 'InputLeftIcon',
+  as: StyledIcon,
+  style: css`
+    left: 8px;
+  `,
+});
+
+const RightIcon = createComponent({
+  name: 'InputRightIcon',
+  as: StyledIcon,
+  style: css`
+    right: 8px;
   `,
 });
 
@@ -76,6 +130,50 @@ const validateValueProp = (props, propName, componentName) => {
 };
 
 export class Input extends Component {
+  static propTypes = {
+    value: validateValueProp,
+    type: PropTypes.string,
+    disabled: PropTypes.bool,
+    placeholder: PropTypes.string,
+    multiline: PropTypes.bool,
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    minRows: PropTypes.number,
+    rows: PropTypes.number,
+    maxRows: PropTypes.number,
+    rowHeight: PropTypes.number,
+    lineHeight: PropTypes.number,
+    autogrow: PropTypes.bool,
+    size: PropTypes.string,
+    floating: PropTypes.bool,
+    forwardedRef: PropTypes.oneOfType([PropTypes.shape(), PropTypes.func]),
+    leftIcon: PropTypes.string,
+    leftIconProps: PropTypes.shape(),
+    rightIcon: PropTypes.string,
+    rightIconProps: PropTypes.shape(),
+  };
+
+  static defaultProps = {
+    type: 'text',
+    multiline: false,
+    minRows: 2,
+    rows: 3,
+    maxRows: 6,
+    rowHeight: 14,
+    lineHeight: 1.5,
+    autogrow: false,
+    disabled: false,
+    size: 'md',
+    onFocus() {},
+    onBlur() {},
+    onChange() {},
+    floating: false,
+    leftIconProps: {},
+    rightIconProps: {},
+  };
+
   static getDerivedStateFromProps(props, state) {
     if (props.value !== undefined && props.value !== state.value) {
       return {
@@ -195,33 +293,52 @@ export class Input extends Component {
       autofocus,
       id,
       error,
-      value,
       floating,
       placeholder,
       transformOnBlur,
       size,
+      leftIcon,
+      leftIconProps,
+      rightIcon,
+      rightIconProps,
+      disabled,
       ...rest
     } = this.props;
 
-    const isFloating = floating && value != undefined && `${value}`.trim();
+    const { focused, height, value } = this.state;
+
+    const isFloating = floating && value !== undefined && `${value}`.trim();
 
     const inputProps = {
       ...rest,
       id,
       ref: this.ref,
       size,
-      value: this.state.value,
+      value,
       onChange: this.onChange,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
-      style: multiline ? { ...style, height: this.state.height } : style,
+      style: multiline ? { ...style, height } : style,
       placeholder,
       isFloatable: floating,
       isFloating,
+      error,
+      leftIcon,
+      leftIconProps,
+      rightIcon,
+      rightIconProps,
+      disabled,
     };
 
     const Label = label ? (
-      <StyledLabel htmlFor={id} styles={rest.styles} size={size} isFloatable={floating} isFloating={isFloating}>
+      <StyledLabel
+        htmlFor={id}
+        styles={rest.styles}
+        isFloatable={floating}
+        isFloating={isFloating}
+        isFocused={focused}
+        isDisabled={disabled}
+        error={error}>
         {label}
       </StyledLabel>
     ) : null;
@@ -233,53 +350,19 @@ export class Input extends Component {
         <InputContainer styles={rest.styles}>
           {floating && Label}
 
+          {leftIcon && <LeftIcon styles={rest.styles} name={leftIcon} {...leftIconProps} />}
+
+          {rightIcon && <RightIcon styles={rest.styles} name={rightIcon} {...rightIconProps} />}
+
           {multiline ? <StyledTextArea {...inputProps} /> : <StyledInput {...inputProps} />}
         </InputContainer>
 
         {autogrow && <AutogrowShadow ref={this.handleAutogrowRef} />}
 
-        {!this.state.focused && error ? <FormError styles={rest.styles}>{error}</FormError> : null}
+        {!focused && error ? <FormError styles={rest.styles}>{error}</FormError> : null}
       </Field>
     );
   }
 }
-
-Input.propTypes = {
-  value: validateValueProp,
-  type: PropTypes.string,
-  disabled: PropTypes.bool,
-  placeholder: PropTypes.string,
-  multiline: PropTypes.bool,
-  label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  onFocus: PropTypes.func,
-  onBlur: PropTypes.func,
-  onChange: PropTypes.func,
-  minRows: PropTypes.number,
-  rows: PropTypes.number,
-  maxRows: PropTypes.number,
-  rowHeight: PropTypes.number,
-  lineHeight: PropTypes.number,
-  autogrow: PropTypes.bool,
-  size: PropTypes.string,
-  floating: PropTypes.bool,
-  forwardedRef: PropTypes.oneOfType([PropTypes.shape(), PropTypes.func]),
-};
-
-Input.defaultProps = {
-  type: 'text',
-  multiline: false,
-  minRows: 2,
-  rows: 3,
-  maxRows: 6,
-  rowHeight: 14,
-  lineHeight: 1.5,
-  autogrow: false,
-  disabled: false,
-  size: 'md',
-  onFocus() {},
-  onBlur() {},
-  onChange() {},
-  floating: false,
-};
 
 export default createEasyInput(Input);
