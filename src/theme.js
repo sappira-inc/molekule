@@ -275,8 +275,8 @@ export default (overrides = {}) => {
           padding: '4px 8px',
         },
         lg: {
-          fontSize: 16,
-          borderRadius: 16,
+          fontSize: 14,
+          borderRadius: 14,
           padding: '6px 12px',
         },
       },
