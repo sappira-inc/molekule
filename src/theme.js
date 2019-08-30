@@ -62,7 +62,7 @@ export default (overrides = {}) => {
   const radii = [0, 2, 4];
 
   const typography = {
-    fontSize: 12,
+    fontSize: 14,
     bodyFontFamily: 'Avenir',
     headerFontFamily: 'Tiempos',
   };
@@ -203,22 +203,6 @@ export default (overrides = {}) => {
 
   const alertVariants = badgeVariants;
 
-  const heights = {
-    xs: 24,
-    sm: 28,
-    md: 32,
-    lg: 40,
-    xl: 48,
-  };
-
-  const fontSizes = {
-    xs: 8,
-    sm: 12,
-    md: 14,
-    lg: 16,
-    xl: 16,
-  };
-
   const breakpoints = [480, 768, 1024, 1440];
 
   const grid = {
@@ -237,9 +221,7 @@ export default (overrides = {}) => {
     breakpoints,
     classPrefix: 're',
     colors,
-    fontSizes,
     grid,
-    heights,
     radii,
     radius: 8,
     shadow,

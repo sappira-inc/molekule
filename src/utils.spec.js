@@ -15,11 +15,6 @@ const MOCK_THEME = {
       background-color: tomato;
     `,
   },
-  fontSizes: {
-    sm: 8,
-    md: 12,
-    lg: 14,
-  },
 };
 
 describe('#utils', () => {

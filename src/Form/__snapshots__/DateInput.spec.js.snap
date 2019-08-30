@@ -28,7 +28,7 @@ exports[`<DateInput /> snapshot 1`] = `
   transition: 250ms all;
   -webkit-appearance: none;
   font-family: inherit;
-  font-size: 12px;
+  font-size: 14px;
   color: #494D55;
   box-sizing: border-box;
 }
