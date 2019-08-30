@@ -37,6 +37,7 @@ const Trigger = createComponent({
   name: 'CollapseTrigger',
 });
 
+/** Collapse is used to show and hide content. Use a button, anchor, or other clickable element as triggers. */
 export default class Collapse extends Component {
   static propTypes = {
     isOpen: PropTypes.bool,

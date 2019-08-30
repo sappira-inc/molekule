@@ -15,6 +15,7 @@ const StyledCard = createComponent({
   `,
 });
 
+/** Cards provide a flexible way to encapsulate content with multiple variants and options. */
 const Card = React.forwardRef((props, ref) => <StyledCard ref={ref} {...props} />);
 
 Card.propTypes = {

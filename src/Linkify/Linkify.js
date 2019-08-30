@@ -23,6 +23,7 @@ const Root = styled.div`
   }
 `;
 
+/** Automatically parse links contained in a body of text. All props except for `linkStyle` are passed through directly to [react-markdown](https://github.com/rexxars/react-markdown), which `Linkify` uses internally. */
 export default function Linkify({ source, linkStyle, renderers, ...props }) {
   if (typeof source !== 'string') {
     throw new Error('Molekule: source prop must be a valid markdown string');

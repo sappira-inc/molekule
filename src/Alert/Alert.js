@@ -28,6 +28,7 @@ const StyledAlert = createComponent({
   },
 });
 
+/** Alerts are typically used to display meaningful copy to users - typically notifying the user of an important message. */
 const Alert = props => <StyledAlert {...props} />;
 
 Alert.propTypes = {
