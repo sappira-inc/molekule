@@ -10,15 +10,15 @@ export const Basic = () => <Badge>Default Badge</Badge>;
 
 export const Variants = () => (
   <>
-    <Badge>I'm Ze Best</Badge>
+    <Badge>Default</Badge>
     <Badge variant="success" ml={2}>
-      I'm So Successful
+      Success
     </Badge>
     <Badge variant="danger" ml={2}>
-      I'm So Dangerous
+      Danger
     </Badge>
     <Badge variant="warning" ml={2}>
-      💁‍♀️ Caution
+      Caution
     </Badge>
   </>
 );
