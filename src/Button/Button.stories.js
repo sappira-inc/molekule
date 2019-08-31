@@ -45,20 +45,19 @@ export const ButtonGroups = () => (
   </Button.Group>
 );
 
-// hi
 export const Sizes = () => (
   <Button.Group>
-    <Button size="sm">I'm Small</Button>
-    <Button>I'm Normal</Button>
-    <Button size="lg">I'm Large</Button>
+    <Button size="sm">Small Button</Button>
+    <Button>Medium Button</Button>
+    <Button size="lg">Large Button</Button>
   </Button.Group>
 );
 
 export const Loading = () => (
   <Button.Group>
-    <Button loading>I'm loading</Button>
+    <Button loading>Loading...</Button>
     <Button loading variant="secondary">
-      I'm loading
+      Loading...
     </Button>
   </Button.Group>
 );
