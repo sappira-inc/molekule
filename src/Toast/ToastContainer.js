@@ -69,7 +69,7 @@ const Toast = createComponent({
 });
 
 /**
-Toast positions will default to `top-center`. To change the positioning, you can either pass the `position` prop to the `<ToastContainer />` to be used as the default. You can also pass the position to each individual toast you're rendering, which will override the default.rendering. */
+Toast positions will default to `top-center`. To change the positioning, you can pass the `position` prop to the `<ToastContainer />` to be used as the default. You can also pass the position to each individual toast you're rendering, which will override the default.rendering. */
 export default class ToastContainer extends Component {
   counter = 0;
   state = {
