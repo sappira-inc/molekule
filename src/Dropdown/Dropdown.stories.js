@@ -64,7 +64,7 @@ export const Basic = () => {
 
               <Dropdown.Section>
                 <Dropdown.SectionTitle>Section Two</Dropdown.SectionTitle>
-                <Dropdown.Item icon="alert-circle">Item One</Dropdown.Item>
+                <Dropdown.Item icon="alert-circle" iconProps={{ size: 16, color: 'primary' }}>Item One</Dropdown.Item>
                 <Dropdown.Item disabled>Item Two</Dropdown.Item>
               </Dropdown.Section>
             </Dropdown.Body>
@@ -72,7 +72,7 @@ export const Basic = () => {
             <Dropdown.Footer>Footer</Dropdown.Footer>
           </Dropdown>
           <Flex mr={3}>
-            <Dropdown width={250} placement="top" trigger={<Icon name="information-outline" />}>
+            <Dropdown width={250} placement="bottom-end" trigger={<Icon name="information-outline" />}>
               <Dropdown.Header title="Dropdown" />
 
               <Dropdown.Body>

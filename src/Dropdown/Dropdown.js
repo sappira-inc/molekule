@@ -316,7 +316,7 @@ const StyledDropdownItem = createComponent({
     role: 'button',
   }),
   as: Box,
-  style: ({ disabled, theme, icon, iconSize }) => css`
+  style: ({ disabled, theme, icon, iconProps }) => css`
     display: block;
     flex: 1;
     opacity: ${disabled ? 0.3 : 1};
@@ -345,7 +345,7 @@ const StyledDropdownItem = createComponent({
 
     ${icon &&
       css`
-        padding-left: ${iconSize + 16}px;
+        padding-left: ${(iconProps.size || 16) + 16}px;
       `}
   `,
 });
@@ -359,15 +359,7 @@ const StyledIcon = createComponent({
   `,
 });
 
-Dropdown.Item = ({
-  closeOnClick = true,
-  onClick,
-  children,
-  icon,
-  iconSize = 16,
-  iconColor = 'greyDarkest',
-  ...props
-}) => {
+Dropdown.Item = ({ closeOnClick = true, onClick, children, icon, iconProps = {}, ...props }) => {
   const { close } = useContext(DropdownContext);
   const handleClick = () => {
     if (closeOnClick) {
@@ -378,8 +370,8 @@ Dropdown.Item = ({
     }
   };
   return (
-    <StyledDropdownItem onClick={handleClick} icon={icon} iconSize={iconSize} {...props}>
-      {icon && <StyledIcon name={icon} size={iconSize} color={iconColor} />}
+    <StyledDropdownItem onClick={handleClick} icon={icon} iconProps={iconProps} {...props}>
+      {icon && <StyledIcon name={icon} {...iconProps} />}
       {children}
     </StyledDropdownItem>
   );
