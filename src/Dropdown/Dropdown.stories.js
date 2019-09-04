@@ -12,7 +12,7 @@ export default {
 
 export const Basic = () => {
   function Example() {
-    const [placement, setPlacement] = useState('top');
+    const [placement, setPlacement] = useState('bottom');
     return (
       <>
         <Flex justifyContent="space-between">
@@ -89,7 +89,7 @@ export const Basic = () => {
 
           <Dropdown
             width={250}
-            placement="top"
+            placement="bottom-start"
             styles={{ Trigger: { display: 'flex', flex: 1 } }}
             trigger={
               <Flex mr={3} flex={1} justifyContent="space-between">
