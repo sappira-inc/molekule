@@ -6,6 +6,7 @@ import { Manager, Reference, Popper } from 'react-popper';
 import { css, keyframes } from 'styled-components';
 import Box from '../Box';
 import Portal from '../Portal';
+import Flex from '../Flex';
 import Icon from '../Icon';
 import { useKeyPress } from '../hooks';
 import { createComponent, themeGet, findNextFocusableElement, findPreviousFocusableElement } from '../utils';
@@ -287,10 +288,9 @@ Dropdown.Body = createComponent({
 
 Dropdown.Section = createComponent({
   name: 'DropdownSection',
-  as: 'div',
+  as: Flex,
   style: ({ theme }) => css`
     padding: 16px 8px 8px 8px;
-    display: flex;
     flex-direction: column;
 
     &:not(:last-of-type) {
@@ -359,7 +359,7 @@ const StyledIcon = createComponent({
   `,
 });
 
-Dropdown.Item = function DropdownItem({
+Dropdown.Item = ({
   closeOnClick = true,
   onClick,
   children,
@@ -367,7 +367,7 @@ Dropdown.Item = function DropdownItem({
   iconSize = 16,
   iconColor = 'greyDarkest',
   ...props
-}) {
+}) => {
   const { close } = useContext(DropdownContext);
   const handleClick = () => {
     if (closeOnClick) {
