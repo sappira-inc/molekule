@@ -334,6 +334,7 @@ const StyledDropdownItem = createComponent({
     border-radius: ${theme.radius}px;
     font: inherit;
     font-size: 14px;
+    font-weight: 500;
     text-align: left;
     position: relative;
 
