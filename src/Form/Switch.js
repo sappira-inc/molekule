@@ -33,6 +33,15 @@ const SwitchThumb = styled.span`
     transition: 0.3s;
     background-color: ${on ? backgroundColor : theme.colors.greyDark};
 
+    &:active::before{
+      width: ${size + inset}px;
+
+      ${on &&
+        css`
+          transform: translateX(${size - inset * 2}px);
+        `}
+    }
+
     &:before {
       border-radius: 100%;
       position: absolute;
@@ -42,7 +51,9 @@ const SwitchThumb = styled.span`
       left: ${inset / 2}px;
       bottom: ${inset / 2}px;
       background-color: white;
-      transition: 0.3s;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1), 0px 4px 4px rgba(0, 0, 0, 0.1), 0px 4px 4px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
       ${on &&
         css`
           transform: translateX(${size - inset}px);
@@ -64,7 +75,7 @@ export class Switch extends React.Component {
     value: false,
     variant: 'primary',
     size: 16,
-    inset: 8,
+    inset: 4,
   };
 
   state = {
