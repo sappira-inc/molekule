@@ -290,7 +290,7 @@ Dropdown.Section = createComponent({
   name: 'DropdownSection',
   as: Flex,
   style: ({ theme }) => css`
-    padding: 16px 8px 8px 8px;
+    padding: 8px;
     flex-direction: column;
 
     &:not(:last-of-type) {
@@ -316,14 +316,14 @@ const StyledDropdownItem = createComponent({
     role: 'button',
   }),
   as: Box,
-  style: ({ disabled, theme, icon, iconProps }) => css`
+  style: ({ disabled, theme, color, icon, iconProps, selected }) => css`
     display: block;
     flex: 1;
     opacity: ${disabled ? 0.3 : 1};
     pointer-events: ${disabled ? 'none' : 'initial'};
     user-select: ${disabled ? 'none' : 'initial'};
     text-decoration: none;
-    color: ${theme.colors.greyDarkest};
+    color: ${color || theme.colors.greyDarkest};
     cursor: pointer;
     margin: 0;
     padding: 8px;
@@ -340,13 +340,22 @@ const StyledDropdownItem = createComponent({
 
     &:hover,
     &:focus {
-      color: inherit;
+      color: ${color || theme.colors.greyDarkest};
       background: ${theme.colors.greyLightest};
     }
 
     ${icon &&
       css`
         padding-left: ${(iconProps.size || 16) + 16}px;
+      `}
+
+    ${selected &&
+      css`
+        color: ${theme.colors.primary};
+
+        &:hover {
+          color: ${theme.colors.primary};
+        }
       `}
   `,
 });
@@ -385,7 +394,7 @@ Dropdown.Footer = createComponent({
     as: 'footer',
   }),
   style: ({ theme }) => css`
-    padding: 16px;
+    padding: 8px;
     border-radius: 0 0 ${themeGet('radius')}px ${themeGet('radius')}px;
     border-top: 1px solid ${theme.colors.greyLight};
   `,
