@@ -103,6 +103,7 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   border-radius: 8px;
   font: inherit;
   font-size: 14px;
+  font-weight: 500;
   text-align: left;
   position: relative;
 }
