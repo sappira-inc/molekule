@@ -33,13 +33,11 @@ export const Basic = () => {
               Basic Dropdown
             </Button>
           }>
-          <Dropdown.Section>
-            <Dropdown.Item>Dropdown Item</Dropdown.Item>
-            <Dropdown.Item>Dropdown Item</Dropdown.Item>
-            <Dropdown.Item>Dropdown Item</Dropdown.Item>
-            <Dropdown.Item>Dropdown Item</Dropdown.Item>
-            <Dropdown.Item color="red">Cancel</Dropdown.Item>
-          </Dropdown.Section>
+          <Dropdown.Item>Dropdown Item</Dropdown.Item>
+          <Dropdown.Item>Dropdown Item</Dropdown.Item>
+          <Dropdown.Item>Dropdown Item</Dropdown.Item>
+          <Dropdown.Item>Dropdown Item</Dropdown.Item>
+          <Dropdown.Item color="red">Cancel</Dropdown.Item>
         </Dropdown>
       </Flex>
     </Flex>
@@ -49,23 +47,17 @@ export const Basic = () => {
 export const WithTitles = () => (
   <Flex>
     <Dropdown placement="bottom-start" width={250} trigger={<Button variant="danger">Dropdown w/Titles</Button>}>
-      <Dropdown.Body>
-        <Dropdown.Section>
-          <Dropdown.SectionTitle>Section Title</Dropdown.SectionTitle>
-          <Dropdown.Item selected closeOnClick={false}>Dropdown Item</Dropdown.Item>
-          <Dropdown.Item>Dropdown Item</Dropdown.Item>
-          <Dropdown.Item>Dropdown Item</Dropdown.Item>
-        </Dropdown.Section>
-        <Dropdown.Section>
-          <Dropdown.SectionTitle>Section Title</Dropdown.SectionTitle>
-          <Dropdown.Item>Dropdown Item</Dropdown.Item>
-          <Dropdown.Item>Dropdown Item</Dropdown.Item>
-          <Dropdown.Item>Dropdown Item</Dropdown.Item>
-        </Dropdown.Section>
-      </Dropdown.Body>
-      <Dropdown.Footer>
-        <Dropdown.Item color="red">Cancel</Dropdown.Item>
-      </Dropdown.Footer>
+      <Dropdown.Title>Section Title</Dropdown.Title>
+      <Dropdown.Item selected closeOnClick={false}>Dropdown Item</Dropdown.Item>
+      <Dropdown.Item>Dropdown Item</Dropdown.Item>
+      <Dropdown.Item>Dropdown Item</Dropdown.Item>
+      <Dropdown.Divider />
+      <Dropdown.Title>Section Title</Dropdown.Title>
+      <Dropdown.Item>Dropdown Item</Dropdown.Item>
+      <Dropdown.Item>Dropdown Item</Dropdown.Item>
+      <Dropdown.Item>Dropdown Item</Dropdown.Item>
+      <Dropdown.Divider />
+      <Dropdown.Item color="red">Cancel</Dropdown.Item>
     </Dropdown>
   </Flex>
 );
@@ -80,22 +72,15 @@ export const WithIcons = () => (
           Dropdown w/Icons
         </Button>
       }>
-      <Dropdown.Body>
-        <Dropdown.Section>
-          <Dropdown.Item icon="account-circle">Dropdown Item</Dropdown.Item>
-        </Dropdown.Section>
-        <Dropdown.Section>
-          <Dropdown.Item icon="pencil">Dropdown Item</Dropdown.Item>
-          <Dropdown.Item icon="stethoscope">Dropdown Item</Dropdown.Item>
-        </Dropdown.Section>
-        <Dropdown.Section>
-          <Dropdown.Item icon="bell">Dropdown Item</Dropdown.Item>
-          <Dropdown.Item icon="settings">Dropdown Item</Dropdown.Item>
-        </Dropdown.Section>
-      </Dropdown.Body>
-      <Dropdown.Footer>
-        <Dropdown.Item icon="trash-can" color="red">Cancel</Dropdown.Item>
-      </Dropdown.Footer>
+      <Dropdown.Item icon="account-circle">Dropdown Item</Dropdown.Item>
+      <Dropdown.Item icon="pencil">Dropdown Item</Dropdown.Item>
+      <Dropdown.Divider />
+      <Dropdown.Item icon="stethoscope">Dropdown Item</Dropdown.Item>
+      <Dropdown.Item icon="bell">Dropdown Item</Dropdown.Item>
+      <Dropdown.Divider />
+      <Dropdown.Item icon="settings">Dropdown Item</Dropdown.Item>
+      <Dropdown.Divider />
+      <Dropdown.Item icon="trash-can" color="red">Cancel</Dropdown.Item>
     </Dropdown>
   </Flex>
 );
