@@ -33,7 +33,7 @@ const SwitchThumb = styled.span`
     transition: 0.3s;
     background-color: ${on ? backgroundColor : theme.colors.greyDark};
 
-    &:active::before{
+    &:active::before {
       width: ${size + inset}px;
 
       ${on &&
@@ -51,7 +51,7 @@ const SwitchThumb = styled.span`
       left: ${inset / 2}px;
       bottom: ${inset / 2}px;
       background-color: white;
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1), 0px 4px 4px rgba(0, 0, 0, 0.1), 0px 4px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: ${theme.shadow};
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
       ${on &&
