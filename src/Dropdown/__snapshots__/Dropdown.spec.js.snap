@@ -68,12 +68,23 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   -webkit-transform-origin: 0 0;
   -ms-transform-origin: 0 0;
   transform-origin: 0 0;
+  padding: 8px;
   -webkit-animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
   animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
 }
 
+.c3 {
+  background: #E8E9EA;
+  height: 1px;
+  border: 0;
+  margin-left: -8px;
+  margin-right: -8px;
+}
+
 .c1 {
-  padding: 16px 0 0 8px;
+  display: block;
+  font-weight: 700;
+  color: #A4A6AA;
 }
 
 .c2 {
@@ -110,14 +121,8 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
 
 .c2:hover,
 .c2:focus {
-  color: inherit;
+  color: #494D55;
   background: #F8F8F9;
-}
-
-.c3 {
-  padding: 16px;
-  border-radius: 0 0 8px 8px;
-  border-top: 1px solid #E8E9EA;
 }
 
 <div>
@@ -145,40 +150,31 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
         tabindex="0"
         width="auto"
       >
-        <header
-          class="re-dropdown-header "
+        <span
+          class="re-dropdown-title c1"
         >
-          <div
-            class="re-dropdown-header-inner c1"
-          >
-            Header
-          </div>
-        </header>
+          Title
+        </span>
         <div
-          class="re-box re-dropdown-body "
+          class="re-box re-dropdown-item c2"
+          data-testid="item-one"
+          role="button"
+          tabindex="0"
         >
-          <div
-            class="re-box re-dropdown-item c2"
-            data-testid="item-one"
-            role="button"
-            tabindex="0"
-          >
-            One
-          </div>
-          <div
-            class="re-box re-dropdown-item c2"
-            data-testid="item-two"
-            role="button"
-            tabindex="0"
-          >
-            Two
-          </div>
+          One
         </div>
-        <footer
-          class="re-box re-dropdown-footer c3"
+        <hr
+          class="re-dropdown-divider c3"
+          data-testid="divider"
+        />
+        <div
+          class="re-box re-dropdown-item c2"
+          data-testid="item-two"
+          role="button"
+          tabindex="0"
         >
-          Footer
-        </footer>
+          Two
+        </div>
       </div>
     </div>
     <div

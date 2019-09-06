@@ -25,12 +25,10 @@ describe('<Dropdown />', () => {
     wrapper.setAttribute('tabindex', 1);
     const utils = renderWithTheme(
       <Dropdown {...props} portalNode={wrapper} trigger={<div>Trigger</div>}>
-        <Dropdown.Header>Header</Dropdown.Header>
-        <Dropdown.Body>
-          <Dropdown.Item data-testid="item-one">One</Dropdown.Item>
-          <Dropdown.Item data-testid="item-two">Two</Dropdown.Item>
-        </Dropdown.Body>
-        <Dropdown.Footer>Footer</Dropdown.Footer>
+        <Dropdown.Title>Title</Dropdown.Title>
+        <Dropdown.Item data-testid="item-one">One</Dropdown.Item>
+        <Dropdown.Divider data-testid="divider" />
+        <Dropdown.Item data-testid="item-two">Two</Dropdown.Item>
       </Dropdown>,
       {
         container: document.body.appendChild(wrapper),
@@ -44,12 +42,12 @@ describe('<Dropdown />', () => {
 
   const assertDropdownOpen = (utils = renderUtils) =>
     wait(() => {
-      expect(utils.queryByText('Header')).toBeInTheDocument();
+      expect(utils.queryByText('Title')).toBeInTheDocument();
     });
 
   const assertDropdownClosed = (utils = renderUtils) =>
     wait(() => {
-      expect(utils.queryByText('Header')).not.toBeInTheDocument();
+      expect(utils.queryByText('Title')).not.toBeInTheDocument();
     });
 
   const openDropdown = async (utils = renderUtils) => {
