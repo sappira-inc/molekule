@@ -36,7 +36,7 @@ const SwitchTrack = createComponent({
     width: ${thumbSize * 2}px;
     height: ${thumbSize}px;
     background: ${value ? theme.colors[trackColor] : 'transparent'};
-    border: ${trackInset}px solid ${value ? theme.colors[trackColor] : theme.colors.greyLight};
+    border: ${trackInset}px solid ${value ? theme.colors[trackColor] : theme.colors.grey};
     border-radius: ${thumbSize * 2}px;
 
     &:active {
