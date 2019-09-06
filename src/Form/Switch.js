@@ -1,120 +1,115 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import { css } from 'styled-components';
+import { createComponent } from '../utils';
 import { createEasyInput } from './EasyInput';
 
-const SwitchContain = styled.label`
-  position: relative;
-  display: inline-block;
-  width: ${p => p.size * 2}px;
-  height: ${p => p.size + p.inset}px;
-`;
-
-const SwitchInput = styled.input`
-  display: none;
-`;
-
-const SwitchThumb = styled.span`
-  ${({
-    variant,
-    size,
-    inset,
-    on,
-    theme,
-    backgroundColor = theme.colors[variant] || theme.colors[theme.variants[variant]],
-  }) => css`
-    border-radius: ${size * 2}px;
+const SwitchThumb = createComponent({
+  name: 'SwitchThumb',
+  as: 'i',
+  style: ({ trackInset, thumbSize, value }) => css`
+    border-radius: ${thumbSize * 2}px;
     position: absolute;
-    cursor: pointer;
     top: 0;
-    left: 0;
-    right: 0;
     bottom: 0;
-    transition: 0.3s;
-    background-color: ${on ? backgroundColor : 'transparent'};
-    border: 2px solid ${on ? backgroundColor : theme.colors.greyLight};
+    left: 0;
+    height: ${thumbSize - trackInset * 2}px;
+    width: ${thumbSize - trackInset * 2}px;
+    background-color: white;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1), 0px 4px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.125, 0.85, 0.3, 1.125);
 
-    &:active::before {
-      width: ${size + inset}px;
+    ${value &&
+      css`
+        transform: translateX(${thumbSize}px);
+      `};
+  `,
+});
 
-      ${on &&
-        css`
-          transform: translateX(${size - inset * 2}px);
-        `}
+const SwitchTrack = createComponent({
+  name: 'SwitchTrack',
+  as: 'label',
+  style: ({ theme, trackColor, thumbSize, trackInset, value }) => css`
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: ${thumbSize * 2}px;
+    height: ${thumbSize}px;
+    background: ${value ? theme.colors[trackColor] : 'transparent'};
+    border: ${trackInset}px solid ${value ? theme.colors[trackColor] : theme.colors.grey};
+    border-radius: ${thumbSize * 2}px;
+    transition: background-color 0.2s, border-color 0.2s;
+
+    &:active {
+      ${SwitchThumb} {
+        transform: translateX(${value ? thumbSize - trackInset * 3 : 0}px);
+        width: ${thumbSize + trackInset}px;
+      }
     }
+  `,
+});
 
-    &:before {
-      border-radius: ${size * 2}px;
-      position: absolute;
-      content: '';
-      height: ${size}px;
-      width: ${size}px;
-      background-color: white;
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1), 0px 4px 4px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s cubic-bezier(0.125, 0.85, 0.3, 1.125);
-
-      ${on &&
-        css`
-          transform: translateX(${size - inset}px);
-        `};
-    }
-  `};
-`;
+const SwitchInput = createComponent({
+  name: 'SwitchInput',
+  as: 'input',
+  style: css`
+    display: none;
+  `,
+});
 
 export class Switch extends React.Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
+    trackColor: PropTypes.string,
+    trackInset: PropTypes.number,
+    thumbSize: PropTypes.number,
     value: PropTypes.bool,
-    size: PropTypes.number,
-    inset: PropTypes.number,
-    variant: PropTypes.string,
   };
 
   static defaultProps = {
-    value: false,
-    variant: 'primary',
-    size: 16,
-    inset: 4,
+    trackColor: 'primary',
+    trackInset: 2,
+    thumbSize: 24,
   };
 
   state = {
-    on: this.props.value || false,
+    value: !!this.props.value,
   };
 
-  componentDidUpdate(prevProps) {
-    // update switch state based on props passed in
-    if ('value' in this.props) {
-      if (this.props.value !== this.state.on && this.props.value !== prevProps.value) {
-        this.update(this.props);
-      }
+  static getDerivedStateFromProps(props, state) {
+    if (props.value !== undefined && props.value !== state.value) {
+      return {
+        value: props.value,
+      };
     }
-  }
 
-  update(newProps) {
-    this.setState({ on: newProps.value });
+    return null;
   }
 
   handleChange = () => {
     const { onChange, name } = this.props;
-    const { on } = this.state;
 
-    this.setState({ on: !on }, () => {
-      // only pass an update if onChange is defined
-      if (typeof onChange === 'function') {
-        this.props.onChange(name, this.state.on);
-      }
-    });
+    if (typeof onChange === 'function') {
+      onChange(name, !this.state.value);
+    } else {
+      this.setState(state => ({ value: !state.value }));
+    }
   };
 
   render() {
-    const { name, size, variant, inset, ...props } = this.props;
-    const { on } = this.state;
+    const { name, thumbSize, trackInset, ...props } = this.props;
+    const { value } = this.state;
+    const sharedProps = {
+      value,
+      thumbSize,
+      trackInset,
+    };
 
     return (
-      <SwitchContain {...props} size={size} inset={inset}>
-        <SwitchInput name={name} type="checkbox" on={on} onChange={this.handleChange} />
-        <SwitchThumb variant={variant} size={size} on={on} inset={inset} />
-      </SwitchContain>
+      <SwitchTrack {...props} {...sharedProps}>
+        <SwitchInput name={name} type="checkbox" onChange={this.handleChange} />
+        <SwitchThumb {...sharedProps} />
+      </SwitchTrack>
     );
   }
 }

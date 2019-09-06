@@ -27,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
 addParameters({
   options: {
     theme,
-    panelPosition: 'right'
+    panelPosition: 'bottom'
   },
 });
 

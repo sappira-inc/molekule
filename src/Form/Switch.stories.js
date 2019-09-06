@@ -8,6 +8,6 @@ export default {
 
 export const Basic = () => <Switch />;
 
-export const Colors = () => <Switch variant="red" />;
+export const Colors = () => <Switch trackColor="red" />;
 
-export const Sizes = () => <Switch size={32} />;
+export const Sizes = () => <Switch thumbSize={32} trackInset={4} />;
