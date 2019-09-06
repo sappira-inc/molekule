@@ -88,14 +88,12 @@ export class Switch extends React.Component {
 
   handleChange = () => {
     const { onChange, name } = this.props;
-    const { value } = this.state;
-    const nextValue = !value;
 
-    this.setState({ value: nextValue }, () => {
-      if (typeof onChange === 'function') {
-        onChange(name, nextValue);
-      }
-    });
+    if (typeof onChange === 'function') {
+      onChange(name, !this.state.value);
+    } else {
+      this.setState(state => ({ value: !state.value }));
+    }
   };
 
   render() {
