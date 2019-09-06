@@ -23,7 +23,7 @@ const SwitchThumb = styled.span`
     theme,
     backgroundColor = theme.colors[variant] || theme.colors[theme.variants[variant]],
   }) => css`
-    border-radius: 34px;
+    border-radius: ${size * 2}px;
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -31,7 +31,8 @@ const SwitchThumb = styled.span`
     right: 0;
     bottom: 0;
     transition: 0.3s;
-    background-color: ${on ? backgroundColor : theme.colors.greyDark};
+    background-color: ${on ? backgroundColor : 'transparent'};
+    border: 2px solid ${on ? backgroundColor : theme.colors.greyLight};
 
     &:active::before {
       width: ${size + inset}px;
@@ -43,16 +44,14 @@ const SwitchThumb = styled.span`
     }
 
     &:before {
-      border-radius: 100%;
+      border-radius: ${size * 2}px;
       position: absolute;
       content: '';
       height: ${size}px;
       width: ${size}px;
-      left: ${inset / 2}px;
-      bottom: ${inset / 2}px;
       background-color: white;
-      box-shadow: ${theme.shadow};
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1), 0px 4px 4px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s cubic-bezier(0.125, 0.85, 0.3, 1.125);
 
       ${on &&
         css`
