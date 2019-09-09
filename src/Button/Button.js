@@ -98,7 +98,7 @@ const renderIcon = (icon, props) => <Icon name={icon} {...props} />;
 /** Custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more. We include several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control. */
 const Button = React.forwardRef(({ children, leftIcon, leftIconProps, rightIcon, rightIconProps, ...rest }, ref) => (
   <StyledButton ref={ref} hasText={!!children} leftIcon={leftIcon} rightIcon={rightIcon} {...rest}>
-    <Flex alignItems="center">
+    <Flex alignItems="center" justifyContent="center">
       {leftIcon && renderIcon(leftIcon, leftIconProps)}
       {children}
       {rightIcon && renderIcon(rightIcon, rightIconProps)}

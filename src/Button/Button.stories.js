@@ -61,3 +61,5 @@ export const Loading = () => (
     </Button>
   </Button.Group>
 );
+
+export const FullWidth = () => <Button block>Full Width</Button>;
