@@ -21,7 +21,5 @@ And when you get to toppin', I see that you've been learnin'"
 );
 
 export const Colors = () => (
-  <>
-    <Checkbox id="checkbox" name="checkbox" colorOn="green" colorOff="red" label="Red Off, Green On" />
-  </>
+  <Checkbox id="checkbox" name="checkbox" colorOn="green" colorOff="red" label="Red Off, Green On" />
 );
