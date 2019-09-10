@@ -20,7 +20,7 @@ const BaseFlex = createComponent({
 
 /** Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive flexbox utilities. For more complex implementations, custom CSS may be necessary.
  */
-const Flex = props => <BaseFlex {...props} />;
+const Flex = React.forwardRef((props, ref) => <BaseFlex {...props} ref={ref} />);
 
 Flex.displayName = 'Flex';
 
