@@ -64,7 +64,7 @@ const SelectInput = createComponent({
     -webkit-appearance: none;
     ${isFloating &&
       css`
-        margin-top: 8px;
+        margin-top: 14px;
       `};
   `,
 });
