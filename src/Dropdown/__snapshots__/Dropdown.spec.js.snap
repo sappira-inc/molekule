@@ -10,56 +10,19 @@ exports[`<Dropdown /> only renders trigger on mount 1`] = `
   outline: none;
 }
 
-.c1 {
-  font-family: inherit;
-  display: inline-block;
-  text-align: center;
-  cursor: pointer;
-  text-transform: capitalize;
-  font-weight: bold;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border-radius: 4px;
-  pointer-events: auto;
-  opacity: 1;
-  color: white;
-  height: 36px;
-  padding: 0 18px;
-  font-size: 12px;
-  width: auto;
-  background: #2DAAF2;
-  border: 1px solid #2DAAF2;
-  -webkit-transition: 175ms;
-  transition: 175ms;
-}
-
-.c1:hover {
-  background: #45b4f3;
-  border-color: #45b4f3;
-}
-
-.c1:active {
-  background: #51b9f4;
-  border-color: #51b9f4;
-}
-
 <div
     class="re-dropdown-trigger c0"
     tabindex="-1"
   >
-    <button
+    <div
       aria-expanded="false"
       aria-haspopup="true"
-      class="re-button re-button-primary c1"
       role="button"
       style="cursor: pointer;"
       tabindex="0"
     >
       Trigger
-    </button>
+    </div>
   </div>
 </DocumentFragment>
 `;
@@ -74,72 +37,27 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   outline: none;
 }
 
-.c1 {
-  font-family: inherit;
-  display: inline-block;
-  text-align: center;
-  cursor: pointer;
-  text-transform: capitalize;
-  font-weight: bold;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border-radius: 4px;
-  pointer-events: auto;
-  opacity: 1;
-  color: white;
-  height: 36px;
-  padding: 0 18px;
-  font-size: 12px;
-  width: auto;
-  background: #2DAAF2;
-  border: 1px solid #2DAAF2;
-  -webkit-transition: 175ms;
-  transition: 175ms;
-}
-
-.c1:hover {
-  background: #45b4f3;
-  border-color: #45b4f3;
-}
-
-.c1:active {
-  background: #51b9f4;
-  border-color: #51b9f4;
-}
-
 <div
+    aria-hidden="true"
     class="re-dropdown-trigger c0"
+    data-focus-on-hidden="true"
     tabindex="-1"
   >
-    <button
+    <div
       aria-expanded="true"
       aria-haspopup="true"
-      class="re-button re-button-primary c1"
       role="button"
       style="cursor: pointer;"
       tabindex="0"
     >
       Trigger
-    </button>
+    </div>
   </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="1"
-  />
   .c0 {
   z-index: 10;
   background: white;
-  border-radius: 4px;
-  border: 1px solid #e4edf5;
+  border-radius: 8px;
+  border: 1px solid #F4F4F4;
   outline: none;
   box-shadow: 0 0 3px 0 rgba(178,194,212,0.3);
   width: auto;
@@ -150,26 +68,30 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   -webkit-transform-origin: 0 0;
   -ms-transform-origin: 0 0;
   transform-origin: 0 0;
+  padding: 8px;
   -webkit-animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
   animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
 }
 
+.c3 {
+  background: #E8E9EA;
+  height: 1px;
+  border: 0;
+  margin-left: -8px;
+  margin-right: -8px;
+}
+
 .c1 {
-  padding: 0.75rem 1rem 0;
+  display: block;
+  font-weight: 700;
+  color: #A4A6AA;
 }
 
 .c2 {
-  padding: 0 0 0.25rem;
-  border-bottom: 2px solid #DEE0E4;
-}
-
-.c3 {
-  padding: 1rem;
-}
-
-.c4 {
   display: block;
-  width: calc(100% + 2rem);
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   opacity: 1;
   pointer-events: initial;
   -webkit-user-select: initial;
@@ -178,10 +100,10 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   user-select: initial;
   -webkit-text-decoration: none;
   text-decoration: none;
-  color: inherit;
+  color: #494D55;
   cursor: pointer;
-  margin: 0 calc(-1rem);
-  padding: 0.25rem 1rem;
+  margin: 0;
+  padding: 8px;
   -webkit-transition: 125ms background;
   transition: 125ms background;
   outline: none;
@@ -189,58 +111,64 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   -moz-appearance: none;
   appearance: none;
   border: 0;
+  border-radius: 8px;
   font: inherit;
+  font-size: 14px;
+  font-weight: 500;
   text-align: left;
+  position: relative;
 }
 
-.c4 + .c6 {
-  margin-top: 1rem;
+.c2:hover,
+.c2:focus {
+  color: #494D55;
+  background: #F8F8F9;
 }
 
-.c4:hover,
-.c4:focus {
-  color: inherit;
-  background: #F1F4F6;
-}
-
-.c5 {
-  background: #F1F4F6;
-  padding: 0.75rem 1rem;
-  border-radius: 0 0 4px 4px;
-}
-
-<div
-    data-focus-lock-disabled="false"
-  >
+<div>
     <div
-      class="re-dropdown-menu c0"
-      data-testid="dropdown-menu"
-      style="position: absolute; top: 0px; left: 0px; opacity: 0; pointer-events: none;"
+      aria-hidden="true"
+      data-focus-guard="true"
+      data-focus-on-hidden="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
       tabindex="0"
-      width="auto"
+    />
+    <div
+      aria-hidden="true"
+      data-focus-guard="true"
+      data-focus-on-hidden="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      data-focus-lock-disabled="false"
     >
-      <header
-        class="re-dropdown-header c1"
-      >
-        <div
-          class="re-dropdown-header-inner c2"
-        >
-          Header
-        </div>
-      </header>
       <div
-        class="re-box re-dropdown-body c3"
+        class="re-dropdown-menu c0"
+        data-testid="dropdown-menu"
+        style="position: absolute; top: 0px; left: 0px; opacity: 0; pointer-events: none;"
+        tabindex="0"
+        width="auto"
       >
+        <span
+          class="re-dropdown-title c1"
+        >
+          Title
+        </span>
         <div
-          class="re-box re-dropdown-item c4"
+          class="re-box re-dropdown-item c2"
           data-testid="item-one"
           role="button"
           tabindex="0"
         >
           One
         </div>
+        <hr
+          class="re-dropdown-divider c3"
+          data-testid="divider"
+        />
         <div
-          class="re-box re-dropdown-item c4"
+          class="re-box re-dropdown-item c2"
           data-testid="item-two"
           role="button"
           tabindex="0"
@@ -248,17 +176,14 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
           Two
         </div>
       </div>
-      <footer
-        class="re-box re-dropdown-footer c5"
-      >
-        Footer
-      </footer>
     </div>
+    <div
+      aria-hidden="true"
+      data-focus-guard="true"
+      data-focus-on-hidden="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
   </div>
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />
 </DocumentFragment>
 `;

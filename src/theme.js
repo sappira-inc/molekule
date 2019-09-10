@@ -4,39 +4,57 @@ export default (overrides = {}) => {
 
   const colors = Object.assign(
     {
-      primaryDark: '#002BA0',
-      primary: '#2DAAF2',
-      primaryLight: '#9FB8FC',
+      default: '#494D55',
+      black: '#1B202B',
+      white: '#FFFFFF',
 
-      grayDark: '#43526D',
-      grayMid: '#8E97A7',
-      gray: '#8E97A7',
-      grayLight: '#DEE0E4',
-      grayLightest: '#F1F4F6',
+      greyLightest: '#F8F8F9',
+      greyLighter: '#F4F4F4',
+      greyLight: '#E8E9EA',
+      grey: '#D1D2D5',
+      greyDark: '#A4A6AA',
+      greyDarker: '#767980',
+      greyDarkest: '#494D55',
 
-      redDark: '#B22327',
+      primaryLightest: '#CADCFF',
+      primaryLight: '#4D89FF',
+      primary: '#226EFF',
+      primaryDark: '#0958F3',
+
+      secondaryLightest: '#DDF5ED',
+      secondaryLight: '#42C79B',
+      secondary: '#21B986',
+      secondaryDark: '#00AC74',
+
+      redLightest: '#FFD7D8',
+      redLight: '#FE7B7E',
       red: '#FD575D',
-      redLight: ' #FFCECF',
+      redDark: '#F23338',
 
-      blueDark: '#006DC1',
-      blue: '#0747A5',
-      blueLight: '#C8E8FF',
+      purpleLightest: '#EBDCFC',
+      purpleLight: '#BB8AF6',
+      purple: '#A262F0',
+      purpleDark: '#8B3FE7',
 
-      greenDark: '#196C1C',
-      green: '#00D684',
-      greenLight: '#B4F7DE',
+      orangeLightest: '#FFE6D4',
+      orangeLight: '#FFAA70',
+      orange: '#FF954D',
+      orangeDark: '#EE7523',
 
-      orangeDark: '#BB520B',
-      orange: '#FFAA70',
-      orangeLight: '#FFD8BD',
-
-      yellowDark: '#F1BC0B',
+      yellowLightest: '#FFF6D6',
+      yellowLight: '#FFE075',
       yellow: '#FED23D',
-      yellowLight: '#FFEDB1',
+      yellowDark: '#F1BC0B',
 
-      purpleDark: '#8530FD',
-      purple: '#9D58FE',
-      purpleLight: '#DFC8FF',
+      blueLightest: '#CADCFF',
+      blueLight: '#4D89FF',
+      blue: '#226EFF',
+      blueDark: '#0958F3',
+
+      greenLightest: '#DDF5ED',
+      greenLight: '#42C79B',
+      green: '#21B986',
+      greenDark: '#00AC74',
     },
     overrides.colors
   );
@@ -44,80 +62,146 @@ export default (overrides = {}) => {
   const radii = [0, 2, 4];
 
   const typography = {
-    fontSize: 12,
+    fontSize: 14,
+    bodyFontFamily: 'Avenir',
+    headerFontFamily: 'Tiempos',
   };
 
   const buttonVariants = {
     primary: {
       backgroundColor: colors.primary,
-      fontColor: 'white',
+      color: colors.white,
+      '&:hover': {
+        backgroundColor: colors.primaryLight,
+      },
+      '&:active': {
+        backgroundColor: colors.primaryDark,
+      },
+      '&:disabled': {
+        backgroundColor: colors.primaryLightest,
+      },
+    },
+    primaryText: {
+      backgroundColor: 'transparent',
+      borderColor: 'transparent',
+      color: colors.primary,
+      '&:hover': {
+        color: colors.primaryDark,
+      },
+    },
+    secondary: {
+      backgroundColor: colors.white,
+      borderColor: colors.primary,
+      color: colors.primary,
+      '&:hover': {
+        backgroundColor: colors.primary,
+        color: colors.white,
+      },
+      '&:active': {
+        backgroundColor: colors.primaryDark,
+        color: colors.white,
+      },
+      '&:disabled': {
+        borderColor: colors.primaryLightest,
+        color: colors.primaryLightest,
+      },
+    },
+    grey: {
+      backgroundColor: colors.white,
+      borderColor: colors.grey,
+      color: colors.greyDarkest,
+      '&:hover': {
+        borderColor: colors.greyDark,
+      },
+      '&:active': {
+        backgroundColor: colors.greyLight,
+      },
+      '&:disabled': {
+        borderColor: colors.grey,
+        color: colors.grey,
+      },
+    },
+    greyText: {
+      backgroundColor: 'transparent',
+      borderColor: 'transparent',
+      color: colors.grey,
+      '&:hover': {
+        color: colors.greyDark,
+      },
     },
     success: {
-      backgroundColor: colors.green,
-      fontColor: 'white',
-    },
-    danger: {
-      backgroundColor: colors.red,
-      fontColor: 'white',
+      color: colors.white,
+      backgroundColor: colors.secondary,
+      '&:hover': {
+        backgroundColor: colors.secondaryLight,
+      },
+      '&:active': {
+        backgroundColor: colors.secondaryDark,
+      },
+      '&:disabled': {
+        backgroundColor: colors.secondaryLightest,
+      },
     },
     warning: {
       backgroundColor: colors.orange,
-      fontColor: 'white',
+      color: colors.white,
+      '&:hover': {
+        backgroundColor: colors.orangeLight,
+      },
+      '&:active': {
+        backgroundColor: colors.orangeDark,
+      },
+      '&:disabled': {
+        backgroundColor: colors.orangeLightest,
+      },
+    },
+    danger: {
+      backgroundColor: colors.red,
+      color: colors.white,
+      '&:hover': {
+        backgroundColor: colors.redLight,
+      },
+      '&:active': {
+        backgroundColor: colors.redDark,
+      },
+      '&:disabled': {
+        backgroundColor: colors.redLightest,
+      },
     },
     info: {
       backgroundColor: colors.blue,
-      fontColor: 'white',
-    },
-    gray: {
-      backgroundColor: colors.grayLight,
-      fontColor: colors.grayDark,
+      color: colors.white,
     },
   };
 
   const badgeVariants = {
     primary: {
-      backgroundColor: colors.primaryLight,
-      fontColor: colors.primaryDark,
+      backgroundColor: colors.primaryLightest,
+      color: colors.primaryDark,
     },
     success: {
-      backgroundColor: colors.greenLight,
-      fontColor: colors.greenDark,
+      backgroundColor: colors.greenLightest,
+      color: colors.greenDark,
     },
     danger: {
-      backgroundColor: colors.redLight,
-      fontColor: colors.redDark,
+      backgroundColor: colors.redLightest,
+      color: colors.redDark,
     },
     warning: {
-      backgroundColor: colors.orangeLight,
-      fontColor: colors.orangeDark,
+      backgroundColor: colors.orangeLightest,
+      color: colors.orangeDark,
     },
     info: {
-      backgroundColor: colors.blueLight,
-      fontColor: colors.blueDark,
+      backgroundColor: colors.blueLightest,
+      color: colors.blueDark,
     },
-    gray: {
-      backgroundColor: colors.grayLight,
-      fontColor: colors.grayDark,
+    grey: {
+      backgroundColor: colors.greyLight,
+      color: colors.greyDarker,
     },
   };
 
   const alertVariants = badgeVariants;
-
-  const heights = {
-    xs: 28,
-    sm: 32,
-    md: 36,
-    lg: 40,
-    xl: 44,
-  };
-
-  const fontSizes = {
-    xs: 8,
-    sm: 10,
-    md: 12,
-    lg: 14,
-    xl: 16,
-  };
 
   const breakpoints = [480, 768, 1024, 1440];
 
@@ -137,14 +221,48 @@ export default (overrides = {}) => {
     breakpoints,
     classPrefix: 're',
     colors,
-    fontSizes,
     grid,
-    heights,
     radii,
-    radius: 4,
+    radius: 8,
     shadow,
     shadowHover,
     typography,
+    sizes: {
+      Button: {
+        sm: {
+          fontSize: 14,
+          height: 32,
+          padding: '0 12px',
+        },
+        md: {
+          fontSize: 16,
+          height: 40,
+          padding: '0 16px',
+        },
+        lg: {
+          fontSize: 16,
+          height: 48,
+          padding: '0 20px',
+        },
+      },
+      Badge: {
+        sm: {
+          fontSize: 10,
+          borderRadius: 10,
+          padding: '4px 8px',
+        },
+        md: {
+          fontSize: 12,
+          borderRadius: 12,
+          padding: '4px 8px',
+        },
+        lg: {
+          fontSize: 14,
+          borderRadius: 14,
+          padding: '6px 12px',
+        },
+      },
+    },
     variants: {
       Alert: alertVariants,
       Badge: badgeVariants,

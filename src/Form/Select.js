@@ -7,32 +7,37 @@ import Icon from '../Icon';
 import Flex from '../Flex';
 import Label from './Label';
 import { createEasyInput } from './EasyInput';
-import { createComponent } from '../utils';
+import { themeGet, createComponent } from '../utils';
 
 const SelectContainer = createComponent({
   name: 'SelectContainer',
   as: Flex,
-  style: ({ size, theme, value, borderRadius = theme.radius }) => css`
+  style: ({ theme, value }) => css`
     background: white;
-    border: 1px solid ${theme.colors.grayLight};
-    height: ${theme.heights[size]}px;
+    border: 1px solid ${theme.colors.greyLight};
+    height: 48px;
     outline: none;
     width: 100%;
     position: relative;
-    border-radius: ${borderRadius}px;
+    border-radius: ${theme.radius}px;
     transition: 250ms all;
     -webkit-appearance: none;
     font-family: inherit;
-    font-size: ${theme.fontSizes[size]}px;
+    font-size: ${themeGet('typography.fontSize')}px;
     vertical-align: middle;
 
-    ${!value &&
-      css`
-        color: ${p => p.theme.colors.grayMid};
-        select {
-          color: ${p => p.theme.colors.grayMid};
-        }
-      `};
+    select {
+      color: ${theme.colors.greyDarker};
+
+      ${value &&
+        css`
+          color: ${theme.colors.greyDarkest};
+        `}
+
+      option {
+        color: ${theme.colors.greyDarkest};
+      }
+    }
   `,
 });
 
@@ -47,13 +52,13 @@ const IconContainer = styled(Flex)`
 const SelectInput = createComponent({
   name: 'Select',
   tag: 'select',
-  style: ({ theme, size, isFloating }) => css`
+  style: ({ isFloating }) => css`
     position: relative;
     z-index: 2;
     padding: 0 8px;
     outline: none;
     width: 100%;
-    font-size: ${theme.fontSizes[size]}px;
+    font-size: ${themeGet('typography.fontSize')}px;
     background: transparent;
     border: none;
     -webkit-appearance: none;
@@ -69,7 +74,7 @@ const SelectOption = createComponent({
   tag: 'option',
 });
 
-class Select extends Component {
+export class Select extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired,
@@ -132,6 +137,7 @@ class Select extends Component {
           {label && isFloating && FloatingLabel}
           <SelectInput
             {...props}
+            size={size}
             ref={this.ref}
             name={name}
             value={value}
@@ -146,7 +152,7 @@ class Select extends Component {
             ))}
           </SelectInput>
           <IconContainer aria-hidden="true" mr={2} alignItems="center" justifyContent="center">
-            <Icon name="chevron-down" size={18} />
+            <Icon name="chevron-down" color="greyDarker" size={24} />
           </IconContainer>
         </SelectContainer>
         {error && <FormError>{error}</FormError>}

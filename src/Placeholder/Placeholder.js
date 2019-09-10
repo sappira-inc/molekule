@@ -19,7 +19,8 @@ const Container = createComponent({
   `,
 });
 
-export default class Loadable extends React.Component {
+/** Placeholder shows a spinner after a specified delay while content is loaded asynchronously. */
+export default class Placeholder extends React.Component {
   static propTypes = {
     loading: PropTypes.bool,
     error: PropTypes.string,

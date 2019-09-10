@@ -39,11 +39,7 @@ export default class ModalDropdownDemo extends React.Component {
           <Dropdown.Footer>Footer</Dropdown.Footer>
         </Dropdown>
 
-        <Modal
-          open={this.state.isModalOpen}
-          onClose={this.toggle}
-          title="Example Dropdown Modal"
-          {...props}>
+        <Modal open={this.state.isModalOpen} onClose={this.toggle} title="Example Dropdown Modal" {...props}>
           <Modal.Body>
             <>
               {body}
@@ -53,7 +49,7 @@ export default class ModalDropdownDemo extends React.Component {
 
           <Modal.Footer>
             <Button.Group justifyContent="flex-end">
-              <Button variant="gray" onClick={this.onCancel}>
+              <Button variant="grey" onClick={this.onCancel}>
                 Cancel
               </Button>
             </Button.Group>

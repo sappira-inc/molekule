@@ -57,7 +57,7 @@ Avatar.propTypes = {
   /**
    * We'll take the first letter of the first two words to create the initials
    */
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
 
   /**
    * The size of the Avatar

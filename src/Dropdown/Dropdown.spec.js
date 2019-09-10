@@ -1,7 +1,6 @@
 import React from 'react';
-import { renderWithTheme, fireEvent, wait, waitForDomChange } from '../../test/utils';
+import { renderWithTheme, fireEvent, wait } from '../../test/utils';
 import Dropdown from './Dropdown';
-import Button from '../Button';
 
 jest.mock('popper.js', () => {
   const PopperJS = jest.requireActual('popper.js');
@@ -25,13 +24,11 @@ describe('<Dropdown />', () => {
     const wrapper = document.createElement('div');
     wrapper.setAttribute('tabindex', 1);
     const utils = renderWithTheme(
-      <Dropdown {...props} portalNode={wrapper} trigger={<Button>Trigger</Button>}>
-        <Dropdown.Header>Header</Dropdown.Header>
-        <Dropdown.Body>
-          <Dropdown.Item data-testid="item-one">One</Dropdown.Item>
-          <Dropdown.Item data-testid="item-two">Two</Dropdown.Item>
-        </Dropdown.Body>
-        <Dropdown.Footer>Footer</Dropdown.Footer>
+      <Dropdown {...props} portalNode={wrapper} trigger={<div>Trigger</div>}>
+        <Dropdown.Title>Title</Dropdown.Title>
+        <Dropdown.Item data-testid="item-one">One</Dropdown.Item>
+        <Dropdown.Divider data-testid="divider" />
+        <Dropdown.Item data-testid="item-two">Two</Dropdown.Item>
       </Dropdown>,
       {
         container: document.body.appendChild(wrapper),
@@ -45,12 +42,12 @@ describe('<Dropdown />', () => {
 
   const assertDropdownOpen = (utils = renderUtils) =>
     wait(() => {
-      expect(utils.queryByText('Header')).toBeInTheDocument();
+      expect(utils.queryByText('Title')).toBeInTheDocument();
     });
 
   const assertDropdownClosed = (utils = renderUtils) =>
     wait(() => {
-      expect(utils.queryByText('Header')).not.toBeInTheDocument();
+      expect(utils.queryByText('Title')).not.toBeInTheDocument();
     });
 
   const openDropdown = async (utils = renderUtils) => {
@@ -81,18 +78,12 @@ describe('<Dropdown />', () => {
   });
 
   test('closes when menu loses focus', async () => {
-    // Swallowing an annoying warning with act that's okay to ignore: https://github.com/facebook/react/issues/14769
-    const ogError = console.error;
-    console.error = _ => _;
-
     await openDropdown();
 
     // Some issues with fireEvent.focus: https://github.com/kentcdodds/react-testing-library/issues/276#issuecomment-473392827
     renderUtils.wrapper.focus();
 
     await assertDropdownClosed();
-
-    console.error = ogError;
   });
 
   test('arrow keys navigate to focusable elements', async () => {

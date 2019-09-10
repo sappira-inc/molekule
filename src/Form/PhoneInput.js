@@ -13,7 +13,7 @@ export const getRawMaxLength = (countryCode, value) => {
   return beginsWithCountryCode ? countryCallingCode.length + examplePhoneNumber.length : examplePhoneNumber.length;
 };
 
-function PhoneInput({ countryCode, forwardedRef, value: propValue, onKeyDown, onChange, ...inputProps }) {
+export function PhoneInput({ countryCode, forwardedRef, value: propValue, onKeyDown, onChange, ...inputProps }) {
   const countryCodeSupported = isSupportedCountry(countryCode);
   if (!countryCodeSupported) {
     throw new Error(`${countryCode} is not supported`);

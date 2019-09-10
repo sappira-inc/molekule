@@ -6,7 +6,7 @@ import Checkbox from './Checkbox';
 import FormError from './FormError';
 import { createEasyInput } from './EasyInput';
 
-class CheckboxGroup extends Component {
+export class CheckboxGroup extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     horizontal: PropTypes.bool,
@@ -27,7 +27,7 @@ class CheckboxGroup extends Component {
     horizontal: false,
     onChange() {},
     colorOn: 'primary',
-    colorOff: 'grayMid',
+    colorOff: 'greyDark',
   };
 
   state = {

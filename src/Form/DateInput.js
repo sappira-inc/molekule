@@ -34,7 +34,7 @@ const formatDate = (pattern, delimiter, dateString = '') => {
   }, '');
 };
 
-function DateInput({
+export function DateInput({
   delimiter,
   pattern,
   forwardedRef,
@@ -101,6 +101,7 @@ DateInput.propTypes = {
 };
 
 DateInput.defaultProps = {
+  ...Input.defaultProps,
   pattern: ['m', 'd', 'Y'],
   delimiter: '/',
 };
