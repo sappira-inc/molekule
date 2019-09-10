@@ -142,7 +142,7 @@ export class Checkbox extends React.Component {
           onChange={this.handleChange}
         />
 
-        <Flex alignItems="top">
+        <Flex>
           <StyledIcon size={iconSize} color={checked ? colorOn : colorOff} name={checked ? iconOn : iconOff} />
 
           {label && (
