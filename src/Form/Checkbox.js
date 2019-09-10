@@ -22,7 +22,7 @@ const CheckboxContainer = createComponent({
   `,
 });
 
-const StyledInput = createComponent({
+const HiddenInput = createComponent({
   name: 'CheckboxInput',
   tag: 'input',
   style: css`
@@ -41,6 +41,7 @@ const StyledLabel = createComponent({
   as: Flex,
   style: ({ fontSize }) => css`
     margin-left: 8px;
+    margin-top: 4px;
     font-size: ${fontSize}px;
   `,
 });
@@ -132,7 +133,7 @@ export class Checkbox extends React.Component {
 
     return (
       <CheckboxContainer horizontal={horizontal} style={styles.CheckboxContainer}>
-        <StyledInput
+        <HiddenInput
           id={id}
           name={name}
           type="checkbox"
@@ -141,7 +142,7 @@ export class Checkbox extends React.Component {
           onChange={this.handleChange}
         />
 
-        <Flex alignItems="center">
+        <Flex alignItems="top">
           <StyledIcon size={iconSize} color={checked ? colorOn : colorOff} name={checked ? iconOn : iconOff} />
 
           {label && (
