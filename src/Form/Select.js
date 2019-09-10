@@ -119,15 +119,17 @@ class Select extends Component {
     const { id, name, options, placeholder, error, size = 'md', label, floating, ...props } = this.props;
     const { value } = this.state;
     const isFloating = floating && value != undefined && `${value}`.trim();
-    const StyledLabel = (
-      <Label htmlFor={id} size={size} isFloating={isFloating} isFloatable={floating}>{label}</Label>
+    const FloatingLabel = (
+      <Label htmlFor={id} size={size} isFloating={isFloating} isFloatable={floating}>
+        {label}
+      </Label>
     );
 
     return (
       <Field>
         {label && !floating && <Label size={size}>{label}</Label>}
         <SelectContainer value={value} size={size}>
-          {label && isFloating && StyledLabel}
+          {label && isFloating && FloatingLabel}
           <SelectInput
             {...props}
             ref={this.ref}
