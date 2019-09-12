@@ -39,7 +39,7 @@ exports[`<PhoneInput /> snapshot 1`] = `
 }
 
 .c3:focus {
-  border-color: #226EFF;
+  border-color: #0958F3;
 }
 
 .c3::-webkit-input-placeholder {
