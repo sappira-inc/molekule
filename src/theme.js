@@ -17,9 +17,9 @@ export default (overrides = {}) => {
       greyDarkest: '#494D55',
 
       primaryLightest: '#CADCFF',
-      primaryLight: '#4D89FF',
-      primary: '#226EFF',
-      primaryDark: '#0958F3',
+      primaryLight: '#226EFF',
+      primary: '#0958F3',
+      primaryDark: '#0046CE',
 
       secondaryLightest: '#DDF5ED',
       secondaryLight: '#42C79B',
