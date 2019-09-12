@@ -16,7 +16,7 @@ const HiddenInput = createComponent({
   `,
 });
 
-const StyledIcon = createComponent({
+const CheckboxIcon = createComponent({
   name: 'CheckboxIcon',
   as: Icon,
   style: ({ theme, iconSize }) => {
@@ -24,13 +24,14 @@ const StyledIcon = createComponent({
 
     return css`
       font-size: 24px;
+      transition: color 125ms;
 
       ${sizeStyles}
     `;
   },
 });
 
-const StyledLabel = createComponent({
+const CheckboxLabel = createComponent({
   name: 'CheckboxLabel',
   as: Flex,
   style: ({ theme, size }) => {
@@ -62,7 +63,7 @@ const CheckboxContainer = createComponent({
     &:hover {
       ${!checked && !disabled &&
         css`
-          ${StyledIcon} {
+          ${CheckboxIcon} {
             color: ${theme.colors.greyDarker};
           }
         `}
@@ -70,8 +71,9 @@ const CheckboxContainer = createComponent({
 
     &[disabled] {
       cursor: not-allowed;
+      pointer-events: none;
 
-      ${StyledIcon}, ${StyledLabel} {
+      ${CheckboxIcon}, ${CheckboxLabel} {
         color: ${theme.colors.grey};
       }
     }
@@ -173,12 +175,12 @@ export class Checkbox extends React.Component {
         />
 
         <Flex>
-          <StyledIcon iconSize={size} color={checked ? colorOn : colorOff} name={checked ? iconOn : iconOff} />
+          <CheckboxIcon iconSize={size} color={checked ? colorOn : colorOff} name={checked ? iconOn : iconOff} />
 
           {label && (
-            <StyledLabel size={size} style={styles.Label}>
+            <CheckboxLabel size={size} style={styles.Label}>
               {label}
-            </StyledLabel>
+            </CheckboxLabel>
           )}
         </Flex>
 
