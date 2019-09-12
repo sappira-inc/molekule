@@ -47,7 +47,7 @@ const StyledLabel = createComponent({
 const CheckboxContainer = createComponent({
   name: 'Checkbox',
   tag: 'label',
-  style: ({ checked, theme, disabled }) => css`
+  style: ({ horizontal, checked, theme, disabled }) => css`
     position: relative;
     margin-bottom: 0;
     cursor: pointer;
@@ -55,8 +55,8 @@ const CheckboxContainer = createComponent({
     align-items: flex-start;
 
     & + & {
-      margin-left: ${p => (p.horizontal ? '12px' : 0)};
-      margin-top: ${p => (p.horizontal ? 0 : '4px')};
+      margin-left: ${horizontal ? 12 : 0}px;
+      margin-top: ${horizontal ? 0 : 4}px;
     }
 
     &:hover {

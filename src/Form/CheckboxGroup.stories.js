@@ -19,7 +19,7 @@ const choices = [
   },
 ];
 
-export const Vertical = () => <CheckboxGroup horizontal name="checkboxes" id="checkboxes" choices={choices} />;
+export const Vertical = () => <CheckboxGroup name="checkboxes" id="checkboxes" choices={choices} />;
 
 export const Horizontal = () => <CheckboxGroup horizontal name="checkboxes" id="checkboxes" choices={choices} />;
 
