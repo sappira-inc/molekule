@@ -1,5 +1,7 @@
 import React from 'react';
+import { boolean } from '@storybook/addon-knobs';
 import { RadioGroup } from './RadioGroup';
+import Box from '../Box';
 
 export default {
   title: 'Components|Forms/RadioGroup',
@@ -21,7 +23,9 @@ const defaultValues = [
   },
 ];
 
-export const Vertical = () => <RadioGroup name="radio" id="radio" choices={defaultValues} />;
+export const Vertical = () => (
+  <RadioGroup name="radio" id="radio" choices={defaultValues} disabled={boolean('Disabled', false)} />
+);
 
 export const Horizontal = () => <RadioGroup horizontal name="radio" id="radio" choices={defaultValues} />;
 
@@ -30,12 +34,12 @@ export const Colors = () => (
 );
 
 export const Sizes = () => (
-  <RadioGroup
-    iconSize={10}
-    fontSize={10}
-    name="radio"
-    id="radio"
-    choices={defaultValues}
-    styles={{ CheckboxContainer: { margin: 0 }, Label: { marginLeft: 6 } }}
-  />
+  <>
+    <Box mb={24}>
+      <RadioGroup name="radio" id="radio" size="sm" choices={defaultValues} />
+    </Box>
+    <Box mb={24}>
+      <RadioGroup name="radio" id="radio" choices={defaultValues} />
+    </Box>
+  </>
 );

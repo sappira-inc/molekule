@@ -262,6 +262,18 @@ export default (overrides = {}) => {
           padding: '6px 12px',
         },
       },
+      CheckboxLabel: {
+        sm: {
+          fontSize: 14,
+          lineHeight: '14px',
+          marginTop: 10,
+        },
+        md: {
+          fontSize: 16,
+          lineHeight: '16px',
+          marginTop: 8,
+        },
+      },
     },
     variants: {
       Alert: alertVariants,
