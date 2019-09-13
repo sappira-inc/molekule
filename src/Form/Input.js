@@ -20,6 +20,7 @@ const StyledInput = createComponent({
   name: 'Input',
   tag: 'input',
   style: ({
+    isFloatable,
     isFloating,
     theme,
     borderRadius = theme.radius,
@@ -44,7 +45,8 @@ const StyledInput = createComponent({
     box-sizing: border-box;
 
     &:hover,
-    &:active {
+    &:active,
+    & + label &:hover {
       border-color: ${theme.colors.greyDark};
     }
 
@@ -54,6 +56,7 @@ const StyledInput = createComponent({
 
     ::placeholder {
       color: ${theme.colors.greyDarker};
+      opacity: ${isFloatable ? 0 : 1};
     }
 
     &[disabled] {
@@ -67,8 +70,14 @@ const StyledInput = createComponent({
     }
 
     ${leftIcon &&
+      !isFloatable &&
       css`
         padding-left: ${(leftIconProps.size || 16) + 12}px;
+      `};
+
+    ${rightIcon &&
+      css`
+        padding-right: ${(rightIconProps.size || 16) + 32}px;
       `};
 
     ${isFloating &&
@@ -76,32 +85,38 @@ const StyledInput = createComponent({
         line-height: 14px;
         padding-top: 14px;
         padding-bottom: 0px;
-        padding-left: 8px;
-      `};
-
-    ${rightIcon &&
-      css`
-        padding-right: ${(rightIconProps.size || 16) + 32}px;
       `};
   `,
 });
+
 const StyledIcon = styled(Icon)`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: 250ms all;
+  ${({ theme, isDisabled }) => css`
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 250ms all;
+
+    ${isDisabled &&
+      css`
+        color: ${theme.colors.grey};
+      `}
+  `}
 `;
 
 const LeftIcon = createComponent({
   name: 'InputLeftIcon',
   as: StyledIcon,
-  style: ({ isFocused, isFloating, theme }) => css`
+  style: ({ isFocused, isFloating, isFloatable, theme }) => css`
     left: 8px;
+
+    ${isFloatable &&
+      css`
+        position: static;
+        padding-right: 4px;
+      `}
 
     ${isFloating &&
       css`
-        top: 6px;
-        transform: none;
         font-size: 12px;
         line-height: 14px;
 
@@ -296,6 +311,12 @@ export class Input extends Component {
     this.ref.current.blur();
   }
 
+  handleLabelClick = () => {
+    if (this.props.floating) {
+      this.focus();
+    }
+  };
+
   render() {
     const {
       style,
@@ -322,7 +343,7 @@ export class Input extends Component {
 
     const { focused, height, value } = this.state;
 
-    const isFloating = floating && value !== undefined && !!`${value}`.trim();
+    const isFloating = (floating && value !== undefined && !!`${value}`.trim()) || (floating && focused);
 
     const inputProps = {
       ...rest,
@@ -345,16 +366,16 @@ export class Input extends Component {
       disabled,
     };
 
+    const statusProps = {
+      isFloatable: floating,
+      isFloating,
+      isFocused: focused,
+      isDisabled: disabled,
+    };
+
     const Label = label ? (
-      <StyledLabel
-        htmlFor={id}
-        styles={rest.styles}
-        isFloatable={floating}
-        isFloating={isFloating}
-        isFocused={focused}
-        isDisabled={disabled}
-        hasLeftIcon={!!leftIcon}
-        error={error}>
+      <StyledLabel htmlFor={id} styles={rest.styles} error={error} onClick={this.handleLabelClick} {...statusProps}>
+        {leftIcon && <LeftIcon styles={rest.styles} name={leftIcon} {...statusProps} {...leftIconProps} />}
         {label}
       </StyledLabel>
     ) : null;
@@ -366,9 +387,13 @@ export class Input extends Component {
         <InputContainer styles={rest.styles}>
           {floating && Label}
 
-          {leftIcon && <LeftIcon styles={rest.styles} isFloating={isFloating} isFocused={focused} name={leftIcon} {...leftIconProps} />}
+          {leftIcon && !floating && (
+            <LeftIcon styles={rest.styles} name={leftIcon} {...statusProps} {...leftIconProps} />
+          )}
 
-          {rightIcon && <RightIcon styles={rest.styles} name={rightIcon} {...rightIconProps} />}
+          {rightIcon && (
+            <RightIcon styles={rest.styles} name={rightIcon} size={24} {...statusProps} {...rightIconProps} />
+          )}
 
           {multiline ? <StyledTextArea {...inputProps} /> : <StyledInput {...inputProps} />}
         </InputContainer>

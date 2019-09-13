@@ -54,7 +54,8 @@ export const Multiline = () => (
   <Input
     {...defaultInputProps}
     multiline
-    value="I already have a value! If provided a value, I become controlled, so I won't update when you type here..."
+    floating
+    // value="I already have a value! If provided a value, I become controlled, so I won't update when you type here..."
   />
 );
 
@@ -62,7 +63,7 @@ export const Autogrow = () => <Input {...defaultInputProps} multiline autogrow /
 
 export const FloatingLabel = () => <Input {...defaultInputProps} floating />;
 
-export const Disabled = () => <Input {...defaultInputProps} disable />;
+export const Disabled = () => <Input {...defaultInputProps} disabled />;
 
 export const Error = () => <Input {...defaultInputProps} error="This is an error message" />;
 
@@ -78,11 +79,6 @@ export const Styles = () => (
 );
 
 export const Icon = () => {
-  const iconProps = {
-    color: 'greyDarker',
-    size: 16,
-  };
-
   const iconOptions = {
     Information: 'information-outline',
     Visibility: 'eye-outline',
@@ -92,11 +88,12 @@ export const Icon = () => {
 
   return (
     <Input
-      leftIcon={select('Left Icon', iconOptions, 'information-outline')}
-      leftIconProps={object('Left Icon Props', { ...iconProps })}
-      rightIcon={select('Right Icon', iconOptions, 'eye-outline')}
-      rightIconProps={object('Right Icon Props', { ...iconProps })}
       floating={boolean('Floating', false)}
+      disabled={boolean('Disabled', false)}
+      leftIcon={select('Left Icon', iconOptions, 'information-outline')}
+      leftIconProps={object('Left Icon Props', { color: 'greyDarker', size: 16 })}
+      rightIcon={select('Right Icon', iconOptions, 'eye-outline')}
+      rightIconProps={object('Right Icon Props', { color: 'greyDarker', size: 24 })}
       {...defaultInputProps}
     />
   );
