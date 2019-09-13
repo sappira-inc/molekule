@@ -4,7 +4,7 @@ import { themeGet, createComponent } from '../utils';
 const Label = createComponent({
   name: 'Label',
   tag: 'label',
-  style: ({ isFloatable, isFloating, isFocused, isDisabled, theme }) => css`
+  style: ({ hasLeftIcon, isFloatable, isFloating, isFocused, isDisabled, theme }) => css`
     display: block;
     transition: 250ms;
     margin: 0 0 4px 4px;
@@ -13,12 +13,21 @@ const Label = createComponent({
     ${isFloatable &&
       css`
         position: absolute;
-        top: 6px;
-        left: 8px;
-        opacity: ${isFloating ? 1 : 0};
+        left: ${hasLeftIcon ? 24 : 8}px;
+        opacity: 0;
         margin: 0;
-        font-size: 12px;
+        font-size: 16px;
         line-height: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        ${isFloating &&
+          css`
+            font-size: 12px;
+            top: 6px;
+            transform: none;
+            opacity: 1;
+          `}
       `};
 
     ${isFocused &&

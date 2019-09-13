@@ -66,16 +66,17 @@ const StyledInput = createComponent({
       }
     }
 
+    ${leftIcon &&
+      css`
+        padding-left: ${(leftIconProps.size || 16) + 12}px;
+      `};
+
     ${isFloating &&
       css`
         line-height: 14px;
         padding-top: 14px;
         padding-bottom: 0px;
-      `};
-
-    ${leftIcon &&
-      css`
-        padding-left: ${(leftIconProps.size || 16) + 12}px;
+        padding-left: 8px;
       `};
 
     ${rightIcon &&
@@ -94,12 +95,20 @@ const StyledIcon = styled(Icon)`
 const LeftIcon = createComponent({
   name: 'InputLeftIcon',
   as: StyledIcon,
-  style: ({ isFloating }) => css`
+  style: ({ isFocused, isFloating, theme }) => css`
     left: 8px;
 
     ${isFloating &&
       css`
-        top: 65%;
+        top: 6px;
+        transform: none;
+        font-size: 12px;
+        line-height: 14px;
+
+        ${isFocused &&
+          css`
+            color: ${theme.colors.primary};
+          `}
       `}
   `,
 });
@@ -344,6 +353,7 @@ export class Input extends Component {
         isFloating={isFloating}
         isFocused={focused}
         isDisabled={disabled}
+        hasLeftIcon={!!leftIcon}
         error={error}>
         {label}
       </StyledLabel>
@@ -356,7 +366,7 @@ export class Input extends Component {
         <InputContainer styles={rest.styles}>
           {floating && Label}
 
-          {leftIcon && <LeftIcon styles={rest.styles} isFloating={isFloating} name={leftIcon} {...leftIconProps} />}
+          {leftIcon && <LeftIcon styles={rest.styles} isFloating={isFloating} isFocused={focused} name={leftIcon} {...leftIconProps} />}
 
           {rightIcon && <RightIcon styles={rest.styles} name={rightIcon} {...rightIconProps} />}
 
