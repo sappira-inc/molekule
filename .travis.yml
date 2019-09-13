@@ -6,4 +6,5 @@ install:
 script:
   - npm install
   - npm test -- --coverage
+  - ./scripts/run-vrt.sh
   - codecov
