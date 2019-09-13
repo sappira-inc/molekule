@@ -62,7 +62,7 @@ export default (overrides = {}) => {
   const radii = [0, 2, 4];
 
   const typography = {
-    fontSize: 14,
+    fontSize: 16,
     bodyFontFamily: 'Avenir',
     headerFontFamily: 'Tiempos',
   };
