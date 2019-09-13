@@ -1,4 +1,5 @@
 import React from 'react';
+import { object, select } from '@storybook/addon-knobs/react';
 import Formbot from './Formbot';
 import Button from '../Button';
 import { Input } from './Input';
@@ -73,3 +74,27 @@ export const Styles = () => (
     }}
   />
 );
+
+export const Icon = () => {
+  const iconProps = {
+    color: 'greyDarker',
+    size: 16,
+  };
+
+  const iconOptions = {
+    Information: 'information-outline',
+    Visibility: 'eye-outline',
+    Alert: 'alert',
+    'Area 51': 'alien',
+  };
+
+  return (
+    <Input
+      leftIcon={select('Left Icon', iconOptions, 'information-outline')}
+      leftIconProps={object('Left Icon Props', { ...iconProps })}
+      rightIcon={select('Right Icon', iconOptions, 'eye-outline')}
+      rightIconProps={object('Right Icon Props', { ...iconProps })}
+      {...defaultInputProps}
+    />
+  );
+};

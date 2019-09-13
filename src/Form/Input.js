@@ -12,6 +12,7 @@ const InputContainer = createComponent({
   name: 'InputContainer',
   style: css`
     position: relative;
+    color: ${p => p.theme.colors.greyDarker};
   `,
 });
 
@@ -33,6 +34,7 @@ const StyledInput = createComponent({
     outline: none;
     width: 100%;
     padding: 8px;
+    padding-right: 24px;
     border-radius: ${borderRadius}px;
     transition: 250ms all;
     -webkit-appearance: none;
