@@ -1,5 +1,5 @@
 import React from 'react';
-import { object, select } from '@storybook/addon-knobs/react';
+import { object, select, boolean } from '@storybook/addon-knobs/react';
 import Formbot from './Formbot';
 import Button from '../Button';
 import { Input } from './Input';
@@ -96,6 +96,7 @@ export const Icon = () => {
       leftIconProps={object('Left Icon Props', { ...iconProps })}
       rightIcon={select('Right Icon', iconOptions, 'eye-outline')}
       rightIconProps={object('Right Icon Props', { ...iconProps })}
+      floating={boolean('Floating', false)}
       {...defaultInputProps}
     />
   );

@@ -84,18 +84,23 @@ const StyledInput = createComponent({
       `};
   `,
 });
-
 const StyledIcon = styled(Icon)`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  transition: 250ms all;
 `;
 
 const LeftIcon = createComponent({
   name: 'InputLeftIcon',
   as: StyledIcon,
-  style: css`
+  style: ({ isFloating }) => css`
     left: 8px;
+
+    ${isFloating &&
+      css`
+        top: 65%;
+      `}
   `,
 });
 
@@ -106,7 +111,6 @@ const RightIcon = createComponent({
     right: 8px;
   `,
 });
-
 const StyledTextArea = StyledInput.withComponent('textarea');
 
 const AutogrowShadow = createComponent({
@@ -309,7 +313,7 @@ export class Input extends Component {
 
     const { focused, height, value } = this.state;
 
-    const isFloating = floating && value !== undefined && `${value}`.trim();
+    const isFloating = floating && value !== undefined && !!`${value}`.trim();
 
     const inputProps = {
       ...rest,
@@ -352,7 +356,7 @@ export class Input extends Component {
         <InputContainer styles={rest.styles}>
           {floating && Label}
 
-          {leftIcon && <LeftIcon styles={rest.styles} name={leftIcon} {...leftIconProps} />}
+          {leftIcon && <LeftIcon styles={rest.styles} isFloating={isFloating} name={leftIcon} {...leftIconProps} />}
 
           {rightIcon && <RightIcon styles={rest.styles} name={rightIcon} {...rightIconProps} />}
 
