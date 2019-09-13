@@ -14,6 +14,7 @@ exports[`<PhoneInput /> snapshot 1`] = `
 
 .c2 {
   position: relative;
+  color: #767980;
 }
 
 .c3 {
@@ -23,6 +24,7 @@ exports[`<PhoneInput /> snapshot 1`] = `
   outline: none;
   width: 100%;
   padding: 8px;
+  padding-right: 24px;
   border-radius: 8px;
   -webkit-transition: 250ms all;
   transition: 250ms all;
