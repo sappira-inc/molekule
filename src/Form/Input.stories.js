@@ -64,6 +64,8 @@ export const FloatingLabel = () => <Input {...defaultInputProps} floating />;
 
 export const Disabled = () => <Input {...defaultInputProps} disable />;
 
+export const Error = () => <Input {...defaultInputProps} error="This is an error message" />;
+
 export const Styles = () => (
   <Input
     {...defaultInputProps}
