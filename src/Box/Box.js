@@ -1,50 +1,28 @@
-import { css } from 'styled-components';
-import {
-  display,
-  space,
-  color,
-  height,
-  width,
-  fontSize,
-  fontWeight,
-  textAlign,
-  lineHeight,
-  alignSelf,
-  justifySelf,
-  flex,
-} from 'styled-system';
+import { compose, space, color, typography, layout, flexbox, position, background } from 'styled-system';
+import propTypes from '@styled-system/prop-types';
 import { createComponent } from '../utils';
 
 const Box = createComponent({
   name: 'Box',
-  style: css`
-  ${display}
-  ${space}
-  ${color}
-  ${fontSize}
-  ${fontWeight}
-  ${textAlign}
-  ${lineHeight}
-  ${height}
-  ${width}
-  ${flex}
-  ${alignSelf}
-  ${justifySelf}
-  `,
+  style: compose(
+    space,
+    color,
+    typography,
+    layout,
+    flexbox,
+    position,
+    background
+  ),
 });
 
 Box.propTypes = {
-  ...display.propTypes,
-  ...space.propTypes,
-  ...color.propTypes,
-  ...width.propTypes,
-  ...fontSize.propTypes,
-  ...fontWeight.propTypes,
-  ...textAlign.propTypes,
-  ...lineHeight.propTypes,
-  ...flex.propTypes,
-  ...alignSelf.propTypes,
-  ...justifySelf.propTypes,
+  ...propTypes.space,
+  ...propTypes.color,
+  ...propTypes.typography,
+  ...propTypes.layout,
+  ...propTypes.flexbox,
+  ...propTypes.position,
+  ...propTypes.background,
 };
 
 export default Box;
