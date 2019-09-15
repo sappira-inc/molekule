@@ -35,8 +35,7 @@ const StyledColumn = createComponent({
   name: 'Column',
   as: Flex,
   style: ({ theme, order, ...props }) => {
-    const breakpoints = Object.keys(theme.breakpoints);
-    const mediaQueries = breakpoints.map(breakpoint => {
+    const mediaQueries = Object.keys(theme.breakpoints).map(breakpoint => {
       if (!props[breakpoint]) {
         return null;
       }
@@ -49,7 +48,7 @@ const StyledColumn = createComponent({
       }
 
       return css`
-        @media (min-width: ${breakpoints[breakpoint]}px) {
+        @media (min-width: ${theme.breakpoints[breakpoint]}) {
           ${getColumnWidth(props[breakpoint], theme.gridColumns)};
           ${props[`${breakpoint}Offset`] !== undefined && getOffset(props[`${breakpoint}Offset`], theme.gridColumns)};
         }
@@ -62,7 +61,6 @@ const StyledColumn = createComponent({
       flex-direction: column;
       padding-left: ${getPadding}px;
       padding-right: ${getPadding}px;
-      order: ${order != null ? order : 'initial'};
 
       ${mediaQueries};
     `;

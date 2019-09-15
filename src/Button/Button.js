@@ -131,7 +131,7 @@ Button.defaultProps = {
 const verticalCss = ({ breakpoints, vertical, borderRadius }) => {
   const maybeNumber = parseInt(vertical, 10);
   const fallback = breakpoints[vertical] || breakpoints.sm;
-  const breakpoint = Number.isInteger(maybeNumber) ? `${maybeNumber}px` : `${fallback}px`;
+  const breakpoint = Number.isInteger(maybeNumber) ? `${maybeNumber}px` : fallback;
 
   return css`
     @media (max-width: ${breakpoint}) {

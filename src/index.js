@@ -33,6 +33,9 @@ export Select from './Form/Select';
 export Spinner from './Spinner';
 export Switch from './Form/Switch';
 export Tabs from './Tabs';
+export Text from './Text';
 export ThemeProvider from './ThemeProvider';
 export * from './Toast';
+
 export * from './utils';
+export { default as styled, css, keyframes, createGlobalStyle } from 'styled-components';

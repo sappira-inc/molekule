@@ -192,12 +192,13 @@ export default (overrides = {}) => {
 
   const alertVariants = badgeVariants;
 
-  const breakpoints = [480, 768, 1024, 1440];
+  const breakpoints = ['400px', '600px', '900px', '1200px', '1500px'];
   /* eslint-disable prefer-destructuring */
   breakpoints.xs = breakpoints[0];
   breakpoints.sm = breakpoints[1];
   breakpoints.md = breakpoints[2];
   breakpoints.lg = breakpoints[3];
+  breakpoints.xl = breakpoints[4];
   /* eslint-enable prefer-destructuring */
 
   return {
