@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text "as" prop 1`] = `
+<DocumentFragment>
+  <h1
+    class="re-text "
+  >
+    Hey!
+  </h1>
+</DocumentFragment>
+`;
+
+exports[`Text "color" prop 1`] = `
+<DocumentFragment>
+  .c0 {
+  color: #FD575D;
+}
+
+<span
+    class="re-text c0"
+    color="red"
+  >
+    Hey!
+  </span>
+</DocumentFragment>
+`;
+
+exports[`Text default to <span> 1`] = `
+<DocumentFragment>
+  <span
+    class="re-text "
+  >
+    Hey!
+  </span>
+</DocumentFragment>
+`;
