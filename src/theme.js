@@ -1,4 +1,4 @@
-export default (overrides = {}) => {
+export default (customTheme = {}) => {
   const colors = Object.assign(
     {
       default: '#494D55',
@@ -53,7 +53,7 @@ export default (overrides = {}) => {
       green: '#21B986',
       greenDark: '#00AC74',
     },
-    overrides.colors
+    customTheme.colors
   );
 
   const buttonVariants = {
@@ -192,7 +192,7 @@ export default (overrides = {}) => {
 
   const alertVariants = badgeVariants;
 
-  const breakpoints = ['400px', '600px', '900px', '1200px', '1500px'];
+  const breakpoints = customTheme.breakpoints || ['400px', '600px', '900px', '1200px', '1500px'];
   /* eslint-disable prefer-destructuring */
   breakpoints.xs = breakpoints[0];
   breakpoints.sm = breakpoints[1];
