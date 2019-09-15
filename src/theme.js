@@ -206,7 +206,7 @@ export default (overrides = {}) => {
     space: [0, 4, 8, 16, 24, 32, 64, 126, 256],
 
     breakpoints,
-    containerMaxWidth: 1024,
+    gridWidth: 1024,
     gridGutter: 16,
     gridColumns: 12,
 

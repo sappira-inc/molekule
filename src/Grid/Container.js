@@ -13,7 +13,7 @@ const StyledContainer = createComponent({
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    max-width: ${fluid ? '100%' : `${maxWidth || theme.containerMaxWidth}px`};
+    max-width: ${fluid ? '100%' : `${maxWidth || theme.gridWidth}px`};
     padding-left: ${getPadding}px;
     padding-right: ${getPadding}px;
   `,
