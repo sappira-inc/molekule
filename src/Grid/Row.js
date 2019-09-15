@@ -6,7 +6,7 @@ import { createComponent } from '../utils';
 
 const getMargin = p => {
   if (p.collapse) return 0;
-  return typeof p.gutter === 'number' ? p.gutter / 2 : p.theme.grid.gutter / 2;
+  return typeof p.gutter === 'number' ? p.gutter / 2 : p.theme.gridGutter / 2;
 };
 
 const StyledRow = createComponent({

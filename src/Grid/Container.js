@@ -4,7 +4,7 @@ import { css } from 'styled-components';
 import Box from '../Box';
 import { createComponent } from '../utils';
 
-const getPadding = p => (typeof p.gutter === 'number' ? p.gutter / 2 : p.theme.grid.gutter / 2);
+const getPadding = p => (typeof p.gutter === 'number' ? p.gutter / 2 : p.theme.gridGutter / 2);
 
 const StyledContainer = createComponent({
   name: 'Container',
@@ -13,7 +13,7 @@ const StyledContainer = createComponent({
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    max-width: ${fluid ? '100%' : `${maxWidth || theme.grid.containerMaxWidth}px`};
+    max-width: ${fluid ? '100%' : `${maxWidth || theme.containerMaxWidth}px`};
     padding-left: ${getPadding}px;
     padding-right: ${getPadding}px;
   `,

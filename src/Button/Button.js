@@ -128,9 +128,9 @@ Button.defaultProps = {
   loading: false,
 };
 
-const verticalCss = ({ sizes, vertical, borderRadius }) => {
+const verticalCss = ({ breakpoints, vertical, borderRadius }) => {
   const maybeNumber = parseInt(vertical, 10);
-  const fallback = sizes[vertical] || sizes.sm;
+  const fallback = breakpoints[vertical] || breakpoints.sm;
   const breakpoint = Number.isInteger(maybeNumber) ? `${maybeNumber}px` : `${fallback}px`;
 
   return css`
@@ -154,15 +154,7 @@ const verticalCss = ({ sizes, vertical, borderRadius }) => {
 Button.Group = createComponent({
   name: 'ButtonGroup',
   as: Flex,
-  style: ({
-    vertical = false,
-    theme: {
-      radius,
-      grid: { sizes },
-    },
-    borderRadius = radius || 2,
-    connected = false,
-  }) => css`
+  style: ({ vertical = false, theme: { radius, breakpoints }, borderRadius = radius || 2, connected = false }) => css`
     & > button:not(:first-child) {
       margin-left: 1rem;
     }
@@ -184,7 +176,7 @@ Button.Group = createComponent({
         }
       `}
 
-    ${vertical && verticalCss({ sizes, vertical, borderRadius })};
+    ${vertical && verticalCss({ breakpoints, vertical, borderRadius })};
   `,
 });
 
