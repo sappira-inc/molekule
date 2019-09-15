@@ -9,21 +9,22 @@ export default {
   component: Dropdown,
 };
 
-export const Basic = () => {
-  const [ placement, setPlacement ] = useState('bottom-start')
+function BasicExample() {
+  const [placement, setPlacement] = useState('bottom-start');
   return (
     <Flex justifyContent="center">
       <Flex mr={5}>
         <RadioGroup
           label={<strong>Placement</strong>}
           value={placement}
-          choices={Object.keys(PLACEMENT_TRANSITION_ORIGINS).map(placement => ({
-            value: placement,
-            label: placement,
+          choices={Object.keys(PLACEMENT_TRANSITION_ORIGINS).map(p => ({
+            value: p,
+            label: p,
           }))}
           onChange={(_, val) => setPlacement(val)}
         />
       </Flex>
+
       <Flex alignSelf="center">
         <Dropdown
           placement={placement}
@@ -42,13 +43,17 @@ export const Basic = () => {
       </Flex>
     </Flex>
   );
-};
+}
+
+export const Basic = () => <BasicExample />;
 
 export const WithTitles = () => (
   <Flex>
     <Dropdown placement="bottom-start" width={250} trigger={<Button variant="danger">Dropdown w/Titles</Button>}>
       <Dropdown.Title>Section Title</Dropdown.Title>
-      <Dropdown.Item selected closeOnClick={false}>Dropdown Item</Dropdown.Item>
+      <Dropdown.Item selected closeOnClick={false}>
+        Dropdown Item
+      </Dropdown.Item>
       <Dropdown.Item>Dropdown Item</Dropdown.Item>
       <Dropdown.Item>Dropdown Item</Dropdown.Item>
       <Dropdown.Divider />
@@ -80,7 +85,9 @@ export const WithIcons = () => (
       <Dropdown.Divider />
       <Dropdown.Item icon="settings">Dropdown Item</Dropdown.Item>
       <Dropdown.Divider />
-      <Dropdown.Item icon="trash-can" color="red">Cancel</Dropdown.Item>
+      <Dropdown.Item icon="trash-can" color="red">
+        Cancel
+      </Dropdown.Item>
     </Dropdown>
   </Flex>
 );

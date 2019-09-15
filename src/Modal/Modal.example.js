@@ -32,22 +32,14 @@ export default class ModalDemo extends React.Component {
       <div>
         <Button onClick={this.toggle}>Open Modal</Button>
 
-        <Modal
-          open={this.state.isModalOpen}
-          onClose={this.toggle}
-          title="Example Modal"
-          {...props}>
+        <Modal open={this.state.isModalOpen} onClose={this.toggle} title="Example Modal" {...props}>
           <Modal.Body>
             <>
               {body}
               <Input autoFocus name="password" label="Password" />
             </>
 
-            <Modal
-              open={this.state.isModalTwoOpen}
-              onClose={this.toggleModalTwo}
-              title="Example Modal Two"
-              {...props}>
+            <Modal open={this.state.isModalTwoOpen} onClose={this.toggleModalTwo} title="Example Modal Two" {...props}>
               <Modal.Body>{bodyTwo}</Modal.Body>
 
               <Modal.Footer>

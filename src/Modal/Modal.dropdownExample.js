@@ -27,16 +27,10 @@ export default class ModalDropdownDemo extends React.Component {
     return (
       <div>
         <Dropdown placement="top" width={250} trigger={<Button variant="success">Open Dropdown</Button>}>
-          <Dropdown.Header title="Dropdown" />
-
-          <Dropdown.Body>
-            <Dropdown.SectionTitle>Section One</Dropdown.SectionTitle>
-            <Dropdown.Item onClick={this.toggle} as="button">
-              Open Modal
-            </Dropdown.Item>
-          </Dropdown.Body>
-
-          <Dropdown.Footer>Footer</Dropdown.Footer>
+          <Dropdown.Title>Section One</Dropdown.Title>
+          <Dropdown.Item onClick={this.toggle} as="button">
+            Open Modal
+          </Dropdown.Item>
         </Dropdown>
 
         <Modal open={this.state.isModalOpen} onClose={this.toggle} title="Example Dropdown Modal" {...props}>
