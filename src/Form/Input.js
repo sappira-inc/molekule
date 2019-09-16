@@ -12,6 +12,7 @@ const InputContainer = createComponent({
   name: 'InputContainer',
   style: css`
     position: relative;
+    color: ${p => p.theme.colors.greyDarker};
   `,
 });
 
@@ -19,6 +20,7 @@ const StyledInput = createComponent({
   name: 'Input',
   tag: 'input',
   style: ({
+    isFloatable,
     isFloating,
     theme,
     borderRadius = theme.radius,
@@ -33,6 +35,7 @@ const StyledInput = createComponent({
     outline: none;
     width: 100%;
     padding: 8px;
+    padding-right: 24px;
     border-radius: ${borderRadius}px;
     transition: 250ms all;
     -webkit-appearance: none;
@@ -42,7 +45,8 @@ const StyledInput = createComponent({
     box-sizing: border-box;
 
     &:hover,
-    &:active {
+    &:active,
+    & + label &:hover {
       border-color: ${theme.colors.greyDark};
     }
 
@@ -52,6 +56,7 @@ const StyledInput = createComponent({
 
     ::placeholder {
       color: ${theme.colors.greyDarker};
+      opacity: ${isFloatable ? 0 : 1};
     }
 
     &[disabled] {
@@ -64,14 +69,8 @@ const StyledInput = createComponent({
       }
     }
 
-    ${isFloating &&
-      css`
-        line-height: 14px;
-        padding-top: 14px;
-        padding-bottom: 0px;
-      `};
-
     ${leftIcon &&
+      !isFloatable &&
       css`
         padding-left: ${(leftIconProps.size || 16) + 12}px;
       `};
@@ -80,20 +79,52 @@ const StyledInput = createComponent({
       css`
         padding-right: ${(rightIconProps.size || 16) + 32}px;
       `};
+
+    ${isFloating &&
+      css`
+        line-height: 14px;
+        padding-top: 14px;
+        padding-bottom: 0px;
+      `};
   `,
 });
 
 const StyledIcon = styled(Icon)`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  ${({ theme, isDisabled }) => css`
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 250ms all;
+
+    ${isDisabled &&
+      css`
+        color: ${theme.colors.grey};
+      `}
+  `}
 `;
 
 const LeftIcon = createComponent({
   name: 'InputLeftIcon',
   as: StyledIcon,
-  style: css`
+  style: ({ isFocused, isFloating, isFloatable, theme }) => css`
     left: 8px;
+
+    ${isFloatable &&
+      css`
+        position: static;
+        padding-right: 4px;
+      `}
+
+    ${isFloating &&
+      css`
+        font-size: 12px;
+        line-height: 14px;
+
+        ${isFocused &&
+          css`
+            color: ${theme.colors.primary};
+          `}
+      `}
   `,
 });
 
@@ -105,7 +136,16 @@ const RightIcon = createComponent({
   `,
 });
 
-const StyledTextArea = StyledInput.withComponent('textarea');
+const StyledTextArea = createComponent({
+  name: 'TextArea',
+  as: StyledInput.withComponent('textarea'),
+  style: ({ isFloatable, isFloating }) => css`
+    ${isFloatable && isFloating &&
+      css`
+        padding-top: 24px;
+      `}
+  `,
+});
 
 const AutogrowShadow = createComponent({
   name: 'AutogrowShadow',
@@ -281,6 +321,12 @@ export class Input extends Component {
     this.ref.current.blur();
   }
 
+  handleLabelClick = () => {
+    if (this.props.floating) {
+      this.focus();
+    }
+  };
+
   render() {
     const {
       style,
@@ -307,7 +353,7 @@ export class Input extends Component {
 
     const { focused, height, value } = this.state;
 
-    const isFloating = floating && value !== undefined && `${value}`.trim();
+    const isFloating = (floating && value !== undefined && !!`${value}`.trim()) || (floating && focused);
 
     const inputProps = {
       ...rest,
@@ -330,15 +376,16 @@ export class Input extends Component {
       disabled,
     };
 
+    const statusProps = {
+      isFloatable: floating,
+      isFloating,
+      isFocused: focused,
+      isDisabled: disabled,
+    };
+
     const Label = label ? (
-      <StyledLabel
-        htmlFor={id}
-        styles={rest.styles}
-        isFloatable={floating}
-        isFloating={isFloating}
-        isFocused={focused}
-        isDisabled={disabled}
-        error={error}>
+      <StyledLabel htmlFor={id} styles={rest.styles} error={error} onClick={this.handleLabelClick} {...statusProps}>
+        {leftIcon && <LeftIcon styles={rest.styles} name={leftIcon} {...statusProps} {...leftIconProps} />}
         {label}
       </StyledLabel>
     ) : null;
@@ -350,9 +397,13 @@ export class Input extends Component {
         <InputContainer styles={rest.styles}>
           {floating && Label}
 
-          {leftIcon && <LeftIcon styles={rest.styles} name={leftIcon} {...leftIconProps} />}
+          {leftIcon && !floating && (
+            <LeftIcon styles={rest.styles} name={leftIcon} {...statusProps} {...leftIconProps} />
+          )}
 
-          {rightIcon && <RightIcon styles={rest.styles} name={rightIcon} {...rightIconProps} />}
+          {rightIcon && (
+            <RightIcon styles={rest.styles} name={rightIcon} size={24} {...statusProps} {...rightIconProps} />
+          )}
 
           {multiline ? <StyledTextArea {...inputProps} /> : <StyledInput {...inputProps} />}
         </InputContainer>

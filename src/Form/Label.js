@@ -13,12 +13,24 @@ const Label = createComponent({
     ${isFloatable &&
       css`
         position: absolute;
-        top: 6px;
-        left: 8px;
-        opacity: ${isFloating ? 1 : 0};
         margin: 0;
-        font-size: 12px;
+        font-size: 16px;
         line-height: 14px;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        user-select: none;
+
+        &:hover {
+          cursor: text;
+        }
+
+        ${isFloating &&
+          css`
+            font-size: 12px;
+            top: 6px;
+            transform: none;
+          `}
       `};
 
     ${isFocused &&

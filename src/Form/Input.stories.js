@@ -1,4 +1,5 @@
 import React from 'react';
+import { object, select, boolean } from '@storybook/addon-knobs/react';
 import Formbot from './Formbot';
 import Button from '../Button';
 import { Input } from './Input';
@@ -61,7 +62,9 @@ export const Autogrow = () => <Input {...defaultInputProps} multiline autogrow /
 
 export const FloatingLabel = () => <Input {...defaultInputProps} floating />;
 
-export const Disabled = () => <Input {...defaultInputProps} disable />;
+export const Disabled = () => <Input {...defaultInputProps} disabled />;
+
+export const Error = () => <Input {...defaultInputProps} error="This is an error message" />;
 
 export const Styles = () => (
   <Input
@@ -73,3 +76,24 @@ export const Styles = () => (
     }}
   />
 );
+
+export const Icon = () => {
+  const iconOptions = {
+    Information: 'information-outline',
+    Visibility: 'eye-outline',
+    Alert: 'alert',
+    'Area 51': 'alien',
+  };
+
+  return (
+    <Input
+      floating={boolean('Floating', false)}
+      disabled={boolean('Disabled', false)}
+      leftIcon={select('Left Icon', iconOptions, 'information-outline')}
+      leftIconProps={object('Left Icon Props', { color: 'greyDarker', size: 16 })}
+      rightIcon={select('Right Icon', iconOptions, 'eye-outline')}
+      rightIconProps={object('Right Icon Props', { color: 'greyDarker', size: 24 })}
+      {...defaultInputProps}
+    />
+  );
+};

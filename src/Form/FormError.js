@@ -10,9 +10,10 @@ const FormErrorContainer = createComponent({
   tag: 'span',
   style: css`
     display: block;
-    margin: 4px 0 0 4px;
+    margin: 8px 0 0 1px;
     color: ${p => p.theme.colors.red};
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: 500;
   `,
 });
 

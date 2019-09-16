@@ -218,7 +218,7 @@ export default (customTheme = {}) => {
     shadowHover: '0 6px 9px hsla(0,0%,60%,.2), 0 6px 9px hsla(0,0%,60%,.2), 0 -1px 2px hsla(0,0%,60%,.08)',
 
     typography: {
-      fontSize: 14,
+      fontSize: 16,
       bodyFontFamily: 'Avenir',
       headerFontFamily: 'Tiempos',
     },
