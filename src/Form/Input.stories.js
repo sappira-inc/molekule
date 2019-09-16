@@ -54,8 +54,7 @@ export const Multiline = () => (
   <Input
     {...defaultInputProps}
     multiline
-    floating
-    // value="I already have a value! If provided a value, I become controlled, so I won't update when you type here..."
+    value="I already have a value! If provided a value, I become controlled, so I won't update when you type here..."
   />
 );
 
