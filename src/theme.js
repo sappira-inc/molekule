@@ -214,11 +214,14 @@ export default (customTheme = {}) => {
     radii: [0, 2, 4, 8],
     radius: 8,
 
-    shadow: '0 3px 6px hsla(0,0%,60%,.1), 0 3px 6px hsla(0,0%,60%,.15), 0 -1px 2px hsla(0,0%,60%,.02)',
-    shadowHover: '0 6px 9px hsla(0,0%,60%,.2), 0 6px 9px hsla(0,0%,60%,.2), 0 -1px 2px hsla(0,0%,60%,.08)',
+    shadow: {
+      soft: '0px 2px 16px rgba(27, 32, 43, 0.1)',
+      hard: '0px 0px 16px rgba(44, 53, 71, 0.2)',
+    },
 
     typography: {
       fontSize: 16,
+      color: colors.greyDarkest,
       bodyFontFamily: 'Avenir',
       headerFontFamily: 'Tiempos',
     },

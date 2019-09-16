@@ -19,8 +19,13 @@ const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
     }
 
-    h1, h2 {
-      font-family: "Tiempos", serif !important
+    body {
+      color: ${theme.color};
+    }
+
+    h1 {
+      font-family: "Tiempos", serif !important;
+      color: black;
     }
 `;
 
