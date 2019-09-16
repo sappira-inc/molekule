@@ -135,7 +135,17 @@ const RightIcon = createComponent({
     right: 8px;
   `,
 });
-const StyledTextArea = StyledInput.withComponent('textarea');
+
+const StyledTextArea = createComponent({
+  name: 'TextArea',
+  as: StyledInput.withComponent('textarea'),
+  style: ({ isFloatable, isFloating }) => css`
+    ${isFloatable && isFloating &&
+      css`
+        padding-top: 24px;
+      `}
+  `,
+});
 
 const AutogrowShadow = createComponent({
   name: 'AutogrowShadow',
