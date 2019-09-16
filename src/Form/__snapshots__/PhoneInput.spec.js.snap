@@ -36,7 +36,8 @@ exports[`<PhoneInput /> snapshot 1`] = `
 }
 
 .c3:hover,
-.c3:active {
+.c3:active,
+.c3 + label .c3:hover {
   border-color: #A4A6AA;
 }
 
@@ -46,18 +47,22 @@ exports[`<PhoneInput /> snapshot 1`] = `
 
 .c3::-webkit-input-placeholder {
   color: #767980;
+  opacity: 1;
 }
 
 .c3::-moz-placeholder {
   color: #767980;
+  opacity: 1;
 }
 
 .c3:-ms-input-placeholder {
   color: #767980;
+  opacity: 1;
 }
 
 .c3::placeholder {
   color: #767980;
+  opacity: 1;
 }
 
 .c3[disabled] {
