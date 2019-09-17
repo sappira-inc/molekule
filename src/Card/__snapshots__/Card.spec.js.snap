@@ -4,7 +4,7 @@ exports[`Card 1`] = `
 <DocumentFragment>
   .c0 {
   background: white;
-  box-shadow: 0px 2px 16px rgba(27,32,43,0.1);
+  box-shadow: none;
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid #E8E9EA;
