@@ -6,10 +6,10 @@ import { createComponent } from '../utils';
 const Legend = createComponent({
   name: 'Legend',
   tag: 'legend',
-  style: ({ theme, color = theme.colors.primary }) => css`
+  style: ({ theme, color = theme.colors.greyDarkest }) => css`
     font-weight: 700;
-    margin-bottom: 1rem;
-    font-size: 14px;
+    margin-bottom: 8px;
+    font-size: 18px;
     color: ${color};
   `,
 });

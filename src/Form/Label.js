@@ -16,7 +16,7 @@ const Label = createComponent({
         margin: 0;
         font-size: 16px;
         line-height: 14px;
-        left: 8px;
+        left: 9px;
         top: 50%;
         transform: translateY(-50%);
         user-select: none;

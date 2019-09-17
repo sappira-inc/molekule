@@ -50,14 +50,14 @@ const Backdrop = createComponent({
 
 const ModalContent = createComponent({
   name: 'ModalContent',
-  style: ({ minWidth, maxWidth, transitionState, animationIn, animationOut }) => css`
+  style: ({ minWidth, maxWidth, transitionState, animationIn, animationOut, theme }) => css`
     position: relative;
     margin: auto;
     min-width: ${minWidth}px;
     max-width: ${maxWidth}px;
     background: #ffffff;
     background-clip: padding-box;
-    box-shadow: 0 8px 30px rgba(0, 29, 54, 0.1);
+    box-shadow: ${theme.shadow.hard});
     border-radius: ${themeGet('radius')}px;
 
     ${transitionState === 'entering' &&
@@ -145,6 +145,7 @@ Modal.Title = createComponent({
   name: 'ModalTitle',
   tag: 'h2',
   style: css`
+    font-size: 16px;
     margin: 0;
   `,
 });
@@ -161,7 +162,7 @@ const ModalHeader = createComponent({
 const ModalHeaderInner = createComponent({
   name: 'ModalHeaderInner',
   style: ({ theme }) => css`
-    border-bottom: 2px solid ${theme.colors.greyLight};
+    border-bottom: 1px solid ${theme.colors.grey};
     padding-bottom: 0.25rem;
   `,
 });
@@ -178,7 +179,7 @@ Modal.Header = ({ title, children, showClose = true }) => {
 
           {showClose && (
             <Box ml="auto">
-              <Icon name="close" color="greyDark" style={{ cursor: 'pointer' }} size={24} onClick={handleClose} />
+              <Icon name="close" color="greyDarkest" style={{ cursor: 'pointer' }} size={24} onClick={handleClose} />
             </Box>
           )}
         </Flex>
@@ -196,9 +197,8 @@ Modal.Body = createComponent({
 
 Modal.Footer = createComponent({
   name: 'ModalFooter',
-  style: ({ theme }) => css`
-    padding: 1rem 1.25rem;
-    background: ${theme.colors.greyLightest};
+  style: css`
+    padding: 8px;
     border-bottom-left-radius: ${themeGet('radius')}px;
     border-bottom-right-radius: ${themeGet('radius')}px;
   `,

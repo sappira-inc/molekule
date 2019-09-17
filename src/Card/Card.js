@@ -7,11 +7,12 @@ import { themeGet, createComponent } from '../utils';
 const StyledCard = createComponent({
   name: 'Card',
   as: Box,
-  style: ({ shadow }) => css`
+  style: ({ shadow, theme }) => css`
     background: white;
-    box-shadow: ${shadow ? themeGet('shadow', 'none') : 'none'};
+    box-shadow: ${shadow ? themeGet('shadow.soft', 'none') : 'none'};
     border-radius: ${themeGet('radius', 0)}px;
     overflow: hidden;
+    border: 1px solid ${theme.colors.greyLight};
   `,
 });
 
@@ -29,9 +30,9 @@ Card.defaultProps = {
 Card.Header = createComponent({
   name: 'CardHeader',
   as: Box,
-  style: ({ theme }) => css`
-    padding: 1rem;
-    border-bottom: 1px solid ${theme.colors.greyLight};
+  style: css`
+    padding: 1rem 1rem 8px;
+    font-weight: 700;
   `,
 });
 
@@ -39,16 +40,15 @@ Card.Body = createComponent({
   name: 'CardBody',
   as: Box,
   style: () => css`
-    padding: 1rem;
+    padding: 8px 1rem;
   `,
 });
 
 Card.Footer = createComponent({
   name: 'CardFooter',
   as: Box,
-  style: ({ theme }) => css`
-    padding: 1rem;
-    border-top: 1px solid ${theme.colors.greyLight};
+  style: css`
+    padding: 8px 1rem 1rem;
   `,
 });
 

@@ -51,10 +51,11 @@ const Toast = createComponent({
     cursor: pointer;
     color: white;
     font-weight: 600;
-    border-radius: ${themeGet('radius')}px;
-    box-shadow: ${themeGet('shadow')};
+    border-radius: ${theme.radius}px;
+    box-shadow: ${theme.shadow.soft};
     background: ${theme.colors[VariantToColorMap[type]]};
     transition: 175ms;
+    z-index: 5000;
 
     ${getTransitionStyle(state, position, animationDuration)};
 
@@ -63,7 +64,7 @@ const Toast = createComponent({
     }
 
     &:hover {
-      box-shadow: ${themeGet('shadowHover')};
+      box-shadow: ${theme.shadow.hard};
     }
   `,
 });
