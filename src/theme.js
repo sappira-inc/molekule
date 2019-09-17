@@ -207,7 +207,7 @@ export default (customTheme = {}) => {
     space: [0, 4, 8, 16, 24, 32, 64, 126, 256],
 
     breakpoints,
-    gridWidth: 1024,
+    gridWidth: 1200,
     gridGutter: 16,
     gridColumns: 12,
 
