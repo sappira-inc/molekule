@@ -4,23 +4,23 @@ exports[`Card 1`] = `
 <DocumentFragment>
   .c0 {
   background: white;
-  box-shadow: 0 3px 6px hsla(0,0%,60%,.1),0 3px 6px hsla(0,0%,60%,.15),0 -1px 2px hsla(0,0%,60%,.02);
+  box-shadow: 0px 2px 16px rgba(27,32,43,0.1);
   border-radius: 8px;
   overflow: hidden;
+  border: 1px solid #E8E9EA;
 }
 
 .c1 {
-  padding: 1rem;
-  border-bottom: 1px solid #E8E9EA;
+  padding: 1rem 1rem 8px;
+  font-weight: 700;
 }
 
 .c2 {
-  padding: 1rem;
+  padding: 8px 1rem;
 }
 
 .c3 {
-  padding: 1rem;
-  border-top: 1px solid #E8E9EA;
+  padding: 8px 1rem 1rem;
 }
 
 <div
