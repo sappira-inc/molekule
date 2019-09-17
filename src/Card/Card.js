@@ -24,7 +24,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  shadow: true,
+  shadow: false,
 };
 
 Card.Header = createComponent({
