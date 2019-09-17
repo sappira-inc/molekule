@@ -221,7 +221,7 @@ export default (customTheme = {}) => {
 
     typography: {
       fontSize: 16,
-      color: colors.greyDarkest,
+      color: colors.black,
       bodyFontFamily: 'Avenir',
       headerFontFamily: 'Tiempos',
     },
