@@ -163,7 +163,6 @@ const ModalHeaderInner = createComponent({
   name: 'ModalHeaderInner',
   style: ({ theme }) => css`
     border-bottom: 1px solid ${theme.colors.grey};
-    padding-bottom: 0.25rem;
   `,
 });
 
@@ -198,7 +197,7 @@ Modal.Body = createComponent({
 Modal.Footer = createComponent({
   name: 'ModalFooter',
   style: css`
-    padding: 8px;
+    padding: 0 1.25rem 1rem;
     border-bottom-left-radius: ${themeGet('radius')}px;
     border-bottom-right-radius: ${themeGet('radius')}px;
   `,

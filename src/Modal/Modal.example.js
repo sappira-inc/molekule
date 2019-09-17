@@ -43,7 +43,7 @@ export default class ModalDemo extends React.Component {
               <Modal.Body>{bodyTwo}</Modal.Body>
 
               <Modal.Footer>
-                <Button.Group justifyContent="flex-end">
+                <Button.Group justifyContent="space-between">
                   <Button variant="grey" onClick={this.toggleModalTwo}>
                     Cancel
                   </Button>
@@ -56,7 +56,7 @@ export default class ModalDemo extends React.Component {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button.Group justifyContent="flex-end">
+            <Button.Group justifyContent="space-between">
               <Button variant="grey" onClick={this.onCancel}>
                 Cancel
               </Button>
