@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import Draggable from 'react-draggable';
 import PropTypes from 'prop-types';
 import { keyframes, css } from 'styled-components';
 import * as animations from 'react-animations';
@@ -50,7 +51,7 @@ const Backdrop = createComponent({
 
 const ModalContent = createComponent({
   name: 'ModalContent',
-  style: ({ minWidth, maxWidth, transitionState, animationIn, animationOut, theme }) => css`
+  style: ({ minWidth, maxWidth, transitionState, animationIn, animationOut, theme, draggable }) => css`
     position: relative;
     margin: auto;
     min-width: ${minWidth}px;
@@ -59,6 +60,7 @@ const ModalContent = createComponent({
     background-clip: padding-box;
     box-shadow: ${theme.shadow.hard});
     border-radius: ${themeGet('radius')}px;
+    cursor: ${draggable ? 'move' : 'default'};
 
     ${transitionState === 'entering' &&
       css`
@@ -73,8 +75,19 @@ const ModalContent = createComponent({
 });
 
 /** Modals are a great way to add dialogs to your site for lightboxes, user notifications, or completely custom content. */
-export function Modal({ children, title, animationDuration, showClose, onClose, open, ...props }) {
+export function Modal({
+  children,
+  title,
+  animationDuration,
+  showClose,
+  onClose,
+  open,
+  draggable,
+  draggableOptions,
+  ...props
+}) {
   const [isOpen, setOpen] = useState(open);
+  const [draggableKey, setDraggableKey] = useState(0);
 
   const handleClose = () => {
     setOpen(false);
@@ -92,6 +105,11 @@ export function Modal({ children, title, animationDuration, showClose, onClose, 
   useEffect(() => {
     if (open !== isOpen) {
       setOpen(open);
+
+      // this ensures the modal is reset to center origin when re-opening using draggable
+      if (open && draggable) {
+        setDraggableKey(draggableKey ? 0 : 1);
+      }
     }
   }, [open]);
 
@@ -102,10 +120,12 @@ export function Modal({ children, title, animationDuration, showClose, onClose, 
           {state => (
             <FocusOn onEscapeKey={handleClose} enabled={isOpen}>
               <Backdrop transitionState={state} onClick={handleBackdropClick}>
-                <ModalContent transitionState={state} onClick={handleContentClick} {...props}>
-                  {title && <Modal.Header title={title} showClose={showClose} />}
-                  {children}
-                </ModalContent>
+                <Draggable key={draggableKey} disabled={!draggable} handle=".re-modal-header" {...draggableOptions}>
+                  <ModalContent transitionState={state} onClick={handleContentClick} {...props}>
+                    {title && <Modal.Header title={title} showClose={showClose} showMoveCursor={draggable} />}
+                    {children}
+                  </ModalContent>
+                </Draggable>
               </Backdrop>
             </FocusOn>
           )}
@@ -126,6 +146,8 @@ Modal.propTypes = {
   animationOut: PropTypes.string,
   animationDuration: PropTypes.number,
   onClose: PropTypes.func,
+  draggable: PropTypes.bool,
+  draggableOptions: PropTypes.shape(),
 };
 
 Modal.defaultProps = {
@@ -139,6 +161,8 @@ Modal.defaultProps = {
   animationOut: 'zoomOut',
   animationDuration: 175,
   onClose: () => {},
+  draggable: false,
+  draggableOptions: {},
 };
 
 Modal.Title = createComponent({
@@ -152,7 +176,8 @@ Modal.Title = createComponent({
 
 const ModalHeader = createComponent({
   name: 'ModalHeader',
-  style: css`
+  style: ({ showMoveCursor }) => css`
+    cursor: ${showMoveCursor ? 'move' : 'default'};
     padding: 1rem 1.25rem 0;
     border-top-left-radius: ${themeGet('radius')}px;
     border-top-right-radius: ${themeGet('radius')}px;
@@ -166,11 +191,11 @@ const ModalHeaderInner = createComponent({
   `,
 });
 
-Modal.Header = ({ title, children, showClose = true }) => {
+Modal.Header = ({ title, children, showClose = true, showMoveCursor }) => {
   const { handleClose } = useContext(ModalContext);
 
   return (
-    <ModalHeader>
+    <ModalHeader showMoveCursor={showMoveCursor}>
       <ModalHeaderInner>
         <Flex alignItems="center">
           {title && <Modal.Title>{title}</Modal.Title>}

@@ -15,6 +15,10 @@ export const Basic = () => (
   />
 );
 
+export const Draggable = () => (
+  <ModalExample draggable body="I am a modal that can be moved around on the screen" maxWidth={300} />
+);
+
 export const LongContent = () => (
   <ModalExample
     body={
