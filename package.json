@@ -24,7 +24,7 @@
     "preview": "nodemon -w src -x 'yalc publish --push --changed'",
     "rollup": "rollup -c",
     "test": "jest",
-    "test:vrt": "chromatic test",
+    "test:vrt": "chromatic test --build-script-name=docs:build",
     "test:vrt:ci": "CI=true yarn test:vrt",
     "lint": "eslint src",
     "release": "standard-version"
