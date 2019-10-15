@@ -102,7 +102,7 @@ export function Modal({ children, title, animationDuration, showClose, onClose, 
           {state => (
             <FocusOn onEscapeKey={handleClose} enabled={isOpen}>
               <Backdrop transitionState={state} onClick={handleBackdropClick}>
-                <ModalContent transitionState={state} onClick={handleContentClick} {...props}>
+                <ModalContent transitionState={state} onClick={handleContentClick} aria-modal="true" {...props}>
                   {title && <Modal.Header title={title} showClose={showClose} />}
                   {children}
                 </ModalContent>
@@ -173,12 +173,25 @@ Modal.Header = ({ title, children, showClose = true }) => {
     <ModalHeader>
       <ModalHeaderInner>
         <Flex alignItems="center">
-          {title && <Modal.Title>{title}</Modal.Title>}
+          {title && (
+            <Modal.Title role="heading" tabIndex="0">
+              {title}
+            </Modal.Title>
+          )}
           {children}
 
           {showClose && (
             <Box ml="auto">
-              <Icon name="close" color="greyDarkest" style={{ cursor: 'pointer' }} size={24} onClick={handleClose} />
+              <Icon
+                name="close"
+                color="greyDarkest"
+                style={{ cursor: 'pointer' }}
+                size={24}
+                onClick={handleClose}
+                role="button"
+                aria-label="Close Modal"
+                tabIndex="0"
+              />
             </Box>
           )}
         </Flex>
