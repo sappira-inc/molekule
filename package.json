@@ -1,7 +1,7 @@
 {
   "name": "molekule",
   "description": "React component library built on top of styled-components and styled-system",
-  "version": "5.0.0",
+  "version": "5.0.1-beta.0",
   "main": "lib/index.js",
   "files": [
     "lib"

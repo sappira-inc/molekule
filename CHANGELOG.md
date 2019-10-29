@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.0.1-beta.0"></a>
+## [5.0.1-beta.0](https://github.com/sappira-inc/molekule/compare/v5.0.0...v5.0.1-beta.0) (2019-10-29)
+
+
+
 <a name="5.0.0"></a>
 # [5.0.0](https://github.com/sappira-inc/molekule/compare/v5.0.0-beta.9...v5.0.0) (2019-09-19)
 
