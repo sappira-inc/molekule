@@ -2,8 +2,7 @@
   "name": "molekule",
   "description": "React component library built on top of styled-components and styled-system",
   "version": "5.0.0",
-  "main": "lib/molekule.js",
-  "module": "lib/molekule.es.js",
+  "main": "lib/index.js",
   "files": [
     "lib"
   ],
@@ -17,7 +16,7 @@
   "scripts": {
     "clean": "rimraf lib",
     "watch": "yarn rollup --watch",
-    "build": "npm-run-all clean rollup",
+    "build": "npm run clean && babel src --out-dir lib",
     "docs": "start-storybook -p 1234",
     "docs:build": "rimraf dist && build-storybook -o dist",
     "prepublishOnly": "npm-run-all build",
@@ -50,6 +49,7 @@
     "react-dom": "^16.8.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.6.4",
     "@babel/core": "^7.3.3",
     "@babel/plugin-proposal-class-properties": "^7.3.3",
     "@babel/plugin-proposal-export-default-from": "^7.2.0",
@@ -78,11 +78,6 @@
     "react-dom": "^16.8.3",
     "react-router-dom": "^4.2.2",
     "rimraf": "^2.6.3",
-    "rollup": "^1.17.0",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-filesize": "^6.0.1",
-    "rollup-plugin-node-resolve": "^5.2.0",
     "standard-version": "^4.4.0",
     "yup": "^0.26.10"
   }
