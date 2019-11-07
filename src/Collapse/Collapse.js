@@ -73,7 +73,7 @@ export default class Collapse extends Component {
 
   state = {
     isOpen: this.props.isOpen || false,
-    height: 0,
+    height: this.props.isOpen ? 'initial' : 0,
   };
 
   onEnter = (node, isAppearing) => {

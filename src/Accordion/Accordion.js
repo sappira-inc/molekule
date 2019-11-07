@@ -12,6 +12,7 @@ const AccordionItemProps = {
   content: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   renderHeader: PropTypes.func,
   renderContent: PropTypes.func,
+  isOpenByDefault: PropTypes.bool,
 };
 
 const AccordionContainer = createComponent({
@@ -99,9 +100,15 @@ export default class Accordion extends Component {
 
   static Item = AccordionItem;
 
-  state = {
-    openList: [],
-  };
+  constructor(props) {
+    super(props);
+
+    const openByDefault = props.items.map((item, index) => (item.isOpenByDefault ? index : undefined));
+
+    this.state = {
+      openList: openByDefault.filter(e => e !== undefined),
+    };
+  }
 
   handleItemToggle = idx => {
     const { solo } = this.props;
