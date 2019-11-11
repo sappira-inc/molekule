@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useContext } from 'react';
 import { css } from 'styled-components';
-import { get } from 'lodash';
+import get from 'lodash/get';
 import { createComponent } from '../utils';
 import { Context as FormbotContext } from './Formbot';
 

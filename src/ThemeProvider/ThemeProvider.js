@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider as SCThemeProvider } from 'styled-components';
-import { merge } from 'lodash';
+import merge from 'lodash/mgerge';
 import defaultTheme from '../theme';
 
 const ThemeProvider = props => {
