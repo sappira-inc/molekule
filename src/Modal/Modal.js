@@ -174,6 +174,12 @@ const ModalHeaderInner = createComponent({
 Modal.Header = ({ title, children, showClose = true }) => {
   const { handleClose } = useContext(ModalContext);
 
+  const handleKeyDown = ({ keyCode }) => {
+    if (keyCode === 13) {
+      handleClose();
+    }
+  };
+
   return (
     <ModalHeader>
       <ModalHeaderInner>
@@ -193,6 +199,7 @@ Modal.Header = ({ title, children, showClose = true }) => {
                 style={{ cursor: 'pointer' }}
                 size={24}
                 onClick={handleClose}
+                onKeyDown={handleKeyDown}
                 role="button"
                 aria-label="Close Modal"
                 tabIndex="0"
