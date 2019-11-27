@@ -152,6 +152,7 @@ Modal.Title = createComponent({
   style: css`
     font-size: 16px;
     margin: 0;
+    outline: none;
   `,
 });
 
