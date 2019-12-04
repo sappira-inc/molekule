@@ -11,15 +11,23 @@ const HiddenInput = createComponent({
   name: 'CheckboxInput',
   tag: 'input',
   style: css`
-    display: none;
-    pointer-events: ${p => (p.disabled ? 'none' : 'auto')};
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    left: 1px;
+    white-space: nowrap;
   `,
 });
 
 const CheckboxIcon = createComponent({
   name: 'CheckboxIcon',
   as: Icon,
-  style: ({ theme, iconSize }) => {
+  style: ({ theme, iconSize, isFocused }) => {
     const sizeStyles = getComponentSize(theme, 'CheckboxIcon', iconSize);
 
     return css`
@@ -27,6 +35,11 @@ const CheckboxIcon = createComponent({
       transition: color 125ms;
 
       ${sizeStyles}
+
+      ${isFocused &&
+        css`
+          outline: 5px auto -webkit-focus-ring-color;
+        `}
     `;
   },
 });
@@ -98,6 +111,7 @@ export class Checkbox extends React.Component {
     styles: PropTypes.shape(),
     colorOn: PropTypes.string,
     colorOff: PropTypes.string,
+    ariaLabel: PropTypes.string,
   };
 
   static defaultProps = {
@@ -112,6 +126,7 @@ export class Checkbox extends React.Component {
     onChange() {},
     disabled: false,
     styles: {},
+    label: 'Checkbox',
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -147,6 +162,10 @@ export class Checkbox extends React.Component {
     );
   };
 
+  handleFocus = () => {
+    this.setState({ isFocused: !this.state.isFocused });
+  };
+
   render() {
     const {
       label,
@@ -161,8 +180,10 @@ export class Checkbox extends React.Component {
       horizontal,
       disabled,
       styles,
+      ariaLabel,
     } = this.props;
     const { checked } = this;
+    const { isFocused } = this.state;
 
     return (
       <>
@@ -170,18 +191,27 @@ export class Checkbox extends React.Component {
           horizontal={horizontal}
           style={styles.CheckboxContainer}
           checked={checked}
-          disabled={disabled}>
+          disabled={disabled}
+          htmlFor={id}>
           <HiddenInput
+            aria-label={ariaLabel || label}
             id={id}
             name={name}
             type="checkbox"
             checked={checked}
             disabled={disabled}
             onChange={this.handleChange}
+            onFocus={this.handleFocus}
+            onBlur={this.handleFocus}
           />
 
           <Flex>
-            <CheckboxIcon iconSize={size} color={checked ? colorOn : colorOff} name={checked ? iconOn : iconOff} />
+            <CheckboxIcon
+              iconSize={size}
+              color={checked ? colorOn : colorOff}
+              name={checked ? iconOn : iconOff}
+              isFocused={isFocused}
+            />
 
             {label && (
               <CheckboxLabel size={size} style={styles.Label}>
@@ -191,7 +221,7 @@ export class Checkbox extends React.Component {
           </Flex>
         </CheckboxContainer>
 
-        {!this.state.focused && error ? <FormError>{error}</FormError> : null}
+        {!isFocused && error ? <FormError>{error}</FormError> : null}
       </>
     );
   }
