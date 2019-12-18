@@ -91,12 +91,9 @@ export function Modal({ children, title, animationDuration, showClose, onClose, 
   };
 
   const scrollToTop = () => {
-    // short delay to make sure backdrop is rendered
-    setTimeout(() => {
-      if (modalRef.current) {
-        modalRef.current.scroll(0, 0);
-      }
-    }, 1);
+    if (modalRef.current) {
+      modalRef.current.scroll(0, 0);
+    }
   };
 
   useEffect(() => {
