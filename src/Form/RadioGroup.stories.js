@@ -30,7 +30,7 @@ export const Vertical = () => (
 export const Horizontal = () => <RadioGroup horizontal name="radio" id="radio" choices={defaultValues} />;
 
 export const Colors = () => (
-  <RadioGroup colorOn="green" colorOff="red" name="radio" id="radio" choices={defaultValues} value="radio2" />
+  <RadioGroup colorOn="green" colorOff="red" name="radio" id="radio" choices={defaultValues} />
 );
 
 export const Sizes = () => (

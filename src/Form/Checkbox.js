@@ -24,21 +24,81 @@ const HiddenInput = createComponent({
   `,
 });
 
-const CheckboxIcon = createComponent({
-  name: 'CheckboxIcon',
+const CheckIcon = createComponent({
+  name: 'CheckIcon',
   as: Icon,
-  style: ({ theme, iconSize, isFocused }) => {
-    const sizeStyles = getComponentSize(theme, 'CheckboxIcon', iconSize);
+  style: ({ theme, color, iconSize, isRadio }) => {
+    const checkIconStyles = getComponentSize(theme, 'CheckIcon', iconSize);
 
     return css`
-      font-size: 24px;
-      transition: color 125ms;
+      color: ${theme.colors[color]};
+      position: absolute;
+      z-index: 1;
+
+      ${checkIconStyles}
+    `;
+  },
+});
+
+const CheckboxIcon = createComponent({
+  name: 'CheckboxIcon',
+  as: 'div',
+  style: ({ theme, size, color, isChecked, isFocused, isRadio }) => {
+    const sizeStyles = getComponentSize(theme, 'CheckboxIcon', size);
+    const radioStyles = getComponentSize(theme, 'RadioIcon', size);
+
+    return css`
+      transition: 250ms;
+      position: relative;
+      border: solid ${theme.colors[color]};
+
+      &:before, &:after {
+        transition: opacity 250ms;
+        content: '';
+        position: absolute;
+        opacity: 0;
+      }
 
       ${sizeStyles}
 
+      ${isChecked &&
+        css`
+          background: ${theme.colors[color]};
+          border-color: ${theme.colors[color]};
+
+          ${isRadio &&
+            css`
+              background: white;
+
+              &:after {
+                opacity: 1;
+                border-radius: 50%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: ${theme.colors[color]};
+
+                ${radioStyles}
+              }
+            `}
+        `}
+
       ${isFocused &&
         css`
-          outline: 5px auto -webkit-focus-ring-color;
+          &:before {
+            opacity: 1;
+            border: 4px solid ${theme.colors.primaryLightest};
+            z-index: -1;
+          }
+        `}
+
+      ${isRadio &&
+        css`
+          border-radius: 50%;
+
+          &:before {
+            border-radius: 50%;
+          }
         `}
     `;
   },
@@ -103,8 +163,6 @@ export class Checkbox extends React.Component {
     valueTrue: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
     valueFalse: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
     onChange: PropTypes.func,
-    iconOn: PropTypes.string,
-    iconOff: PropTypes.string,
     size: PropTypes.string,
     horizontal: PropTypes.bool,
     disabled: PropTypes.bool,
@@ -112,11 +170,11 @@ export class Checkbox extends React.Component {
     colorOn: PropTypes.string,
     colorOff: PropTypes.string,
     ariaLabel: PropTypes.string,
+    checkIconColor: PropTypes.string,
+    checkIcon: PropTypes.string,
   };
 
   static defaultProps = {
-    iconOn: 'checkbox-marked',
-    iconOff: 'checkbox-blank-outline',
     size: 'md',
     valueTrue: true,
     valueFalse: false,
@@ -127,6 +185,8 @@ export class Checkbox extends React.Component {
     disabled: false,
     styles: {},
     label: 'Checkbox',
+    checkIconColor: 'white',
+    checkIcon: 'check',
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -173,8 +233,9 @@ export class Checkbox extends React.Component {
       error,
       name,
       size,
-      iconOn,
-      iconOff,
+      checkIcon,
+      checkIconColor,
+      isRadio,
       colorOn,
       colorOff,
       horizontal,
@@ -206,11 +267,15 @@ export class Checkbox extends React.Component {
           />
 
           <Flex>
+            {checked && !isRadio && (
+              <CheckIcon name={checkIcon} color={checkIconColor} iconSize={size} isRadio={isRadio} />
+            )}
             <CheckboxIcon
-              iconSize={size}
+              size={size}
               color={checked ? colorOn : colorOff}
-              name={checked ? iconOn : iconOff}
+              isChecked={checked}
               isFocused={isFocused}
+              isRadio={isRadio}
             />
 
             {label && (

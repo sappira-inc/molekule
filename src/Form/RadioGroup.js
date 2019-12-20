@@ -90,6 +90,7 @@ export class RadioGroup extends Component {
                   valueTrue={value}
                   valueFalse={value}
                   onChange={this.handleChange}
+                  isRadio
                 />
               );
             })}
