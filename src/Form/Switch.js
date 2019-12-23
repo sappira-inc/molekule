@@ -29,7 +29,7 @@ const SwitchThumb = createComponent({
 const SwitchTrack = createComponent({
   name: 'SwitchTrack',
   as: 'label',
-  style: ({ theme, trackColor, thumbSize, trackInset, value }) => css`
+  style: ({ theme, trackColor, thumbSize, trackInset, value, isFocused }) => css`
     position: relative;
     display: inline-block;
     cursor: pointer;
@@ -37,8 +37,9 @@ const SwitchTrack = createComponent({
     height: ${thumbSize}px;
     background: ${value ? theme.colors[trackColor] : 'transparent'};
     border: ${trackInset}px solid ${value ? theme.colors[trackColor] : theme.colors.grey};
-    border-radius: ${thumbSize * 2}px;
+    border-radius: ${thumbSize}px;
     transition: background-color 0.2s, border-color 0.2s;
+    z-index: 1;
 
     &:active {
       ${SwitchThumb} {
@@ -46,6 +47,27 @@ const SwitchTrack = createComponent({
         width: ${thumbSize + trackInset}px;
       }
     }
+
+    &:before {
+      transition: opacity 250ms;
+      content: '';
+      position: absolute;
+      left: -${trackInset + 4}px;
+      top: -${trackInset + 4}px;
+      width: ${thumbSize * 2}px;
+      height: ${thumbSize}px;
+      z-index: 0;
+      opacity: 0;
+    }
+
+    ${isFocused &&
+      css`
+        &:before {
+          opacity: 1;
+          border: 4px solid ${theme.colors.primaryLightest};
+          border-radius: ${thumbSize}px;
+        }
+      `}
   `,
 });
 
@@ -53,7 +75,16 @@ const SwitchInput = createComponent({
   name: 'SwitchInput',
   as: 'input',
   style: css`
-    display: none;
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    left: 1px;
+    white-space: nowrap;
   `,
 });
 
@@ -74,6 +105,7 @@ export class Switch extends React.Component {
 
   state = {
     value: !!this.props.value,
+    isFocused: false,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -96,18 +128,29 @@ export class Switch extends React.Component {
     }
   };
 
+  handleFocus = () => {
+    this.setState({ isFocused: !this.state.isFocused });
+  };
+
   render() {
     const { name, thumbSize, trackInset, ...props } = this.props;
-    const { value } = this.state;
+    const { value, isFocused } = this.state;
     const sharedProps = {
       value,
       thumbSize,
       trackInset,
+      isFocused,
     };
 
     return (
       <SwitchTrack {...props} {...sharedProps}>
-        <SwitchInput name={name} type="checkbox" onChange={this.handleChange} />
+        <SwitchInput
+          name={name}
+          type="checkbox"
+          onChange={this.handleChange}
+          onFocus={this.handleFocus}
+          onBlur={this.handleFocus}
+        />
         <SwitchThumb {...sharedProps} />
       </SwitchTrack>
     );
