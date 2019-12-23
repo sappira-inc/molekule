@@ -1,5 +1,5 @@
 import React from 'react';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, text } from '@storybook/addon-knobs';
 import Box from '../Box';
 import { Checkbox } from './Checkbox';
 
@@ -25,6 +25,19 @@ And when you get to toppin', I see that you've been learnin'"
 
 export const Colors = () => (
   <Checkbox id="checkbox" name="checkbox" colorOn="green" colorOff="red" label="Red Off, Green On" />
+);
+
+export const FocusColor = () => (
+  <>
+    <Checkbox id="checkbox" name="checkbox" label="Default Focus Color" />
+    <Checkbox id="checkbox" name="checkbox" label="Default Focus Color" />
+    <Checkbox
+      id="checkbox"
+      name="checkbox"
+      label="Custom Focus Color"
+      colorFocus={text('Custom Focus Color', 'papayawhip')}
+    />
+  </>
 );
 
 export const Sizes = () => (

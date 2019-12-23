@@ -66,7 +66,7 @@ export class RadioGroup extends Component {
   };
 
   render() {
-    const { choices, error, horizontal, label, name, ...checkboxProps } = this.props;
+    const { choices, error, horizontal, label, name, colorFocus, ...checkboxProps } = this.props;
 
     return (
       <StyledRadioGroup>
@@ -90,6 +90,7 @@ export class RadioGroup extends Component {
                   valueTrue={value}
                   valueFalse={value}
                   onChange={this.handleChange}
+                  colorFocus={colorFocus}
                   isRadio
                 />
               );

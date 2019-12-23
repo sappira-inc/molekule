@@ -4,6 +4,7 @@ export default (customTheme = {}) => {
       default: '#494D55',
       black: '#1B202B',
       white: '#FFFFFF',
+      colorFocus: '#CADCFF',
 
       greyLightest: '#F8F8F9',
       greyLighter: '#F4F4F4',
@@ -292,7 +293,7 @@ export default (customTheme = {}) => {
           '&:before': {
             height: '12px',
             width: '12px',
-            borderRadius: '4px',
+            borderRadius: '6px',
             top: '-5px',
             left: '-5px',
           },

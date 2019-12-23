@@ -54,6 +54,7 @@ const StyledButton = createComponent({
     disabled,
     loading,
     borderRadius = theme.radius,
+    colorFocus = theme.colors.colorFocus,
   }) => {
     const variantStyles = getComponentVariant(theme, 'Button', variant);
     const sizeStyles = getComponentSize(theme, 'Button', size);
@@ -87,7 +88,7 @@ const StyledButton = createComponent({
         height: calc(100% + 2px);
         z-index: 0;
         opacity: 0;
-        border: 4px solid ${theme.colors.primaryLightest};
+        border: 4px solid ${colorFocus};
         border-radius: ${borderRadius + 4}px;
       }
 
@@ -129,15 +130,23 @@ const StyledButton = createComponent({
 const renderIcon = (icon, props) => <Icon name={icon} {...props} />;
 
 /** Custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more. We include several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control. */
-const Button = React.forwardRef(({ children, leftIcon, leftIconProps, rightIcon, rightIconProps, ...rest }, ref) => (
-  <StyledButton ref={ref} hasText={!!children} leftIcon={leftIcon} rightIcon={rightIcon} {...rest}>
-    <Flex alignItems="center" justifyContent="center">
-      {leftIcon && renderIcon(leftIcon, leftIconProps)}
-      {children}
-      {rightIcon && renderIcon(rightIcon, rightIconProps)}
-    </Flex>
-  </StyledButton>
-));
+const Button = React.forwardRef(
+  ({ children, leftIcon, leftIconProps, rightIcon, rightIconProps, colorFocus, ...rest }, ref) => (
+    <StyledButton
+      ref={ref}
+      hasText={!!children}
+      leftIcon={leftIcon}
+      rightIcon={rightIcon}
+      colorFocus={colorFocus}
+      {...rest}>
+      <Flex alignItems="center" justifyContent="center">
+        {leftIcon && renderIcon(leftIcon, leftIconProps)}
+        {children}
+        {rightIcon && renderIcon(rightIcon, rightIconProps)}
+      </Flex>
+    </StyledButton>
+  )
+);
 
 Button.propTypes = {
   variant: PropTypes.string,

@@ -29,7 +29,7 @@ const SwitchThumb = createComponent({
 const SwitchTrack = createComponent({
   name: 'SwitchTrack',
   as: 'label',
-  style: ({ theme, trackColor, thumbSize, trackInset, value, isFocused }) => css`
+  style: ({ theme, trackColor, thumbSize, trackInset, value, isFocused, colorFocus = theme.colors.colorFocus }) => css`
     position: relative;
     display: inline-block;
     cursor: pointer;
@@ -64,7 +64,7 @@ const SwitchTrack = createComponent({
       css`
         &:before {
           opacity: 1;
-          border: 4px solid ${theme.colors.primaryLightest};
+          border: 4px solid ${colorFocus};
           border-radius: ${thumbSize}px;
         }
       `}
@@ -133,7 +133,7 @@ export class Switch extends React.Component {
   };
 
   render() {
-    const { name, thumbSize, trackInset, ...props } = this.props;
+    const { name, thumbSize, trackInset, colorFocus, ...props } = this.props;
     const { value, isFocused } = this.state;
     const sharedProps = {
       value,
@@ -143,7 +143,7 @@ export class Switch extends React.Component {
     };
 
     return (
-      <SwitchTrack {...props} {...sharedProps}>
+      <SwitchTrack colorFocus={colorFocus} {...props} {...sharedProps}>
         <SwitchInput
           name={name}
           type="checkbox"

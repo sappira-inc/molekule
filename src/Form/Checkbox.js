@@ -43,7 +43,7 @@ const CheckIcon = createComponent({
 const CheckboxIcon = createComponent({
   name: 'CheckboxIcon',
   as: 'div',
-  style: ({ theme, size, color, isChecked, isFocused, isRadio }) => {
+  style: ({ theme, size, color, isChecked, isFocused, isRadio, colorFocus = theme.colors.colorFocus }) => {
     const sizeStyles = getComponentSize(theme, 'CheckboxIcon', size);
     const radioStyles = getComponentSize(theme, 'RadioIcon', size);
 
@@ -87,7 +87,7 @@ const CheckboxIcon = createComponent({
         css`
           &:before {
             opacity: 1;
-            border: 4px solid ${theme.colors.primaryLightest};
+            border: 4px solid ${colorFocus};
             z-index: -1;
           }
         `}
@@ -172,6 +172,7 @@ export class Checkbox extends React.Component {
     ariaLabel: PropTypes.string,
     checkIconColor: PropTypes.string,
     checkIcon: PropTypes.string,
+    colorFocus: PropTypes.string,
   };
 
   static defaultProps = {
@@ -242,6 +243,7 @@ export class Checkbox extends React.Component {
       disabled,
       styles,
       ariaLabel,
+      colorFocus,
     } = this.props;
     const { checked } = this;
     const { isFocused } = this.state;
@@ -276,6 +278,7 @@ export class Checkbox extends React.Component {
               isChecked={checked}
               isFocused={isFocused}
               isRadio={isRadio}
+              colorFocus={colorFocus}
             />
 
             {label && (
