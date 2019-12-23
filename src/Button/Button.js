@@ -43,11 +43,23 @@ const loadingCss = (height, color) => css`
 const StyledButton = createComponent({
   name: 'Button',
   tag: 'button',
-  style: ({ hasText, leftIcon, rightIcon, variant, size, theme, block, disabled, loading, borderRadius }) => {
+  style: ({
+    hasText,
+    leftIcon,
+    rightIcon,
+    variant,
+    size,
+    theme,
+    block,
+    disabled,
+    loading,
+    borderRadius = theme.radius,
+  }) => {
     const variantStyles = getComponentVariant(theme, 'Button', variant);
     const sizeStyles = getComponentSize(theme, 'Button', size);
 
     return css`
+      position: relative;
       display: inline-block;
       cursor: pointer;
       text-transform: capitalize;
@@ -56,13 +68,28 @@ const StyledButton = createComponent({
       font-family: inherit;
       font-weight: bold;
       appearance: none;
-      border-radius: ${borderRadius || theme.radius}px;
+      border-radius: ${borderRadius}px;
       pointer-events: ${disabled ? 'none' : 'auto'};
       width: ${block ? '100%' : 'auto'};
       border: 1px solid transparent;
       transition: 175ms;
       white-space: nowrap;
       user-select: none;
+      outline: none;
+
+      &:before {
+        transition: opacity 250ms;
+        content: '';
+        position: absolute;
+        left: -5px;
+        top: -5px;
+        width: calc(100% + 2px);
+        height: calc(100% + 2px);
+        z-index: 0;
+        opacity: 0;
+        border: 4px solid ${theme.colors.primaryLightest};
+        border-radius: ${borderRadius + 4}px;
+      }
 
       ${leftIcon &&
         hasText &&
@@ -83,6 +110,12 @@ const StyledButton = createComponent({
       &[disabled] {
         pointer-events: none;
         opacity: 0.75;
+      }
+
+      &:focus {
+        &:before {
+          opacity: 1;
+        }
       }
 
       ${loading && loadingCss(sizeStyles.height, variantStyles.color)};
