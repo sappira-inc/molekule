@@ -27,7 +27,7 @@ const HiddenInput = createComponent({
 const CheckIcon = createComponent({
   name: 'CheckIcon',
   as: Icon,
-  style: ({ theme, color, iconSize, isRadio }) => {
+  style: ({ theme, color, iconSize }) => {
     const checkIconStyles = getComponentSize(theme, 'CheckIcon', iconSize);
 
     return css`

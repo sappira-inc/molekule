@@ -307,7 +307,7 @@ export default (customTheme = {}) => {
           '&:before': {
             height: '18px',
             width: '18px',
-            borderRadius: '4px',
+            borderRadius: '6px',
             top: '-6px',
             left: '-6px',
           },
