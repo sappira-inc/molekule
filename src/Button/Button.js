@@ -61,7 +61,7 @@ const StyledButton = createComponent({
 
     return css`
       position: relative;
-      display: inline-block;
+      display: inline-flex;
       cursor: pointer;
       text-transform: capitalize;
       text-align: center;
@@ -77,6 +77,8 @@ const StyledButton = createComponent({
       white-space: nowrap;
       user-select: none;
       outline: none;
+      justify-content: center;
+      align-items: center;
 
       &:before {
         transition: opacity 250ms;
@@ -139,11 +141,9 @@ const Button = React.forwardRef(
       rightIcon={rightIcon}
       colorFocus={colorFocus}
       {...rest}>
-      <Flex alignItems="center" justifyContent="center">
-        {leftIcon && renderIcon(leftIcon, leftIconProps)}
-        {children}
-        {rightIcon && renderIcon(rightIcon, rightIconProps)}
-      </Flex>
+      {leftIcon && renderIcon(leftIcon, leftIconProps)}
+      {children}
+      {rightIcon && renderIcon(rightIcon, rightIconProps)}
     </StyledButton>
   )
 );
