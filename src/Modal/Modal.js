@@ -196,6 +196,7 @@ Modal.Header = ({ title, children, showClose = true }) => {
               onClick={handleClose}
               onKeyDown={handleKeyDown}
               aria-label="Close Modal"
+              type="button"
               tabIndex="-1">
               <Icon name="close" color="greyDarkest" size={24} />
             </Button>
