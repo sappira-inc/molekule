@@ -22,6 +22,7 @@ const Label = createComponent({
         transform: ${isFloating ? 'none' : 'translateY(-50%)'};
         color: ${theme.colors.greyDarker};
         user-select: none;
+        z-index: ${isFloating ? '1' : 'auto'};
 
         &:hover {
           cursor: text;
