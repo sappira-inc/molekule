@@ -103,7 +103,7 @@ export function Modal({ children, title, animationDuration, showClose, onClose, 
   return (
     <ModalContext.Provider value={{ handleClose }}>
       <Portal>
-        <Transition in={isOpen} timeout={animationDuration} onEntering={scrollToTop}>
+        <Transition in={isOpen} timeout={animationDuration} onEntering={scrollToTop} mountOnEnter unmountOnExit appear>
           {state => (
             <FocusOn onEscapeKey={handleClose} enabled={isOpen}>
               <Backdrop ref={modalRef} transitionState={state} onClick={handleBackdropClick}>
