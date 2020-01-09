@@ -24,7 +24,7 @@
     "rollup": "rollup -c",
     "test": "jest",
     "lint": "eslint src",
-    "release": "standard-version"
+    "release": "npm run build && standard-version"
   },
   "dependencies": {
     "@styled-system/prop-types": "^5.1.2",
