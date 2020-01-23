@@ -274,12 +274,12 @@ export default (customTheme = {}) => {
       },
       RadioIcon: {
         sm: {
-          height: '7px',
-          width: '7px',
+          height: '6px',
+          width: '6px',
         },
         md: {
-          height: '10px',
-          width: '10px',
+          height: '9px',
+          width: '9px',
         },
       },
       CheckboxIcon: {

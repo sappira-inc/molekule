@@ -150,6 +150,7 @@ const CheckboxContainer = createComponent({
 
       ${CheckboxIcon}, ${CheckboxLabel} {
         color: ${theme.colors.grey};
+        border-color: ${theme.colors.grey};
       }
     }
   `,
