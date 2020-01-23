@@ -112,6 +112,7 @@ const CheckboxLabel = createComponent({
 
     return css`
       margin-left: 8px;
+      height: 24px;
 
       ${sizeStyles}
     `;
