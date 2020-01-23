@@ -139,7 +139,7 @@ const CheckboxContainer = createComponent({
         !disabled &&
         css`
           ${CheckboxIcon} {
-            color: ${theme.colors.greyDarker};
+            border-color: ${theme.colors.greyDarker};
           }
         `}
     }
