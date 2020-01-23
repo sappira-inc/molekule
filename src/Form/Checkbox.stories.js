@@ -30,12 +30,11 @@ export const Colors = () => (
 export const FocusColor = () => (
   <>
     <Checkbox id="checkbox" name="checkbox" label="Default Focus Color" />
-    <Checkbox id="checkbox" name="checkbox" label="Default Focus Color" />
     <Checkbox
       id="checkbox"
       name="checkbox"
       label="Custom Focus Color"
-      colorFocus={text('Custom Focus Color', 'papayawhip')}
+      colorFocus={text('Custom Focus Color', 'lightgreen')}
     />
   </>
 );
