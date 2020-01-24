@@ -1,6 +1,6 @@
 import React from 'react';
 import { boolean, text } from '@storybook/addon-knobs';
-import Box from '../Box';
+import Flex from '../Flex';
 import { Checkbox } from './Checkbox';
 
 export default {
@@ -13,14 +13,14 @@ export const Basic = () => (
 );
 
 export const LongText = () => (
-  <Box width={300}>
+  <Flex width={300}>
     <Checkbox
       id="checkbox"
       name="checkbox"
       label="'Cause I've been goin' off and they don't know when it's stoppin'
 And when you get to toppin', I see that you've been learnin'"
     />
-  </Box>
+  </Flex>
 );
 
 export const Colors = () => (
@@ -28,24 +28,24 @@ export const Colors = () => (
 );
 
 export const FocusColor = () => (
-  <>
-    <Checkbox id="checkbox" name="checkbox" label="Default Focus Color" />
+  <Flex flexDirection="column">
+    <Checkbox id="default" name="default" label="Default Focus Color" />
     <Checkbox
-      id="checkbox"
-      name="checkbox"
+      id="custom"
+      name="custom"
       label="Custom Focus Color"
       colorFocus={text('Custom Focus Color', 'lightgreen')}
     />
-  </>
+  </Flex>
 );
 
 export const Sizes = () => (
-  <>
-    <Checkbox id="checkbox" name="checkbox" label="I'm a checkbox" size="sm" />
-    <Checkbox id="checkbox" name="checkbox" label="I'm a checkbox" />
-  </>
+  <Flex flexDirection="column">
+    <Checkbox id="default" name="default" label="Default (md)" />
+    <Checkbox id="small" name="small" label="Small (sm)" size="sm" />
+  </Flex>
 );
 
 export const Errors = () => (
-  <Checkbox id="checkbox" name="checkbox" label="I'm a checkbox" size="sm" error="Something is seriously wrong" />
+  <Checkbox id="checkbox" name="checkbox" label="I'm a checkbox" error="Something is seriously wrong" />
 );

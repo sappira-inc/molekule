@@ -61,7 +61,7 @@ export class CheckboxGroup extends Component {
   };
 
   render() {
-    const { name, choices, error, horizontal, colorOn, colorOff } = this.props;
+    const { name, choices, error, horizontal, colorOn, colorOff, ...checkboxProps } = this.props;
     const { selected } = this.state;
 
     return (
@@ -74,6 +74,7 @@ export class CheckboxGroup extends Component {
 
               return (
                 <Checkbox
+                  {...checkboxProps}
                   key={key}
                   id={key}
                   name={key}
