@@ -221,7 +221,7 @@ export class Checkbox extends React.Component {
     onChange() {},
     disabled: false,
     styles: {},
-    label: 'Checkbox',
+    label: null,
     checkIconColor: 'white',
     checkIcon: 'check',
   };
