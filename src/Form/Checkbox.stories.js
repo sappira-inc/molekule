@@ -8,9 +8,9 @@ export default {
   component: Checkbox,
 };
 
-export const Basic = () => (
-  <Checkbox id="checkbox" name="checkbox" label="I'm a checkbox" disabled={boolean('Disabled', false)} />
-);
+export const Basic = () => <Checkbox />;
+
+export const Label = () => <Checkbox label="I'm a checkbox" disabled={boolean('Disabled', false)} />;
 
 export const LongText = () => (
   <Flex width={300}>
