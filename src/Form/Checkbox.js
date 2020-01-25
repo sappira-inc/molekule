@@ -8,12 +8,6 @@ import { getComponentSize, createComponent } from '../utils';
 
 const transitionTiming = '250ms cubic-bezier(0.4, 0, 0.2, 1)';
 
-/*
-TODO:
-- Look at how I am sizing
-- Naming: CheckboxBG, Radio/Check Icon vs. nested checkbox/radio
-*/
-
 const HiddenInput = createComponent({
   name: 'CheckboxInput',
   tag: 'input',
@@ -49,12 +43,12 @@ const CheckIcon = createComponent({
   },
 });
 
-const CheckboxIcon = createComponent({
-  name: 'CheckboxIcon',
+const CheckboxShape = createComponent({
+  name: 'CheckboxShape',
   as: 'div',
   style: ({ theme, isRadio, isFocused, size }) => {
-    const checkboxSizeStyles = getComponentSize(theme, 'CheckboxIcon.checkbox', size);
-    const radioSizeStyles = getComponentSize(theme, 'CheckboxIcon.radio', size);
+    const checkboxSizeStyles = getComponentSize(theme, 'Checkbox', size);
+    const radioSizeStyles = getComponentSize(theme, 'Radio', size);
 
     return css`
       position: relative;
@@ -129,10 +123,10 @@ const CheckboxLabel = createComponent({
 });
 
 const CheckboxContainer = createComponent({
-  name: 'Checkbox',
+  name: 'CheckboxContainer',
   tag: 'label',
   style: ({ theme, isChecked, isDisabled, isHorizontal, size, color }) => {
-    const sizeStyles = getComponentSize(theme, 'Checkbox', size);
+    const sizeStyles = getComponentSize(theme, 'CheckboxContainer', size);
 
     return css`
     display: inline-flex;
@@ -142,14 +136,14 @@ const CheckboxContainer = createComponent({
     user-select: none;
     cursor: pointer;
 
-    ${CheckboxIcon} {
+    ${CheckboxShape} {
       border-color: ${theme.colors[color]};
     }
 
     ${sizeStyles}
 
     &:hover {
-      ${CheckboxIcon} {
+      ${CheckboxShape} {
         border-color: ${theme.colors.greyDarker};
       }
     }
@@ -167,7 +161,7 @@ const CheckboxContainer = createComponent({
           opacity: 1;
         }
 
-        ${CheckboxIcon} {
+        ${CheckboxShape} {
           background-color: ${theme.colors[color]};
           border-color: ${theme.colors[color]} !important;
         }
@@ -177,7 +171,7 @@ const CheckboxContainer = createComponent({
       css`
         cursor: not-allowed;
 
-        ${CheckboxIcon} {
+        ${CheckboxShape} {
           border-color: ${theme.colors.grey} !important;
           background-color: transparent !important;
         }
@@ -188,7 +182,7 @@ const CheckboxContainer = createComponent({
 
         ${isChecked &&
           css`
-            ${CheckboxIcon} {
+            ${CheckboxShape} {
               background-color: ${theme.colors.grey} !important;
             }
           `}
@@ -317,9 +311,9 @@ export class Checkbox extends React.Component {
             onFocus={this.handleFocus}
             onBlur={this.handleFocus}
           />
-          <CheckboxIcon size={size} isRadio={isRadio} isChecked={checked} isFocused={isFocused}>
+          <CheckboxShape size={size} isRadio={isRadio} isChecked={checked} isFocused={isFocused}>
             {checked && !isRadio && <CheckIcon name={checkIcon} color={checkIconColor} iconSize={size} />}
-          </CheckboxIcon>
+          </CheckboxShape>
 
           {label && (
             <CheckboxLabel size={size} style={styles.Label}>

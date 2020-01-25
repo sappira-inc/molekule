@@ -262,7 +262,7 @@ export default (customTheme = {}) => {
           padding: '6px 12px',
         },
       },
-      Checkbox: {
+      CheckboxContainer: {
         sm: {
           minHeight: '24px',
         },
@@ -278,71 +278,59 @@ export default (customTheme = {}) => {
           fontSize: '20px',
         },
       },
-      RadioIcon: {
+      Checkbox: {
         sm: {
-          height: '4px',
-          width: '4px',
-        },
-        md: {
-          height: '9px',
-          width: '9px',
-        },
-      },
-      CheckboxIcon: {
-        checkbox: {
-          sm: {
+          height: '12px',
+          width: '12px',
+          minWidth: '12px',
+          borderWidth: '1px',
+          marginTop: '3px',
+          '&:before': {
             height: '12px',
             width: '12px',
-            minWidth: '12px',
-            borderWidth: '1px',
-            marginTop: '4px',
-            '&:before': {
-              height: '12px',
-              width: '12px',
-            },
-          },
-          md: {
-            height: '18px',
-            width: '18px',
-            minWidth: '18px',
-            borderWidth: '2px',
-            marginTop: '2px',
-            ':before': {
-              width: '18px',
-              height: '18px',
-            },
           },
         },
-        radio: {
-          sm: {
-            height: '14px',
-            width: '14px',
-            minWidth: '14px',
-            marginTop: '2px',
-            ':before': {
-              width: '14px',
-              height: '14px',
-            },
-            ':after': {
-              width: '10px',
-              height: '10px',
-              borderWidth: '2px',
-            },
+        md: {
+          height: '18px',
+          width: '18px',
+          minWidth: '18px',
+          borderWidth: '2px',
+          marginTop: '1px',
+          ':before': {
+            width: '18px',
+            height: '18px',
           },
-          md: {
-            height: '20px',
+        },
+      },
+      Radio: {
+        sm: {
+          height: '14px',
+          width: '14px',
+          minWidth: '14px',
+          marginTop: '2px',
+          ':before': {
+            width: '14px',
+            height: '14px',
+          },
+          ':after': {
+            width: '10px',
+            height: '10px',
+            borderWidth: '2px',
+          },
+        },
+        md: {
+          height: '20px',
+          width: '20px',
+          minWidth: '20px',
+          marginTop: '0px',
+          ':before': {
             width: '20px',
-            minWidth: '20px',
-            marginTop: '1px',
-            ':before': {
-              width: '20px',
-              height: '20px',
-            },
-            ':after': {
-              width: '16px',
-              height: '16px',
-              borderWidth: '3px',
-            },
+            height: '20px',
+          },
+          ':after': {
+            width: '16px',
+            height: '16px',
+            borderWidth: '3px',
           },
         },
       },

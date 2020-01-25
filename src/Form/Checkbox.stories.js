@@ -1,5 +1,5 @@
 import React from 'react';
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean } from '@storybook/addon-knobs';
 import Flex from '../Flex';
 import { Checkbox } from './Checkbox';
 
@@ -25,18 +25,6 @@ And when you get to toppin', I see that you've been learnin'"
 
 export const Colors = () => (
   <Checkbox id="checkbox" name="checkbox" colorOn="green" colorOff="red" label="Red Off, Green On" />
-);
-
-export const FocusColor = () => (
-  <Flex flexDirection="column">
-    <Checkbox id="default" name="default" label="Default Focus Color" />
-    <Checkbox
-      id="custom"
-      name="custom"
-      label="Custom Focus Color"
-      colorFocus={text('Custom Focus Color', 'lightgreen')}
-    />
-  </Flex>
 );
 
 export const Sizes = () => (

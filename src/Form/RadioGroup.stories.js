@@ -36,10 +36,10 @@ export const Colors = () => (
 export const Sizes = () => (
   <>
     <Box mb={24}>
-      <RadioGroup name="radio" id="radio" size="sm" choices={defaultValues} />
+      <RadioGroup name="radioSmall" id="radioSmall" size="sm" choices={defaultValues} />
     </Box>
     <Box mb={24}>
-      <RadioGroup name="radio" id="radio" choices={defaultValues} />
+      <RadioGroup name="radioDefault" id="radioDefault" choices={defaultValues} />
     </Box>
   </>
 );
