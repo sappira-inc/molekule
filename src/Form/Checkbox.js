@@ -150,8 +150,10 @@ const CheckboxContainer = createComponent({
 
       ${isHorizontal &&
         css`
-          & + & {
-            margin-left: 18px;
+          @media (min-width: ${theme.breakpoints.sm}) {
+            & + & {
+              margin-left: 18px;
+            }
           }
         `}
 

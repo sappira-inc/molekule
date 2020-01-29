@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Flex from '../Flex';
 import Box from '../Box';
 import Checkbox from './Checkbox';
 import Label from './Label';
 import FormError from './FormError';
 import { createEasyInput } from './EasyInput';
+import GroupContainer from './GroupContainer';
 import { createComponent } from '../utils';
 
 const StyledRadioGroup = createComponent({
@@ -72,7 +72,7 @@ export class RadioGroup extends Component {
       <StyledRadioGroup>
         {label && <Label>{label}</Label>}
 
-        <Flex flexDirection={horizontal ? 'row' : 'column'}>
+        <GroupContainer horizontal={horizontal}>
           {choices.length &&
             choices.map(choice => {
               const { value = choice.id, label: choiceLabel } = choice;
@@ -95,7 +95,7 @@ export class RadioGroup extends Component {
                 />
               );
             })}
-        </Flex>
+        </GroupContainer>
 
         {!!error && <FormError>{error}</FormError>}
       </StyledRadioGroup>

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Flex from '../Flex';
 import Box from '../Box';
 import Checkbox from './Checkbox';
 import FormError from './FormError';
 import { createEasyInput } from './EasyInput';
+import GroupContainer from './GroupContainer';
 
 export class CheckboxGroup extends Component {
   static propTypes = {
@@ -66,7 +66,7 @@ export class CheckboxGroup extends Component {
 
     return (
       <Box>
-        <Flex flexDirection={horizontal ? 'row' : 'column'}>
+        <GroupContainer horizontal={horizontal}>
           {choices.length &&
             choices.map(choice => {
               const { value = choice.id } = choice;
@@ -89,7 +89,7 @@ export class CheckboxGroup extends Component {
                 />
               );
             })}
-        </Flex>
+        </GroupContainer>
         {!!error && <FormError>{error}</FormError>}
       </Box>
     );
