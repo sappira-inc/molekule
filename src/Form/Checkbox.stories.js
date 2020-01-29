@@ -12,6 +12,8 @@ export const Basic = () => <Checkbox />;
 
 export const Label = () => <Checkbox label="I'm a checkbox" disabled={boolean('Disabled', false)} />;
 
+export const isRadio = () => <Checkbox isRadio />;
+
 export const LongText = () => (
   <Flex width={300}>
     <Checkbox
