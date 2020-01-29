@@ -129,65 +129,65 @@ const CheckboxContainer = createComponent({
     const sizeStyles = getComponentSize(theme, 'CheckboxContainer', size);
 
     return css`
-    display: inline-flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin-bottom: 4px;
-    user-select: none;
-    cursor: pointer;
+      display: inline-flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-bottom: 4px;
+      user-select: none;
+      cursor: pointer;
 
-    ${CheckboxShape} {
-      border-color: ${theme.colors[color]};
-    }
-
-    ${sizeStyles}
-
-    &:hover {
       ${CheckboxShape} {
-        border-color: ${theme.colors.greyDarker};
+        border-color: ${theme.colors[color]};
       }
-    }
 
-    ${isHorizontal &&
-      css`
-        & + & {
-          margin-left: 18px;
-        }
-      `}
+      ${sizeStyles}
 
-    ${isChecked &&
-      css`
-        ${CheckIcon} {
-          opacity: 1;
-        }
-
+      &:hover {
         ${CheckboxShape} {
-          background-color: ${theme.colors[color]};
-          border-color: ${theme.colors[color]} !important;
+          border-color: ${theme.colors.greyDarker};
         }
-      `}
+      }
 
-    ${isDisabled &&
-      css`
-        cursor: not-allowed;
+      ${isHorizontal &&
+        css`
+          & + & {
+            margin-left: 18px;
+          }
+        `}
 
-        ${CheckboxShape} {
-          border-color: ${theme.colors.grey} !important;
-          background-color: transparent !important;
-        }
+      ${isChecked &&
+        css`
+          ${CheckIcon} {
+            opacity: 1;
+          }
 
-        ${CheckboxLabel} {
-          color: ${theme.colors.grey};
-        }
+          ${CheckboxShape} {
+            background-color: ${theme.colors[color]};
+            border-color: ${theme.colors[color]} !important;
+          }
+        `}
 
-        ${isChecked &&
-          css`
-            ${CheckboxShape} {
-              background-color: ${theme.colors.grey} !important;
-            }
-          `}
-      `}
-  `;
+      ${isDisabled &&
+        css`
+          cursor: not-allowed;
+
+          ${CheckboxShape} {
+            border-color: ${theme.colors.grey} !important;
+            background-color: transparent !important;
+          }
+
+          ${CheckboxLabel} {
+            color: ${theme.colors.grey};
+          }
+
+          ${isChecked &&
+            css`
+              ${CheckboxShape} {
+                background-color: ${theme.colors.grey} !important;
+              }
+            `}
+        `}
+    `;
   },
 });
 
