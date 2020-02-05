@@ -52,7 +52,7 @@ const StyledButton = createComponent({
     theme,
     block,
     disabled,
-    loading,
+    isLoading,
     borderRadius = theme.radius,
     colorFocus = theme.colors.colorFocus,
   }) => {
@@ -121,7 +121,7 @@ const StyledButton = createComponent({
         }
       }
 
-      ${loading && loadingCss(sizeStyles.height, variantStyles.color)};
+      ${isLoading && loadingCss(sizeStyles.height, variantStyles.color)};
       ${variantStyles}
       ${sizeStyles};
       ${space};
@@ -133,13 +133,14 @@ const renderIcon = (icon, props) => <Icon name={icon} {...props} />;
 
 /** Custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more. We include several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control. */
 const Button = React.forwardRef(
-  ({ children, leftIcon, leftIconProps, rightIcon, rightIconProps, colorFocus, ...rest }, ref) => (
+  ({ children, leftIcon, leftIconProps, rightIcon, rightIconProps, colorFocus, loading, ...rest }, ref) => (
     <StyledButton
       ref={ref}
       hasText={!!children}
       leftIcon={leftIcon}
       rightIcon={rightIcon}
       colorFocus={colorFocus}
+      isLoading={loading || undefined}
       {...rest}>
       {leftIcon && renderIcon(leftIcon, leftIconProps)}
       {children}
