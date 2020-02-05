@@ -140,7 +140,7 @@ const Button = React.forwardRef(
       leftIcon={leftIcon}
       rightIcon={rightIcon}
       colorFocus={colorFocus}
-      isLoading={loading || undefined}
+      isLoading={loading}
       {...rest}>
       {leftIcon && renderIcon(leftIcon, leftIconProps)}
       {children}
