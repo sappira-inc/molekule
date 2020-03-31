@@ -121,15 +121,15 @@ export default (customTheme = {}) => {
     },
     success: {
       color: colors.white,
-      backgroundColor: colors.secondary,
+      backgroundColor: colors.green,
       '&:hover': {
-        backgroundColor: colors.secondaryLight,
+        backgroundColor: colors.greenLight,
       },
       '&:active': {
-        backgroundColor: colors.secondaryDark,
+        backgroundColor: colors.greenDark,
       },
       '&:disabled': {
-        backgroundColor: colors.secondaryLightest,
+        backgroundColor: colors.greenLightest,
       },
     },
     warning: {
