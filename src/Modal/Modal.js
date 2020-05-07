@@ -34,7 +34,7 @@ const ModalContainer = createComponent({
 const Backdrop = createComponent({
   name: 'ModalBackdrop',
   style: ({ transitionState }) => css`
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
