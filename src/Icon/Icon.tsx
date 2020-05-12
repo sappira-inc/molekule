@@ -28,7 +28,7 @@ const Icon = createComponent({
         `}
     `;
   },
-});
+} as any);
 
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
