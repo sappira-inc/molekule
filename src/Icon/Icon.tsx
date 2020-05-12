@@ -5,10 +5,10 @@ import { createComponent } from '../utils';
 const Icon = createComponent({
   name: 'Icon',
   tag: 'i',
-  props: ({ name }) => ({
+  props: ({ name }: any) => ({
     className: Icon.getClassName(name),
   }),
-  style: ({ theme, size, color, disabled, onClick }) => {
+  style: ({ theme, size, color, disabled, onClick }: any) => {
     const colorFromTheme = theme.colors[color];
     const resolvedColor = colorFromTheme || color;
 
@@ -38,6 +38,6 @@ Icon.propTypes = {
 };
 
 Icon.iconPrefix = 'mdi';
-Icon.getClassName = name => `${Icon.iconPrefix} ${Icon.iconPrefix}-${name}`;
+Icon.getClassName = (name: any) => `${Icon.iconPrefix} ${Icon.iconPrefix}-${name}`;
 
 export default Icon;

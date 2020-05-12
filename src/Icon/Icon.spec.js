@@ -5,7 +5,6 @@ import Icon from './Icon';
 describe('<Icon />', () => {
   test('renders', () => {
     const { asFragment } = renderWithTheme(<Icon name="message" />);
-
     expect(asFragment()).toMatchSnapshot();
   });
 

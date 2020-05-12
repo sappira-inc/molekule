@@ -1,5 +1,5 @@
 {
-  "extends": "sappira/react",
+  "extends": "heydoctor/react-ts",
   "rules": {
     "import/no-named-as-default": 0
   }
