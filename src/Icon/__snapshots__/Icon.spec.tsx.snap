@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Icon /> renders 1`] = `
+<DocumentFragment>
+  .c0 {
+  color: inherit;
+  font-size: inherit;
+}
+
+<i
+    class="c0 mdi mdi-message re-icon"
+    name="message"
+  />
+</DocumentFragment>
+`;
+
+exports[`<Icon /> renders with passed class name 1`] = `
+<DocumentFragment>
+  .c0 {
+  color: inherit;
+  font-size: inherit;
+}
+
+<i
+    class="c0 bagels mdi mdi-message re-icon"
+    name="message"
+  />
+</DocumentFragment>
+`;
