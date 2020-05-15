@@ -6,13 +6,11 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - uses: actions/setup-node@v1
-      with:
-        registry-url: 'https://registry.npmjs.org'
     - run: npm install
     - run: npm run chromatic
-    - run: npm test --coverage
       env:
         CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+    - run: npm test --coverage
     - run: npx codecov
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
