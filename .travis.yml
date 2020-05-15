@@ -6,4 +6,5 @@ install:
 script:
   - npm install
   - npm test -- --coverage
+  - npm run chromatic
   - codecov
