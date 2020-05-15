@@ -26,7 +26,7 @@
     "test": "jest",
     "lint": "eslint src",
     "release": "npm run build && standard-version",
-    "chromatic": "chromatic --project-token=n80v0tzzxej"
+    "chromatic": "chromatic"
   },
   "dependencies": {
     "@styled-system/prop-types": "^5.1.2",
