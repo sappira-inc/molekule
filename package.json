@@ -20,17 +20,18 @@
     "build": "npm-run-all clean rollup",
     "docs": "start-storybook -p 1234",
     "docs:build": "rimraf dist && build-storybook -o dist",
+    "build-storybook": "rimraf dist && build-storybook -o dist",
     "prepublishOnly": "npm-run-all build",
     "preview": "nodemon -w src -x 'yalc publish --push --changed'",
     "rollup": "rollup -c",
     "test": "jest",
-    "test:vrt": "chromatic test --build-script-name=docs:build",
-    "test:vrt:ci": "CI=true yarn test:vrt",
     "lint": "eslint src",
-    "release": "standard-version"
+    "release": "standard-version",
+    "chromatic": "chromatic --project-token=n80v0tzzxej"
   },
   "dependencies": {
     "@testing-library/react": "^9.1.3",
+    "chromatic": "^4.0.2",
     "cleave.js": "~1.4.10",
     "libphonenumber-js": "^1.7.13",
     "lodash": "^4.17.11",
@@ -84,7 +85,6 @@
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-filesize": "^6.0.1",
     "standard-version": "^4.4.0",
-    "storybook-chromatic": "^2.2.2",
     "styled-components": "^4.1.3",
     "yup": "^0.26.10"
   }
