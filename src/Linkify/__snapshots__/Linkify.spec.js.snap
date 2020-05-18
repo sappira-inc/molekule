@@ -21,7 +21,7 @@ exports[`Linkify can receive linkStyle 1`] = `
 }
 
 <div
-    class="re-linkify c0"
+    class="c0 re-linkify"
   >
     <div>
       Hello! 
@@ -61,7 +61,7 @@ exports[`Linkify can render markdown 1`] = `
 }
 
 <div
-    class="re-linkify c0"
+    class="c0 re-linkify"
   >
     <div>
       <a
@@ -98,7 +98,7 @@ exports[`Linkify converts links to anchor tags 1`] = `
 }
 
 <div
-    class="re-linkify c0"
+    class="c0 re-linkify"
   >
     <div>
       Hello! 
@@ -131,7 +131,7 @@ exports[`Linkify escapes HTML entities 1`] = `
 }
 
 <div
-    class="re-linkify c0"
+    class="c0 re-linkify"
   >
     <div>
       &lt;img src="fake.jpg" onError={() =&gt; {}} alt="hacker" /&gt;&lt;span&gt;heheh got hacked&lt;/span&gt;
@@ -155,7 +155,7 @@ exports[`Linkify reformats code blocks 1`] = `
 }
 
 <div
-    class="re-linkify c0"
+    class="c0 re-linkify"
   >
     <div>
       dear doctor,

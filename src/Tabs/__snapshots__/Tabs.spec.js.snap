@@ -92,34 +92,34 @@ exports[`<Tabs /> renders 1`] = `
 }
 
 <div
-    class="re-tabs c0"
+    class="c0 re-tabs"
   >
     <ul
-      class="re-tab-list c1"
+      class="c1 re-tab-list"
     >
       <li
-        class="re-tab-list-item c2"
+        class="c2 re-tab-list-item"
       >
         <button
-          class="re-tab c3"
+          class="c3 re-tab"
           id="test-one"
         >
           <span
-            class="re-tab-title c4"
+            class="c4 re-tab-title"
           >
             Tab One
           </span>
         </button>
       </li>
       <li
-        class="re-tab-list-item c2"
+        class="c2 re-tab-list-item"
       >
         <button
-          class="re-tab c3"
+          class="c3 re-tab"
           id="test-two"
         >
           <span
-            class="re-tab-title c5"
+            class="c5 re-tab-title"
           >
             Tab Two
           </span>
@@ -127,7 +127,7 @@ exports[`<Tabs /> renders 1`] = `
       </li>
     </ul>
     <div
-      class="re-tab-content c6"
+      class="c6 re-tab-content"
     >
       <div>
         This is the content for Tab one

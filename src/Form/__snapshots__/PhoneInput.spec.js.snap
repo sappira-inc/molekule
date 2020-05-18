@@ -91,13 +91,13 @@ exports[`<PhoneInput /> snapshot 1`] = `
 }
 
 <div
-    class="c0 re-field c1"
+    class="c0 c1 re-field"
   >
     <div
-      class="re-input-container c2"
+      class="c2 re-input-container"
     >
       <input
-        class="re-input c3"
+        class="c3 re-input"
         placeholder="Input"
         rows="3"
         type="tel"

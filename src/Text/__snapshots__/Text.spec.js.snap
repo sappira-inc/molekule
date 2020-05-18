@@ -3,7 +3,7 @@
 exports[`Text "as" prop 1`] = `
 <DocumentFragment>
   <h1
-    class="re-text "
+    class="re-text"
   >
     Hey!
   </h1>
@@ -17,7 +17,7 @@ exports[`Text "color" prop 1`] = `
 }
 
 <span
-    class="re-text c0"
+    class="c0 re-text"
     color="red"
   >
     Hey!
@@ -28,7 +28,7 @@ exports[`Text "color" prop 1`] = `
 exports[`Text default to <span> 1`] = `
 <DocumentFragment>
   <span
-    class="re-text "
+    class="re-text"
   >
     Hey!
   </span>
