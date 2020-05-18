@@ -17,6 +17,10 @@ export const Basic = () => (
         title: 'Item Two',
         content: 'Item Two Content',
       },
+      {
+        title: 'Item Three',
+        content: 'Item Three Content',
+      },
     ]}
   />
 );
