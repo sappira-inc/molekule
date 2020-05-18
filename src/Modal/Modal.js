@@ -224,7 +224,7 @@ Modal.Body = createComponent({
   name: 'ModalBody',
   style: css`
     padding: 1.25rem;
-    height: calc(90vh - 105px);
+    max-height: calc(90vh - 105px);
     overflow-y: auto;
   `,
 });

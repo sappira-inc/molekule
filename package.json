@@ -1,7 +1,7 @@
 {
   "name": "molekule",
   "description": "React component library built on top of styled-components and styled-system",
-  "version": "5.2.3",
+  "version": "5.2.4",
   "main": "lib/index.js",
   "files": [
     "lib"
@@ -20,16 +20,19 @@
     "docs": "start-storybook -p 1234",
     "dev": "start-storybook -p 1234",
     "docs:build": "rimraf dist && build-storybook -o dist",
+    "build-storybook": "rimraf dist && build-storybook -o dist",
     "prepublishOnly": "npm-run-all build",
     "preview": "nodemon -w src -x 'yalc publish --push --changed'",
     "rollup": "rollup -c",
     "test": "jest",
     "lint": "eslint src",
-    "release": "npm run build && standard-version"
+    "release": "npm run build && standard-version",
+    "chromatic": "chromatic --exit-zero-on-changes --auto-accept-changes master"
   },
   "dependencies": {
     "@styled-system/prop-types": "^5.1.2",
     "@testing-library/react": "^9.1.3",
+    "chromatic": "^4.0.2",
     "cleave.js": "~1.4.10",
     "libphonenumber-js": "^1.7.13",
     "lodash": "^4.17.11",
