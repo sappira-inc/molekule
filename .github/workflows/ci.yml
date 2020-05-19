@@ -6,11 +6,11 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - uses: actions/setup-node@v1
-    - run: npm install
-    - run: npm run chromatic
+    - run: yarn install
+    - run: yarn chromatic
       env:
         CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-    - run: npm test --coverage
+    - run: yarn test --coverage
     - run: npx codecov
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

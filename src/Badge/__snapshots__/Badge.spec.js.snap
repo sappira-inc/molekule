@@ -13,7 +13,7 @@ exports[`Badge 1`] = `
 }
 
 <span
-    class="re-badge re-badge-info c0"
+    class="c0 re-badge re-badge-info"
   >
     I'm a badge!
   </span>

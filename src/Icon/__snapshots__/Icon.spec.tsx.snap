@@ -8,7 +8,7 @@ exports[`<Icon /> renders 1`] = `
 }
 
 <i
-    class="mdi mdi-message re-icon c0"
+    class="c0 mdi mdi-message re-icon"
     name="message"
   />
 </DocumentFragment>
@@ -22,7 +22,7 @@ exports[`<Icon /> renders with passed class name 1`] = `
 }
 
 <i
-    class="bagels mdi mdi-message re-icon c0"
+    class="c0 bagels mdi mdi-message re-icon"
     name="message"
   />
 </DocumentFragment>

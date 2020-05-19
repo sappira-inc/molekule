@@ -32,20 +32,20 @@ exports[`Card 1`] = `
 }
 
 <div
-    class="re-box re-card c0"
+    class="c0 re-box re-card"
   >
     <div
-      class="re-box re-card-header c1"
+      class="c1 re-box re-card-header"
     >
       Header
     </div>
     <div
-      class="c2 re-box re-card-body c3"
+      class="c2 c3 re-box re-card-body"
     >
       Body
     </div>
     <div
-      class="c4 re-box re-card-footer c5"
+      class="c4 c5 re-box re-card-footer"
     >
       Footer
     </div>
