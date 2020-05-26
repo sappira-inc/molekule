@@ -72,7 +72,7 @@ const StyledButton = createComponent({
       border-radius: ${borderRadius}px;
       pointer-events: ${disabled ? 'none' : 'auto'};
       width: ${block ? '100%' : 'auto'};
-      border: 1px solid transparent;
+      border: 2px solid transparent;
       transition: 175ms;
       white-space: nowrap;
       user-select: none;
