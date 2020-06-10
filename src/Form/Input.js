@@ -388,7 +388,13 @@ export class Input extends Component {
     };
 
     const Label = label ? (
-      <StyledLabel htmlFor={id} styles={rest.styles} error={error} onClick={this.handleLabelClick} {...statusProps}>
+      <StyledLabel
+        htmlFor={id}
+        styles={rest.styles}
+        error={error}
+        multiline={multiline}
+        onClick={this.handleLabelClick}
+        {...statusProps}>
         {leftIcon && <LeftIcon styles={rest.styles} name={leftIcon} {...statusProps} {...leftIconProps} />}
         {label}
       </StyledLabel>

@@ -4,41 +4,45 @@ import { themeGet, createComponent } from '../utils';
 const Label = createComponent({
   name: 'Label',
   tag: 'label',
-  style: ({ isFloatable, isFloating, isFocused, isDisabled, theme }) => css`
-    display: block;
-    transition: 250ms;
-    margin: 0 0 4px 4px;
-    font-size: ${themeGet('typography.fontSize')}px;
+  style: ({ isFloatable, isFloating, isFocused, isDisabled, multiline, theme }) => {
+    const isLabelFloating = isFloating || (multiline && isFloatable);
 
-    ${isFloatable &&
-      css`
-        position: absolute;
-        margin: 0;
-        line-height: 14px;
-        left: 9px;
-        font-size: ${isFloating ? 12 : 16}px;
-        font-weight: 500;
-        top: ${isFloating ? '6px' : '50%'};
-        transform: ${isFloating ? 'none' : 'translateY(-50%)'};
-        color: ${theme.colors.greyDarker};
-        user-select: none;
-        z-index: ${isFloating ? '1' : 'auto'};
+    return css`
+      display: block;
+      transition: 250ms;
+      margin: 0 0 4px 4px;
+      font-size: ${themeGet('typography.fontSize')}px;
 
-        &:hover {
-          cursor: text;
-        }
-      `};
+      ${isFloatable &&
+        css`
+          position: absolute;
+          margin: 0;
+          line-height: 14px;
+          left: 9px;
+          font-size: ${isLabelFloating ? 12 : 16}px;
+          font-weight: 500;
+          top: ${isLabelFloating ? '6px' : '50%'};
+          transform: ${isLabelFloating ? 'none' : 'translateY(-50%)'};
+          color: ${theme.colors.greyDarker};
+          user-select: none;
+          z-index: ${isFloating ? '1' : 'auto'};
 
-    ${isFocused &&
-      css`
-        color: ${theme.colors.primary};
-      `}
+          &:hover {
+            cursor: text;
+          }
+        `};
 
-    ${isDisabled &&
-      css`
-        color: ${theme.colors.grey};
-      `}
-  `,
+      ${isFocused &&
+        css`
+          color: ${theme.colors.primary};
+        `}
+
+      ${isDisabled &&
+        css`
+          color: ${theme.colors.grey};
+        `}
+    `;
+  },
 });
 
 export default Label;
