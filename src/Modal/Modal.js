@@ -120,7 +120,12 @@ export function Modal({ children, title, animationDuration, showClose, onClose, 
             <FocusOn onEscapeKey={handleClose} enabled={isOpen}>
               <ModalContainer ref={modalRef}>
                 <Backdrop transitionState={state} onClick={handleBackdropClick} />
-                <ModalContent transitionState={state} onClick={handleContentClick} aria-modal="true" {...props}>
+                <ModalContent
+                  transitionState={state}
+                  onClick={handleContentClick}
+                  aria-modal="true"
+                  tabIndex={0}
+                  {...props}>
                   {title && <Modal.Header title={title} showClose={showClose} />}
                   {children}
                 </ModalContent>
