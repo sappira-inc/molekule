@@ -83,7 +83,7 @@ const ModalContent = createComponent({
 });
 
 /** Modals are a great way to add dialogs to your site for lightboxes, user notifications, or completely custom content. */
-export function Modal({ children, title, animationDuration, showClose, onClose, open, ...props }) {
+export function Modal({ children, title, animationDuration, showClose, onClose, open, autofocus = false, ...props }) {
   const [isOpen, setOpen] = useState(open);
   const modalRef = React.useRef(null);
 
@@ -124,7 +124,7 @@ export function Modal({ children, title, animationDuration, showClose, onClose, 
                   transitionState={state}
                   onClick={handleContentClick}
                   aria-modal="true"
-                  tabIndex={0}
+                  tabIndex={!autofocus && 0}
                   {...props}>
                   {title && <Modal.Header title={title} showClose={showClose} />}
                   {children}
