@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from './Modal';
 import ModalExample from './Modal.example';
 import ModalDropdownExample from './Modal.dropdownExample';
+import ModalNoAutoFocusExample from './Modal.noAutoFocusEx';
 
 export default {
   title: 'Components|Modal',
@@ -28,3 +29,5 @@ export const LongContent = () => (
 );
 
 export const DropdownTrigger = () => <ModalDropdownExample body="I'm triggered by a dropdown" />;
+
+export const NoAutoFocus = () => <ModalNoAutoFocusExample body="I'm triggered by a dropdown" />;
