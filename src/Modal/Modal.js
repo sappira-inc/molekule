@@ -69,6 +69,7 @@ const ModalContent = createComponent({
     box-shadow: ${theme.shadow.hard};
     border-radius: ${themeGet('radius')}px;
     max-height: 90vh;
+    outline: none;
 
     ${transitionState === 'entering' &&
       css`
