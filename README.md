@@ -24,8 +24,9 @@ We use [Yalc](https://github.com/whitecolor/yalc) to preview changes made to Mol
 
 ## Releasing
 
-```
-$ npm run release
-$ git push --follow-tags
-$ npm publish
-```
+Release is now automatic! As soon as you merge your branch into master it will auto build and publish.
+
+Keep in mind that to keep semantic versioning automated we must use conventional commits, eg:
+- `fix:` for patch version bumps
+- `feat:` for minor version bumps
+- `BREAKING CHANGE:` for major version bumps, this is for non backwards compatible/breaking changes!

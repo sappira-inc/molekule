@@ -2,19 +2,19 @@
 export const defaultThemeSizes = {
   Button: {
     sm: {
-      fontSize: 14,
+      fontSize: 16,
       height: 32,
-      padding: '0 12px',
+      padding: '0 8px',
     },
     md: {
       fontSize: 16,
       height: 40,
-      padding: '0 16px',
+      padding: '0 12px',
     },
     lg: {
       fontSize: 16,
       height: 48,
-      padding: '0 20px',
+      padding: '0 16px',
     },
   },
   Badge: {

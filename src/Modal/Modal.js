@@ -202,17 +202,17 @@ Modal.Header = ({ title, children, showClose = true }) => {
           {children}
 
           {showClose && (
-            <Button
-              variant="grey"
-              size="sm"
-              style={{ marginLeft: 'auto', border: 'none' }}
+            <Icon
+              style={{ marginLeft: 'auto', marginRight: -6, outline: 'none' }}
               onClick={handleClose}
               onKeyDown={handleKeyDown}
               aria-label="Close Modal"
-              type="button"
-              tabIndex="-1">
-              <Icon name="close" color="greyDarkest" size={24} />
-            </Button>
+              role="button"
+              tabIndex="-1"
+              name="close"
+              color="greyDarkest"
+              size={24}
+            />
           )}
         </Flex>
       </ModalHeaderInner>

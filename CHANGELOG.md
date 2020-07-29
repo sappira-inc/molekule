@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.3.1"></a>
+## 5.3.1 (2020-07-20)
+
+
+
+<a name="5.3.0"></a>
+# 5.3.0 (2020-06-10)
+
+
+### Features
+
+* **Label:** Label is now aware of multiline inputs ([#123](https://github.com/heydoctor/molekule/issues/123)) ([3b1a17f](https://github.com/heydoctor/molekule/commit/3b1a17f))
+
+
+
+<a name="5.2.7"></a>
+## 5.2.7 (2020-05-29)
+
+
+
+<a name="5.2.6"></a>
+## [5.2.6](https://github.com/sappira-inc/molekule/compare/v5.2.5...v5.2.6) (2020-05-26)
+
+
+### Bug Fixes
+
+* Adjust close icon position ([#119](https://github.com/sappira-inc/molekule/issues/119)) ([07752d6](https://github.com/sappira-inc/molekule/commit/07752d6))
+
+
+
+<a name="5.2.5"></a>
+## [5.2.5](https://github.com/sappira-inc/molekule/compare/v5.2.4...v5.2.5) (2020-05-21)
+
+
+### Bug Fixes
+
+* Fix button padding and font sizes ([#118](https://github.com/sappira-inc/molekule/issues/118)) ([ee1ca62](https://github.com/sappira-inc/molekule/commit/ee1ca62))
+
+
+
 <a name="5.2.4"></a>
 ## [5.2.4](https://github.com/heydoctor/molekule/compare/v5.2.3...v5.2.4) (2020-05-13)
 
