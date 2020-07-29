@@ -5,7 +5,6 @@ import styled from 'styled-components';
 export const themeGet = (lookup: any, fallback?: any) => ({ theme }: any = {}) => get(theme, lookup, fallback);
 
 export const getComponentVariant = (theme: any, componentName: string, variant: string) => {
-  debugger;
   const config = themeGet(`variants.${componentName}.${variant}`)({
     theme,
   });
