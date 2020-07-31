@@ -16,7 +16,7 @@ exports[`<DateInput /> snapshot 1`] = `
   position: relative;
 }
 
-.c2 + .c4 {
+.c2 + .sc-AxiKw {
   margin-left: 8px;
 }
 

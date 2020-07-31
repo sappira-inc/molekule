@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderWithTheme, fireEvent, wait } from '../../test/utils';
+import { renderWithTheme, fireEvent, wait, waitFor } from '../../test/utils';
 import Dropdown from './Dropdown';
 
 jest.mock('popper.js', () => {
@@ -41,12 +41,12 @@ describe('<Dropdown />', () => {
   };
 
   const assertDropdownOpen = (utils = renderUtils) =>
-    wait(() => {
+    waitFor(() => {
       expect(utils.queryByText('Title')).toBeInTheDocument();
     });
 
   const assertDropdownClosed = (utils = renderUtils) =>
-    wait(() => {
+    waitFor(() => {
       expect(utils.queryByText('Title')).not.toBeInTheDocument();
     });
 

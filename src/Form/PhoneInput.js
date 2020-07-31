@@ -59,7 +59,9 @@ export function PhoneInput({ countryCode, forwardedRef, value: propValue, onKeyD
 
     setValue(nextValue);
     setTimeout(() => {
-      inputRef.current.setSelectionRange(nextCursorPosition, nextCursorPosition);
+      if (inputRef.current) {
+        inputRef.current.setSelectionRange(nextCursorPosition, nextCursorPosition);
+      }
     });
 
     if (onChange) {
