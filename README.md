@@ -30,3 +30,14 @@ Keep in mind that to keep semantic versioning automated we must use conventional
 - `fix:` for patch version bumps
 - `feat:` for minor version bumps
 - `BREAKING CHANGE:` for major version bumps, this is for non backwards compatible/breaking changes!
+
+## Chromatic
+
+Chromatic is our tool to help us visually diff components and detects any new changes for you to approve!
+The tool runs automatically thorugh CI, but if you need to you run it locally make sure to have the project token exported in your `.bash_profile` (or whichever you use)
+
+The project token can be found here: https://www.chromatic.com/manage?appId=5d83adf05281c60020b60ea8 
+
+```sh
+export CHROMATIC_PROJECT_TOKEN=<insert_token_here>
+```
