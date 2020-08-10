@@ -6,7 +6,7 @@ import { createEasyInput } from './EasyInput';
 import { getNextCursorPosition } from '../utils';
 
 export const getRawMaxLength = pattern => {
-  const formatter = new DateFormatter(pattern);
+  const formatter = new DateFormatter(pattern, '1900-01-01', '2099-12-31');
   const blocks = formatter.getBlocks();
   return blocks.reduce((sum, block) => sum + block, 0);
 };
