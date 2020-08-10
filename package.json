@@ -90,7 +90,7 @@
     "react-dom": "^16.8.3",
     "react-router-dom": "^4.2.2",
     "rimraf": "^2.6.3",
-    "standard-version": "^4.4.0",
+    "standard-version": "^8.0.1",
     "yup": "^0.26.10"
   },
   "husky": {
