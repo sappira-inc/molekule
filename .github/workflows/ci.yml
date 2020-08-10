@@ -4,7 +4,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 # Required for chromatic
     - uses: actions/setup-node@v1
     - run: yarn install
     - run: yarn chromatic
