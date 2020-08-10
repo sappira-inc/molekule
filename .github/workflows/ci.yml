@@ -20,9 +20,9 @@ jobs:
   publish_canary:
     needs: test
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/master'
+    if: github.ref != 'refs/heads/main'
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
         registry-url: 'https://registry.npmjs.org'
@@ -44,9 +44,9 @@ jobs:
   publish_master:
     needs: test
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
         registry-url: 'https://registry.npmjs.org'
