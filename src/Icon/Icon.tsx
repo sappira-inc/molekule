@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { css } from 'styled-components';
 import { createComponent } from '../utils';
 
-interface IconProps {
+export interface IconProps {
   name: string;
   size?: number;
   color?: string;

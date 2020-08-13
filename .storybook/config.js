@@ -2,6 +2,7 @@ import React from 'react';
 import { configure, addDecorator,addParameters } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
 import { withKnobs } from '@storybook/addon-knobs';
+import { withInfo } from '@storybook/addon-info';
 import { createGlobalStyle } from 'styled-components';
 import { ThemeProvider } from '../src';
 import theme from './theme';
@@ -46,6 +47,12 @@ addDecorator(story => (
     </>
   </ThemeProvider>
 ));
+
+addDecorator(
+  withInfo({
+    source: false,
+  })
+);
 
 // automatically import all files ending in *.stories.js
 configure(
