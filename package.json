@@ -28,7 +28,7 @@
     "test": "jest",
     "lint": "eslint src",
     "release": "npm run build && standard-version",
-    "chromatic": "chromatic --exit-zero-on-changes --auto-accept-changes master"
+    "chromatic": "chromatic --exit-zero-on-changes --auto-accept-changes main"
   },
   "dependencies": {
     "@styled-system/prop-types": "^5.1.2",
