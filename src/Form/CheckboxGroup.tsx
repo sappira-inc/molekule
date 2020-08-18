@@ -1,28 +1,29 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Box from '../Box';
 import Checkbox from './Checkbox';
 import { FormError } from './FormError';
 import { createEasyInput } from './EasyInput';
 import GroupContainer from './GroupContainer';
 
-export class CheckboxGroup extends Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    horizontal: PropTypes.bool,
-    value: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-    choices: PropTypes.arrayOf(
-      PropTypes.shape({
-        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-        label: PropTypes.string,
-        disabled: PropTypes.bool,
-      })
-    ).isRequired,
-    onChange: PropTypes.func,
-    colorOn: PropTypes.string,
-    colorOff: PropTypes.string,
-  };
+interface CheckboxGroupProps {
+  id?: string;
+  name?: string;
+  horizontal?: boolean;
+  value?: string[] | number[] | string | number;
+  choices: {
+    value: string | number;
+    label: string;
+    disabled?: boolean;
+    exclusive?: boolean;
+    id?: any;
+  }[];
+  onChange?: (name?: string, newSelected?: any) => void;
+  colorOn?: string;
+  colorOff?: string;
+  error?: string;
+}
 
+export class CheckboxGroup extends Component<CheckboxGroupProps> {
   static defaultProps = {
     horizontal: false,
     onChange() {},
@@ -34,9 +35,9 @@ export class CheckboxGroup extends Component {
     selected: Array.isArray(this.props.value) ? [...this.props.value] : [],
   };
 
-  createChangeHandler = choice => (name, value) => {
+  createChangeHandler = (choice: any) => (_name: any, value: any) => {
     const { selected } = this.state;
-    let newSelected;
+    let newSelected: any;
     if (!selected.includes(value)) {
       if (choice.exclusive) {
         newSelected = [value];
@@ -55,7 +56,8 @@ export class CheckboxGroup extends Component {
         selected: newSelected,
       },
       () => {
-        this.props.onChange(this.props.name, newSelected);
+        // eslint-disable-next-line no-unused-expressions
+        this.props.onChange?.(this.props.name, newSelected);
       }
     );
   };

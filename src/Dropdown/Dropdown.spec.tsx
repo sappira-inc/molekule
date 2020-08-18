@@ -18,11 +18,11 @@ jest.mock('popper.js', () => {
 });
 
 describe('<Dropdown />', () => {
-  let renderUtils;
+  let renderUtils: any;
 
   const renderDropdown = (props = {}) => {
     const wrapper = document.createElement('div');
-    wrapper.setAttribute('tabindex', 1);
+    wrapper.setAttribute('tabindex', '1');
     const utils = renderWithTheme(
       <Dropdown {...props} portalNode={wrapper} trigger={<div>Trigger</div>}>
         <Dropdown.Title>Title</Dropdown.Title>
@@ -42,11 +42,13 @@ describe('<Dropdown />', () => {
 
   const assertDropdownOpen = (utils = renderUtils) =>
     wait(() => {
+      // @ts-ignore
       expect(utils.queryByText('Title')).toBeInTheDocument();
     });
 
   const assertDropdownClosed = (utils = renderUtils) =>
     wait(() => {
+      // @ts-ignore
       expect(utils.queryByText('Title')).not.toBeInTheDocument();
     });
 
@@ -90,7 +92,7 @@ describe('<Dropdown />', () => {
     await openDropdown();
     const itemOne = renderUtils.getByTestId('item-one');
     const itemTwo = renderUtils.getByTestId('item-two');
-    const isFocused = node => node === document.activeElement;
+    const isFocused = (node: any) => node === document.activeElement;
 
     // First focusable element in tree should be selected on first arrow down
     fireEvent.keyDown(document.body, { key: 'ArrowDown' });
@@ -108,18 +110,21 @@ describe('<Dropdown />', () => {
     test('wdith defaults to auto', async () => {
       const utils = renderDropdown();
       await openDropdown(utils);
+      // @ts-ignore
       expect(utils.getByTestId('dropdown-menu')).toHaveStyleRule('width', 'auto');
     });
 
     test('supports string widths', async () => {
       const utils = renderDropdown({ width: '2rem' });
       await openDropdown(utils);
+      // @ts-ignore
       expect(utils.getByTestId('dropdown-menu')).toHaveStyleRule('width', '2rem');
     });
 
     test('supports number widths', async () => {
       const utils = renderDropdown({ width: 200 });
       await openDropdown(utils);
+      // @ts-ignore
       expect(utils.getByTestId('dropdown-menu')).toHaveStyleRule('width', '200px');
     });
   });

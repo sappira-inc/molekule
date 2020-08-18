@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Dropdown, { PLACEMENT_TRANSITION_ORIGINS } from './Dropdown';
+import Dropdown, { PLACEMENT_TRANSITION_ORIGINS, Placement } from './Dropdown';
 import Flex from '../Flex';
 import RadioGroup from '../Form/RadioGroup';
 import Button from '../Button';
@@ -21,13 +21,13 @@ function BasicExample() {
             value: p,
             label: p,
           }))}
-          onChange={(_, val) => setPlacement(val)}
+          onChange={(_: any, val: any) => setPlacement(val)}
         />
       </Flex>
 
       <Flex alignSelf="center">
         <Dropdown
-          placement={placement}
+          placement={placement as Placement}
           width={250}
           trigger={
             <Button mr={3} variant="primary">

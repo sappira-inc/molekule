@@ -1,3 +1,4 @@
+/* eslint-disable react/no-this-in-sfc */
 import React from 'react';
 import Button from '../Button';
 import Box from '../Box';
@@ -11,8 +12,8 @@ export default {
 };
 
 export const Basic = () => {
-  class Example extends React.Component {
-    constructor(props) {
+  class Example extends React.Component<any, any> {
+    constructor(props: any) {
       super(props);
 
       this.state = {
@@ -33,7 +34,7 @@ export const Basic = () => {
 
           <Collapse isOpen={this.state.isOpen}>
             <Box p={3} mt={3} style={{ background: 'gainsboro' }}>
-              I'm in a collapsible element!
+              I&apos;m in a collapsible element!
             </Box>
           </Collapse>
         </React.Fragment>
@@ -48,7 +49,7 @@ export const CustomTrigger = () => (
   <>
     <Collapse renderTrigger={({ toggle }) => <Button onClick={toggle}>Click the custom trigger</Button>}>
       <Box p={3} mt={3} style={{ background: 'gainsboro' }}>
-        I'm in a collapsible element!
+        I&apos;m in a collapsible element!
       </Box>
     </Collapse>
   </>

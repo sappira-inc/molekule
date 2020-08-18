@@ -1,18 +1,18 @@
 import React from 'react';
 import { renderWithTheme, fireEvent, act } from '../test/utils';
-import DateInput, { getRawMaxLength } from './DateInput';
+import DateInput, { getRawMaxLength, DateInputProps } from './DateInput';
 import ThemeProvider from '../ThemeProvider';
 
 describe('<DateInput />', () => {
-  const renderInput = props => {
+  const renderInput = (props?: DateInputProps) => {
     const utils = renderWithTheme(<DateInput placeholder="Input" {...props} />);
     return {
       ...utils,
       input: utils.getByPlaceholderText('Input'),
-    };
+    } as any;
   };
 
-  const updateInputValue = (input, value) => {
+  const updateInputValue = (input: any, value: any) => {
     act(() => {
       fireEvent.change(input, { target: { value } });
     });

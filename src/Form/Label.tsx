@@ -1,7 +1,18 @@
 import { css } from 'styled-components';
 import { themeGet, createComponent } from '../utils';
 
-const Label = createComponent({
+interface LabelProps {
+  htmlFor?: any;
+  styles?: any;
+  multiline?: boolean;
+  isFloatable?: boolean;
+  isFloating?: boolean;
+  isFocused?: boolean;
+  isDisabled?: boolean;
+  error?: any;
+}
+
+const Label = createComponent<LabelProps, 'label'>({
   name: 'Label',
   tag: 'label',
   style: ({ isFloatable, isFloating, isFocused, isDisabled, multiline, theme }) => {

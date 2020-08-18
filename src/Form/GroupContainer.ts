@@ -1,7 +1,11 @@
 import styled, { css } from 'styled-components';
 import Flex from '../Flex';
 
-const GroupContainer = styled(Flex)(
+interface GroupContainerProps {
+  horizontal?: boolean;
+}
+
+const GroupContainer = styled(Flex)<GroupContainerProps>(
   ({ theme, horizontal }) => css`
     flex-direction: column;
 

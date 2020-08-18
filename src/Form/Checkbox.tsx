@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { css } from 'styled-components';
 import Icon from '../Icon';
 import { FormError } from '../Form/FormError';
@@ -8,7 +7,7 @@ import { getComponentSize, createComponent } from '../utils';
 
 const transitionTiming = '250ms cubic-bezier(0.4, 0, 0.2, 1)';
 
-const HiddenInput = createComponent({
+const HiddenInput = createComponent<any, 'input'>({
   name: 'CheckboxInput',
   tag: 'input',
   style: css`
@@ -25,7 +24,7 @@ const HiddenInput = createComponent({
   `,
 });
 
-const CheckIcon = createComponent({
+const CheckIcon = createComponent<any>({
   name: 'CheckIcon',
   as: Icon,
   style: ({ theme, iconSize }) => {
@@ -43,9 +42,9 @@ const CheckIcon = createComponent({
   },
 });
 
-const CheckboxShape = createComponent({
+const CheckboxShape = createComponent<any, 'div'>({
   name: 'CheckboxShape',
-  as: 'div',
+  tag: 'div',
   style: ({ theme, isRadio, isFocused, size }) => {
     const checkboxSizeStyles = getComponentSize(theme, 'Checkbox', size);
     const radioSizeStyles = getComponentSize(theme, 'Radio', size);
@@ -108,9 +107,9 @@ const CheckboxShape = createComponent({
   },
 });
 
-const CheckboxLabel = createComponent({
+const CheckboxLabel = createComponent<any, 'span'>({
   name: 'CheckboxLabel',
-  as: 'span',
+  tag: 'span',
   style: ({ theme, size }) => {
     const sizeStyles = getComponentSize(theme, 'CheckboxLabel', size);
 
@@ -122,7 +121,7 @@ const CheckboxLabel = createComponent({
   },
 });
 
-const CheckboxContainer = createComponent({
+const CheckboxContainer = createComponent<any, 'label'>({
   name: 'CheckboxContainer',
   tag: 'label',
   style: ({ theme, isChecked, isDisabled, isHorizontal, size, color }) => {
@@ -193,26 +192,34 @@ const CheckboxContainer = createComponent({
   },
 });
 
-export class Checkbox extends React.Component {
-  static propTypes = {
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
-    valueTrue: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
-    valueFalse: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
-    onChange: PropTypes.func,
-    size: PropTypes.string,
-    horizontal: PropTypes.bool,
-    disabled: PropTypes.bool,
-    styles: PropTypes.shape(),
-    colorOn: PropTypes.string,
-    colorOff: PropTypes.string,
-    ariaLabel: PropTypes.string,
-    checkIconColor: PropTypes.string,
-    checkIcon: PropTypes.string,
-  };
+export interface CheckboxProps {
+  id?: string;
+  name?: string;
+  label?: string | React.ReactElement;
+  value?: number | string | boolean;
+  valueTrue?: number | string | boolean;
+  valueFalse?: number | string | boolean;
+  onChange?: (n?: string, v?: number | string | boolean) => void;
+  size?: string;
+  horizontal?: boolean;
+  disabled?: boolean;
+  styles?: any;
+  colorOn?: string;
+  colorOff?: string;
+  ariaLabel?: string;
+  checkIconColor?: string;
+  checkIcon?: string;
+  error?: string;
+  isRadio?: boolean;
+}
 
+interface CheckboxState {
+  isFocused?: boolean;
+  isActive?: boolean;
+  value?: CheckboxProps['value'];
+}
+
+export class Checkbox extends React.Component<CheckboxProps, CheckboxState> {
   static defaultProps = {
     size: 'md',
     valueTrue: true,
@@ -228,7 +235,7 @@ export class Checkbox extends React.Component {
     checkIcon: 'check',
   };
 
-  static getDerivedStateFromProps(props, state) {
+  static getDerivedStateFromProps(props: CheckboxProps, state: CheckboxState) {
     if (props.value !== undefined && props.value !== state.value) {
       return {
         value: props.value,
@@ -240,6 +247,8 @@ export class Checkbox extends React.Component {
 
   state = {
     value: this.props.value,
+    isFocused: false,
+    isActive: false,
   };
 
   get checked() {
@@ -256,7 +265,8 @@ export class Checkbox extends React.Component {
         value: newValue,
       },
       () => {
-        onChange(this.props.name, newValue);
+        // eslint-disable-next-line no-unused-expressions
+        onChange?.(this.props.name, newValue);
       }
     );
   };

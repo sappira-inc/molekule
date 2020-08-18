@@ -1,6 +1,6 @@
 import kebabCase from 'lodash/kebabCase';
 import get from 'lodash/get';
-import styled from 'styled-components';
+import styled, { CSSProp } from 'styled-components';
 
 export const themeGet = (lookup: any, fallback?: any) => ({ theme }: any = {}) => get(theme, lookup, fallback);
 
@@ -34,21 +34,24 @@ const getComponentClassName = (
   name: string
 ) => `${className || ''} ${classPrefix}-${name} ${variant ? `${classPrefix}-${name}-${variant}` : ''}`.trim();
 
-interface CreateComponentProps {
+interface CreateComponentProps<T> {
   name: string;
-  tag?: keyof JSX.IntrinsicElements;
+  tag?: keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>;
   as?: React.ComponentType<any>;
-  style?: any;
-  props?: (props: any) => any;
+  style?: ((props: any) => CSSProp) | CSSProp;
+  props?: (props: T) => any;
 }
 
-export const createComponent = <T extends object, O extends keyof JSX.IntrinsicElements | React.ComponentType<any>>({
+export const createComponent = <
+  T extends object,
+  O extends keyof JSX.IntrinsicElements | React.ComponentType<any> = 'div'
+>({
   name,
   tag = 'div',
   as,
   style,
   props: getBaseProps = () => ({}),
-}: CreateComponentProps) => {
+}: CreateComponentProps<T>) => {
   const component = styled<O>((as || tag) as any);
 
   return component.attrs<T>((props: any) => {

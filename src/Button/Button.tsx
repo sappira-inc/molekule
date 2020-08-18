@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { css, keyframes } from 'styled-components';
-import { space } from 'styled-system';
+import { space, SpaceProps } from 'styled-system';
 import { getComponentVariant, getComponentSize, createComponent } from '../utils';
 import Flex from '../Flex';
-import Icon from '../Icon';
+import Icon, { IconProps } from '../Icon';
 
 const spinKeyframes = keyframes`
   from {
@@ -15,7 +14,7 @@ const spinKeyframes = keyframes`
     transform: rotate(360deg);
 }`;
 
-const loadingCss = (height, color) => css`
+const loadingCss = (height: number, color: string) => css`
   color: transparent !important;
   pointer-events: none;
   position: relative;
@@ -40,7 +39,24 @@ const loadingCss = (height, color) => css`
   }
 `;
 
-const StyledButton = createComponent({
+export interface ButtonProps extends SpaceProps {
+  variant?: string;
+  size?: string;
+  outline?: boolean;
+  block?: boolean;
+  colorFocus?: string;
+  disabled?: boolean;
+  loading?: boolean;
+  leftIcon?: string;
+  leftIconProps?: Omit<IconProps, 'name'>;
+  rightIcon?: string;
+  rightIconProps?: Omit<IconProps, 'name'>;
+  children?: React.ReactNode;
+}
+
+type StyledButtonProps = Partial<ButtonProps> & { hasText?: boolean; isLoading?: boolean };
+
+const StyledButton = createComponent<StyledButtonProps, 'button'>({
   name: 'Button',
   tag: 'button',
   style: ({
@@ -129,38 +145,33 @@ const StyledButton = createComponent({
   },
 });
 
-const renderIcon = (icon, props) => <Icon name={icon} {...props} />;
+const renderIcon = (icon: IconProps['name'], props?: Omit<IconProps, 'name'>) => <Icon name={icon} {...props} />;
+
+export interface ButtonStaticMembers {
+  Group: any;
+}
 
 /** Custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more. We include several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control. */
-const Button = React.forwardRef(
-  ({ children, leftIcon, leftIconProps, rightIcon, rightIconProps, colorFocus, loading, ...rest }, ref) => (
-    <StyledButton
-      ref={ref}
-      hasText={!!children}
-      leftIcon={leftIcon}
-      rightIcon={rightIcon}
-      colorFocus={colorFocus}
-      isLoading={loading}
-      {...rest}>
-      {leftIcon && renderIcon(leftIcon, leftIconProps)}
-      {children}
-      {rightIcon && renderIcon(rightIcon, rightIconProps)}
-    </StyledButton>
-  )
-);
-
-Button.propTypes = {
-  variant: PropTypes.string,
-  size: PropTypes.string,
-  outline: PropTypes.bool,
-  block: PropTypes.bool,
-  disabled: PropTypes.bool,
-  loading: PropTypes.bool,
-  leftIcon: PropTypes.string,
-  leftIconProps: PropTypes.shape(),
-  rightIcon: PropTypes.string,
-  rightIconProps: PropTypes.shape(),
-};
+const Button = React.forwardRef<
+  HTMLButtonElement,
+  ButtonProps & React.ComponentProps<'button'> & React.RefAttributes<HTMLButtonElement>
+>(({ children, leftIcon, leftIconProps, rightIcon, rightIconProps, colorFocus, loading, ...rest }, ref) => (
+  <StyledButton
+    ref={ref}
+    hasText={!!children}
+    leftIcon={leftIcon}
+    rightIcon={rightIcon}
+    colorFocus={colorFocus}
+    isLoading={loading}
+    {...rest}>
+    {leftIcon && renderIcon(leftIcon, leftIconProps)}
+    {children}
+    {rightIcon && renderIcon(rightIcon, rightIconProps)}
+  </StyledButton>
+)) as React.ForwardRefExoticComponent<
+  ButtonProps & React.ComponentProps<'button'> & React.RefAttributes<HTMLButtonElement>
+> &
+  ButtonStaticMembers;
 
 Button.defaultProps = {
   variant: 'primary',
@@ -171,7 +182,7 @@ Button.defaultProps = {
   loading: false,
 };
 
-const verticalCss = ({ breakpoints, vertical, borderRadius }) => {
+const verticalCss = ({ breakpoints, vertical, borderRadius }: any) => {
   const maybeNumber = parseInt(vertical, 10);
   const fallback = breakpoints[vertical] || breakpoints.sm;
   const breakpoint = Number.isInteger(maybeNumber) ? `${maybeNumber}px` : fallback;

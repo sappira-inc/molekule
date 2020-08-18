@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { boolean } from '@storybook/addon-knobs';
 import Flex from '../Flex';
 import { Checkbox } from './Checkbox';

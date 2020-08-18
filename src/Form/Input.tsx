@@ -7,7 +7,11 @@ import { createEasyInput, EasyInputProps } from './EasyInput';
 import Icon from '../Icon';
 import { createComponent } from '../utils';
 
-const InputContainer = createComponent({
+interface InputContainerProps {
+  styles: any;
+}
+
+const InputContainer = createComponent<InputContainerProps>({
   name: 'InputContainer',
   style: css`
     position: relative;
@@ -30,6 +34,7 @@ export interface InputProps {
   onFocus?: any;
   onBlur?: any;
   onChange?: any;
+  onKeyDown?: any;
   minRows?: number;
   rows?: number;
   maxRows?: number;
