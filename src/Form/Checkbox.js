@@ -125,7 +125,7 @@ const CheckboxLabel = createComponent({
 const CheckboxContainer = createComponent({
   name: 'CheckboxContainer',
   tag: 'label',
-  style: ({ theme, isChecked, isDisabled, isHorizontal, size, color }) => {
+  style: ({ theme, isChecked, isDisabled, isHorizontal, size, color, isBoxed, width }) => {
     const sizeStyles = getComponentSize(theme, 'CheckboxContainer', size);
 
     return css`
@@ -135,6 +135,20 @@ const CheckboxContainer = createComponent({
       margin-bottom: 4px;
       user-select: none;
       cursor: pointer;
+      ${width && `width: ${width}`}
+      ${isBoxed && 
+        css`
+          padding: 12px 8px;
+          border-radius: 4px;
+          background-color: ${theme.colors.greyLightest};
+          border: 1px solid ${theme.colors.greyLight};
+          flex-direction: row-reverse;
+          justify-content: space-between;
+          span {
+            margin: 0 10px 0 0;
+          }
+        `
+      }
 
       ${CheckboxShape} {
         border-color: ${theme.colors[color]};
@@ -211,6 +225,7 @@ export class Checkbox extends React.Component {
     ariaLabel: PropTypes.string,
     checkIconColor: PropTypes.string,
     checkIcon: PropTypes.string,
+    isBoxed: PropTypes.boolean,
   };
 
   static defaultProps = {
@@ -285,6 +300,8 @@ export class Checkbox extends React.Component {
       disabled,
       styles,
       ariaLabel,
+      isBoxed,
+      width,
     } = this.props;
     const { checked } = this;
     const { isFocused, isActive } = this.state;
@@ -301,7 +318,10 @@ export class Checkbox extends React.Component {
           size={size}
           color={checked ? colorOn : colorOff}
           onMouseDown={this.handleActive}
-          onMouseUp={this.handleActive}>
+          onMouseUp={this.handleActive}
+          isBoxed={isBoxed}
+          width={width}
+          >
           <HiddenInput
             aria-label={ariaLabel || label}
             id={id}

@@ -12,6 +12,8 @@ export const Basic = () => <Checkbox />;
 
 export const Label = () => <Checkbox label="I'm a checkbox" disabled={boolean('Disabled', false)} />;
 
+export const Boxed = () => <Checkbox label="I'm a checkbox?" disabled={boolean('Disabled', false)} isBoxed={true} width="200px" />;
+
 export const Radio = () => <Checkbox isRadio />;
 
 export const LongText = () => (
