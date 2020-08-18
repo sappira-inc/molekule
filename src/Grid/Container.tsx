@@ -1,12 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import { css } from 'styled-components';
-import Box from '../Box';
+import Box, { BoxProps } from '../Box';
 import { createComponent } from '../utils';
 
-const getPadding = p => (typeof p.gutter === 'number' ? p.gutter : p.theme.gridGutter);
+const getPadding = (p: any) => (typeof p.gutter === 'number' ? p.gutter : p.theme.gridGutter);
 
-const StyledContainer = createComponent({
+export interface ContainerProps extends BoxProps {
+  maxWidth?: number;
+  gutter?: number;
+  fluid?: boolean;
+}
+
+const StyledContainer = createComponent<ContainerProps>({
   name: 'Container',
   as: Box,
   style: ({ maxWidth, fluid, theme }) => css`
@@ -21,21 +26,15 @@ const StyledContainer = createComponent({
 
 StyledContainer.displayName = 'Container';
 
-const Container = ({ gutter, children, ...rest }) => (
+const Container: FC<ContainerProps> = ({ gutter, children, ...rest }) => (
   <StyledContainer gutter={gutter} {...rest}>
     {React.Children.map(children, child => {
       if (React.isValidElement(child)) {
-        return React.cloneElement(child, { gutter });
+        return React.cloneElement(child, { gutter } as any);
       }
       return child;
     })}
   </StyledContainer>
 );
-
-Container.propTypes = {
-  maxWidth: PropTypes.number,
-  gutter: PropTypes.number,
-  fluid: PropTypes.bool,
-};
 
 export default Container;

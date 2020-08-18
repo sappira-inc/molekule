@@ -1,12 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import { css } from 'styled-components';
-import Flex from '../Flex';
+import Flex, { FlexProps } from '../Flex';
 import { createComponent } from '../utils';
 
-const getWidthPercent = (width, columns) => `${(width / columns) * 100}%`;
+const getWidthPercent = (width: number, columns: number) => `${(width / columns) * 100}%`;
 
-const getColumnWidth = (width, columns) => {
+const getColumnWidth = (width: number, columns: number) => {
   if (width / columns !== 1) {
     return css`
       display: block;
@@ -22,16 +21,26 @@ const getColumnWidth = (width, columns) => {
   `;
 };
 
-const getPadding = ({ collapse, gutter, theme }) => {
+const getPadding = ({ collapse, gutter, theme }: any) => {
   if (collapse) return 0;
   return typeof gutter === 'number' ? gutter / 2 : theme.gridGutter / 2;
 };
 
-const getOffset = (offset, columns) => css`
+const getOffset = (offset: number, columns: number) => css`
   margin-left: ${offset === 0 ? 0 : getWidthPercent(offset, columns)};
 `;
 
-const StyledColumn = createComponent({
+export interface ColumnProps extends FlexProps {
+  gutter?: number;
+  collapse?: boolean;
+  xs?: number;
+  sm?: number;
+  md?: number;
+  lg?: number;
+  xsOffset?: number;
+}
+
+const StyledColumn = createComponent<ColumnProps>({
   name: 'Column',
   as: Flex,
   style: ({ theme, order, ...props }) => {
@@ -67,19 +76,7 @@ const StyledColumn = createComponent({
   },
 });
 
-const Column = props => <StyledColumn {...props} />;
-
-Column.propTypes = {
-  /**
-   * Margin between columns
-   */
-  gutter: PropTypes.number,
-
-  /**
-   * Collapse columns by removing gutters
-   */
-  collapse: PropTypes.bool,
-};
+const Column: FC<ColumnProps> = props => <StyledColumn {...props} />;
 
 Column.defaultProps = {
   collapse: false,

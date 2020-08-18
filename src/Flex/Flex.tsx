@@ -3,7 +3,9 @@ import { css } from 'styled-components';
 import Box, { BoxProps } from '../Box';
 import { createComponent } from '../utils';
 
-const StyledFlex = createComponent({
+export interface FlexProps extends BoxProps {}
+
+const StyledFlex = createComponent<FlexProps>({
   name: 'Flex',
   as: Box,
   style: () => css`
@@ -15,7 +17,7 @@ const StyledFlex = createComponent({
  */
 const Flex = React.forwardRef<HTMLDivElement, any>((props, ref) => (
   <StyledFlex {...props} ref={ref} />
-)) as ForwardRefExoticComponent<PropsWithChildren<BoxProps> & RefAttributes<HTMLDivElement>>;
+)) as ForwardRefExoticComponent<PropsWithChildren<FlexProps> & RefAttributes<HTMLDivElement>>;
 
 Flex.displayName = 'Flex';
 
