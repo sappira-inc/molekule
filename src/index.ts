@@ -35,7 +35,7 @@ export { default as Spinner } from './Spinner';
 export { default as Switch } from './Form/Switch';
 export { default as Tabs } from './Tabs';
 export { default as Text } from './Text';
-export { default as ThemeProvider } from './ThemeProvider';
+export * from './ThemeProvider';
 export * from './Toast';
 
 export { createTheme } from './createTheme';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderWithTheme, fireEvent, act } from '../test/utils';
 import DateInput, { getRawMaxLength, DateInputProps } from './DateInput';
-import ThemeProvider from '../ThemeProvider';
+import { ThemeProvider } from '../ThemeProvider';
 
 describe('<DateInput />', () => {
   const renderInput = (props?: DateInputProps) => {
