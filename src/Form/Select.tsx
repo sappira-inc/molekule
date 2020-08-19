@@ -8,7 +8,7 @@ import Label from './Label';
 import { createEasyInput } from './EasyInput';
 import { createComponent } from '../utils';
 
-interface SelectProps {
+export interface SelectProps {
   name: string;
   options: any[];
   placeholder?: string;
