@@ -10,7 +10,7 @@ export const Basic = () => <Placeholder delay={500} loading />;
 
 export const WithDelay = () => (
   <Placeholder delay={2000} loading={false}>
-    <span>Hey, I'm loaded asynchronously.</span>
+    <span>Hey, I&apos;m loaded asynchronously.</span>
   </Placeholder>
 );
 
