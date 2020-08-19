@@ -37,7 +37,7 @@ const getComponentClassName = (
 interface CreateComponentProps<T> {
   name: string;
   tag?: keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>;
-  as?: React.ComponentType<any>;
+  as?: React.ComponentType<any> | keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>;
   style?: ((props: any) => CSSProp) | CSSProp;
   props?: (props: T) => any;
 }

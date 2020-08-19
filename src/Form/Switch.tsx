@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { css } from 'styled-components';
 import { createComponent } from '../utils';
 import { createEasyInput } from './EasyInput';
 
-const SwitchThumb = createComponent({
+const SwitchThumb = createComponent<any>({
   name: 'SwitchThumb',
   as: 'i',
   style: ({ trackInset, thumbSize, value }) => css`
@@ -26,7 +25,7 @@ const SwitchThumb = createComponent({
   `,
 });
 
-const SwitchTrack = createComponent({
+const SwitchTrack = createComponent<any>({
   name: 'SwitchTrack',
   as: 'label',
   style: ({ theme, trackColor, thumbSize, trackInset, value, isFocused, colorFocus = theme.colors.colorFocus }) => css`
@@ -71,7 +70,7 @@ const SwitchTrack = createComponent({
   `,
 });
 
-const SwitchInput = createComponent({
+const SwitchInput = createComponent<any>({
   name: 'SwitchInput',
   as: 'input',
   style: css`
@@ -88,15 +87,17 @@ const SwitchInput = createComponent({
   `,
 });
 
-export class Switch extends React.Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    trackColor: PropTypes.string,
-    trackInset: PropTypes.number,
-    thumbSize: PropTypes.number,
-    value: PropTypes.bool,
-  };
+interface SwitchProps {
+  name?: string;
+  trackColor?: string;
+  trackInset?: number;
+  thumbSize?: number;
+  value?: boolean;
+  onChange?: any;
+  colorFocus?: any;
+}
 
+export class Switch extends React.Component<SwitchProps, any> {
   static defaultProps = {
     trackColor: 'primary',
     trackInset: 2,
@@ -108,7 +109,7 @@ export class Switch extends React.Component {
     isFocused: false,
   };
 
-  static getDerivedStateFromProps(props, state) {
+  static getDerivedStateFromProps(props: any, state: any) {
     if (props.value !== undefined && props.value !== state.value) {
       return {
         value: props.value,
@@ -124,7 +125,7 @@ export class Switch extends React.Component {
     if (typeof onChange === 'function') {
       onChange(name, !this.state.value);
     } else {
-      this.setState(state => ({ value: !state.value }));
+      this.setState((state: any) => ({ value: !state.value }));
     }
   };
 
