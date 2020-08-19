@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { css } from 'styled-components';
 import Box from '../Box';
 import Button from '../Button';
 import Spinner from '../Spinner';
 import { createComponent } from '../utils';
 
-const Container = createComponent({
+const Container = createComponent<any>({
   name: 'Placeholder',
   style: css`
     display: flex;
@@ -19,21 +18,23 @@ const Container = createComponent({
   `,
 });
 
-/** Placeholder shows a spinner after a specified delay while content is loaded asynchronously. */
-export default class Placeholder extends React.Component {
-  static propTypes = {
-    loading: PropTypes.bool,
-    error: PropTypes.string,
-    delay: PropTypes.number,
-    renderLoading: PropTypes.func,
-    renderError: PropTypes.func,
-    onReload: PropTypes.func,
-  };
+interface PlaceholderProps {
+  loading?: boolean;
+  error?: string;
+  delay?: number;
+  renderLoading?: any;
+  renderError?: any;
+  onReload?: any;
+}
 
+/** Placeholder shows a spinner after a specified delay while content is loaded asynchronously. */
+export default class Placeholder extends React.Component<PlaceholderProps> {
   static defaultProps = {
     loading: false,
     delay: 250,
   };
+
+  delayTimer: number;
 
   state = {
     delayed: false,
@@ -48,7 +49,7 @@ export default class Placeholder extends React.Component {
   }
 
   runDelay() {
-    if (this.props.delay <= 0) return;
+    if (this.props.delay !== undefined && this.props.delay <= 0) return;
 
     this.setState({ delayed: true }, () => {
       this.delayTimer = setTimeout(() => {
