@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
 
@@ -23,8 +22,15 @@ const Root = styled.div`
   }
 `;
 
+export interface LinkifyProps {
+  source?: string;
+  className?: string;
+  renderers?: any;
+  linkStyle?: any;
+}
+
 /** Automatically parse links contained in a body of text. All props except for `linkStyle` are passed through directly to [react-markdown](https://github.com/rexxars/react-markdown), which `Linkify` uses internally. */
-export default function Linkify({ source, linkStyle, renderers, ...props }) {
+const Linkify: FC<LinkifyProps> = ({ source, linkStyle, renderers, ...props }) => {
   if (typeof source !== 'string') {
     throw new Error('Molekule: source prop must be a valid markdown string');
   }
@@ -45,14 +51,9 @@ export default function Linkify({ source, linkStyle, renderers, ...props }) {
       {...props}
     />
   );
-}
-
-Linkify.propTypes = {
-  source: PropTypes.string,
-  className: PropTypes.string,
-  renderers: PropTypes.shape(),
-  linkStyle: PropTypes.shape(),
 };
+
+export default Linkify;
 
 Linkify.defaultProps = {
   className: 're-linkify',
