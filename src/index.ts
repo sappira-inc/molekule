@@ -24,7 +24,7 @@ export { Input } from './Form/Input';
 export { default as Label } from './Form/Label';
 export { default as Linkify } from './Linkify';
 export { default as Modal } from './Modal';
-export { default as OrderedList } from './Lists/OrderedList';
+export * from './Lists/OrderedList';
 export { default as PhoneInput } from './Form/PhoneInput';
 export { default as Placeholder } from './Placeholder';
 export { default as Portal } from './Portal';

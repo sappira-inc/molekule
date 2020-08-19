@@ -1,5 +1,5 @@
 import React from 'react';
-import OrderedList from './OrderedList';
+import { OrderedList } from './OrderedList';
 
 export default {
   title: 'Components|OrderedList',

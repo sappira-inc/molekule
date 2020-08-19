@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { css } from 'styled-components';
 import { createComponent } from '../utils';
 
@@ -37,12 +36,5 @@ const Icon = createComponent<IconProps, 'i'>({
     `;
   },
 });
-
-Icon.propTypes = {
-  name: PropTypes.string.isRequired,
-  size: PropTypes.number,
-  color: PropTypes.string,
-  onClick: PropTypes.func,
-};
 
 export default Icon;
