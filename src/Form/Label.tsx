@@ -10,6 +10,7 @@ interface LabelProps {
   isFocused?: boolean;
   isDisabled?: boolean;
   error?: any;
+  size?: any;
 }
 
 const Label = createComponent<LabelProps, 'label'>({

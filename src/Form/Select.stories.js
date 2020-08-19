@@ -9,7 +9,10 @@ const defaultProps = {
   id: 'select',
   name: 'select',
   label: 'Example',
-  options: [{ id: 1, value: 'male', label: 'Male' }, { id: 1, value: 'female', label: 'Female' }],
+  options: [
+    { id: 1, value: 'male', label: 'Male' },
+    { id: 1, value: 'female', label: 'Female' },
+  ],
 };
 
 export const Basic = () => <Select {...defaultProps} />;

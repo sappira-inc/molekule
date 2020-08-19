@@ -1,6 +1,5 @@
 import React, { Component, createRef } from 'react';
 import styled, { css } from 'styled-components';
-import PropTypes from 'prop-types';
 import { Field } from './Field';
 import { FormError } from './FormError';
 import Icon from '../Icon';
@@ -9,7 +8,22 @@ import Label from './Label';
 import { createEasyInput } from './EasyInput';
 import { createComponent } from '../utils';
 
-const SelectContainer = createComponent({
+interface SelectProps {
+  name: string;
+  options: any[];
+  placeholder?: string;
+  value?: string;
+  error?: string;
+  onChange?: any;
+  onBlur?: any;
+  size?: string;
+  label?: string;
+  forwardedRef?: any;
+  floating?: any;
+  id?: any;
+}
+
+const SelectContainer = createComponent<any>({
   name: 'SelectContainer',
   as: Flex,
   style: ({ theme }) => css`
@@ -36,7 +50,7 @@ const IconContainer = styled(Flex)`
   z-index: 1;
 `;
 
-const SelectInput = createComponent({
+const SelectInput = createComponent<any>({
   name: 'Select',
   tag: 'select',
   style: ({ theme, value, isFloating }) => css`
@@ -59,30 +73,18 @@ const SelectInput = createComponent({
   `,
 });
 
-const SelectOption = createComponent({
+const SelectOption = createComponent<any>({
   name: 'SelectOption',
   tag: 'option',
 });
 
-export class Select extends Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    options: PropTypes.array.isRequired,
-    placeholder: PropTypes.string,
-    value: PropTypes.string,
-    error: PropTypes.string,
-    onChange: PropTypes.func,
-    onBlur: PropTypes.func,
-    size: PropTypes.string,
-    label: PropTypes.string,
-  };
-
+export class Select extends Component<SelectProps> {
   static defaultProps = {
     onChange() {},
     onBlur() {},
   };
 
-  static getDerivedStateFromProps(props, state) {
+  static getDerivedStateFromProps(props: any, state: any) {
     if (props.value !== undefined && props.value !== state.value) {
       return {
         value: props.value,
@@ -101,21 +103,21 @@ export class Select extends Component {
     return this.props.forwardedRef || this.innerRef;
   }
 
-  handleChange = e => {
+  handleChange = (e: any) => {
     this.setState({ value: e.target.value });
     this.props.onChange(e.target.name, e.target.value);
   };
 
-  handleBlur = e => {
+  handleBlur = (e: any) => {
     this.props.onBlur(e.target.name);
   };
 
   render() {
     const { id, name, options, placeholder, error, size = 'md', label, floating, ...props } = this.props;
     const { value } = this.state;
-    const isFloating = floating && value != undefined && `${value}`.trim();
+    const isFloating = floating && value !== undefined && `${value}`.trim();
     const FloatingLabel = (
-      <Label htmlFor={id} size={size} isFloating={isFloating} isFloatable={floating}>
+      <Label htmlFor={id} size={size} isFloating={!!isFloating} isFloatable={floating}>
         {label}
       </Label>
     );
