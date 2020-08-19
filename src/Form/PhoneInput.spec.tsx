@@ -1,10 +1,10 @@
 import React from 'react';
 import { renderWithTheme, fireEvent, act } from '../test/utils';
 import PhoneInput from './PhoneInput';
-import ThemeProvider from '../ThemeProvider';
+import { ThemeProvider } from '../ThemeProvider';
 
 describe('<PhoneInput />', () => {
-  const renderInput = props => {
+  const renderInput = (props?: any): any => {
     const utils = renderWithTheme(<PhoneInput placeholder="Input" {...props} />);
     return {
       ...utils,
@@ -12,7 +12,7 @@ describe('<PhoneInput />', () => {
     };
   };
 
-  const updateInputValue = (input, value) => {
+  const updateInputValue = (input: any, value: any) => {
     act(() => {
       fireEvent.change(input, { target: { value } });
     });
