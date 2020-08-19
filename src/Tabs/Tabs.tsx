@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { css } from 'styled-components';
-import PropTypes from 'prop-types';
 import { createComponent } from '../utils';
 
-const TabsProvider = createComponent({
+const TabsProvider = createComponent<any>({
   name: 'Tabs',
   style: ({ vertical }) => css`
     display: flex;
@@ -11,7 +10,7 @@ const TabsProvider = createComponent({
   `,
 });
 
-const TabList = createComponent({
+const TabList = createComponent<any>({
   name: 'TabList',
   tag: 'ul',
   style: ({ vertical, theme }) => css`
@@ -27,7 +26,7 @@ const TabList = createComponent({
       `};
   `,
 });
-const TabListItem = createComponent({
+const TabListItem = createComponent<any>({
   name: 'TabListItem',
   tag: 'li',
   style: () => css`
@@ -37,7 +36,7 @@ const TabListItem = createComponent({
   `,
 });
 
-const Tab = createComponent({
+const Tab = createComponent<any>({
   name: 'Tab',
   tag: 'button',
   style: ({ vertical, disabled }) => css`
@@ -64,7 +63,7 @@ const Tab = createComponent({
   `,
 });
 
-const TabTitle = createComponent({
+const TabTitle = createComponent<any>({
   name: 'TabTitle',
   tag: 'span',
   style: ({ active, vertical, theme }) => css`
@@ -88,14 +87,14 @@ const TabContent = createComponent({
   `,
 });
 
-class Tabs extends Component {
-  static propTypes = {
-    tabs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-    active: PropTypes.number,
-    vertical: PropTypes.bool,
-    onChange: PropTypes.func,
-  };
+export interface TabsProps {
+  tabs: any[];
+  active?: number;
+  vertical?: boolean;
+  onChange?: any;
+}
 
+class Tabs extends Component<TabsProps> {
   static defaultProps = {
     vertical: false,
   };
@@ -106,13 +105,14 @@ class Tabs extends Component {
 
   componentDidUpdate() {
     if (this.props.active && this.props.active !== this.state.active) {
+      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
         active: this.props.active,
       });
     }
   }
 
-  handleTabClick = selected => {
+  handleTabClick = (selected: any) => {
     if (this.props.onChange) {
       this.props.onChange(selected);
     }

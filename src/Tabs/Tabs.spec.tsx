@@ -2,7 +2,7 @@ import React from 'react';
 import { renderWithTheme } from '../test/utils';
 import Tabs from './Tabs';
 
-const TabContent = ({ body }) => <div>This is the content for Tab {body}</div>;
+const TabContent = ({ body }: any) => <div>This is the content for Tab {body}</div>;
 const onActiveSpy = jest.fn();
 const TABS = [
   {

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Transition, TransitionGroup } from 'react-transition-group';
 import * as animations from 'react-animations';
 import { css, keyframes } from 'styled-components';
@@ -8,7 +7,7 @@ import Flex from '../Flex';
 import Box from '../Box';
 import Icon from '../Icon';
 import { emitter } from './toast';
-import { createComponent, themeGet } from '../utils';
+import { createComponent } from '../utils';
 import { Types, Events, Positions, PositionConfigs } from './config';
 
 const VariantToColorMap = {
@@ -18,7 +17,7 @@ const VariantToColorMap = {
   info: 'blue',
 };
 
-const getTransitionStyle = (state, position, duration) => {
+const getTransitionStyle = (state: any, position: any, duration: any) => {
   const { animationIn, animationOut } = PositionConfigs[position];
 
   switch (state) {
@@ -37,12 +36,12 @@ const getTransitionStyle = (state, position, duration) => {
   }
 };
 
-const ToastPortal = createComponent({
+const ToastPortal = createComponent<any>({
   name: 'ToastPortal',
   style: ({ position }) => PositionConfigs[position].wrapperStyle,
 });
 
-const Toast = createComponent({
+const Toast = createComponent<any>({
   name: 'Toast',
   style: ({ state, type, position, animationDuration, theme }) => css`
     padding: 0.75rem 1rem;
@@ -69,22 +68,23 @@ const Toast = createComponent({
   `,
 });
 
+interface ToastContainerProps {
+  type?: string;
+  position?: string;
+  timeout?: number;
+  animationDuration?: number;
+  autoClose?: boolean;
+  closeOnClick?: boolean;
+  showClose?: boolean;
+}
+
 /**
 Toast positions will default to `top-center`. To change the positioning, you can pass the `position` prop to the `<ToastContainer />` to be used as the default. You can also pass the position to each individual toast you're rendering, which will override the default.rendering. */
-export default class ToastContainer extends Component {
+export default class ToastContainer extends Component<ToastContainerProps, any> {
   counter = 0;
+
   state = {
     toasts: [],
-  };
-
-  static propTypes = {
-    type: PropTypes.string,
-    position: PropTypes.string,
-    timeout: PropTypes.number,
-    animationDuration: PropTypes.number,
-    autoClose: PropTypes.bool,
-    closeOnClick: PropTypes.bool,
-    showClose: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -115,7 +115,7 @@ export default class ToastContainer extends Component {
     };
 
     this.setState(
-      state => ({
+      (state: any) => ({
         ...state,
         toasts: [...state.toasts, toast],
       }),
@@ -123,19 +123,19 @@ export default class ToastContainer extends Component {
         if (toast.autoClose) {
           setTimeout(() => {
             this.remove(id);
-          }, toast.timeout + toast.animationDuration);
+          }, (toast.timeout || 0) + (toast.animationDuration || 0));
         }
       }
     );
   };
 
-  remove = id => {
-    this.setState(state => ({
-      toasts: state.toasts.filter(t => t.id !== id),
+  remove = (id: any) => {
+    this.setState((state: any) => ({
+      toasts: state.toasts.filter((t: any) => t.id !== id),
     }));
   };
 
-  handleToastClick = toast => {
+  handleToastClick = (toast: any) => {
     if (toast.closeOnClick) {
       this.remove(toast.id);
     }
@@ -151,8 +151,8 @@ export default class ToastContainer extends Component {
           <ToastPortal position={p}>
             <TransitionGroup>
               {toasts
-                .filter(t => t.position === p)
-                .map(toast => (
+                .filter((t: any) => t.position === p)
+                .map((toast: any) => (
                   <Transition key={toast.id} timeout={toast.animationDuration} appear unmountOnExit>
                     {state => (
                       <Toast {...toast} state={state} onClick={() => this.handleToastClick(toast)}>

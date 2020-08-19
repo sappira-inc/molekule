@@ -1,9 +1,9 @@
 import EventEmitter from 'mitt';
 import { Events } from './config';
 
-export const emitter = new EventEmitter();
+export const emitter = new (EventEmitter as any)();
 
-const toast = (options = {}) => {
+const toast = (options: any = {}) => {
   if (!options.message) {
     throw new Error('Molekule: Toast requires a message');
   }
@@ -11,19 +11,19 @@ const toast = (options = {}) => {
   emitter.emit(Events.ADD, options);
 };
 
-toast.success = (message, options = {}) => {
+toast.success = (message: string, options = {}) => {
   toast({ message, type: 'success', ...options });
 };
 
-toast.error = (message, options = {}) => {
+toast.error = (message: string, options = {}) => {
   toast({ message, type: 'error', ...options });
 };
 
-toast.warn = (message, options = {}) => {
+toast.warn = (message: string, options = {}) => {
   toast({ message, type: 'warn', ...options });
 };
 
-toast.info = (message, options = {}) => {
+toast.info = (message: string, options = {}) => {
   toast({ message, type: 'info', ...options });
 };
 
