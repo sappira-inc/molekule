@@ -4,7 +4,7 @@ import Button from '../Button';
 import { Input } from '../Form/Input';
 import Dropdown from '../Dropdown';
 
-export default class ModalDropdownDemo extends React.Component {
+export default class ModalDropdownDemo extends React.Component<any> {
   state = {
     isModalOpen: false,
   };
@@ -17,6 +17,7 @@ export default class ModalDropdownDemo extends React.Component {
     this.toggle();
 
     setTimeout(() => {
+      // eslint-disable-next-line no-alert
       alert('Oh no! It has been canceled.');
     }, 500);
   };
@@ -37,7 +38,7 @@ export default class ModalDropdownDemo extends React.Component {
           <Modal.Body>
             <>
               {body}
-              <Input autoFocus name="password" label="Password" />
+              <Input autofocus name="password" label="Password" />
             </>
           </Modal.Body>
 

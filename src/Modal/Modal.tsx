@@ -1,5 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { createContext, useContext, useEffect, useState, FC } from 'react';
 import { keyframes, css } from 'styled-components';
 import * as animations from 'react-animations';
 import { Transition } from 'react-transition-group';
@@ -7,12 +6,25 @@ import { FocusOn } from 'react-focus-on';
 import Portal from '../Portal';
 import Flex from '../Flex';
 import Icon from '../Icon';
-import Button from '../Button';
 import { createComponent, themeGet } from '../utils';
 
 const ModalContext = createContext({});
 
-const getAnimation = name => keyframes`${animations[name]}`;
+const getAnimation = (name: any) => keyframes`${animations[name]}`;
+
+export interface ModalProps {
+  open?: boolean;
+  showClose?: boolean;
+  closeOnBackdropClick?: boolean;
+  closeOnEscape?: boolean;
+  minWidth?: number;
+  maxWidth?: number;
+  animationIn?: string;
+  animationOut?: string;
+  animationDuration?: number;
+  onClose?: any;
+  title?: string;
+}
 
 const ModalContainer = createComponent({
   name: 'ModalContainer',
@@ -31,7 +43,7 @@ const ModalContainer = createComponent({
     justify-content: center;
   `,
 });
-const Backdrop = createComponent({
+const Backdrop = createComponent<{ transitionState: any }>({
   name: 'ModalBackdrop',
   style: ({ transitionState }) => css`
     position: fixed;
@@ -57,7 +69,7 @@ const Backdrop = createComponent({
   `,
 });
 
-const ModalContent = createComponent({
+const ModalContent = createComponent<{ transitionState: any }>({
   name: 'ModalContent',
   style: ({ minWidth, maxWidth, transitionState, animationIn, animationOut, theme }) => css`
     position: relative;
@@ -84,16 +96,24 @@ const ModalContent = createComponent({
 });
 
 /** Modals are a great way to add dialogs to your site for lightboxes, user notifications, or completely custom content. */
-export function Modal({ children, title, animationDuration, showClose, onClose, open, ...props }) {
+export const Modal: FC<ModalProps> & { Title?: any; Header?: any; Body?: any; Footer?: any } = ({
+  children,
+  title,
+  animationDuration,
+  showClose,
+  onClose,
+  open,
+  ...props
+}) => {
   const [isOpen, setOpen] = useState(open);
-  const modalRef = React.useRef(null);
+  const modalRef = React.useRef<any>(null);
 
   const handleClose = () => {
     setOpen(false);
     onClose();
   };
 
-  const handleContentClick = event => event.stopPropagation();
+  const handleContentClick = (event: any) => event.stopPropagation();
 
   const handleBackdropClick = () => {
     if (!props.closeOnBackdropClick) return;
@@ -111,12 +131,19 @@ export function Modal({ children, title, animationDuration, showClose, onClose, 
     if (open !== isOpen) {
       setOpen(open);
     }
-  }, [open]);
+  }, [open, isOpen]);
 
   return (
     <ModalContext.Provider value={{ handleClose }}>
       <Portal>
-        <Transition in={isOpen} timeout={animationDuration} onEntering={scrollToTop} mountOnEnter unmountOnExit appear>
+        <Transition
+          in={isOpen}
+          timeout={animationDuration}
+          onEntering={scrollToTop}
+          mountOnEnter
+          unmountOnExit
+          appear
+          addEndListener={() => {}}>
           {state => (
             <FocusOn onEscapeKey={handleClose} enabled={isOpen}>
               <ModalContainer ref={modalRef}>
@@ -137,19 +164,6 @@ export function Modal({ children, title, animationDuration, showClose, onClose, 
       </Portal>
     </ModalContext.Provider>
   );
-}
-
-Modal.propTypes = {
-  open: PropTypes.bool,
-  showClose: PropTypes.bool,
-  closeOnBackdropClick: PropTypes.bool,
-  closeOnEscape: PropTypes.bool,
-  minWidth: PropTypes.number,
-  maxWidth: PropTypes.number,
-  animationIn: PropTypes.string,
-  animationOut: PropTypes.string,
-  animationDuration: PropTypes.number,
-  onClose: PropTypes.func,
 };
 
 Modal.defaultProps = {
@@ -191,10 +205,11 @@ const ModalHeaderInner = createComponent({
   `,
 });
 
-Modal.Header = ({ title, children, showClose = true }) => {
-  const { handleClose } = useContext(ModalContext);
+Modal.Header = ({ title, children, showClose = true }: any) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { handleClose } = useContext<any>(ModalContext);
 
-  const handleKeyDown = ({ keyCode }) => {
+  const handleKeyDown = ({ keyCode }: any) => {
     if (keyCode === 13) {
       handleClose();
     }
@@ -214,7 +229,7 @@ Modal.Header = ({ title, children, showClose = true }) => {
               onKeyDown={handleKeyDown}
               aria-label="Close Modal"
               role="button"
-              tabIndex="-1"
+              tabIndex={-1}
               name="close"
               color="greyDarkest"
               size={24}

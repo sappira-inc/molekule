@@ -1,9 +1,9 @@
 import React from 'react';
 import Modal from './Modal';
 import Button from '../Button';
-import Input from '../Form/Input';
+import { Input } from '../Form/Input';
 
-export default class ModalNoAutoFocusExample extends React.Component {
+export default class ModalDemo extends React.Component<any> {
   state = {
     isModalOpen: false,
     isModalTwoOpen: false,
@@ -21,6 +21,7 @@ export default class ModalNoAutoFocusExample extends React.Component {
     this.toggle();
 
     setTimeout(() => {
+      // eslint-disable-next-line no-alert
       alert('Oh no! It has been canceled.');
     }, 500);
   };
@@ -36,7 +37,7 @@ export default class ModalNoAutoFocusExample extends React.Component {
           <Modal.Body>
             <>
               {body}
-              <Input name="password" label="Password" />
+              <Input autofocus name="password" label="Password" />
             </>
 
             <Modal open={this.state.isModalTwoOpen} onClose={this.toggleModalTwo} title="Example Modal Two" {...props}>
