@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Box from '../Box';
+import Box, { BoxProps } from '../Box';
 import Checkbox from './Checkbox';
 import Label from './Label';
 import { FormError } from './FormError';
@@ -8,32 +7,39 @@ import { createEasyInput } from './EasyInput';
 import GroupContainer from './GroupContainer';
 import { createComponent } from '../utils';
 
-const StyledRadioGroup = createComponent({
+interface RadioGroupChoice {
+  id: string | number;
+  value: string | number;
+  label?: string;
+  disabled?: boolean;
+}
+
+interface RadioGroupProps extends BoxProps {
+  name?: string;
+  onChange?: any;
+  value?: string | number;
+  colorOn?: string;
+  colorOff?: string;
+  fontSize?: number;
+  iconSize?: number;
+  choices: RadioGroupChoice[];
+  styles?: any;
+  iconOn?: string;
+  iconOff?: string;
+  error?: any;
+  label?: string;
+  horizontal?: any;
+  colorFocus?: any;
+  id?: string;
+  disabled?: boolean;
+}
+
+const StyledRadioGroup = createComponent<BoxProps>({
   name: 'RadioGroup',
   as: Box,
 });
 
-export class RadioGroup extends Component {
-  static propTypes = {
-    name: PropTypes.string,
-    onChange: PropTypes.func,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    colorOn: PropTypes.string,
-    colorOff: PropTypes.string,
-    fontSize: PropTypes.number,
-    iconSize: PropTypes.number,
-    choices: PropTypes.arrayOf(
-      PropTypes.shape({
-        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-        label: PropTypes.string,
-        disabled: PropTypes.bool,
-      })
-    ),
-    styles: PropTypes.shape(),
-    iconOn: PropTypes.string,
-    iconOff: PropTypes.string,
-  };
-
+export class RadioGroup extends Component<RadioGroupProps> {
   static defaultProps = {
     choices: [],
     onChange() {},
@@ -42,7 +48,7 @@ export class RadioGroup extends Component {
     iconOff: 'radiobox-blank',
   };
 
-  static getDerivedStateFromProps(props, state) {
+  static getDerivedStateFromProps(props: any, state: any) {
     if (props.value !== undefined && props.value !== state.value) {
       return {
         value: props.value,
@@ -56,7 +62,7 @@ export class RadioGroup extends Component {
     value: this.props.value || null,
   };
 
-  handleChange = (field, value) => {
+  handleChange = (_field: any, value: any) => {
     // Bail out if value is the same
     if (this.state.value === value) return;
 
