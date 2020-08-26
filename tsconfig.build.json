@@ -1,7 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "CommonJS"
+    "module": "CommonJS",
+    "jsx": "react",
   },
   "exclude": [
     "node_modules",
