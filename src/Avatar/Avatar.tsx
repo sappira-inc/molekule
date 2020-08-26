@@ -95,4 +95,10 @@ const Avatar: React.FC<AvatarProps & BoxProps> = ({
   </AvatarContainer>
 );
 
+Avatar.defaultProps = {
+  size: 25,
+  borderRadius: '100%',
+  color: 'white',
+};
+
 export default Avatar;

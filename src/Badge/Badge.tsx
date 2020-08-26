@@ -26,3 +26,8 @@ export const Badge = createComponent<BadgeProps, 'span'>({
     `;
   },
 });
+
+Badge.defaultProps = {
+  variant: 'info',
+  size: 'md',
+};

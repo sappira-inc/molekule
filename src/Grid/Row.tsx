@@ -47,3 +47,8 @@ export const Row: FC<RowProps> = ({ children, gutter, reverse, collapse, vertica
 );
 
 Row.displayName = 'Row';
+Row.defaultProps = {
+  vertical: false,
+  reverse: false,
+  collapse: false,
+};

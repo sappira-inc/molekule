@@ -5,10 +5,15 @@ exports[`Badge 1`] = `
   .c0 {
   font-family: inherit;
   font-weight: bold;
+  background-color: #CADCFF;
+  color: #0958F3;
+  font-size: 12px;
+  border-radius: 12px;
+  padding: 4px 8px;
 }
 
 <span
-    class="c0 re-badge"
+    class="c0 re-badge re-badge-info"
   >
     I'm a badge!
   </span>
