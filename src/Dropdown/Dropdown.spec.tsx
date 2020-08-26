@@ -107,7 +107,7 @@ describe('<Dropdown />', () => {
   });
 
   describe('prop: width', () => {
-    test('wdith defaults to auto', async () => {
+    test('width defaults to auto', async () => {
       const utils = renderDropdown();
       await openDropdown(utils);
       // @ts-ignore

@@ -12,7 +12,7 @@ export interface AlertProps extends SpaceProps {
 export const Alert = createComponent<AlertProps>({
   name: 'Alert',
   style: ({ variant, theme }) => {
-    const variantStyles = getComponentVariant(theme, 'Alert', variant);
+    const variantStyles = variant ? getComponentVariant(theme, 'Alert', variant) : '';
 
     return css`
       padding: 1rem;
@@ -32,3 +32,7 @@ export const Alert = createComponent<AlertProps>({
     `;
   },
 });
+
+Alert.defaultProps = {
+  variant: 'primary',
+};

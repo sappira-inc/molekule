@@ -397,3 +397,15 @@ const DropdownItem: React.FC<DropdownItemProps> = ({
 };
 
 Dropdown.Item = DropdownItem;
+
+Dropdown.defaultProps = {
+  placement: 'bottom-start',
+  autoclose: true,
+  offset: '0, 10',
+  positionFixed: false,
+  boundariesElement: 'viewport',
+  width: 'auto',
+  zIndex: 10,
+  transitionDuration: 225,
+  transitionTimingFunction: 'cubic-bezier(0.25, 0.1, 0.17, 1.2)',
+};

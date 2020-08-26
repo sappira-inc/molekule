@@ -73,7 +73,7 @@ const StyledButton = createComponent<StyledButtonProps, 'button'>({
     borderRadius = theme.radius,
     colorFocus = theme.colors.colorFocus,
   }) => {
-    const variantStyles = getComponentVariant(theme, 'Button', variant);
+    const variantStyles = variant ? getComponentVariant(theme, 'Button', variant) : '';
     const sizeStyles = getComponentSize(theme, 'Button', size);
 
     return css`

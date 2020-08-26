@@ -13,7 +13,7 @@ export const Badge = createComponent<BadgeProps, 'span'>({
   name: 'Badge',
   tag: 'span',
   style: ({ variant, theme, size }) => {
-    const variantStyles = getComponentVariant(theme, 'Badge', variant);
+    const variantStyles = variant ? getComponentVariant(theme, 'Badge', variant) : '';
     const sizeStyles = getComponentSize(theme, 'Badge', size);
 
     return css`

@@ -4,7 +4,7 @@ import styled, { CSSProp, StyledProps } from 'styled-components';
 
 export const themeGet = (lookup: any, fallback?: any) => ({ theme }: any = {}) => get(theme, lookup, fallback);
 
-export const getComponentVariant = (theme: any, componentName?: string, variant?: string) => {
+export const getComponentVariant = (theme: any, componentName: string, variant: string) => {
   const config = themeGet(`variants.${componentName}.${variant}`)({
     theme,
   });
