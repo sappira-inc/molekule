@@ -1,8 +1,7 @@
-import PropTypes from 'prop-types';
 import { css } from 'styled-components';
 import { createComponent } from '../utils';
 
-interface IconProps {
+export interface IconProps {
   name: string;
   size?: number;
   color?: string;
@@ -10,14 +9,14 @@ interface IconProps {
   disabled?: boolean;
 }
 
-const Icon = createComponent<IconProps, 'i'>({
+export const Icon = createComponent<IconProps, 'i'>({
   name: 'Icon',
   tag: 'i',
   props: ({ name }) => ({
     className: `mdi mdi-${name}`,
   }),
-  style: ({ theme, size, color, disabled, onClick }: any) => {
-    const colorFromTheme = theme.colors[color];
+  style: ({ theme, size, color, disabled, onClick }) => {
+    const colorFromTheme = color ? theme.colors[color] : '';
     const resolvedColor = colorFromTheme || color;
 
     return css`
@@ -37,12 +36,3 @@ const Icon = createComponent<IconProps, 'i'>({
     `;
   },
 });
-
-Icon.propTypes = {
-  name: PropTypes.string.isRequired,
-  size: PropTypes.number,
-  color: PropTypes.string,
-  onClick: PropTypes.func,
-};
-
-export default Icon;

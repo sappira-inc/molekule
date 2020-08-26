@@ -1,10 +1,10 @@
 import kebabCase from 'lodash/kebabCase';
 import get from 'lodash/get';
-import styled from 'styled-components';
+import styled, { CSSProp, StyledProps } from 'styled-components';
 
 export const themeGet = (lookup: any, fallback?: any) => ({ theme }: any = {}) => get(theme, lookup, fallback);
 
-export const getComponentVariant = (theme: any, componentName: string, variant: string) => {
+export const getComponentVariant = (theme: any, componentName?: string, variant?: string) => {
   const config = themeGet(`variants.${componentName}.${variant}`)({
     theme,
   });
@@ -13,7 +13,7 @@ export const getComponentVariant = (theme: any, componentName: string, variant: 
   return config;
 };
 
-export const getComponentSize = (theme: any, componentName: string, size: string) =>
+export const getComponentSize = (theme: any, componentName?: string, size?: string) =>
   themeGet(`sizes.${componentName}.${size}`, {})({ theme });
 
 export const getComponentStyle = (componentName: string) => themeGet(`styles.${componentName}`, {});
@@ -34,21 +34,24 @@ const getComponentClassName = (
   name: string
 ) => `${className || ''} ${classPrefix}-${name} ${variant ? `${classPrefix}-${name}-${variant}` : ''}`.trim();
 
-interface CreateComponentProps {
+interface CreateComponentProps<T> {
   name: string;
-  tag?: keyof JSX.IntrinsicElements;
-  as?: React.ComponentType<any>;
-  style?: any;
-  props?: (props: any) => any;
+  tag?: keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>;
+  as?: React.ComponentType<any> | keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>;
+  style?: ((props: StyledProps<T>) => CSSProp) | CSSProp;
+  props?: (props: T) => any;
 }
 
-export const createComponent = <T extends object, O extends keyof JSX.IntrinsicElements | React.ComponentType<any>>({
+export const createComponent = <
+  T extends object,
+  O extends keyof JSX.IntrinsicElements | React.ComponentType<any> = 'div'
+>({
   name,
   tag = 'div',
   as,
   style,
   props: getBaseProps = () => ({}),
-}: CreateComponentProps) => {
+}: CreateComponentProps<T>) => {
   const component = styled<O>((as || tag) as any);
 
   return component.attrs<T>((props: any) => {

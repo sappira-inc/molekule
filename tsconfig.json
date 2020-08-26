@@ -2,12 +2,13 @@
   "compilerOptions": {
     "module": "esnext",
     "target": "es5",
+    "outDir": "./lib",
     "lib": [
       "esnext",
       "dom.iterable",
       "dom"
     ],
-    "baseUrl": ".",
+    "baseUrl": "src",
     "declaration": true,
     "declarationDir": "./lib",
     "sourceMap": true,

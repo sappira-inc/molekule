@@ -1,6 +1,6 @@
 import React from 'react';
-import { renderWithTheme } from '../../test/utils';
-import Icon from './Icon';
+import { renderWithTheme } from '../test/utils';
+import { Icon } from './Icon';
 
 describe('<Icon />', () => {
   test('renders', () => {

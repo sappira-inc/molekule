@@ -1,4 +1,4 @@
-import { defaultBreakpoints } from 'src/defaultBreakpoints';
+import { defaultBreakpoints } from 'defaultBreakpoints';
 import { ExtendedCSSProperties } from './ExtendedCSSProperties';
 
 type Transform<T> = {

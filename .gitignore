@@ -9,3 +9,4 @@ lib
 coverage
 .yalc
 yalc.lock
+.env

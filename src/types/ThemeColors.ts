@@ -1,4 +1,4 @@
-import { defaultThemeColors } from 'src/defaultThemeColors';
+import { defaultThemeColors } from 'defaultThemeColors';
 
 type Transform<T> = {
   [P in keyof T]: string;

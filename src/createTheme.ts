@@ -1,4 +1,4 @@
-import { DefaultTheme } from 'styled-components';
+import { Theme } from 'types';
 import { merge } from 'lodash';
 import { defaultThemeColors } from './defaultThemeColors';
 import { BadgeVariants } from './types/BadgeVariants';
@@ -6,7 +6,7 @@ import { defaultBadgeVariants } from './defaultBadgeVariants';
 import { defaultTheme } from './defaultTheme';
 import { ButtonVariants } from './types';
 
-export const createTheme = (customTheme?: Partial<DefaultTheme>): DefaultTheme => {
+export const createTheme = (customTheme?: Partial<Theme>): Theme => {
   const colors = {
     ...defaultThemeColors,
     ...customTheme?.colors,

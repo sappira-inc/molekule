@@ -5,3 +5,4 @@ export * from './ThemeSizes';
 export * from './ThemeTypography';
 export * from './BadgeVariants';
 export * from './ButtonVariants';
+export * from './Theme';
