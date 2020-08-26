@@ -1,4 +1,4 @@
-# ⚛️ Molekule [![npm version](https://badge.fury.io/js/molekule.svg)](http://badge.fury.io/js/molekule) [![Build Status](https://travis-ci.org/heydoctor/molekule.svg?branch=master)](https://travis-ci.org/heydoctor/molekule) [![codecov](https://codecov.io/gh/heydoctor/molekule/branch/master/graph/badge.svg)](https://codecov.io/gh/heydoctor/molekule) [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-:D-blue.svg?style="flats")](https://conventionalcommits.org)
+# ⚛️ Molekule [![npm version](https://badge.fury.io/js/molekule.svg)](http://badge.fury.io/js/molekule) [![Build Status](https://travis-ci.org/heydoctor/molekule.svg?branch=main)](https://travis-ci.org/heydoctor/molekule) [![codecov](https://codecov.io/gh/heydoctor/molekule/branch/main/graph/badge.svg)](https://codecov.io/gh/heydoctor/molekule) [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-:D-blue.svg?style="flats")](https://conventionalcommits.org)
 
 > The last React component library you'll ever need
 
@@ -24,7 +24,7 @@ We use [Yalc](https://github.com/whitecolor/yalc) to preview changes made to Mol
 
 ## Releasing
 
-Release is now automatic! As soon as you merge your branch into master it will auto build and publish.
+Release is now automatic! As soon as you merge your branch into main it will auto build and publish.
 
 Keep in mind that to keep semantic versioning automated we must use conventional commits, eg:
 - `fix:` for patch version bumps
