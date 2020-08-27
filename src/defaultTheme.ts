@@ -1,15 +1,23 @@
-import { DefaultTheme } from 'styled-components';
+import { ThemeBreakpoints, Theme } from 'types';
 import { defaultThemeColors } from './defaultThemeColors';
 import { defaultBreakpoints } from './defaultBreakpoints';
 import { defaultThemeSizes } from './defaultThemeSizes';
 import { defaultThemeVariants } from './defaultThemeVariants';
 
-export const defaultTheme: DefaultTheme = {
+const breakpoints = [...defaultBreakpoints] as string[] & ThemeBreakpoints;
+/* eslint-disable prefer-destructuring */
+breakpoints.xs = breakpoints[0];
+breakpoints.sm = breakpoints[1];
+breakpoints.md = breakpoints[2];
+breakpoints.lg = breakpoints[3];
+breakpoints.xl = breakpoints[4];
+
+export const defaultTheme: Theme = {
   classPrefix: 're',
   colors: defaultThemeColors,
   space: [0, 4, 8, 16, 24, 32, 64, 126, 256],
 
-  breakpoints: defaultBreakpoints,
+  breakpoints,
   gridWidth: 1200,
   gridGutter: 16,
   gridColumns: 12,

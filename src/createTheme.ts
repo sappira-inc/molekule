@@ -1,5 +1,6 @@
-import { Theme } from 'types';
+import { Theme, ThemeBreakpoints } from 'types';
 import { merge } from 'lodash';
+import { defaultBreakpoints } from './defaultBreakpoints';
 import { defaultThemeColors } from './defaultThemeColors';
 import { BadgeVariants } from './types/BadgeVariants';
 import { defaultBadgeVariants } from './defaultBadgeVariants';
@@ -141,13 +142,19 @@ export const createTheme = (customTheme?: Partial<Theme>): Theme => {
     },
   });
 
+  const breakpoints = (customTheme?.breakpoints || defaultBreakpoints) as string[] & ThemeBreakpoints;
+  /* eslint-disable prefer-destructuring */
+  breakpoints.xs = breakpoints[0];
+  breakpoints.sm = breakpoints[1];
+  breakpoints.md = breakpoints[2];
+  breakpoints.lg = breakpoints[3];
+  breakpoints.xl = breakpoints[4];
+  /* eslint-enable prefer-destructuring */
+
   return {
     ...defaultTheme,
     colors,
-    breakpoints: {
-      ...defaultTheme.breakpoints,
-      ...customTheme?.breakpoints,
-    },
+    breakpoints,
     typography: {
       ...defaultTheme.typography,
       color: colors.black,

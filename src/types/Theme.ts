@@ -13,7 +13,7 @@ export interface Theme {
     hard: string;
   };
   colors: ThemeColors;
-  breakpoints: ThemeBreakpoints;
+  breakpoints: string[] & ThemeBreakpoints;
   typography: ThemeTypography;
   sizes: ThemeSizes;
   variants: ThemeVariants;
