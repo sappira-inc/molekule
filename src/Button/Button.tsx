@@ -55,7 +55,10 @@ export interface ButtonProps extends SpaceProps {
   children?: React.ReactNode;
 }
 
-type StyledButtonProps = Partial<ButtonProps> & { hasText?: boolean; isLoading?: boolean };
+interface StyledButtonProps extends Partial<ButtonProps> {
+  hasText?: boolean;
+  isLoading?: boolean;
+}
 
 const StyledButton = createComponent<StyledButtonProps, 'button'>({
   name: 'Button',
