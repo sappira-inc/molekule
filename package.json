@@ -17,7 +17,7 @@
   "scripts": {
     "clean": "rimraf lib",
     "watch": "yarn rollup --watch",
-    "build": "npm run clean && tsc --noEmit false --project tsconfig.build.json",
+    "build": "npm run clean && tsc  --importHelpers --noEmit false --project tsconfig.build.json",
     "docs": "start-storybook -p 1234",
     "dev": "start-storybook -p 1234",
     "docs:build": "rimraf dist && build-storybook -o dist",
@@ -50,6 +50,7 @@
     "react-transition-group": "^2.5.3",
     "styled-components": "^4.0.0",
     "styled-system": "^5.1.2",
+    "tslib": "^2.0.1",
     "typescript": "^3.9.4"
   },
   "peerDependencies": {
