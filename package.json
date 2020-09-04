@@ -41,7 +41,7 @@
     "polished": "^2.0.0",
     "prop-types": "^15.7.2",
     "react-animations": "^1.0.0",
-    "react-focus-on": "^3.0.6",
+    "react-focus-on": "^3.5.0",
     "react-markdown": "^4.0.6",
     "react-popper": "^1.3.3",
     "react-portal": "^4.2.0",
