@@ -83,8 +83,8 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
   -ms-transform-origin: 0 0;
   transform-origin: 0 0;
   padding: 8px;
-  -webkit-animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
-  animation: gPsOjp 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
+  -webkit-animation: hTUZQQ 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
+  animation: hTUZQQ 225ms cubic-bezier(0.25,0.1,0.17,1.2) forwards;
 }
 
 .c3 {
@@ -155,7 +155,7 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
         Title
       </span>
       <div
-        class="c2 re-box re-dropdown-item"
+        class="c2 re-box re-box re-dropdown-item"
         data-testid="item-one"
         role="button"
         tabindex="0"
@@ -167,7 +167,7 @@ exports[`<Dropdown /> opens menu with focus when trigger is clicked 1`] = `
         data-testid="divider"
       />
       <div
-        class="c2 re-box re-dropdown-item"
+        class="c2 re-box re-box re-dropdown-item"
         data-testid="item-two"
         role="button"
         tabindex="0"

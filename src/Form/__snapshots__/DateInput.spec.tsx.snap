@@ -8,7 +8,7 @@ exports[`<DateInput /> snapshot 1`] = `
   transition: 175ms;
 }
 
-.c1 + .c0 {
+.c0 + .c0 {
   margin-top: 1rem;
 }
 
@@ -16,7 +16,7 @@ exports[`<DateInput /> snapshot 1`] = `
   position: relative;
 }
 
-.c2 + .c4 {
+.c2 + .sc-dlnjPT {
   margin-left: 8px;
 }
 
