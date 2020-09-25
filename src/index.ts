@@ -38,4 +38,4 @@ export * from './Toast';
 
 export { createTheme } from './createTheme';
 export * from './utils';
-export { default as styled, css, keyframes, createGlobalStyle } from 'styled-components';
+export { default as styled, css, keyframes, createGlobalStyle, ServerStyleSheet } from 'styled-components';
